@@ -1,30 +1,23 @@
-import { Poppins } from 'next/font/google'
+import { Inter } from 'next/font/google';
 import ThemeRegistry from '@/components/ThemeRegistry/ThemeRegistry';
-import './globals.css'
+import './globals.css';
 import { Suspense } from 'react';
 
-const inter = Poppins({ weight: '400', style: 'normal', subsets: ['latin'] });
+const inter = Inter({ weight: ['400', '500', '600', '700'], subsets: ['latin'], display: 'swap' });
 
 export const metadata = {
-  title: 'ABA Frontend WEB APP',
-  description: 'ABA Frontend App',
-}
+  title: 'Plutus — IT spend intelligence',
+  description: 'Systems, contracts, renewals, and analytics in one dashboard.',
+};
 
-
-export default function RootLayout({
-  children
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className} suppressHydrationWarning>
         <ThemeRegistry>
-          <Suspense>
-            {children}
-          </Suspense>
+          <Suspense>{children}</Suspense>
         </ThemeRegistry>
       </body>
     </html>
-  )
+  );
 }

@@ -14,19 +14,19 @@ import {
   Table,
   TableBody,
   TableCell,
+  TableContainer,
   TableHead,
   TableRow,
   TextField,
-  Typography,
 } from '@mui/material';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import useSWR from 'swr';
+import { Server } from 'lucide-react';
+import AppCard from '@/components/ui/AppCard';
+import EmptyState from '@/components/ui/EmptyState';
+import PageHeader from '@/components/ui/PageHeader';
 import { authFetcher } from '@/lib/swr-fetcher';
-import {
-  dashboardHeader,
-  dashboardSubheader,
-} from '@/styles/MaterialStyles/shared/sharedStyles';
 
 type SystemRow = {
   id: string;
@@ -76,21 +76,46 @@ export default function SystemsListPage() {
     );
   }, [rows, search]);
 
+  const loading = rows === undefined;
+  const empty = rows !== undefined && rows.length === 0;
+  const noMatches = rows !== undefined && rows.length > 0 && !filtered.length;
+
   return (
     <Box>
-      <Typography sx={dashboardHeader}>IT systems</Typography>
-      <Typography sx={dashboardSubheader} gutterBottom>
-        Inventory and ownership
-      </Typography>
+      <PageHeader
+        title="IT systems"
+        description="Inventory, ownership, and renewal risk across your stack."
+        action={
+          <Button
+            variant="contained"
+            color="primary"
+            startIcon={<AddIcon />}
+            component={Link}
+            href="/dashboard/systems/new"
+            sx={{ fontWeight: 600 }}
+          >
+            Add system
+          </Button>
+        }
+      />
 
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: 2, alignItems: 'center' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: 2,
+          mb: 2.5,
+          alignItems: 'center',
+        }}
+      >
         <TextField
           size="small"
           label="Search"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
+          sx={{ minWidth: { xs: '100%', sm: 220 } }}
         />
-        <FormControl size="small" sx={{ minWidth: 140 }}>
+        <FormControl size="small" sx={{ minWidth: 160 }}>
           <InputLabel>Category</InputLabel>
           <Select
             label="Category"
@@ -106,7 +131,7 @@ export default function SystemsListPage() {
             <MenuItem value="Internal Tool">Internal Tool</MenuItem>
           </Select>
         </FormControl>
-        <FormControl size="small" sx={{ minWidth: 140 }}>
+        <FormControl size="small" sx={{ minWidth: 160 }}>
           <InputLabel>Department</InputLabel>
           <Select
             label="Department"
@@ -126,7 +151,7 @@ export default function SystemsListPage() {
             )}
           </Select>
         </FormControl>
-        <FormControl size="small" sx={{ minWidth: 140 }}>
+        <FormControl size="small" sx={{ minWidth: 160 }}>
           <InputLabel>Criticality</InputLabel>
           <Select
             label="Criticality"
@@ -142,61 +167,81 @@ export default function SystemsListPage() {
             <MenuItem value="High">High</MenuItem>
           </Select>
         </FormControl>
-        <Button
-          variant="contained"
-          startIcon={<AddIcon />}
-          component={Link}
-          href="/dashboard/systems/new"
-        >
-          Add system
-        </Button>
       </Box>
 
-      <Table size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell>System</TableCell>
-            <TableCell>Vendor</TableCell>
-            <TableCell>Category</TableCell>
-            <TableCell>Department</TableCell>
-            <TableCell>Business owner</TableCell>
-            <TableCell>Criticality</TableCell>
-            <TableCell align="right">Annual cost (est.)</TableCell>
-            <TableCell>Next renewal</TableCell>
-            <TableCell>Actions</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {filtered.map((r) => (
-            <TableRow key={r.id}>
-              <TableCell>{r.name}</TableCell>
-              <TableCell>{r.vendor}</TableCell>
-              <TableCell>{r.category}</TableCell>
-              <TableCell>{r.department}</TableCell>
-              <TableCell>
-                {r.businessOwner?.name || r.businessOwner?.email || '—'}
-              </TableCell>
-              <TableCell>{r.criticality}</TableCell>
-              <TableCell align="right">
-                ${(r.annualCost ?? 0).toLocaleString()}
-              </TableCell>
-              <TableCell>
-                {r.nextRenewal
-                  ? new Date(r.nextRenewal).toLocaleDateString()
-                  : '—'}
-              </TableCell>
-              <TableCell>
-                <IconButton component={Link} href={`/dashboard/systems/${r.id}`} size="small" aria-label="view">
-                  <VisibilityIcon fontSize="small" />
-                </IconButton>
-                <IconButton component={Link} href={`/dashboard/systems/${r.id}/edit`} size="small" aria-label="edit">
-                  <EditIcon fontSize="small" />
-                </IconButton>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+      <AppCard>
+        <TableContainer sx={{ borderRadius: 2 }}>
+          <Table size="medium">
+            <TableHead>
+              <TableRow>
+                <TableCell>System</TableCell>
+                <TableCell>Vendor</TableCell>
+                <TableCell>Category</TableCell>
+                <TableCell>Department</TableCell>
+                <TableCell>Business owner</TableCell>
+                <TableCell>Criticality</TableCell>
+                <TableCell align="right">Annual cost (est.)</TableCell>
+                <TableCell>Next renewal</TableCell>
+                <TableCell align="right">Actions</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {loading && (
+                <TableRow>
+                  <TableCell colSpan={9} sx={{ py: 5, textAlign: 'center', color: 'text.secondary' }}>
+                    Loading systems…
+                  </TableCell>
+                </TableRow>
+              )}
+              {empty && (
+                <TableRow>
+                  <TableCell colSpan={9} sx={{ border: 'none', p: 0 }}>
+                    <EmptyState
+                      embedded
+                      icon={Server}
+                      title="No systems yet"
+                      description="Add your first system or import a spreadsheet to populate this view."
+                    />
+                  </TableCell>
+                </TableRow>
+              )}
+              {noMatches && (
+                <TableRow>
+                  <TableCell colSpan={9} sx={{ py: 6, textAlign: 'center', color: 'text.secondary' }}>
+                    No systems match your filters.
+                  </TableCell>
+                </TableRow>
+              )}
+              {filtered.map((r) => (
+                <TableRow key={r.id} hover sx={{ '&:last-child td': { borderBottom: 'none' } }}>
+                  <TableCell sx={{ fontWeight: 600 }}>{r.name}</TableCell>
+                  <TableCell>{r.vendor}</TableCell>
+                  <TableCell>{r.category}</TableCell>
+                  <TableCell>{r.department}</TableCell>
+                  <TableCell>
+                    {r.businessOwner?.name || r.businessOwner?.email || '—'}
+                  </TableCell>
+                  <TableCell>{r.criticality}</TableCell>
+                  <TableCell align="right">${(r.annualCost ?? 0).toLocaleString()}</TableCell>
+                  <TableCell>
+                    {r.nextRenewal
+                      ? new Date(r.nextRenewal).toLocaleDateString()
+                      : '—'}
+                  </TableCell>
+                  <TableCell align="right">
+                    <IconButton component={Link} href={`/dashboard/systems/${r.id}`} size="small" aria-label="View">
+                      <VisibilityIcon fontSize="small" />
+                    </IconButton>
+                    <IconButton component={Link} href={`/dashboard/systems/${r.id}/edit`} size="small" aria-label="Edit">
+                      <EditIcon fontSize="small" />
+                    </IconButton>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </AppCard>
     </Box>
   );
 }

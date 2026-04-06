@@ -1,11 +1,8 @@
 import { getStoredToken } from '@/lib/api-helper';
+import { resolveApiBaseUrl } from '@/lib/resolve-api-base-url';
 
 function baseUrl(): string {
-  return (
-    process.env.NEXT_PUBLIC_BACKEND_API_URL ||
-    process.env.BACKEND_API_URL ||
-    ''
-  ).replace(/\/$/, '');
+  return resolveApiBaseUrl();
 }
 
 export async function authFetcher<T = unknown>(path: string): Promise<T> {

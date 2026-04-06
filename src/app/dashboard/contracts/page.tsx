@@ -3,24 +3,14 @@
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import {
-  Box,
-  Button,
-  IconButton,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-  Typography,
-} from '@mui/material';
+import { Box, Button, IconButton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { FileText } from 'lucide-react';
 import Link from 'next/link';
 import useSWR from 'swr';
+import AppCard from '@/components/ui/AppCard';
+import EmptyState from '@/components/ui/EmptyState';
+import PageHeader from '@/components/ui/PageHeader';
 import { authFetcher } from '@/lib/swr-fetcher';
-import {
-  dashboardHeader,
-  dashboardSubheader,
-} from '@/styles/MaterialStyles/shared/sharedStyles';
 
 type ContractRow = {
   _id: string;
@@ -33,57 +23,88 @@ type ContractRow = {
 
 export default function ContractsPage() {
   const { data: rows } = useSWR<ContractRow[]>('contracts', authFetcher);
-  const sorted = [...(rows ?? [])].sort(
+  const list = rows ?? [];
+  const sorted = [...list].sort(
     (a, b) =>
       new Date(a.renewalDate).getTime() - new Date(b.renewalDate).getTime(),
   );
 
+  const loading = rows === undefined;
+  const empty = rows !== undefined && list.length === 0;
+
   return (
     <Box>
-      <Typography sx={dashboardHeader}>Contracts</Typography>
-      <Typography sx={dashboardSubheader} gutterBottom>
-        Sorted by renewal date
-      </Typography>
-      <Button
-        variant="contained"
-        startIcon={<AddIcon />}
-        component={Link}
-        href="/dashboard/contracts/new"
-        sx={{ mb: 2 }}
-      >
-        Add contract
-      </Button>
-      <Table size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell>System</TableCell>
-            <TableCell align="right">Cost</TableCell>
-            <TableCell>Billing cycle</TableCell>
-            <TableCell>Renewal date</TableCell>
-            <TableCell>Auto-renew</TableCell>
-            <TableCell>Actions</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {sorted.map((c) => (
-            <TableRow key={c._id}>
-              <TableCell>{c.systemId?.name ?? '—'}</TableCell>
-              <TableCell align="right">{c.costAmount}</TableCell>
-              <TableCell>{c.billingCycle}</TableCell>
-              <TableCell>{new Date(c.renewalDate).toLocaleDateString()}</TableCell>
-              <TableCell>{c.autoRenew ? 'Yes' : 'No'}</TableCell>
-              <TableCell>
-                <IconButton component={Link} href={`/dashboard/contracts/${c._id}`} size="small">
-                  <VisibilityIcon fontSize="small" />
-                </IconButton>
-                <IconButton component={Link} href={`/dashboard/contracts/${c._id}/edit`} size="small">
-                  <EditIcon fontSize="small" />
-                </IconButton>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+      <PageHeader
+        title="Contracts"
+        description="Renewal pipeline sorted by date — stay ahead of auto-renew windows."
+        action={
+          <Button
+            variant="contained"
+            color="primary"
+            startIcon={<AddIcon />}
+            component={Link}
+            href="/dashboard/contracts/new"
+            sx={{ fontWeight: 600 }}
+          >
+            Add contract
+          </Button>
+        }
+      />
+
+      <AppCard>
+        <TableContainer sx={{ borderRadius: 2 }}>
+          <Table size="medium">
+            <TableHead>
+              <TableRow>
+                <TableCell>System</TableCell>
+                <TableCell align="right">Cost</TableCell>
+                <TableCell>Billing cycle</TableCell>
+                <TableCell>Renewal date</TableCell>
+                <TableCell>Auto-renew</TableCell>
+                <TableCell align="right">Actions</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {loading && (
+                <TableRow>
+                  <TableCell colSpan={6} sx={{ py: 5, textAlign: 'center', color: 'text.secondary' }}>
+                    Loading contracts…
+                  </TableCell>
+                </TableRow>
+              )}
+              {empty && (
+                <TableRow>
+                  <TableCell colSpan={6} sx={{ border: 'none', p: 0 }}>
+                    <EmptyState
+                      embedded
+                      icon={FileText}
+                      title="No contracts yet"
+                      description="Link contracts to systems to track renewals and spend in one place."
+                    />
+                  </TableCell>
+                </TableRow>
+              )}
+              {sorted.map((c) => (
+                <TableRow key={c._id} hover sx={{ '&:last-child td': { borderBottom: 'none' } }}>
+                  <TableCell sx={{ fontWeight: 600 }}>{c.systemId?.name ?? '—'}</TableCell>
+                  <TableCell align="right">${c.costAmount.toLocaleString()}</TableCell>
+                  <TableCell>{c.billingCycle}</TableCell>
+                  <TableCell>{new Date(c.renewalDate).toLocaleDateString()}</TableCell>
+                  <TableCell>{c.autoRenew ? 'Yes' : 'No'}</TableCell>
+                  <TableCell align="right">
+                    <IconButton component={Link} href={`/dashboard/contracts/${c._id}`} size="small" aria-label="View">
+                      <VisibilityIcon fontSize="small" />
+                    </IconButton>
+                    <IconButton component={Link} href={`/dashboard/contracts/${c._id}/edit`} size="small" aria-label="Edit">
+                      <EditIcon fontSize="small" />
+                    </IconButton>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </AppCard>
     </Box>
   );
 }

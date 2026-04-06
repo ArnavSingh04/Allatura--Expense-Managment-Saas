@@ -1,34 +1,10 @@
+import DashboardShell from '@/components/dashboard/DashboardShell';
+import { Suspense } from 'react';
 
-import Grid from '@mui/material/GridLegacy';
-import SideMenuFrame from "@/components/dashboard/sideMenuFrame";
-import { Suspense } from "react";
-import { layoutStyles } from "@/styles/MaterialStyles/dashboard/layout/layoutStyles";
-
-export default function DashboardLayout({
-  children,
-
-}: {
-  children: React.ReactNode
-}) {
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
-    <section>
-      <Grid container xs={12} sm={12} md={12}>
-
-        <Grid item sx={layoutStyles.grid} xl={2} lg={2}>
-          <SideMenuFrame>
-            {null}
-            {/** <h1>NESTED COMPONENT</h1> */}
-          </SideMenuFrame>
-        </Grid>
-
-        <Grid item container direction="row" spacing={2} xs={12} sm={12} md={10} lg={10} xl={10}>
-          <Grid sx={layoutStyles.gridItem} item xs={12} sm={12} md={12}>
-            <Suspense>
-              {children}
-            </Suspense>
-          </Grid>
-        </Grid>
-      </Grid>
-    </section>
-  )
+    <DashboardShell>
+      <Suspense>{children}</Suspense>
+    </DashboardShell>
+  );
 }

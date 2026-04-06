@@ -1,0 +1,40 @@
+/** Plutus design tokens — single source for theme + Tailwind alignment */
+export const plutus = {
+  color: {
+    bg: '#f4f6f8',
+    surface: '#ffffff',
+    border: 'rgba(15, 23, 42, 0.08)',
+    text: '#0f172a',
+    muted: '#64748b',
+    subtle: '#94a3b8',
+    primary: '#0d9488',
+    primaryDark: '#0f766e',
+    primarySoft: 'rgba(13, 148, 136, 0.12)',
+    accentViolet: '#6366f1',
+    accentVioletSoft: 'rgba(99, 102, 241, 0.12)',
+    accentAmber: '#d97706',
+    accentAmberSoft: 'rgba(217, 119, 6, 0.12)',
+    accentRose: '#e11d48',
+    accentRoseSoft: 'rgba(225, 29, 72, 0.1)',
+    chart1: '#0d9488',
+    chart2: '#6366f1',
+    chart3: '#f59e0b',
+    chart4: '#ec4899',
+  },
+  radius: {
+    sm: 8,
+    md: 12,
+    lg: 16,
+    xl: 20,
+  },
+  shadow: {
+    card: '0 1px 2px rgba(15, 23, 42, 0.06), 0 4px 12px rgba(15, 23, 42, 0.04)',
+    cardHover: '0 4px 12px rgba(15, 23, 42, 0.08), 0 12px 32px rgba(15, 23, 42, 0.06)',
+    nav: '0 0 0 1px rgba(15, 23, 42, 0.06)',
+  },
+  space: {
+    pageX: { xs: 2, sm: 3, md: 4 },
+    pageY: { xs: 2, md: 3 },
+    section: 3,
+  },
+} as const;

@@ -1,21 +1,46 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@700;800&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --plutus-bg: #f4f6f8;
+  --plutus-surface: #ffffff;
+  --plutus-border: rgba(15, 23, 42, 0.08);
+  --plutus-text: #0f172a;
+  --plutus-muted: #64748b;
+  --plutus-primary: #0d9488;
+  --plutus-primary-soft: rgba(13, 148, 136, 0.12);
+  --plutus-radius-md: 12px;
+  --plutus-radius-lg: 16px;
+  --plutus-shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 4px 12px rgba(15, 23, 42, 0.04);
+  --plutus-shadow-hover: 0 4px 12px rgba(15, 23, 42, 0.08), 0 12px 32px rgba(15, 23, 42, 0.06);
+}
 
 html {
-  font-size: 1rem;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 @layer base {
   .customfont {
-    @apply font-logo;
-    font-size: 1.5rem;
-    font-weight: 400;
-    line-height: 2rem;
-    letter-spacing: 0em;
-    color: #2dcf89;
+    @apply font-logo tracking-tight;
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.25rem;
+    color: var(--plutus-primary);
+    letter-spacing: -0.04em;
+  }
+}
+
+@layer utilities {
+  .transition-plutus {
+    transition:
+      background-color 0.15s ease,
+      border-color 0.15s ease,
+      box-shadow 0.2s ease,
+      transform 0.2s ease;
   }
 }
