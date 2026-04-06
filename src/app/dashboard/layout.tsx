@@ -16,6 +16,7 @@ export default function DashboardLayout({
 
         <Grid item sx={layoutStyles.grid} xl={2} lg={2}>
           <SideMenuFrame>
+            {null}
             {/** <h1>NESTED COMPONENT</h1> */}
           </SideMenuFrame>
         </Grid>

@@ -10,10 +10,6 @@ import { FrontendService } from "@/services/frontendService";
 import { REQUEST_TYPE } from "@/lib/api-helper";
 import { useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/navigation'
-import DashboardNavbar from "@/components/dashboard/navbar";
-import { gridNavbarStyle } from "@/styles/MaterialStyles/navbarStyles";
-import MobileNavbar from "@/components/mobile/mobileNavbar";
-import { mobileNavbar } from "@/styles/MaterialStyles/mobile/mobileStyles";
 import StackmarksLogo from "@/components/shared/stackmarksLogo";
 import { planCardRoot } from "@/styles/MaterialStyles/plan/planCardStyles";
 import { Suspense } from 'react'
@@ -41,9 +37,12 @@ const PlanPage = () => {
     e.preventDefault();
 
     const stripe = await getStripe();
-    const result = await submitRequest({ userID: userID, planID: planID }, 'checkout');
+    const result = (await submitRequest(
+      { userID: userID, planID: planID },
+      'checkout'
+    )) as { id?: string };
 
-    if (stripe) {
+    if (stripe && result?.id) {
       stripe.redirectToCheckout({
         sessionId: result.id,
       });

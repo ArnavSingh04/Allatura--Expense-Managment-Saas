@@ -23,12 +23,25 @@ export async function POST(request: Request) {
     return routeRedirect('/')
   }
 
+  const userId = currentUser?.id;
+  const authID = currentUser?.authID;
+  if (userId === undefined || authID === undefined) {
+    console.error('user id or auth id missing');
+    return routeRedirect('/');
+  }
+
+  const userForAccount = { ...currentUser, id: userId, authID };
+
   //check account exists otherwise update account
-  const account = await accountService.getAccount('userID', currentUser.id);
+  const account = await accountService.getAccount('userID', userId);
 
   if (account?.found === false || account?.stripeSubscriptionID === 'NULL') {
     console.log('no account found');
-    return await createAccount(sessionID, currentUser);
+    if (!sessionID) {
+      console.error('missing Stripe session id');
+      return toResponse({ error: 'your account could not be created' });
+    }
+    return await createAccount(sessionID, userForAccount);
   } else {
     console.log('account found re-activating');
     //return await updateAccount(sessionID, account);
@@ -42,13 +55,18 @@ const createAccount = async (sessionID: string, currentUser: any) => {
   const accountService = new AccountService();
 
   const stripeSession = await stripeService.getSession(sessionID);
-  const stripeSubscription = await stripeService.getSubscription(stripeSession.stripeSubscriptionID);
+  const stripeSubId = stripeSession.stripeSubscriptionID;
+  if (!stripeSubId) {
+    console.error('stripe session missing subscription id');
+    return toResponse({ error: 'your account could not be created' });
+  }
+  const stripeSubscription = await stripeService.getSubscription(stripeSubId);
 
   const newAccount = {
     userID: currentUser.id,
     authID: currentUser.authID,
     stripeCustomerID: stripeSession.stripeCustomerID,
-    stripeSubscriptionID: stripeSession.stripeSubscriptionID,
+    stripeSubscriptionID: stripeSubId,
     stripePriceID: stripeSubscription.priceID,
     stripeProductID: stripeSubscription.productID,
     planName: stripeSubscription.planName,
