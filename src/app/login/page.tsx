@@ -46,7 +46,7 @@ export default function LoginPage() {
       return;
     }
     setAuthToken(res.accessToken);
-    router.push('/dashboard');
+    router.push('/');
     router.refresh();
   };
 

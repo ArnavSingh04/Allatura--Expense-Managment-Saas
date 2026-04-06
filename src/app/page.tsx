@@ -1,19 +1,5 @@
-import { Button } from "@mui/material";
-import Link from "next/link";
+import { redirect } from 'next/navigation';
 
-const HomePage = () => {
-
-  return (
-    <>
-      <h1>Welcome To Homepage</h1>
-      <Link href="dashboard/server-page">
-        <Button variant="contained">Server Side Page</Button>
-      </Link>
-      <Link href="dashboard/client-page">
-        <Button variant="contained">Client Side Page</Button>
-      </Link>
-    </>
-  )
+export default function HomePage() {
+  redirect('/dashboard');
 }
-
-export default HomePage;
