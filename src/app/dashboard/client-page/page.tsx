@@ -1,6 +1,6 @@
 'use client';
 
-import Grid from "@mui/material/Grid";
+import Grid from "@mui/material/GridLegacy";
 import { Suspense, useState, useEffect } from 'react'
 import { submitRequest } from "@/utils/api-utils";
 import LoadingSpinner from "@/components/shared/loadingSpinner";

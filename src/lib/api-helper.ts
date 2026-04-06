@@ -5,27 +5,58 @@ export enum REQUEST_TYPE {
   DELETE = "DELETE",
 }
 
-export class ApiHelper {
+function apiBaseUrl(): string {
+  const url =
+    process.env.NEXT_PUBLIC_BACKEND_API_URL ||
+    process.env.BACKEND_API_URL ||
+    "";
+  return url.replace(/\/$/, "");
+}
 
+export function getStoredToken(): string | null {
+  if (typeof window === "undefined") {
+    return null;
+  }
+  return localStorage.getItem("plutus_access_token");
+}
+
+export function setAuthToken(token: string, maxAgeSeconds = 60 * 60 * 24 * 7) {
+  if (typeof window === "undefined") {
+    return;
+  }
+  localStorage.setItem("plutus_access_token", token);
+  document.cookie = `plutus_access_token=${token}; path=/; max-age=${maxAgeSeconds}; SameSite=Lax`;
+}
+
+export function clearAuthToken() {
+  if (typeof window === "undefined") {
+    return;
+  }
+  localStorage.removeItem("plutus_access_token");
+  document.cookie =
+    "plutus_access_token=; path=/; max-age=0; SameSite=Lax";
+}
+
+export class ApiHelper {
   private _baseURL: string;
   private readonly _apiKey: string;
   private readonly _endpoint: string;
   private _urlParams: string;
   private _requestType: REQUEST_TYPE;
-  private _requestBody: any;
+  private _requestBody: unknown;
   private _includeKey: boolean;
 
   constructor(endpoint: string) {
-    this._baseURL = process.env.BACKEND_API_URL!;
-    this._apiKey = process.env.BACKEND_API_KEY!;
-    this._endpoint = endpoint;
-    this._urlParams = '';
+    this._baseURL = apiBaseUrl();
+    this._apiKey = process.env.BACKEND_API_KEY || "";
+    this._endpoint = endpoint.replace(/^\/+/, "").replace(/\/+$/, "");
+    this._urlParams = "";
     this._includeKey = true;
     this._requestType = REQUEST_TYPE.GET;
   }
 
   set baseURL(newBaseURL: string) {
-    this._baseURL = newBaseURL;
+    this._baseURL = newBaseURL.replace(/\/$/, "");
   }
 
   set type(requestType: REQUEST_TYPE) {
@@ -37,58 +68,124 @@ export class ApiHelper {
   }
 
   set urlParams(newUrlParams: string) {
-    this._urlParams = newUrlParams;
+    this._urlParams = newUrlParams.replace(/^\/+/, "");
   }
 
-  set body(newBody: any) {
+  set body(newBody: unknown) {
     this._requestBody = newBody;
   }
 
   private logReturn(error: string) {
-    const response = { failed: true, error: error }
+    const response = { failed: true, error: error };
     console.error(response.error);
     return response;
   }
 
-  async fetchRequest() {
-    const URL = `${this._baseURL}/${this._endpoint}/${this._urlParams}`;
-    //  console.log('--------');
-    //  console.log('Base URL: ', URL);
-    //  console.log('Request Type: ', this._requestType);
-    //  console.log('body', this._requestBody);
-    //  console.log('--------');
+  private buildUrl(): string {
+    const base = this._baseURL;
+    const parts = [this._endpoint, this._urlParams].filter((p) => p && p.length > 0);
+    const path = parts.join("/");
+    return `${base}/${path}`;
+  }
 
-    const config: RequestInit = {
-      ...((this._requestBody !== undefined || this._requestBody !== null) ? { body: JSON.stringify(this._requestBody) } : ''),
-      method: this._requestType,
-      headers: {
-        "content-type": "application/json",
-        ...(this._includeKey === true && { 'x-api-key': this._apiKey }),
-      }
+  async fetchRequest(): Promise<unknown> {
+    if (!this._baseURL) {
+      return this.logReturn(
+        "API URL is not configured. Set NEXT_PUBLIC_BACKEND_API_URL in .env.local and restart the dev server.",
+      );
+    }
+    const URL = this.buildUrl();
+    const token = getStoredToken();
+    const headers: Record<string, string> = {
+      ...(this._includeKey === true &&
+        this._apiKey && { "x-api-key": this._apiKey }),
+    };
+    if (token) {
+      headers.Authorization = `Bearer ${token}`;
+    }
+    const hasJsonBody =
+      this._requestBody !== undefined &&
+      this._requestBody !== null &&
+      (this._requestType === REQUEST_TYPE.POST ||
+        this._requestType === REQUEST_TYPE.PATCH);
+    if (hasJsonBody) {
+      headers["content-type"] = "application/json";
     }
 
-    //    console.log(config);
+    const config: RequestInit = {
+      method: this._requestType,
+      headers,
+      ...(hasJsonBody && { body: JSON.stringify(this._requestBody) }),
+    };
 
     try {
       const response = await fetch(URL, config);
       if (response.status === 401) {
-        return this.logReturn('unauthorized.')
-      }
-      else if (response.status === 404) {
-        return this.logReturn('Resource not found.');
-      }
-      else if (response.status === 500) {
-        return this.logReturn('A server error occured.');
-      }
-      else if (!response.ok) {
-        return this.logReturn(`Request could not be submitted status: ${response.status}`);
+        return this.logReturn("unauthorized.");
+      } else if (response.status === 404) {
+        return this.logReturn("Resource not found.");
+      } else if (response.status === 500) {
+        return this.logReturn("A server error occured.");
+      } else if (!response.ok) {
+        return this.logReturn(
+          `Request could not be submitted status: ${response.status}`,
+        );
       }
 
-      const data = await response.json();
-      return data;
+      const text = await response.text();
+      if (!text) {
+        return {};
+      }
+      return JSON.parse(text) as unknown;
+    } catch (error) {
+      console.error(`unexpected error occured: ${error}`, { url: URL });
+      return this.logReturn(
+        "Cannot reach the API. Start the backend (e.g. npm run start:dev in plutus-be) and check NEXT_PUBLIC_BACKEND_API_URL.",
+      );
     }
-    catch (error) {
-      console.error(`unexpected error occured: ${error}`);
+  }
+
+  /** Multipart POST (e.g. CSV import). Do not set .body — pass FormData here. */
+  async fetchMultipart(formData: FormData): Promise<unknown> {
+    if (!this._baseURL) {
+      return this.logReturn(
+        "API URL is not configured. Set NEXT_PUBLIC_BACKEND_API_URL in .env.local and restart the dev server.",
+      );
+    }
+    const URL = this.buildUrl();
+    const token = getStoredToken();
+    const headers: Record<string, string> = {
+      ...(this._includeKey === true &&
+        this._apiKey && { "x-api-key": this._apiKey }),
+    };
+    if (token) {
+      headers.Authorization = `Bearer ${token}`;
+    }
+
+    try {
+      const response = await fetch(URL, {
+        method: "POST",
+        headers,
+        body: formData,
+      });
+      if (response.status === 401) {
+        return this.logReturn("unauthorized.");
+      }
+      if (!response.ok) {
+        return this.logReturn(
+          `Request could not be submitted status: ${response.status}`,
+        );
+      }
+      const text = await response.text();
+      if (!text) {
+        return {};
+      }
+      return JSON.parse(text) as unknown;
+    } catch (error) {
+      console.error(`unexpected error occured: ${error}`, { url: URL });
+      return this.logReturn(
+        "Cannot reach the API. Start the backend (e.g. npm run start:dev in plutus-be) and check NEXT_PUBLIC_BACKEND_API_URL.",
+      );
     }
   }
 }

@@ -15,16 +15,27 @@ yarn install
 pnpm install
 ```
 
-## Create a .env.local file
+## Environment variables
 
-```bash
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY='pk_test_XXXX'
-STRIPE_SECRET_KEY='sk_test_XXXXX'
-NEXT_PUBLIC_APP_URL='http://localhost:3000'
-BACKEND_API_URL='https://www.boredapi.com'
-BACKEND_API_KEY=''
-NODE_ENV='dev'
-```
+Copy `.env.example` to `.env.local` for local development.
+
+**Local `.env.local` (typical)**
+
+- `NEXT_PUBLIC_APP_URL` — frontend origin, e.g. `http://localhost:3000`
+- `NEXT_PUBLIC_BACKEND_API_URL` — API base **including `/v1`**, e.g. `http://localhost:3001/v1`
+- `BACKEND_API_URL` — same as above for server-side calls (optional if `NEXT_PUBLIC_BACKEND_API_URL` is set)
+
+**Deploying the frontend**
+
+Set these in your hosting provider (Vercel, Cloud Run, etc.) **before the production build**. `NEXT_PUBLIC_*` values are baked in at build time.
+
+| Variable | Production value |
+|----------|------------------|
+| `NEXT_PUBLIC_APP_URL` | Your live frontend URL (e.g. `https://your-app.vercel.app`) |
+| `NEXT_PUBLIC_BACKEND_API_URL` | `https://plutus-api-462298977190.us-central1.run.app/v1` |
+| `BACKEND_API_URL` | Same as `NEXT_PUBLIC_BACKEND_API_URL` |
+
+Stripe and other secrets from `.env.example` still apply where you use checkout/webhooks.
 
 Run the development server:
 

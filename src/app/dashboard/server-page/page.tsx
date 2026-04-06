@@ -1,6 +1,7 @@
 import { submitRequest } from "@/utils/api-utils";
 import { dashboardHeader, dashboardSubheader } from '@/styles/MaterialStyles/shared/sharedStyles';
-import { Grid, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
+import Grid from '@mui/material/GridLegacy';
 
 export default async function ServerExamplePage(context: any) {
   const req = await submitRequest({ context: context }, 'dashboard').then((data: any) => {

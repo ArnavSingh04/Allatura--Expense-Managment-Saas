@@ -1,6 +1,6 @@
 'use client';
 
-import Grid from "@mui/material/Grid";
+import Grid from "@mui/material/GridLegacy";
 import { useForm, Controller, SubmitHandler } from "react-hook-form"
 import { Button, Checkbox, Input, MenuItem, TextField, Typography } from "@mui/material";
 import { buttonStyle, dashboardHeader, dashboardSubheader } from '@/styles/MaterialStyles/shared/sharedStyles';
