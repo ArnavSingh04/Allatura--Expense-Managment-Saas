@@ -1,5 +1,5 @@
 
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/GridLegacy';
 import SideMenuFrame from "@/components/dashboard/sideMenuFrame";
 import { Suspense } from "react";
 import { layoutStyles } from "@/styles/MaterialStyles/dashboard/layout/layoutStyles";
@@ -20,7 +20,7 @@ export default function DashboardLayout({
           </SideMenuFrame>
         </Grid>
 
-        <Grid container direction="row" spacing={2} xs={12} sm={12} md={10} lg={10} xl={10}>
+        <Grid item container direction="row" spacing={2} xs={12} sm={12} md={10} lg={10} xl={10}>
           <Grid sx={layoutStyles.gridItem} item xs={12} sm={12} md={12}>
             <Suspense>
               {children}

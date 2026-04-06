@@ -1,32 +1,36 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-// Mock function just for testing
-// Used to get the subscriber ID from an auth provider
 const getSession = async (_req: NextRequest, _res: NextResponse) => ({
   session: { user: { sub: '123' } },
 });
 
 export async function proxy(request: NextRequest) {
-  console.log('------- Proxy --------');
-
-  const response = new NextResponse();
-  const session = await getSession(request, response);
-
-  if (session !== null && session.session?.user?.sub) {
-    console.log('user is valid', session.session.user.sub);
-    const nextResponse = NextResponse.next();
-    // example: save the subscriber ID from the auth provider to cookies
-    // nextResponse.cookies.set('subID', session.session.user.sub);
-    return nextResponse;
+  if (request.nextUrl.pathname.startsWith('/dashboard')) {
+    const token = request.cookies.get('plutus_access_token')?.value;
+    if (!token) {
+      return NextResponse.redirect(new URL('/login', request.url));
+    }
+    return NextResponse.next();
   }
 
-  console.log('user is not valid');
-  return NextResponse.redirect(
-    new URL('/api/auth/logout', process.env.NEXT_PUBLIC_APP_URL),
-    { status: 308 }
-  );
+  if (request.nextUrl.pathname.startsWith('/test/middleware')) {
+    console.log('------- Proxy --------');
+    const response = new NextResponse();
+    const session = await getSession(request, response);
+    if (session !== null && session.session?.user?.sub) {
+      console.log('user is valid', session.session.user.sub);
+      return NextResponse.next();
+    }
+    console.log('user is not valid');
+    return NextResponse.redirect(
+      new URL('/api/auth/logout', process.env.NEXT_PUBLIC_APP_URL || request.url),
+      { status: 308 },
+    );
+  }
+
+  return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/test/middleware'],
+  matcher: ['/dashboard/:path*', '/test/middleware'],
 };

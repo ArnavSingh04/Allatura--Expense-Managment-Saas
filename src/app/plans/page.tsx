@@ -3,7 +3,7 @@
 import { FormEvent, useEffect } from "react";
 import PlanCard from '@/components/plans/planCard';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/GridLegacy';
 import { PLANS } from '@/data/plans';
 import getStripe from "@/utils/get-stripe";
 import { FrontendService } from "@/services/frontendService";
