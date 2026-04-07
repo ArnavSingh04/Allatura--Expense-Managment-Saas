@@ -81,8 +81,9 @@ export default function ImportPage() {
         setSample(res.sampleRows ?? []);
         const init: Record<string, string> = {};
         for (const field of FIELDS) {
+          const aliases = field.aliases as readonly string[];
           const match = res.headers.find((h) =>
-            field.aliases.includes(h.toLowerCase().trim()),
+            aliases.includes(h.toLowerCase().trim()),
           );
           init[field.key] = match ?? '';
         }
