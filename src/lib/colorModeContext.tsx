@@ -4,7 +4,7 @@ import {
   createContext,
   useCallback,
   useContext,
-  useEffect,
+  useLayoutEffect,
   useMemo,
   useState,
 } from 'react';
@@ -43,7 +43,9 @@ function readStoredPreference(): ColorModePreference {
 export function ColorModeProvider({ children }: { children: React.ReactNode }) {
   const [preference, setPreferenceState] = useState<ColorModePreference>('light');
 
-  useEffect(() => {
+  // useLayoutEffect (not useEffect) so localStorage is applied before the first paint.
+  // useEffect caused a visible flash: light theme background + dark-styled chrome until storage ran.
+  useLayoutEffect(() => {
     setPreferenceState(readStoredPreference());
   }, []);
 
@@ -58,7 +60,7 @@ export function ColorModeProvider({ children }: { children: React.ReactNode }) {
 
   const resolvedMode = preference;
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.documentElement.dataset.theme = resolvedMode;
     document.documentElement.style.colorScheme = resolvedMode;
   }, [resolvedMode]);

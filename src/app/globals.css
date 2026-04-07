@@ -24,6 +24,14 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Match MUI background.default; set early via inline script + colorModeContext to avoid mixed theme flash */
+html[data-theme='dark'] {
+  background-color: #0f172a;
+}
+html[data-theme='light'] {
+  background-color: #f4f6f8;
+}
+
 @layer base {
   .customfont {
     @apply font-logo tracking-tight;
