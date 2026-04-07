@@ -10,7 +10,6 @@ import {
   Typography,
 } from '@mui/material';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { ApiHelper, REQUEST_TYPE, setAuthToken } from '@/lib/api-helper';
@@ -23,7 +22,6 @@ const schema = z.object({
 type FormValues = z.infer<typeof schema>;
 
 export default function LoginPage() {
-  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -46,8 +44,10 @@ export default function LoginPage() {
       return;
     }
     setAuthToken(res.accessToken);
-    router.push('/dashboard');
-    router.refresh();
+    // Full navigation so the next /dashboard request includes the cookie. Client
+    // router transitions can hit the proxy before the new cookie is visible, which
+    // redirects back to /login (localStorage still has the token).
+    window.location.assign('/dashboard');
   };
 
   return (

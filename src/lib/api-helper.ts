@@ -20,12 +20,19 @@ export function getStoredToken(): string | null {
   return localStorage.getItem("plutus_access_token");
 }
 
+function cookieSecureSuffix(): string {
+  return typeof window !== "undefined" && window.location.protocol === "https:"
+    ? "; Secure"
+    : "";
+}
+
 export function setAuthToken(token: string, maxAgeSeconds = 60 * 60 * 24 * 7) {
   if (typeof window === "undefined") {
     return;
   }
   localStorage.setItem("plutus_access_token", token);
-  document.cookie = `plutus_access_token=${token}; path=/; max-age=${maxAgeSeconds}; SameSite=Lax`;
+  const secure = cookieSecureSuffix();
+  document.cookie = `plutus_access_token=${encodeURIComponent(token)}; path=/; max-age=${maxAgeSeconds}; SameSite=Lax${secure}`;
 }
 
 export function clearAuthToken() {
@@ -33,8 +40,8 @@ export function clearAuthToken() {
     return;
   }
   localStorage.removeItem("plutus_access_token");
-  document.cookie =
-    "plutus_access_token=; path=/; max-age=0; SameSite=Lax";
+  const secure = cookieSecureSuffix();
+  document.cookie = `plutus_access_token=; path=/; max-age=0; SameSite=Lax${secure}`;
 }
 
 export class ApiHelper {

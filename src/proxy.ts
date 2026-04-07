@@ -4,9 +4,21 @@ const getSession = async (_req: NextRequest, _res: NextResponse) => ({
   session: { user: { sub: '123' } },
 });
 
+function readAccessTokenCookie(request: NextRequest): string | undefined {
+  const raw = request.cookies.get('plutus_access_token')?.value;
+  if (!raw) {
+    return undefined;
+  }
+  try {
+    return decodeURIComponent(raw);
+  } catch {
+    return raw;
+  }
+}
+
 export async function proxy(request: NextRequest) {
   if (request.nextUrl.pathname.startsWith('/dashboard')) {
-    const token = request.cookies.get('plutus_access_token')?.value;
+    const token = readAccessTokenCookie(request);
     if (!token) {
       return NextResponse.redirect(new URL('/login', request.url));
     }
