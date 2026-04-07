@@ -2,7 +2,7 @@
 
 ## Overview
 
-Plutus is a **multi-tenant** SaaS-style app for tracking **IT systems**, **vendor contracts**, **renewal workflows**, and **spend analytics**. Users belong to an **organisation** identified by a stable string **`tenantId`**; all business data is scoped by that tenant.
+Allatura is a **multi-tenant** SaaS-style app for tracking **IT systems**, **vendor contracts**, **renewal workflows**, and **spend analytics**. Users belong to an **organisation** identified by a stable string **`tenantId`**; all business data is scoped by that tenant.
 
 ```mermaid
 flowchart LR

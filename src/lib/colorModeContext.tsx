@@ -21,6 +21,17 @@ const STORAGE_KEY = 'plutus-color-mode';
 
 const ColorModeContext = createContext<ColorModeContextValue | null>(null);
 
+function setColorModeCookie(mode: ColorModePreference) {
+  if (typeof document === 'undefined') {
+    return;
+  }
+  try {
+    document.cookie = `${STORAGE_KEY}=${mode};path=/;max-age=31536000;SameSite=Lax`;
+  } catch {
+    /* ignore */
+  }
+}
+
 function readStoredPreference(): ColorModePreference {
   if (typeof window === 'undefined') {
     return 'light';
@@ -40,13 +51,21 @@ function readStoredPreference(): ColorModePreference {
   return 'light';
 }
 
-export function ColorModeProvider({ children }: { children: React.ReactNode }) {
-  const [preference, setPreferenceState] = useState<ColorModePreference>('light');
+export function ColorModeProvider({
+  children,
+  initialColorMode = 'light',
+}: {
+  children: React.ReactNode;
+  initialColorMode?: ColorModePreference;
+}) {
+  const [preference, setPreferenceState] = useState<ColorModePreference>(initialColorMode);
 
   // useLayoutEffect (not useEffect) so localStorage is applied before the first paint.
   // useEffect caused a visible flash: light theme background + dark-styled chrome until storage ran.
   useLayoutEffect(() => {
-    setPreferenceState(readStoredPreference());
+    const next = readStoredPreference();
+    setPreferenceState(next);
+    setColorModeCookie(next);
   }, []);
 
   const setPreference = useCallback((mode: ColorModePreference) => {
@@ -56,6 +75,7 @@ export function ColorModeProvider({ children }: { children: React.ReactNode }) {
     } catch {
       /* ignore */
     }
+    setColorModeCookie(mode);
   }, []);
 
   const resolvedMode = preference;

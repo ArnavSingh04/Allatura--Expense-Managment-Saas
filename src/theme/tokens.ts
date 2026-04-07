@@ -1,4 +1,4 @@
-/** Plutus design tokens, single source for theme + Tailwind alignment */
+/** Allatura design tokens, single source for theme + Tailwind alignment */
 export const plutus = {
   color: {
     bg: '#f4f6f8',

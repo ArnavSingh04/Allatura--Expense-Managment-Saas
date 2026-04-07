@@ -129,7 +129,7 @@ export default function SettingsPage() {
                   </Typography>
                 ) : (
                   <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
-                    {userId && me === undefined ? 'Loading your profile…' : 'Account identity in Plutus'}
+                    {userId && me === undefined ? 'Loading your profile…' : 'Account identity in Allatura'}
                   </Typography>
                 )}
                 {me?.email && (
@@ -146,7 +146,7 @@ export default function SettingsPage() {
             </Stack>
             <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
               {greeting
-                ? "You're signed in to the Plutus dashboard. Profile details reflect your account; changes may follow your organization's user management."
+                ? "You're signed in to the Allatura dashboard. Profile details reflect your account; changes may follow your organization's user management."
                 : 'You are signed in to the dashboard. Name and email are managed by your organization and login provider.'}
             </Typography>
             <Typography variant="caption" color="text.secondary">

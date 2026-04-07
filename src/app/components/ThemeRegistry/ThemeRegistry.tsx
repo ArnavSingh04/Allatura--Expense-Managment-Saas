@@ -1,15 +1,15 @@
 'use client';
 
 import * as React from 'react';
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import NextAppDirEmotionCacheProvider from './EmotionCache';
-import { createPlutusTheme } from './theme';
-import { ColorModeProvider, useColorMode } from '@/lib/colorModeContext';
+import { createAllaturaTheme } from './theme';
+import { ColorModeProvider, useColorMode, type ColorModePreference } from '@/lib/colorModeContext';
 
 function ThemeRegistryInner({ children }: { children: React.ReactNode }) {
   const { resolvedMode } = useColorMode();
-  const theme = React.useMemo(() => createPlutusTheme(resolvedMode), [resolvedMode]);
+  const theme = React.useMemo(() => createAllaturaTheme(resolvedMode), [resolvedMode]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -19,12 +19,18 @@ function ThemeRegistryInner({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function ThemeRegistry({ children }: { children: React.ReactNode }) {
+export default function ThemeRegistry({
+  children,
+  initialColorMode = 'light',
+}: {
+  children: React.ReactNode;
+  initialColorMode?: ColorModePreference;
+}) {
   return (
-    <NextAppDirEmotionCacheProvider options={{ key: 'mui' }}>
-      <ColorModeProvider>
+    <AppRouterCacheProvider options={{ key: 'mui' }}>
+      <ColorModeProvider initialColorMode={initialColorMode}>
         <ThemeRegistryInner>{children}</ThemeRegistryInner>
       </ColorModeProvider>
-    </NextAppDirEmotionCacheProvider>
+    </AppRouterCacheProvider>
   );
 }

@@ -19,7 +19,7 @@ export default function StackmarksLogo(props: { width?: number; height?: number 
         fontFamily="system-ui, sans-serif"
         fontWeight="600"
       >
-        Plutus
+        Allatura
       </text>
     </svg>
   );

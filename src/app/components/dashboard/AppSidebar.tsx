@@ -120,7 +120,7 @@ export default function AppSidebar({ mobileOpen, onMobileClose }: AppSidebarProp
         ) : (
           <Link href="/dashboard" style={{ textDecoration: 'none' }}>
             <Typography className="customfont" sx={{ fontSize: '1.15rem' }}>
-              PLUTUS
+              ALLATURA
             </Typography>
           </Link>
         )}

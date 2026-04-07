@@ -29,10 +29,10 @@ const titles: { prefix: string; title: string }[] = [
 
 function titleFromPath(pathname: string | null): string {
   if (!pathname) {
-    return 'Plutus';
+    return 'Allatura';
   }
   const hit = titles.find((t) => pathname.startsWith(t.prefix));
-  return hit?.title ?? 'Plutus';
+  return hit?.title ?? 'Allatura';
 }
 
 type DashboardTopbarProps = {

@@ -54,7 +54,7 @@ export default function LoginPage() {
     <Container maxWidth="sm" sx={{ py: 8 }}>
       <Paper sx={{ p: 4 }}>
         <Typography variant="h5" gutterBottom>
-          Sign in to Plutus
+          Sign in to Allatura
         </Typography>
         <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ mt: 2 }}>
           <TextField

@@ -1,6 +1,6 @@
-# Plutus documentation
+# Allatura documentation
 
-This folder describes how the **Plutus** application is structured: a **Next.js** frontend (`plutus-fe`) and a **NestJS** API (`plutus-be`), backed by **MongoDB** and optional **Stripe** billing hooks.
+This folder describes how the **Allatura** application is structured: a **Next.js** frontend (`plutus-fe`) and a **NestJS** API (`plutus-be`), backed by **MongoDB** and optional **Stripe** billing hooks.
 
 | Document | What it covers |
 |----------|----------------|
@@ -10,4 +10,4 @@ This folder describes how the **Plutus** application is structured: a **Next.js*
 | [Integration](./integration.md) | How the browser, Next.js proxy, API, and database connect |
 | [Backend, auth & database](./backend-auth-database.md) | Nest modules, JWT, roles, Mongoose collections, cron, Swagger |
 
-The backend API package is named `selle-backend` in its `package.json`; operationally we refer to it as the Plutus API.
+The backend API package is named `selle-backend` in its `package.json`; operationally we refer to it as the Allatura API.

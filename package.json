@@ -15,6 +15,7 @@
     "@hookform/resolvers": "^3.10.0",
     "@mui/icons-material": "^7.3.9",
     "@mui/material": "^7.3.9",
+    "@mui/material-nextjs": "^7.3.9",
     "@stripe/stripe-js": "^5.5.0",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",

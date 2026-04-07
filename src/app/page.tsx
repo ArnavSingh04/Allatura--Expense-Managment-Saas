@@ -40,7 +40,7 @@ export default function HomePage() {
         }}
       >
         <Typography className="customfont" sx={{ fontSize: '1.125rem' }}>
-          PLUTUS
+          ALLATURA
         </Typography>
         <Box sx={{ display: 'flex', gap: 1.5, alignItems: 'center' }}>
           <Button component={Link} href="/login" color="inherit" sx={{ fontWeight: 600 }}>
@@ -89,7 +89,7 @@ export default function HomePage() {
               mb: 4,
             }}
           >
-            Plutus centralizes systems, contracts, and renewals in one calm dashboard. Built for teams who outgrew
+            Allatura centralizes systems, contracts, and renewals in one calm dashboard. Built for teams who outgrew
             spreadsheets.
           </Typography>
           <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}>

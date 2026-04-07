@@ -8,7 +8,7 @@ const inter = Inter({
   display: 'swap',
 });
 
-export function createPlutusTheme(mode: PaletteMode) {
+export function createAllaturaTheme(mode: PaletteMode) {
   const isDark = mode === 'dark';
 
   const border = isDark ? 'rgba(148, 163, 184, 0.18)' : plutus.color.border;
