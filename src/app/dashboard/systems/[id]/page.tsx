@@ -57,10 +57,10 @@ export default function SystemDetailPage() {
         {sys.vendor} · {sys.category} · {sys.department} · {sys.criticality}
       </Typography>
       <Typography variant="body2" sx={{ mt: 1 }}>
-        Business owner: {sys.businessOwner?.name || sys.businessOwner?.email || '—'}
+        Business owner: {sys.businessOwner?.name || sys.businessOwner?.email || '-'}
       </Typography>
       <Typography variant="body2">
-        Technical owner: {sys.technicalOwner?.name || sys.technicalOwner?.email || '—'}
+        Technical owner: {sys.technicalOwner?.name || sys.technicalOwner?.email || '-'}
       </Typography>
       <Button component={Link} href={`/dashboard/systems/${id}/edit`} variant="outlined" sx={{ mt: 2 }}>
         Edit

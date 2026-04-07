@@ -21,7 +21,28 @@ import {
   dashboardSubheader,
 } from '@/styles/MaterialStyles/shared/sharedStyles';
 
-const FIELDS = ['name', 'vendor', 'category', 'department', 'criticality'] as const;
+const FIELDS = [
+  { key: 'name', label: 'System', aliases: ['system', 'name'] },
+  { key: 'vendor', label: 'Vendor', aliases: ['vendor'] },
+  { key: 'category', label: 'Category', aliases: ['category'] },
+  { key: 'department', label: 'Department', aliases: ['department'] },
+  {
+    key: 'businessOwner',
+    label: 'Business owner',
+    aliases: ['business owner', 'business_owner', 'owner'],
+  },
+  { key: 'criticality', label: 'Criticality', aliases: ['criticality'] },
+  {
+    key: 'annualCost',
+    label: 'Annual cost (est.)',
+    aliases: ['annual cost (est.)', 'annual cost', 'annual_cost', 'annualcost'],
+  },
+  {
+    key: 'nextRenewal',
+    label: 'Next renewal',
+    aliases: ['next renewal', 'next_renewal', 'renewal date', 'renewal'],
+  },
+] as const;
 
 type Step = 0 | 1 | 2 | 3;
 
@@ -60,10 +81,10 @@ export default function ImportPage() {
         setSample(res.sampleRows ?? []);
         const init: Record<string, string> = {};
         for (const field of FIELDS) {
-          const match = res.headers.find(
-            (h) => h.toLowerCase() === field.toLowerCase(),
+          const match = res.headers.find((h) =>
+            field.aliases.includes(h.toLowerCase().trim()),
           );
-          init[field] = match ?? '';
+          init[field.key] = match ?? '';
         }
         setMapping(init);
         setStep(1);
@@ -100,8 +121,8 @@ export default function ImportPage() {
   const previewRows = sample.map((row) => {
     const out: Record<string, string> = {};
     for (const f of FIELDS) {
-      const col = mapping[f];
-      out[f] = col ? row[col] ?? '' : '';
+      const col = mapping[f.key];
+      out[f.key] = col ? row[col] ?? '' : '';
     }
     return out;
   });
@@ -110,16 +131,40 @@ export default function ImportPage() {
     <Box>
       <Typography sx={dashboardHeader}>Import systems</Typography>
       <Typography sx={dashboardSubheader} gutterBottom>
-        CSV wizard (max 5MB)
+        CSV wizard (max 5MB). Download the sample template, replace the rows with your systems, then upload
+        your file. Column names should match the template so mapping auto-fills.
       </Typography>
 
       {step === 0 && (
-        <Box sx={{ border: '2px dashed #ccc', p: 4, textAlign: 'center' }}>
-          <input
-            type="file"
-            accept=".csv"
-            onChange={(e) => void onDrop(e.target.files?.[0] ?? null)}
-          />
+        <Box>
+          <Box sx={{ mb: 2 }}>
+            <Button
+              component="a"
+              href="/plutus-systems-import-template.csv"
+              download="plutus-systems-import-template.csv"
+              variant="outlined"
+              size="small"
+              sx={{ fontWeight: 600 }}
+            >
+              Download import template
+            </Button>
+            <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 1 }}>
+              Template columns: System, Vendor, Category, Department, Business owner, Criticality, Annual cost
+              (est.), Next renewal. Required by backend: System, Category, Criticality. Category must be SaaS,
+              Infrastructure, or Internal Tool. Criticality must be Low, Medium, or High.
+            </Typography>
+            <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 0.5 }}>
+              How to use: 1) Download template, 2) Keep headers as-is and replace sample rows, 3) Upload CSV,
+              4) Confirm column mapping, 5) Review preview, 6) Confirm import to populate systems.
+            </Typography>
+          </Box>
+          <Box sx={{ border: '2px dashed #ccc', p: 4, textAlign: 'center' }}>
+            <input
+              type="file"
+              accept=".csv"
+              onChange={(e) => void onDrop(e.target.files?.[0] ?? null)}
+            />
+          </Box>
         </Box>
       )}
 
@@ -129,16 +174,16 @@ export default function ImportPage() {
             Map columns
           </Typography>
           {FIELDS.map((field) => (
-            <FormControl key={field} fullWidth margin="normal" size="small">
-              <InputLabel>{field}</InputLabel>
+            <FormControl key={field.key} fullWidth margin="normal" size="small">
+              <InputLabel>{field.label}</InputLabel>
               <Select
-                label={field}
-                value={mapping[field] ?? ''}
+                label={field.label}
+                value={mapping[field.key] ?? ''}
                 onChange={(e) =>
-                  setMapping((m) => ({ ...m, [field]: e.target.value }))
+                  setMapping((m) => ({ ...m, [field.key]: e.target.value }))
                 }
               >
-                <MenuItem value="">—</MenuItem>
+                <MenuItem value="">-</MenuItem>
                 {headers.map((h) => (
                   <MenuItem key={h} value={h}>
                     {h}
@@ -162,7 +207,7 @@ export default function ImportPage() {
             <TableHead>
               <TableRow>
                 {FIELDS.map((f) => (
-                  <TableCell key={f}>{f}</TableCell>
+                  <TableCell key={f.key}>{f.label}</TableCell>
                 ))}
               </TableRow>
             </TableHead>
@@ -170,7 +215,7 @@ export default function ImportPage() {
               {previewRows.map((row, i) => (
                 <TableRow key={i}>
                   {FIELDS.map((f) => (
-                    <TableCell key={f}>{row[f]}</TableCell>
+                    <TableCell key={f.key}>{row[f.key]}</TableCell>
                   ))}
                 </TableRow>
               ))}

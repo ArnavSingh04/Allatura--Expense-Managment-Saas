@@ -2,7 +2,7 @@
 const nextConfig = {
   output: 'standalone',
   async rewrites() {
-    // Target for proxy only — use absolute URL (not NEXT_PUBLIC=/api/v1).
+    // Target for proxy only, use absolute URL (not NEXT_PUBLIC=/api/v1).
     const backend =
       process.env.BACKEND_API_URL ||
       process.env.INTERNAL_BACKEND_URL ||

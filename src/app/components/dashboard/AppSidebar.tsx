@@ -25,10 +25,10 @@ import {
   Server,
   Settings,
 } from 'lucide-react';
+import { alpha } from '@mui/material/styles';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
-import { plutus } from '@/theme/tokens';
 
 const DRAWER_WIDTH = 260;
 const DRAWER_COLLAPSED = 76;
@@ -88,10 +88,10 @@ export default function AppSidebar({ mobileOpen, onMobileClose }: AppSidebarProp
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
-        borderRight: `1px solid ${plutus.color.border}`,
-        bgcolor: plutus.color.surface,
-        backgroundImage:
-          'linear-gradient(180deg, rgba(13, 148, 136, 0.04) 0%, transparent 42%)',
+        borderRight: `1px solid ${theme.palette.divider}`,
+        bgcolor: 'background.paper',
+        backgroundImage: (th) =>
+          `linear-gradient(180deg, ${alpha(th.palette.primary.main, 0.08)} 0%, transparent 42%)`,
       }}
     >
       <Box
@@ -110,7 +110,7 @@ export default function AppSidebar({ mobileOpen, onMobileClose }: AppSidebarProp
               sx={{
                 fontWeight: 700,
                 fontSize: '0.95rem',
-                color: plutus.color.primary,
+                color: 'primary.main',
                 letterSpacing: '-0.06em',
               }}
             >
@@ -131,7 +131,7 @@ export default function AppSidebar({ mobileOpen, onMobileClose }: AppSidebarProp
               onClick={toggleCollapsed}
               sx={{
                 color: 'text.secondary',
-                '&:hover': { bgcolor: plutus.color.primarySoft },
+                '&:hover': { bgcolor: (th) => alpha(th.palette.primary.main, 0.12) },
               }}
               aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
             >
@@ -163,13 +163,14 @@ export default function AppSidebar({ mobileOpen, onMobileClose }: AppSidebarProp
                 py: 1,
                 px: 1.25,
                 '&.Mui-selected': {
-                  bgcolor: plutus.color.primarySoft,
-                  color: plutus.color.primaryDark,
-                  '& .MuiListItemIcon-root': { color: plutus.color.primary },
-                  '&:hover': { bgcolor: plutus.color.primarySoft },
+                  bgcolor: (th) => alpha(th.palette.primary.main, 0.14),
+                  color: 'primary.main',
+                  '& .MuiListItemIcon-root': { color: 'primary.main' },
+                  '&:hover': { bgcolor: (th) => alpha(th.palette.primary.main, 0.18) },
                 },
                 '&:hover': {
-                  bgcolor: 'rgba(15, 23, 42, 0.04)',
+                  bgcolor: (th) =>
+                    th.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.06)' : 'rgba(15, 23, 42, 0.04)',
                 },
               }}
             >
@@ -202,7 +203,7 @@ export default function AppSidebar({ mobileOpen, onMobileClose }: AppSidebarProp
         })}
       </List>
 
-      <Box sx={{ p: 1.5, borderTop: `1px solid ${plutus.color.border}` }}>
+      <Box sx={{ p: 1.5, borderTop: `1px solid ${theme.palette.divider}` }}>
         <Typography variant="caption" color="text.secondary" sx={{ px: 1, display: collapsed ? 'none' : 'block' }}>
           IT spend intelligence
         </Typography>

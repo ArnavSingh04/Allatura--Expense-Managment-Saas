@@ -17,7 +17,7 @@ export const dashboardSubheader: SxProps<Theme> = {
   lineHeight: 1.5,
 };
 
-/** Legacy name — prefer theme `Button` defaults; kept for form-example */
+/** Legacy name, prefer theme `Button` defaults; kept for form-example */
 export const buttonStyle: SxProps<Theme> = {
   textTransform: 'none',
   fontWeight: 600,

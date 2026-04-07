@@ -1,0 +1,4 @@
+System,Vendor,Category,Department,Business owner,Criticality,Annual cost (est.),Next renewal
+Slack,Slack Technologies,SaaS,Engineering,alex@company.com,High,36000,2026-10-15
+AWS Console,Amazon Web Services,Infrastructure,IT,it-owner@company.com,High,120000,2026-12-01
+Internal Wiki,Acme Corp,Internal Tool,Operations,ops-owner@company.com,Medium,18000,2026-09-30

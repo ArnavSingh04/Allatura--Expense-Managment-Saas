@@ -59,7 +59,7 @@ export default function ContractDetailPage() {
   return (
     <Box>
       <Typography sx={dashboardHeader}>
-        Contract — {c.systemId?.name ?? 'System'}
+        Contract, {c.systemId?.name ?? 'System'}
       </Typography>
       <Typography sx={dashboardSubheader}>
         {c.billingCycle} · {c.currency} · {c.expenseType}
@@ -87,9 +87,9 @@ export default function ContractDetailPage() {
             <TableRow key={h._id}>
               <TableCell>{h.alertThresholdDays}</TableCell>
               <TableCell>{h.status}</TableCell>
-              <TableCell>{h.decision ?? '—'}</TableCell>
+              <TableCell>{h.decision ?? '-'}</TableCell>
               <TableCell>
-                {h.sentAt ? new Date(h.sentAt).toLocaleString() : '—'}
+                {h.sentAt ? new Date(h.sentAt).toLocaleString() : '-'}
               </TableCell>
             </TableRow>
           ))}

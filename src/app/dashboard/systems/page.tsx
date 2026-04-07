@@ -219,14 +219,14 @@ export default function SystemsListPage() {
                   <TableCell>{r.category}</TableCell>
                   <TableCell>{r.department}</TableCell>
                   <TableCell>
-                    {r.businessOwner?.name || r.businessOwner?.email || '—'}
+                    {r.businessOwner?.name || r.businessOwner?.email || '-'}
                   </TableCell>
                   <TableCell>{r.criticality}</TableCell>
                   <TableCell align="right">${(r.annualCost ?? 0).toLocaleString()}</TableCell>
                   <TableCell>
                     {r.nextRenewal
                       ? new Date(r.nextRenewal).toLocaleDateString()
-                      : '—'}
+                      : '-'}
                   </TableCell>
                   <TableCell align="right">
                     <IconButton component={Link} href={`/dashboard/systems/${r.id}`} size="small" aria-label="View">

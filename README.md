@@ -21,9 +21,9 @@ Copy `.env.example` to `.env.local` for local development.
 
 **Local `.env.local` (typical)**
 
-- `NEXT_PUBLIC_APP_URL` — frontend origin, e.g. `http://localhost:3000`
-- `NEXT_PUBLIC_BACKEND_API_URL` — API base **including `/v1`**, e.g. `http://localhost:3001/v1`
-- `BACKEND_API_URL` — same as above for server-side calls (optional if `NEXT_PUBLIC_BACKEND_API_URL` is set)
+- `NEXT_PUBLIC_APP_URL`, frontend origin, e.g. `http://localhost:3000`
+- `NEXT_PUBLIC_BACKEND_API_URL`, API base **including `/v1`**, e.g. `http://localhost:3001/v1`
+- `BACKEND_API_URL`, same as above for server-side calls (optional if `NEXT_PUBLIC_BACKEND_API_URL` is set)
 
 **Deploying the frontend**
 

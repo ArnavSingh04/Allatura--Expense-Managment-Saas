@@ -1,17 +1,26 @@
 'use client';
 
-import { Box, Button, Container, Typography } from '@mui/material';
+import { Box, Button, Container, Typography, useTheme } from '@mui/material';
+import { alpha } from '@mui/material/styles';
 import { ArrowRight, BarChart3, Shield, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import { plutus } from '@/theme/tokens';
 
 export default function HomePage() {
+  const theme = useTheme();
+  const isDark = theme.palette.mode === 'dark';
+
   return (
     <Box
       sx={{
         minHeight: '100vh',
-        bgcolor: plutus.color.bg,
-        backgroundImage: `
+        bgcolor: 'background.default',
+        backgroundImage: isDark
+          ? `
+          radial-gradient(ellipse 80% 50% at 50% -20%, rgba(45, 212, 191, 0.12), transparent),
+          radial-gradient(ellipse 60% 40% at 100% 0%, rgba(129, 140, 248, 0.1), transparent)
+        `
+          : `
           radial-gradient(ellipse 80% 50% at 50% -20%, rgba(13, 148, 136, 0.15), transparent),
           radial-gradient(ellipse 60% 40% at 100% 0%, rgba(99, 102, 241, 0.08), transparent)
         `,
@@ -25,8 +34,8 @@ export default function HomePage() {
           justifyContent: 'space-between',
           px: { xs: 2, md: 4 },
           py: 2,
-          borderBottom: `1px solid ${plutus.color.border}`,
-          bgcolor: 'rgba(255,255,255,0.7)',
+          borderBottom: `1px solid ${theme.palette.divider}`,
+          bgcolor: (th) => alpha(th.palette.background.paper, isDark ? 0.75 : 0.7),
           backdropFilter: 'blur(12px)',
         }}
       >
@@ -48,7 +57,7 @@ export default function HomePage() {
           <Typography
             variant="overline"
             sx={{
-              color: plutus.color.primary,
+              color: 'primary.main',
               fontWeight: 700,
               letterSpacing: '0.12em',
               mb: 2,
@@ -64,16 +73,16 @@ export default function HomePage() {
               fontWeight: 700,
               letterSpacing: '-0.04em',
               lineHeight: 1.1,
-              color: plutus.color.text,
+              color: 'text.primary',
               mb: 2,
             }}
           >
-            Know what you spend — before renewals surprise you.
+            Know what you spend, before renewals surprise you.
           </Typography>
           <Typography
             variant="h6"
             sx={{
-              color: plutus.color.muted,
+              color: 'text.secondary',
               fontWeight: 400,
               fontSize: { xs: '1rem', md: '1.125rem' },
               lineHeight: 1.6,
@@ -130,12 +139,16 @@ export default function HomePage() {
               sx={{
                 p: 3,
                 borderRadius: `${plutus.radius.lg}px`,
-                border: `1px solid ${plutus.color.border}`,
-                bgcolor: plutus.color.surface,
-                boxShadow: plutus.shadow.card,
+                border: `1px solid ${theme.palette.divider}`,
+                bgcolor: 'background.paper',
+                boxShadow: isDark
+                  ? '0 1px 2px rgba(0, 0, 0, 0.35), 0 4px 16px rgba(0, 0, 0, 0.25)'
+                  : plutus.shadow.card,
                 transition: 'box-shadow 0.2s ease, transform 0.2s ease',
                 '&:hover': {
-                  boxShadow: plutus.shadow.cardHover,
+                  boxShadow: isDark
+                    ? '0 4px 20px rgba(0, 0, 0, 0.45), 0 8px 24px rgba(0, 0, 0, 0.3)'
+                    : plutus.shadow.cardHover,
                   transform: 'translateY(-2px)',
                 },
               }}
@@ -148,8 +161,8 @@ export default function HomePage() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  bgcolor: plutus.color.primarySoft,
-                  color: plutus.color.primary,
+                  bgcolor: alpha(theme.palette.primary.main, isDark ? 0.2 : 0.12),
+                  color: 'primary.main',
                   mb: 2,
                 }}
               >

@@ -69,14 +69,14 @@ export default function RenewalsPage() {
             const rd = r.contractId?.renewalDate;
             return (
               <TableRow key={r._id}>
-                <TableCell>{sys?.name ?? '—'}</TableCell>
+                <TableCell>{sys?.name ?? '-'}</TableCell>
                 <TableCell>
-                  {rd ? new Date(rd).toLocaleDateString() : '—'}
+                  {rd ? new Date(rd).toLocaleDateString() : '-'}
                 </TableCell>
                 <TableCell>{r.daysRemaining}</TableCell>
-                <TableCell align="right">{r.contractId?.costAmount ?? '—'}</TableCell>
+                <TableCell align="right">{r.contractId?.costAmount ?? '-'}</TableCell>
                 <TableCell>
-                  {sys?.businessOwner?.name || sys?.businessOwner?.email || '—'}
+                  {sys?.businessOwner?.name || sys?.businessOwner?.email || '-'}
                 </TableCell>
                 <TableCell>{r.contractId?.autoRenew ? 'Yes' : 'No'}</TableCell>
                 <TableCell>{r.decision ?? r.status}</TableCell>

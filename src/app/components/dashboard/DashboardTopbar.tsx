@@ -10,9 +10,9 @@ import {
   useTheme,
 } from '@mui/material';
 import { Menu, Settings } from 'lucide-react';
+import { alpha } from '@mui/material/styles';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { plutus } from '@/theme/tokens';
 
 const titles: { prefix: string; title: string }[] = [
   { prefix: '/dashboard/systems/new', title: 'New system' },
@@ -58,8 +58,9 @@ export default function DashboardTopbar({ onMenuClick }: DashboardTopbarProps) {
         minHeight: 56,
         px: { xs: 2, sm: 2.5 },
         py: 1,
-        borderBottom: `1px solid ${plutus.color.border}`,
-        bgcolor: 'rgba(255, 255, 255, 0.85)',
+        borderBottom: `1px solid ${theme.palette.divider}`,
+        bgcolor: (th) =>
+          th.palette.mode === 'dark' ? alpha(th.palette.background.paper, 0.85) : 'rgba(255, 255, 255, 0.85)',
         backdropFilter: 'blur(12px)',
       }}
     >
@@ -116,8 +117,8 @@ export default function DashboardTopbar({ onMenuClick }: DashboardTopbarProps) {
                 height: 32,
                 fontSize: '0.8rem',
                 fontWeight: 600,
-                bgcolor: plutus.color.primarySoft,
-                color: plutus.color.primaryDark,
+                bgcolor: (th) => alpha(th.palette.primary.main, 0.15),
+                color: 'primary.main',
               }}
             >
               P

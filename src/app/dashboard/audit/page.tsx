@@ -43,7 +43,7 @@ type AuditResponse = {
 function Row({ row }: { row: AuditItem }) {
   const [open, setOpen] = useState(false);
   const actor =
-    row.performedBy?.name || row.performedBy?.email || '—';
+    row.performedBy?.name || row.performedBy?.email || '-';
   const summary = `${row.action} · ${row.entityType}`;
 
   return (

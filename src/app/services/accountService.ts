@@ -1,6 +1,6 @@
 import { ApiHelper, REQUEST_TYPE } from "@/lib/api-helper";
 
-/** JSON from account endpoints — fields depend on backend response */
+/** JSON from account endpoints, fields depend on backend response */
 export type AccountApiResult = {
   found?: boolean;
   failed?: boolean;

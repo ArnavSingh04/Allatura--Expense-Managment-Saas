@@ -1,6 +1,6 @@
 import { ApiHelper, REQUEST_TYPE } from "@/lib/api-helper";
 
-/** JSON from GET /user — fields depend on backend response */
+/** JSON from GET /user, fields depend on backend response */
 export type UserApiResult = {
   found?: boolean;
   failed?: boolean;

@@ -1,9 +1,9 @@
 'use client';
 
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, useTheme } from '@mui/material';
+import { alpha } from '@mui/material/styles';
 import type { LucideIcon } from 'lucide-react';
 import AppCard from '@/components/ui/AppCard';
-import { plutus } from '@/theme/tokens';
 
 type KpiStatCardProps = {
   title: string;
@@ -13,15 +13,32 @@ type KpiStatCardProps = {
   accent: 'teal' | 'violet' | 'amber' | 'rose';
 };
 
-const accents = {
-  teal: { bg: plutus.color.primarySoft, fg: plutus.color.primary, border: 'rgba(13, 148, 136, 0.25)' },
-  violet: { bg: plutus.color.accentVioletSoft, fg: plutus.color.accentViolet, border: 'rgba(99, 102, 241, 0.25)' },
-  amber: { bg: plutus.color.accentAmberSoft, fg: plutus.color.accentAmber, border: 'rgba(217, 119, 6, 0.25)' },
-  rose: { bg: plutus.color.accentRoseSoft, fg: plutus.color.accentRose, border: 'rgba(225, 29, 72, 0.2)' },
-};
-
 export default function KpiStatCard({ title, value, hint, icon: Icon, accent }: KpiStatCardProps) {
+  const theme = useTheme();
+  const accents = {
+    teal: {
+      bg: alpha(theme.palette.primary.main, theme.palette.mode === 'dark' ? 0.2 : 0.12),
+      fg: theme.palette.primary.main,
+      border: alpha(theme.palette.primary.main, 0.35),
+    },
+    violet: {
+      bg: alpha(theme.palette.secondary.main, theme.palette.mode === 'dark' ? 0.22 : 0.12),
+      fg: theme.palette.secondary.main,
+      border: alpha(theme.palette.secondary.main, 0.35),
+    },
+    amber: {
+      bg: alpha(theme.palette.warning.main, theme.palette.mode === 'dark' ? 0.2 : 0.12),
+      fg: theme.palette.warning.main,
+      border: alpha(theme.palette.warning.main, 0.35),
+    },
+    rose: {
+      bg: alpha(theme.palette.error.main, theme.palette.mode === 'dark' ? 0.2 : 0.1),
+      fg: theme.palette.error.main,
+      border: alpha(theme.palette.error.main, 0.3),
+    },
+  };
   const a = accents[accent];
+
   return (
     <AppCard hover sx={{ height: '100%', overflow: 'hidden' }}>
       <Box sx={{ p: 2.5 }}>

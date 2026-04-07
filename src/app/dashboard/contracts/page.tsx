@@ -36,7 +36,7 @@ export default function ContractsPage() {
     <Box>
       <PageHeader
         title="Contracts"
-        description="Renewal pipeline sorted by date — stay ahead of auto-renew windows."
+        description="Renewal pipeline sorted by date, stay ahead of auto-renew windows."
         action={
           <Button
             variant="contained"
@@ -86,7 +86,7 @@ export default function ContractsPage() {
               )}
               {sorted.map((c) => (
                 <TableRow key={c._id} hover sx={{ '&:last-child td': { borderBottom: 'none' } }}>
-                  <TableCell sx={{ fontWeight: 600 }}>{c.systemId?.name ?? '—'}</TableCell>
+                  <TableCell sx={{ fontWeight: 600 }}>{c.systemId?.name ?? '-'}</TableCell>
                   <TableCell align="right">${c.costAmount.toLocaleString()}</TableCell>
                   <TableCell>{c.billingCycle}</TableCell>
                   <TableCell>{new Date(c.renewalDate).toLocaleDateString()}</TableCell>

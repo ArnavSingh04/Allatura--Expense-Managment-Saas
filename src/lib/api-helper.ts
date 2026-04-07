@@ -152,7 +152,7 @@ export class ApiHelper {
     }
   }
 
-  /** Multipart POST (e.g. CSV import). Do not set .body — pass FormData here. */
+  /** Multipart POST (e.g. CSV import). Do not set .body, pass FormData here. */
   async fetchMultipart(formData: FormData): Promise<unknown> {
     if (!this._baseURL) {
       return this.logReturn(

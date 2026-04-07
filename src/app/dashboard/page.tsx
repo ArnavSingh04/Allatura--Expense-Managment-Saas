@@ -13,7 +13,9 @@ import {
   TableHead,
   TableRow,
   Typography,
+  useTheme,
 } from '@mui/material';
+import { alpha } from '@mui/material/styles';
 import Grid from '@mui/material/GridLegacy';
 import Link from 'next/link';
 import useSWR from 'swr';
@@ -36,7 +38,6 @@ import AppCard from '@/components/ui/AppCard';
 import KpiStatCard from '@/components/ui/KpiStatCard';
 import PageHeader from '@/components/ui/PageHeader';
 import { authFetcher } from '@/lib/swr-fetcher';
-import { plutus } from '@/theme/tokens';
 
 type Summary = {
   monthlySpend: number;
@@ -62,13 +63,8 @@ type Insights = {
   topSystemsByAnnualCost: { systemName: string; annualCost: number }[];
 };
 
-const chartTooltipStyle = {
-  borderRadius: 12,
-  border: `1px solid ${plutus.color.border}`,
-  boxShadow: plutus.shadow.card,
-};
-
 export default function DashboardPage() {
+  const theme = useTheme();
   const { data: summary } = useSWR<Summary>('analytics/summary', authFetcher);
   const { data: byCategory } = useSWR<{ category: string; total: number }[]>(
     'analytics/spend-by-category',
@@ -92,6 +88,25 @@ export default function DashboardPage() {
     name: c.category,
     total: Math.round(c.total),
   }));
+
+  const chartTooltipStyle = {
+    borderRadius: 12,
+    border: `1px solid ${theme.palette.divider}`,
+    backgroundColor: theme.palette.background.paper,
+    boxShadow:
+      theme.palette.mode === 'dark'
+        ? '0 4px 20px rgba(0, 0, 0, 0.45)'
+        : '0 1px 2px rgba(15, 23, 42, 0.06), 0 4px 12px rgba(15, 23, 42, 0.04)',
+  };
+
+  const insightBoxSx = {
+    p: 2,
+    borderRadius: 2,
+    bgcolor:
+      theme.palette.mode === 'dark' ? alpha('#ffffff', 0.04) : 'rgba(15, 23, 42, 0.02)',
+    border: `1px solid ${theme.palette.divider}`,
+    height: '100%',
+  };
 
   return (
     <Box>
@@ -122,7 +137,7 @@ export default function DashboardPage() {
         <Grid item xs={12} sm={6} lg={3}>
           <KpiStatCard
             title="Renewals in 30 days"
-            value={summary?.renewalsIn30Days != null ? String(summary.renewalsIn30Days) : '—'}
+            value={summary?.renewalsIn30Days != null ? String(summary.renewalsIn30Days) : '-'}
             hint="Contracts requiring attention soon"
             icon={CalendarClock}
             accent="amber"
@@ -131,7 +146,7 @@ export default function DashboardPage() {
         <Grid item xs={12} sm={6} lg={3}>
           <KpiStatCard
             title="High-risk items"
-            value={summary?.highRiskCount != null ? String(summary.highRiskCount) : '—'}
+            value={summary?.highRiskCount != null ? String(summary.highRiskCount) : '-'}
             hint="Auto-renew with no owner"
             icon={AlertTriangle}
             accent="rose"
@@ -180,7 +195,7 @@ export default function DashboardPage() {
                               href={`/dashboard/contracts/${c._id}`}
                               sx={{ fontWeight: 500 }}
                             >
-                              {(c.systemId as { name?: string })?.name ?? '—'}
+                              {(c.systemId as { name?: string })?.name ?? '-'}
                             </MuiLink>
                           </TableCell>
                           <TableCell>{new Date(c.renewalDate).toLocaleDateString()}</TableCell>
@@ -225,22 +240,26 @@ export default function DashboardPage() {
                 ) : (
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={chartData} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
-                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={plutus.color.border} />
+                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={theme.palette.divider} />
                       <XAxis
                         dataKey="name"
-                        tick={{ fill: plutus.color.muted, fontSize: 11 }}
+                        tick={{ fill: theme.palette.text.secondary, fontSize: 11 }}
                         axisLine={false}
                         tickLine={false}
                       />
-                      <YAxis tick={{ fill: plutus.color.muted, fontSize: 11 }} axisLine={false} tickLine={false} />
+                      <YAxis
+                        tick={{ fill: theme.palette.text.secondary, fontSize: 11 }}
+                        axisLine={false}
+                        tickLine={false}
+                      />
                       <Tooltip
-                        cursor={{ fill: plutus.color.primarySoft }}
+                        cursor={{ fill: alpha(theme.palette.primary.main, 0.12) }}
                         contentStyle={chartTooltipStyle}
                       />
                       <Bar
                         dataKey="total"
                         name="Annual (est.)"
-                        fill={plutus.color.chart1}
+                        fill={theme.palette.primary.main}
                         radius={[6, 6, 0, 0]}
                         maxBarSize={48}
                       />
@@ -264,22 +283,14 @@ export default function DashboardPage() {
 
               <Grid container spacing={2}>
                 <Grid item xs={12} md={4}>
-                  <Box
-                    sx={{
-                      p: 2,
-                      borderRadius: 2,
-                      bgcolor: 'rgba(15, 23, 42, 0.02)',
-                      border: `1px solid ${plutus.color.border}`,
-                      height: '100%',
-                    }}
-                  >
+                  <Box sx={insightBoxSx}>
                     <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                       No business owner
                     </Typography>
                     <Stack spacing={1} sx={{ mt: 1.5 }}>
                       {(insights?.systemsWithNoOwner ?? []).length === 0 && (
                         <Typography variant="body2" color="text.secondary">
-                          None — great coverage.
+                          None, great coverage.
                         </Typography>
                       )}
                       {(insights?.systemsWithNoOwner ?? []).map((s) => (
@@ -297,15 +308,7 @@ export default function DashboardPage() {
                 </Grid>
 
                 <Grid item xs={12} md={4}>
-                  <Box
-                    sx={{
-                      p: 2,
-                      borderRadius: 2,
-                      bgcolor: 'rgba(15, 23, 42, 0.02)',
-                      border: `1px solid ${plutus.color.border}`,
-                      height: '100%',
-                    }}
-                  >
+                  <Box sx={insightBoxSx}>
                     <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                       Duplicate vendors
                     </Typography>
@@ -331,15 +334,7 @@ export default function DashboardPage() {
                 </Grid>
 
                 <Grid item xs={12} md={4}>
-                  <Box
-                    sx={{
-                      p: 2,
-                      borderRadius: 2,
-                      bgcolor: 'rgba(15, 23, 42, 0.02)',
-                      border: `1px solid ${plutus.color.border}`,
-                      height: '100%',
-                    }}
-                  >
+                  <Box sx={insightBoxSx}>
                     <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                       Top systems by annual cost
                     </Typography>

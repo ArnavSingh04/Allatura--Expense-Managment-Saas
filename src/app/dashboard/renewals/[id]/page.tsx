@@ -104,7 +104,7 @@ export default function RenewalDetailPage() {
         </Typography>
         <Typography variant="body2">
           Cost {c?.costAmount} · {c?.billingCycle} · Renewal{' '}
-          {c?.renewalDate ? new Date(c.renewalDate).toLocaleDateString() : '—'} ·
+          {c?.renewalDate ? new Date(c.renewalDate).toLocaleDateString() : '-'} ·
           Auto-renew {c?.autoRenew ? 'Yes' : 'No'}
         </Typography>
       </Box>
@@ -115,7 +115,7 @@ export default function RenewalDetailPage() {
           const hit = related.find((r) => r.alertThresholdDays === m);
           return (
             <li key={m}>
-              {m} days: {hit ? hit.status : '—'}
+              {m} days: {hit ? hit.status : '-'}
             </li>
           );
         })}

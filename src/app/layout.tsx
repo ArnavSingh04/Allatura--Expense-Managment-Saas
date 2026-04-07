@@ -6,7 +6,7 @@ import { Suspense } from 'react';
 const inter = Inter({ weight: ['400', '500', '600', '700'], subsets: ['latin'], display: 'swap' });
 
 export const metadata = {
-  title: 'Plutus — IT spend intelligence',
+  title: 'Plutus, IT spend intelligence',
   description: 'Systems, contracts, renewals, and analytics in one dashboard.',
 };
 
