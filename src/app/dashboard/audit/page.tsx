@@ -14,6 +14,7 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
+import { alpha } from '@mui/material/styles';
 import { useState } from 'react';
 import useSWR from 'swr';
 import { authFetcher } from '@/lib/swr-fetcher';
@@ -64,15 +65,49 @@ function Row({ row }: { row: AuditItem }) {
       <TableRow>
         <TableCell colSpan={7} sx={{ py: 0, border: 0 }}>
           <Collapse in={open}>
-            <Box sx={{ p: 2, bgcolor: 'grey.50' }}>
-              <Typography variant="subtitle2">Before</Typography>
-              <pre style={{ fontSize: 12, overflow: 'auto' }}>
+            <Box
+              sx={(theme) => ({
+                p: 2,
+                bgcolor:
+                  theme.palette.mode === 'dark'
+                    ? alpha(theme.palette.common.white, 0.06)
+                    : theme.palette.grey[50],
+                color: 'text.primary',
+                borderTop: 1,
+                borderColor: 'divider',
+              })}
+            >
+              <Typography variant="subtitle2" color="text.secondary">
+                Before
+              </Typography>
+              <Box
+                component="pre"
+                sx={{
+                  m: 0,
+                  mt: 0.5,
+                  mb: 1.5,
+                  fontSize: 12,
+                  overflow: 'auto',
+                  fontFamily: 'ui-monospace, monospace',
+                }}
+              >
                 {JSON.stringify(row.before, null, 2)}
-              </pre>
-              <Typography variant="subtitle2">After</Typography>
-              <pre style={{ fontSize: 12, overflow: 'auto' }}>
+              </Box>
+              <Typography variant="subtitle2" color="text.secondary">
+                After
+              </Typography>
+              <Box
+                component="pre"
+                sx={{
+                  m: 0,
+                  mt: 0.5,
+                  fontSize: 12,
+                  overflow: 'auto',
+                  fontFamily: 'ui-monospace, monospace',
+                }}
+              >
                 {JSON.stringify(row.after, null, 2)}
-              </pre>
+              </Box>
             </Box>
           </Collapse>
         </TableCell>
