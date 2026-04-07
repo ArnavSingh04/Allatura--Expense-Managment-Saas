@@ -12,7 +12,7 @@ import {
   ToggleButtonGroup,
   Typography,
 } from '@mui/material';
-import { Moon, Sun, Monitor, Shield } from 'lucide-react';
+import { Moon, Sun, Shield } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import useSWR from 'swr';
@@ -177,7 +177,7 @@ export default function SettingsPage() {
                   Appearance
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Light, dark, or match your system
+                  Light or dark (saved on this device)
                 </Typography>
               </Box>
             </Stack>
@@ -209,10 +209,6 @@ export default function SettingsPage() {
                 <ToggleButton value="dark" aria-label="Dark mode">
                   <Moon size={18} />
                   Dark
-                </ToggleButton>
-                <ToggleButton value="system" aria-label="System theme">
-                  <Monitor size={18} />
-                  System
                 </ToggleButton>
               </ToggleButtonGroup>
             </FormControl>

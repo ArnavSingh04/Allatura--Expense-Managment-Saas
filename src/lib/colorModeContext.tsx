@@ -9,7 +9,7 @@ import {
   useState,
 } from 'react';
 
-export type ColorModePreference = 'light' | 'dark' | 'system';
+export type ColorModePreference = 'light' | 'dark';
 
 type ColorModeContextValue = {
   preference: ColorModePreference;
@@ -23,33 +23,28 @@ const ColorModeContext = createContext<ColorModeContextValue | null>(null);
 
 function readStoredPreference(): ColorModePreference {
   if (typeof window === 'undefined') {
-    return 'system';
+    return 'light';
   }
   try {
     const v = localStorage.getItem(STORAGE_KEY);
-    if (v === 'light' || v === 'dark' || v === 'system') {
+    if (v === 'light' || v === 'dark') {
       return v;
+    }
+    // Legacy "system" or unknown: default to light and normalize storage
+    if (v === 'system' || v != null) {
+      localStorage.setItem(STORAGE_KEY, 'light');
     }
   } catch {
     /* ignore */
   }
-  return 'system';
+  return 'light';
 }
 
 export function ColorModeProvider({ children }: { children: React.ReactNode }) {
-  const [preference, setPreferenceState] = useState<ColorModePreference>('system');
-  const [systemIsDark, setSystemIsDark] = useState(false);
+  const [preference, setPreferenceState] = useState<ColorModePreference>('light');
 
   useEffect(() => {
     setPreferenceState(readStoredPreference());
-  }, []);
-
-  useEffect(() => {
-    const mq = window.matchMedia('(prefers-color-scheme: dark)');
-    setSystemIsDark(mq.matches);
-    const onChange = () => setSystemIsDark(mq.matches);
-    mq.addEventListener('change', onChange);
-    return () => mq.removeEventListener('change', onChange);
   }, []);
 
   const setPreference = useCallback((mode: ColorModePreference) => {
@@ -61,12 +56,7 @@ export function ColorModeProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  const resolvedMode = useMemo<'light' | 'dark'>(() => {
-    if (preference === 'system') {
-      return systemIsDark ? 'dark' : 'light';
-    }
-    return preference;
-  }, [preference, systemIsDark]);
+  const resolvedMode = preference;
 
   useEffect(() => {
     document.documentElement.dataset.theme = resolvedMode;
