@@ -13,7 +13,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { ApiHelper, REQUEST_TYPE } from '@/lib/api-helper';
+import { ApiHelper, REQUEST_TYPE, setAuthToken } from '@/lib/api-helper';
 
 const schema = z.object({
   organisationName: z.string().min(1, 'Required'),
@@ -47,6 +47,7 @@ export default function RegisterPage() {
       failed?: boolean;
       message?: string;
       error?: string;
+      accessToken?: string;
     };
     if (res?.failed) {
       setFormError('root', {
@@ -54,7 +55,29 @@ export default function RegisterPage() {
       });
       return;
     }
-    router.push('/login');
+    if (res?.accessToken) {
+      setAuthToken(res.accessToken);
+      window.location.assign('/dashboard');
+      return;
+    }
+
+    // If the register endpoint doesn't return a token, immediately log in with
+    // the newly created credentials so the user lands in the dashboard.
+    const login = new ApiHelper('auth/login');
+    login.includeKey = false;
+    login.type = REQUEST_TYPE.POST;
+    login.body = { email: data.email, password: data.password };
+    const loginRes = (await login.fetchRequest()) as {
+      failed?: boolean;
+      accessToken?: string;
+      error?: string;
+    };
+    if (loginRes?.failed || !loginRes?.accessToken) {
+      router.push('/login');
+      return;
+    }
+    setAuthToken(loginRes.accessToken);
+    window.location.assign('/dashboard');
   };
 
   return (
