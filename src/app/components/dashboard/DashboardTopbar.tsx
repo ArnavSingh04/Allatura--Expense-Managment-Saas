@@ -23,6 +23,7 @@ const titles: { prefix: string; title: string }[] = [
   { prefix: '/dashboard/calendar', title: 'Calendar' },
   { prefix: '/dashboard/import', title: 'Import' },
   { prefix: '/dashboard/audit', title: 'Audit log' },
+  { prefix: '/dashboard/users', title: 'User management' },
   { prefix: '/dashboard/settings', title: 'Settings' },
   { prefix: '/dashboard', title: 'Dashboard' },
 ];

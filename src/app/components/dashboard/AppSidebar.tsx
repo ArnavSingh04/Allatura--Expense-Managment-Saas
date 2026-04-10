@@ -24,11 +24,14 @@ import {
   RefreshCw,
   Server,
   Settings,
+  Users,
 } from 'lucide-react';
 import { alpha } from '@mui/material/styles';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
+import { getStoredToken } from '@/lib/api-helper';
+import { getJwtClaims } from '@/lib/jwt';
 
 const DRAWER_WIDTH = 260;
 const DRAWER_COLLAPSED = 76;
@@ -41,6 +44,7 @@ const items = [
   { href: '/dashboard/calendar', label: 'Calendar', Icon: Calendar },
   { href: '/dashboard/import', label: 'Import', Icon: CloudUpload },
   { href: '/dashboard/audit', label: 'Audit log', Icon: History },
+  { href: '/dashboard/users', label: 'Users', Icon: Users },
   { href: '/dashboard/settings', label: 'Settings', Icon: Settings },
 ] as const;
 
@@ -56,6 +60,7 @@ export default function AppSidebar({ mobileOpen, onMobileClose }: AppSidebarProp
   const pathname = usePathname();
   const isMdUp = useMediaQuery(theme.breakpoints.up('md'));
   const [collapsed, setCollapsed] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     try {
@@ -66,6 +71,11 @@ export default function AppSidebar({ mobileOpen, onMobileClose }: AppSidebarProp
     } catch {
       /* ignore */
     }
+  }, []);
+
+  useEffect(() => {
+    const claims = getJwtClaims(getStoredToken());
+    setIsAdmin(claims?.role === 'admin');
   }, []);
 
   const toggleCollapsed = useCallback(() => {
@@ -143,6 +153,9 @@ export default function AppSidebar({ mobileOpen, onMobileClose }: AppSidebarProp
 
       <List sx={{ flex: 1, px: 1, py: 0.5 }} dense>
         {items.map(({ href, label, Icon }) => {
+          if (href === '/dashboard/users' && !isAdmin) {
+            return null;
+          }
           const active =
             href === '/dashboard'
               ? pathname === '/dashboard' || pathname === '/dashboard/'

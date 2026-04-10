@@ -16,7 +16,7 @@ This document traces a request from the UI to persistence and back.
 ## 2. Authentication flow
 
 1. User submits email/password on **`/login`**.
-2. Frontend calls **`POST .../auth/login`** with `ApiHelper`, **`includeKey = false`** (no API key on auth).
+2. Frontend calls **`POST .../auth/login`** with `ApiHelper`, **`includeKey = false`**, and **`skipSessionHeaders = true`** so an old JWT in `localStorage` is not sent on this `@Public()` route (otherwise some deployments return **401** before password validation).
 3. Backend **`AuthService`** validates password with **bcrypt**, loads organisation, signs a **JWT** with `JwtService` (`AuthModule`).
 4. Response includes **`accessToken`** and user profile; frontend **`setAuthToken`** stores JWT in **localStorage** and sets a **cookie**.
 5. Subsequent **`ApiHelper.fetchRequest`** calls add **`Authorization: Bearer <token>`**.

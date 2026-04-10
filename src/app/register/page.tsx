@@ -36,6 +36,7 @@ export default function RegisterPage() {
   const onSubmit = async (data: FormValues) => {
     const api = new ApiHelper('auth/register');
     api.includeKey = false;
+    api.skipSessionHeaders = true;
     api.type = REQUEST_TYPE.POST;
     api.body = {
       organisationName: data.organisationName,
