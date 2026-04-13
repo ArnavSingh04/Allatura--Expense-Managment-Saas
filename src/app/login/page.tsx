@@ -40,6 +40,13 @@ export default function LoginPage() {
       failed?: boolean;
       accessToken?: string;
       error?: string;
+      user?: {
+        id: string;
+        email: string;
+        name?: string;
+        role: string;
+        tenantId: string;
+      };
     };
     if (res?.failed || !res?.accessToken) {
       setFormError('root', {

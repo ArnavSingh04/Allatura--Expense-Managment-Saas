@@ -152,7 +152,7 @@ export default function UsersPage() {
     setNewPassword('');
     setNewRole('viewer');
     setMessage(
-      'User created. They are saved for your organization and can sign in from the login page.',
+      'User created. They are saved for your organization and can sign in via the login page.',
     );
     await mutate(async () => fetchUsersList(), { revalidate: false });
   };
