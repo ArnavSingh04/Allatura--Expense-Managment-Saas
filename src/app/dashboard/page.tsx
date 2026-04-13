@@ -16,7 +16,7 @@ import {
   useTheme,
 } from '@mui/material';
 import { alpha } from '@mui/material/styles';
-import Grid from '@mui/material/GridLegacy';
+import Grid from '@mui/material/Grid';
 import Link from 'next/link';
 import useSWR from 'swr';
 import {
@@ -116,7 +116,7 @@ export default function DashboardPage() {
       />
 
       <Grid container spacing={2.5} sx={{ mb: 2.5 }}>
-        <Grid item xs={12} sm={6} lg={3}>
+        <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
           <KpiStatCard
             title="Monthly spend (est.)"
             value={`$${(summary?.monthlySpend ?? 0).toLocaleString(undefined, { maximumFractionDigits: 0 })}`}
@@ -125,7 +125,7 @@ export default function DashboardPage() {
             accent="teal"
           />
         </Grid>
-        <Grid item xs={12} sm={6} lg={3}>
+        <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
           <KpiStatCard
             title="Annual spend (est.)"
             value={`$${(summary?.annualSpend ?? 0).toLocaleString(undefined, { maximumFractionDigits: 0 })}`}
@@ -134,7 +134,7 @@ export default function DashboardPage() {
             accent="violet"
           />
         </Grid>
-        <Grid item xs={12} sm={6} lg={3}>
+        <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
           <KpiStatCard
             title="Renewals in 30 days"
             value={summary?.renewalsIn30Days != null ? String(summary.renewalsIn30Days) : '-'}
@@ -143,7 +143,7 @@ export default function DashboardPage() {
             accent="amber"
           />
         </Grid>
-        <Grid item xs={12} sm={6} lg={3}>
+        <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
           <KpiStatCard
             title="High-risk items"
             value={summary?.highRiskCount != null ? String(summary.highRiskCount) : '-'}
@@ -155,7 +155,7 @@ export default function DashboardPage() {
       </Grid>
 
       <Grid container spacing={2.5}>
-        <Grid item xs={12} lg={6}>
+        <Grid size={{ xs: 12, lg: 6 }}>
           <AppCard sx={{ height: '100%' }}>
             <CardContent sx={{ p: { xs: 2, md: 2.5 } }}>
               <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 2, letterSpacing: '-0.02em' }}>
@@ -210,7 +210,7 @@ export default function DashboardPage() {
           </AppCard>
         </Grid>
 
-        <Grid item xs={12} lg={6}>
+        <Grid size={{ xs: 12, lg: 6 }}>
           <AppCard sx={{ height: '100%' }}>
             <CardContent sx={{ p: { xs: 2, md: 2.5 }, height: '100%' }}>
               <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 2, letterSpacing: '-0.02em' }}>
@@ -271,7 +271,7 @@ export default function DashboardPage() {
           </AppCard>
         </Grid>
 
-        <Grid item xs={12}>
+        <Grid size={{ xs: 12 }}>
           <AppCard>
             <CardContent sx={{ p: { xs: 2, md: 2.5 } }}>
               <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 0.5, letterSpacing: '-0.02em' }}>
@@ -282,7 +282,7 @@ export default function DashboardPage() {
               </Typography>
 
               <Grid container spacing={2}>
-                <Grid item xs={12} md={4}>
+                <Grid size={{ xs: 12, md: 4 }}>
                   <Box sx={insightBoxSx}>
                     <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                       No business owner
@@ -307,7 +307,7 @@ export default function DashboardPage() {
                   </Box>
                 </Grid>
 
-                <Grid item xs={12} md={4}>
+                <Grid size={{ xs: 12, md: 4 }}>
                   <Box sx={insightBoxSx}>
                     <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                       Duplicate vendors
@@ -333,7 +333,7 @@ export default function DashboardPage() {
                   </Box>
                 </Grid>
 
-                <Grid item xs={12} md={4}>
+                <Grid size={{ xs: 12, md: 4 }}>
                   <Box sx={insightBoxSx}>
                     <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                       Top systems by annual cost

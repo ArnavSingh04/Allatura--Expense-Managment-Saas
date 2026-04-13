@@ -54,6 +54,31 @@ function isoDate(d: string | Date) {
   return x.toISOString().slice(0, 10);
 }
 
+function resolveSystemId(raw: ContractDoc['systemId']): string {
+  if (raw == null) {
+    return '';
+  }
+  if (typeof raw === 'string') {
+    return raw;
+  }
+  if (typeof raw === 'object' && '_id' in raw && raw._id != null) {
+    return String(raw._id);
+  }
+  return '';
+}
+
+const formDefaults: FormValues = {
+  systemId: '',
+  costAmount: 0.01,
+  billingCycle: 'Annual',
+  currency: 'USD',
+  startDate: '',
+  renewalDate: '',
+  autoRenew: false,
+  noticePeriodDays: 0,
+  expenseType: 'Recurring',
+};
+
 export default function EditContractPage() {
   const params = useParams();
   const id = params.id as string;
@@ -65,16 +90,16 @@ export default function EditContractPage() {
   const { data: systems } = useSWR<Sys[]>('systems', authFetcher);
 
   const { register, handleSubmit, control, reset, formState: { isSubmitting } } =
-    useForm<FormValues>({ resolver: zodResolver(schema) });
+    useForm<FormValues>({
+      resolver: zodResolver(schema),
+      defaultValues: formDefaults,
+    });
 
   useEffect(() => {
     if (!doc) {
       return;
     }
-    const sid =
-      typeof doc.systemId === 'object' && doc.systemId?._id
-        ? String(doc.systemId._id)
-        : String(doc.systemId);
+    const sid = resolveSystemId(doc.systemId);
     reset({
       systemId: sid,
       costAmount: doc.costAmount,
@@ -120,18 +145,39 @@ export default function EditContractPage() {
       <Controller
         name="systemId"
         control={control}
-        render={({ field }) => (
-          <FormControl fullWidth margin="normal">
-            <InputLabel>System</InputLabel>
-            <Select label="System" {...field}>
-              {(systems ?? []).map((s) => (
-                <MenuItem key={s.id} value={s.id}>
-                  {s.name}
+        render={({ field }) => {
+          const list = Array.isArray(systems) ? systems : [];
+          const sid = field.value ?? '';
+          const inList = list.some((s) => s.id === sid);
+          return (
+            <FormControl fullWidth margin="normal">
+              <InputLabel>System</InputLabel>
+              <Select
+                label="System"
+                displayEmpty
+                name={field.name}
+                onBlur={field.onBlur}
+                inputRef={field.ref}
+                value={sid}
+                onChange={field.onChange}
+              >
+                <MenuItem value="" disabled>
+                  <em>{list.length ? 'Choose a system' : 'No systems in list'}</em>
                 </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        )}
+                {!inList && sid ? (
+                  <MenuItem value={sid} disabled>
+                    <em>Current system (not in list)</em>
+                  </MenuItem>
+                ) : null}
+                {list.map((s) => (
+                  <MenuItem key={s.id} value={s.id}>
+                    {s.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          );
+        }}
       />
       <TextField
         label="Cost amount"
@@ -147,7 +193,14 @@ export default function EditContractPage() {
         render={({ field }) => (
           <FormControl fullWidth margin="normal">
             <InputLabel>Billing cycle</InputLabel>
-            <Select label="Billing cycle" {...field}>
+            <Select
+              label="Billing cycle"
+              name={field.name}
+              onBlur={field.onBlur}
+              inputRef={field.ref}
+              value={field.value ?? 'Annual'}
+              onChange={field.onChange}
+            >
               <MenuItem value="Monthly">Monthly</MenuItem>
               <MenuItem value="Annual">Annual</MenuItem>
               <MenuItem value="Custom">Custom</MenuItem>
@@ -178,7 +231,14 @@ export default function EditContractPage() {
         render={({ field }) => (
           <FormControl fullWidth margin="normal">
             <InputLabel>Expense type</InputLabel>
-            <Select label="Expense type" {...field}>
+            <Select
+              label="Expense type"
+              name={field.name}
+              onBlur={field.onBlur}
+              inputRef={field.ref}
+              value={field.value ?? 'Recurring'}
+              onChange={field.onChange}
+            >
               <MenuItem value="Recurring">Recurring</MenuItem>
               <MenuItem value="One-time">One-time</MenuItem>
             </Select>

@@ -173,6 +173,28 @@ export class ApiHelper {
         }
         return this.logReturn(detail);
       } else if (response.status === 404) {
+        // #region agent log
+        fetch("http://127.0.0.1:7325/ingest/3c71a81a-d4c8-4e9d-9fd0-2c75fba097b2", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Debug-Session-Id": "0af2d5",
+          },
+          body: JSON.stringify({
+            sessionId: "0af2d5",
+            hypothesisId: "A",
+            location: "api-helper.ts:fetchRequest:404",
+            message: "API returned 404",
+            data: {
+              url: URL,
+              method: this._requestType,
+              endpoint: this._endpoint,
+            },
+            timestamp: Date.now(),
+            runId: "contracts-debug",
+          }),
+        }).catch(() => {});
+        // #endregion
         return this.logReturn("Resource not found.");
       } else if (response.status === 500) {
         return this.logReturn("A server error occured.");
