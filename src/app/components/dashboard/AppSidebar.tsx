@@ -44,7 +44,7 @@ const items = [
   { href: '/dashboard/settings', label: 'Settings', Icon: Settings },
 ] as const;
 
-const STORAGE_KEY = 'plutus-sidebar-collapsed';
+const STORAGE_KEY = 'allatura-sidebar-collapsed';
 
 type AppSidebarProps = {
   mobileOpen: boolean;
@@ -114,7 +114,7 @@ export default function AppSidebar({ mobileOpen, onMobileClose }: AppSidebarProp
                 letterSpacing: '-0.06em',
               }}
             >
-              P
+              A
             </Typography>
           </Link>
         ) : (
