@@ -12,7 +12,10 @@ import {
 } from '@mui/material';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import useSWR from 'swr';
+import { getStoredToken } from '@/lib/api-helper';
+import { getJwtClaims } from '@/lib/jwt';
 import { authFetcher } from '@/lib/swr-fetcher';
 import {
   dashboardHeader,
@@ -40,11 +43,17 @@ type ContractRow = {
 export default function SystemDetailPage() {
   const params = useParams();
   const id = params.id as string;
+  const [canEdit, setCanEdit] = useState(false);
   const { data: sys } = useSWR<SystemDoc>(id ? `systems/${id}` : null, authFetcher);
   const { data: contracts } = useSWR<ContractRow[]>(
     id ? `contracts?systemId=${id}` : null,
     authFetcher,
   );
+
+  useEffect(() => {
+    const role = getJwtClaims(getStoredToken())?.role;
+    setCanEdit(role === 'admin' || role === 'editor');
+  }, []);
 
   if (!sys) {
     return <Typography>Loading…</Typography>;
@@ -62,9 +71,11 @@ export default function SystemDetailPage() {
       <Typography variant="body2">
         Technical owner: {sys.technicalOwner?.name || sys.technicalOwner?.email || '-'}
       </Typography>
-      <Button component={Link} href={`/dashboard/systems/${id}/edit`} variant="outlined" sx={{ mt: 2 }}>
-        Edit
-      </Button>
+      {canEdit ? (
+        <Button component={Link} href={`/dashboard/systems/${id}/edit`} variant="outlined" sx={{ mt: 2 }}>
+          Edit
+        </Button>
+      ) : null}
 
       <Typography sx={{ ...dashboardHeader, mt: 3 }}>Contracts</Typography>
       <Table size="small">

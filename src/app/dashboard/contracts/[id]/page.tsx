@@ -12,7 +12,10 @@ import {
 } from '@mui/material';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import useSWR from 'swr';
+import { getStoredToken } from '@/lib/api-helper';
+import { getJwtClaims } from '@/lib/jwt';
 import { authFetcher } from '@/lib/swr-fetcher';
 import {
   dashboardHeader,
@@ -43,6 +46,7 @@ type RenewalRow = {
 export default function ContractDetailPage() {
   const params = useParams();
   const id = params.id as string;
+  const [canEdit, setCanEdit] = useState(false);
   const { data: c } = useSWR<ContractDoc>(
     id ? `contracts/${id}` : null,
     authFetcher,
@@ -51,6 +55,11 @@ export default function ContractDetailPage() {
   const history = (renewals ?? []).filter(
     (r) => String((r.contractId as { _id?: string })?._id) === id,
   );
+
+  useEffect(() => {
+    const role = getJwtClaims(getStoredToken())?.role;
+    setCanEdit(role === 'admin' || role === 'editor');
+  }, []);
 
   if (!c) {
     return <Typography>Loading…</Typography>;
@@ -68,9 +77,11 @@ export default function ContractDetailPage() {
         Cost: {c.costAmount} · Renewal: {new Date(c.renewalDate).toLocaleDateString()} ·
         Auto-renew: {c.autoRenew ? 'Yes' : 'No'} · Notice: {c.noticePeriodDays} days
       </Typography>
-      <Button component={Link} href={`/dashboard/contracts/${id}/edit`} variant="outlined" sx={{ mt: 2 }}>
-        Edit
-      </Button>
+      {canEdit ? (
+        <Button component={Link} href={`/dashboard/contracts/${id}/edit`} variant="outlined" sx={{ mt: 2 }}>
+          Edit
+        </Button>
+      ) : null}
 
       <Typography sx={{ ...dashboardHeader, mt: 3 }}>Renewal alert history</Typography>
       <Table size="small">

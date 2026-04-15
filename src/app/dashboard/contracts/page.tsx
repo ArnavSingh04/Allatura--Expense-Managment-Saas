@@ -6,10 +6,13 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import { Box, Button, IconButton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import { FileText } from 'lucide-react';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 import AppCard from '@/components/ui/AppCard';
 import EmptyState from '@/components/ui/EmptyState';
 import PageHeader from '@/components/ui/PageHeader';
+import { getStoredToken } from '@/lib/api-helper';
+import { getJwtClaims } from '@/lib/jwt';
 import { authFetcher } from '@/lib/swr-fetcher';
 
 type ContractRow = {
@@ -23,6 +26,7 @@ type ContractRow = {
 
 export default function ContractsPage() {
   const { data: rows } = useSWR<ContractRow[]>('contracts', authFetcher);
+  const [canEdit, setCanEdit] = useState(false);
   const list = rows ?? [];
   const sorted = [...list].sort(
     (a, b) =>
@@ -32,12 +36,17 @@ export default function ContractsPage() {
   const loading = rows === undefined;
   const empty = rows !== undefined && list.length === 0;
 
+  useEffect(() => {
+    const role = getJwtClaims(getStoredToken())?.role;
+    setCanEdit(role === 'admin' || role === 'editor');
+  }, []);
+
   return (
     <Box>
       <PageHeader
         title="Contracts"
         description="Renewal pipeline sorted by date, stay ahead of auto-renew windows."
-        action={
+        action={canEdit ? (
           <Button
             variant="contained"
             color="primary"
@@ -48,7 +57,7 @@ export default function ContractsPage() {
           >
             Add contract
           </Button>
-        }
+        ) : undefined}
       />
 
       <AppCard>
@@ -95,9 +104,11 @@ export default function ContractsPage() {
                     <IconButton component={Link} href={`/dashboard/contracts/${c._id}`} size="small" aria-label="View">
                       <VisibilityIcon fontSize="small" />
                     </IconButton>
-                    <IconButton component={Link} href={`/dashboard/contracts/${c._id}/edit`} size="small" aria-label="Edit">
-                      <EditIcon fontSize="small" />
-                    </IconButton>
+                    {canEdit ? (
+                      <IconButton component={Link} href={`/dashboard/contracts/${c._id}/edit`} size="small" aria-label="Edit">
+                        <EditIcon fontSize="small" />
+                      </IconButton>
+                    ) : null}
                   </TableCell>
                 </TableRow>
               ))}

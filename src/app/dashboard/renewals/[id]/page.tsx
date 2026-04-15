@@ -11,9 +11,10 @@ import {
   Typography,
 } from '@mui/material';
 import { useParams } from 'next/navigation';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import useSWR from 'swr';
-import { ApiHelper, REQUEST_TYPE } from '@/lib/api-helper';
+import { ApiHelper, REQUEST_TYPE, getStoredToken } from '@/lib/api-helper';
+import { getJwtClaims } from '@/lib/jwt';
 import { authFetcher } from '@/lib/swr-fetcher';
 import {
   dashboardHeader,
@@ -46,6 +47,7 @@ type RenewalListItem = {
 export default function RenewalDetailPage() {
   const params = useParams();
   const id = params.id as string;
+  const [canEdit, setCanEdit] = useState(false);
   const { data: detail, mutate } = useSWR<RenewalDetail>(
     id ? `renewals/${id}` : null,
     authFetcher,
@@ -70,6 +72,11 @@ export default function RenewalDetailPage() {
     'Renew',
   );
   const [note, setNote] = useState('');
+
+  useEffect(() => {
+    const role = getJwtClaims(getStoredToken())?.role;
+    setCanEdit(role === 'admin' || role === 'editor');
+  }, []);
 
   const submitDecision = async () => {
     const api = new ApiHelper(`renewals/${id}`);
@@ -121,11 +128,13 @@ export default function RenewalDetailPage() {
         })}
       </ul>
 
-      <Button variant="contained" onClick={() => setOpen(true)} sx={{ mt: 1 }}>
-        Log decision
-      </Button>
+      {canEdit ? (
+        <Button variant="contained" onClick={() => setOpen(true)} sx={{ mt: 1 }}>
+          Log decision
+        </Button>
+      ) : null}
 
-      <Dialog open={open} onClose={() => setOpen(false)} fullWidth maxWidth="sm">
+      <Dialog open={canEdit && open} onClose={() => setOpen(false)} fullWidth maxWidth="sm">
         <DialogTitle>Confirm decision</DialogTitle>
         <DialogContent>
           <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', my: 2 }}>

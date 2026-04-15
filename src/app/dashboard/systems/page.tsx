@@ -20,12 +20,14 @@ import {
   TextField,
 } from '@mui/material';
 import Link from 'next/link';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import useSWR from 'swr';
 import { Server } from 'lucide-react';
 import AppCard from '@/components/ui/AppCard';
 import EmptyState from '@/components/ui/EmptyState';
 import PageHeader from '@/components/ui/PageHeader';
+import { getStoredToken } from '@/lib/api-helper';
+import { getJwtClaims } from '@/lib/jwt';
 import { authFetcher } from '@/lib/swr-fetcher';
 
 type SystemRow = {
@@ -45,6 +47,7 @@ export default function SystemsListPage() {
   const [category, setCategory] = useState('');
   const [department, setDepartment] = useState('');
   const [criticality, setCriticality] = useState('');
+  const [canEdit, setCanEdit] = useState(false);
 
   const qs = useMemo(() => {
     const p = new URLSearchParams();
@@ -80,12 +83,17 @@ export default function SystemsListPage() {
   const empty = rows !== undefined && rows.length === 0;
   const noMatches = rows !== undefined && rows.length > 0 && !filtered.length;
 
+  useEffect(() => {
+    const role = getJwtClaims(getStoredToken())?.role;
+    setCanEdit(role === 'admin' || role === 'editor');
+  }, []);
+
   return (
     <Box>
       <PageHeader
         title="IT systems"
         description="Inventory, ownership, and renewal risk across your stack."
-        action={
+        action={canEdit ? (
           <Button
             variant="contained"
             color="primary"
@@ -96,7 +104,7 @@ export default function SystemsListPage() {
           >
             Add system
           </Button>
-        }
+        ) : undefined}
       />
 
       <Box
@@ -232,9 +240,11 @@ export default function SystemsListPage() {
                     <IconButton component={Link} href={`/dashboard/systems/${r.id}`} size="small" aria-label="View">
                       <VisibilityIcon fontSize="small" />
                     </IconButton>
-                    <IconButton component={Link} href={`/dashboard/systems/${r.id}/edit`} size="small" aria-label="Edit">
-                      <EditIcon fontSize="small" />
-                    </IconButton>
+                    {canEdit ? (
+                      <IconButton component={Link} href={`/dashboard/systems/${r.id}/edit`} size="small" aria-label="Edit">
+                        <EditIcon fontSize="small" />
+                      </IconButton>
+                    ) : null}
                   </TableCell>
                 </TableRow>
               ))}
