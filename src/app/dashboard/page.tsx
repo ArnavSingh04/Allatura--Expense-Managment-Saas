@@ -210,13 +210,13 @@ export default function DashboardPage() {
           </AppCard>
         </Grid>
 
-        <Grid size={{ xs: 12, lg: 6 }}>
-          <AppCard sx={{ height: '100%' }}>
+        <Grid size={{ xs: 12, lg: 6 }} sx={{ minWidth: 0 }}>
+          <AppCard sx={{ height: '100%', minWidth: 0 }}>
             <CardContent sx={{ p: { xs: 2, md: 2.5 }, height: '100%' }}>
               <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 2, letterSpacing: '-0.02em' }}>
                 Spend by category
               </Typography>
-              <Box sx={{ width: '100%', height: 280 }}>
+              <Box sx={{ width: '100%', height: 280, minWidth: 0, minHeight: 280 }}>
                 {!chartData.length ? (
                   <Box
                     sx={{
@@ -238,7 +238,12 @@ export default function DashboardPage() {
                     </Typography>
                   </Box>
                 ) : (
-                  <ResponsiveContainer width="100%" height="100%">
+                  <ResponsiveContainer
+                    width="100%"
+                    height="100%"
+                    minWidth={0}
+                    minHeight={280}
+                  >
                     <BarChart data={chartData} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
                       <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={theme.palette.divider} />
                       <XAxis
