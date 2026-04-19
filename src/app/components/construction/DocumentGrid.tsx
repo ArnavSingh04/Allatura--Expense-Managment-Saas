@@ -55,7 +55,7 @@ export default function DocumentGrid({ documents, onDeleted }: Props) {
       const { url } = await documentService.download(doc._id);
       if (url.startsWith('stub://')) {
         setError(
-          'Download not available — storage is in dev mode. Configure GCS to enable downloads.',
+          'Download not available until object storage is configured. Set STORAGE_PUBLIC_BASE_URL on the API to your bucket public base URL (or use a signed URL integration).',
         );
       } else {
         window.open(url, '_blank', 'noopener');

@@ -14,6 +14,7 @@ import {
   useTheme,
 } from '@mui/material';
 import {
+  CalendarDays,
   ChevronLeft,
   ChevronRight,
   ClipboardList,
@@ -24,6 +25,7 @@ import {
   LayoutDashboard,
   Settings,
   Truck,
+  Upload,
   UserCheck,
   Users,
 } from 'lucide-react';
@@ -50,6 +52,8 @@ type NavItem = {
 const items: NavItem[] = [
   { href: '/dashboard', label: 'Overview', Icon: LayoutDashboard, needs: 'dashboard.view' },
   { href: '/dashboard/projects', label: 'Projects', Icon: GanttChartSquare, needs: 'projects.view' },
+  { href: '/dashboard/calendar', label: 'Calendar', Icon: CalendarDays, needs: 'projects.view' },
+  { href: '/dashboard/import', label: 'Import', Icon: Upload, needs: 'subbies.edit' },
   { href: '/dashboard/variations', label: 'Variation inbox', Icon: ClipboardList, needs: 'variations.view' },
   { href: '/dashboard/subcontractors', label: 'Subcontractors', Icon: HardHat, needs: 'subbies.view' },
   { href: '/dashboard/suppliers', label: 'Suppliers', Icon: Truck, needs: 'suppliers.view' },

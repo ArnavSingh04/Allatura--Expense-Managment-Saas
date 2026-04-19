@@ -18,6 +18,15 @@ export type CreateUploadUrlInput = {
   tags?: string[];
 };
 
+export type UploadUrlResponse = {
+  documentId: string;
+  uploadUrl: string;
+  method: 'PUT' | 'POST';
+  headers: Record<string, string>;
+  expiresInSeconds?: number;
+  objectKey?: string;
+};
+
 export const documentService = {
   list: (params?: {
     projectId?: string;
@@ -37,16 +46,13 @@ export const documentService = {
   },
   get: (id: string) => apiGet<AppDocument>(`documents/${id}`),
   uploadUrl: (input: CreateUploadUrlInput) =>
-    apiPost<{
-      uploadUrl: string;
-      method: 'PUT' | 'POST';
-      headers: Record<string, string>;
-      document: AppDocument;
-    }>('documents/upload-url', input),
+    apiPost<UploadUrlResponse>('documents/upload-url', input),
   finalise: (input: { documentId: string; checksum?: string }) =>
     apiPost<AppDocument>('documents/finalise', input),
   download: (id: string) =>
-    apiGet<{ url: string; expiresAt: string }>(`documents/${id}/download-url`),
+    apiGet<{ url: string; expiresInSeconds?: number }>(
+      `documents/${id}/download-url`,
+    ),
   update: (
     id: string,
     body: Partial<{ category: DocumentCategory; tags: string[] }>,
@@ -71,6 +77,11 @@ export async function uploadFile(
     ...meta,
   });
 
+  const documentId = created.documentId;
+  if (!documentId) {
+    throw new Error('Upload URL response missing documentId');
+  }
+
   const isStub = created.uploadUrl.startsWith('stub://');
   if (!isStub) {
     const headers: Record<string, string> = {
@@ -86,8 +97,7 @@ export async function uploadFile(
       throw new Error(`Upload failed: ${res.status}`);
     }
   }
-  // In dev (stub URL) we treat the upload as a no-op. Real bytes only land in
-  // object storage once the GCS/S3 client is wired in DocumentService.
 
-  return documentService.finalise({ documentId: created.document._id });
+  await documentService.finalise({ documentId });
+  return documentService.get(documentId);
 }

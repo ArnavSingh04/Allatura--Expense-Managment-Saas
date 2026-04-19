@@ -1,6 +1,13 @@
 export const keys = {
   // dashboards
   companyDashboard: () => 'dashboards/company',
+  companyCalendar: (q: { from: string; to: string; projectId?: string }) => {
+    const p = new URLSearchParams();
+    p.set('from', q.from);
+    p.set('to', q.to);
+    if (q.projectId) p.set('projectId', q.projectId);
+    return `dashboards/calendar?${p.toString()}`;
+  },
   projectDashboard: (projectId: string) => `dashboards/projects/${projectId}`,
 
   // projects
