@@ -24,19 +24,27 @@ import {
   RefreshCw,
   Server,
   Settings,
+  UserCheck,
   Users,
 } from 'lucide-react';
 import { alpha } from '@mui/material/styles';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
-import { getStoredToken } from '@/lib/api-helper';
-import { getJwtClaims } from '@/lib/jwt';
+import { useAuthSession } from '@/contexts/AuthSessionContext';
 
 const DRAWER_WIDTH = 260;
 const DRAWER_COLLAPSED = 76;
 
-const items = [
+type NavItem = {
+  href: string;
+  label: string;
+  Icon: typeof LayoutDashboard;
+  /** When set, only roles in this list see the item. */
+  adminOnly?: boolean;
+};
+
+const items: NavItem[] = [
   { href: '/dashboard', label: 'Dashboard', Icon: LayoutDashboard },
   { href: '/dashboard/systems', label: 'Systems', Icon: Server },
   { href: '/dashboard/contracts', label: 'Contracts', Icon: FileText },
@@ -44,9 +52,15 @@ const items = [
   { href: '/dashboard/calendar', label: 'Calendar', Icon: Calendar },
   { href: '/dashboard/import', label: 'Import', Icon: CloudUpload },
   { href: '/dashboard/audit', label: 'Audit log', Icon: History },
-  { href: '/dashboard/users', label: 'Users', Icon: Users },
+  { href: '/dashboard/users', label: 'Users', Icon: Users, adminOnly: true },
+  {
+    href: '/dashboard/users/pending',
+    label: 'Pending requests',
+    Icon: UserCheck,
+    adminOnly: true,
+  },
   { href: '/dashboard/settings', label: 'Settings', Icon: Settings },
-] as const;
+];
 
 const STORAGE_KEY = 'allatura-sidebar-collapsed';
 
@@ -60,7 +74,8 @@ export default function AppSidebar({ mobileOpen, onMobileClose }: AppSidebarProp
   const pathname = usePathname();
   const isMdUp = useMediaQuery(theme.breakpoints.up('md'));
   const [collapsed, setCollapsed] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
+  const { session, isActive } = useAuthSession();
+  const isAdmin = isActive && session?.role === 'admin';
 
   useEffect(() => {
     try {
@@ -71,11 +86,6 @@ export default function AppSidebar({ mobileOpen, onMobileClose }: AppSidebarProp
     } catch {
       /* ignore */
     }
-  }, []);
-
-  useEffect(() => {
-    const claims = getJwtClaims(getStoredToken());
-    setIsAdmin(claims?.role === 'admin');
   }, []);
 
   const toggleCollapsed = useCallback(() => {
@@ -152,14 +162,18 @@ export default function AppSidebar({ mobileOpen, onMobileClose }: AppSidebarProp
       </Box>
 
       <List sx={{ flex: 1, px: 1, py: 0.5 }} dense>
-        {items.map(({ href, label, Icon }) => {
-          if (href === '/dashboard/users' && !isAdmin) {
+        {items.map(({ href, label, Icon, adminOnly }) => {
+          if (adminOnly && !isAdmin) {
             return null;
           }
+          // Exact-match for /dashboard/users so the Pending sub-item highlights independently.
           const active =
             href === '/dashboard'
               ? pathname === '/dashboard' || pathname === '/dashboard/'
-              : pathname === href || pathname.startsWith(`${href}/`);
+              : href === '/dashboard/users'
+                ? pathname === '/dashboard/users' ||
+                  pathname === '/dashboard/users/'
+                : pathname === href || pathname.startsWith(`${href}/`);
           const button = (
             <ListItemButton
               component={Link}

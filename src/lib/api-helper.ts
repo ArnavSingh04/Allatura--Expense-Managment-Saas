@@ -115,6 +115,48 @@ export class ApiHelper {
     return response;
   }
 
+  /**
+   * Pull the backend's error code/message out of a non-OK response so the UI
+   * can show something more useful than a bare HTTP status. Nest's exceptions
+   * serialize as `{ statusCode, message, error }` where `message` is either a
+   * string (our case — we throw `new ConflictException('email_already_registered')`)
+   * or an array of validation errors.
+   */
+  private async extractErrorMessage(
+    response: Response,
+    fallback: string,
+  ): Promise<string> {
+    let bodyText = "";
+    try {
+      bodyText = await response.text();
+    } catch {
+      return fallback;
+    }
+    if (!bodyText) {
+      return fallback;
+    }
+    try {
+      const parsed = JSON.parse(bodyText) as {
+        message?: string | string[];
+        error?: string;
+      };
+      if (Array.isArray(parsed.message) && parsed.message.length > 0) {
+        return parsed.message.join(", ");
+      }
+      if (typeof parsed.message === "string" && parsed.message.length > 0) {
+        return parsed.message;
+      }
+      if (typeof parsed.error === "string" && parsed.error.length > 0) {
+        return parsed.error;
+      }
+    } catch {
+      if (bodyText.length < 200) {
+        return bodyText;
+      }
+    }
+    return fallback;
+  }
+
   private buildUrl(): string {
     const base = this._baseURL;
     const parts = [this._endpoint, this._urlParams].filter((p) => p && p.length > 0);
@@ -155,53 +197,22 @@ export class ApiHelper {
     try {
       const response = await fetch(URL, config);
       if (response.status === 401) {
-        const errText = await response.text();
-        let detail = "unauthorized.";
-        if (errText) {
-          try {
-            const parsed = JSON.parse(errText) as { message?: string; error?: string };
-            if (typeof parsed.message === "string") {
-              detail = parsed.message;
-            } else if (typeof parsed.error === "string") {
-              detail = parsed.error;
-            }
-          } catch {
-            if (errText.length < 200) {
-              detail = errText;
-            }
-          }
-        }
+        const detail = await this.extractErrorMessage(response, "unauthorized.");
         return this.logReturn(detail);
       } else if (response.status === 404) {
-        // #region agent log
-        fetch("http://127.0.0.1:7325/ingest/3c71a81a-d4c8-4e9d-9fd0-2c75fba097b2", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Debug-Session-Id": "0af2d5",
-          },
-          body: JSON.stringify({
-            sessionId: "0af2d5",
-            hypothesisId: "A",
-            location: "api-helper.ts:fetchRequest:404",
-            message: "API returned 404",
-            data: {
-              url: URL,
-              method: this._requestType,
-              endpoint: this._endpoint,
-            },
-            timestamp: Date.now(),
-            runId: "contracts-debug",
-          }),
-        }).catch(() => {});
-        // #endregion
         return this.logReturn("Resource not found.");
       } else if (response.status === 500) {
-        return this.logReturn("A server error occured.");
+        const detail = await this.extractErrorMessage(
+          response,
+          "A server error occured.",
+        );
+        return this.logReturn(detail);
       } else if (!response.ok) {
-        return this.logReturn(
+        const detail = await this.extractErrorMessage(
+          response,
           `Request could not be submitted status: ${response.status}`,
         );
+        return this.logReturn(detail);
       }
 
       const text = await response.text();
@@ -241,12 +252,15 @@ export class ApiHelper {
         body: formData,
       });
       if (response.status === 401) {
-        return this.logReturn("unauthorized.");
+        const detail = await this.extractErrorMessage(response, "unauthorized.");
+        return this.logReturn(detail);
       }
       if (!response.ok) {
-        return this.logReturn(
+        const detail = await this.extractErrorMessage(
+          response,
           `Request could not be submitted status: ${response.status}`,
         );
+        return this.logReturn(detail);
       }
       const text = await response.text();
       if (!text) {

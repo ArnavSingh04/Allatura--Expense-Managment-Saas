@@ -5,6 +5,7 @@ import './globals.css';
 import { Suspense } from 'react';
 import Script from 'next/script';
 import type { ColorModePreference } from '@/lib/colorModeContext';
+import { AuthSessionProvider } from '@/contexts/AuthSessionContext';
 
 const inter = Inter({ weight: ['400', '500', '600', '700'], subsets: ['latin'], display: 'swap' });
 
@@ -30,7 +31,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           dangerouslySetInnerHTML={{ __html: THEME_STORAGE_SYNC_SCRIPT }}
         />
         <ThemeRegistry initialColorMode={initialColorMode}>
-          <Suspense>{children}</Suspense>
+          <AuthSessionProvider>
+            <Suspense>{children}</Suspense>
+          </AuthSessionProvider>
         </ThemeRegistry>
       </body>
     </html>
