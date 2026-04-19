@@ -10,8 +10,9 @@ import { AuthSessionProvider } from '@/contexts/AuthSessionContext';
 const inter = Inter({ weight: ['400', '500', '600', '700'], subsets: ['latin'], display: 'swap' });
 
 export const metadata = {
-  title: 'Allatura, IT spend intelligence',
-  description: 'Systems, contracts, renewals, and analytics in one dashboard.',
+  title: 'Allatura — project delivery & commercial control',
+  description:
+    'Portfolio visibility, project financials, contracts, variations, claims, documents, and audit—built for teams delivering capital work.',
 };
 
 const THEME_STORAGE_SYNC_SCRIPT = `(function(){try{var k='plutus-color-mode';var v=localStorage.getItem(k);var m='light';if(v==='dark'||v==='light')m=v;document.documentElement.dataset.theme=m;document.documentElement.style.colorScheme=m;document.cookie=k+'='+m+';path=/;max-age=31536000;SameSite=Lax';}catch(e){}})();`;

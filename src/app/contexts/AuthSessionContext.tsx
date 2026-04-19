@@ -5,7 +5,6 @@ import {
   useCallback,
   useContext,
   useEffect,
-  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -146,7 +145,10 @@ export function AuthSessionProvider({
     void refreshFromMe();
   }, [refreshFromMe]);
 
-  useLayoutEffect(() => {
+  // useEffect (not useLayoutEffect) so the first client paint matches SSR:
+  // `ready` stays false until after hydration, avoiding a spinner vs shell mismatch
+  // in dashboard layout (see Next.js hydration warning).
+  useEffect(() => {
     setSession(readSessionFromStorage());
     setReady(true);
     void refreshFromMe();
@@ -154,7 +156,7 @@ export function AuthSessionProvider({
 
   // Re-read the token whenever auth changes (login/logout in the same tab,
   // or another tab via the storage event).
-  useLayoutEffect(() => {
+  useEffect(() => {
     const onUpdate = () => {
       setSession(readSessionFromStorage());
       void refreshFromMe();

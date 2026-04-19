@@ -2,7 +2,7 @@
 
 import { Box, Button, Container, Typography, useTheme } from '@mui/material';
 import { alpha } from '@mui/material/styles';
-import { ArrowRight, BarChart3, Shield, Sparkles } from 'lucide-react';
+import { ArrowRight, ClipboardList, Files, GanttChartSquare } from 'lucide-react';
 import Link from 'next/link';
 import { plutus } from '@/theme/tokens';
 
@@ -64,7 +64,7 @@ export default function HomePage() {
               display: 'block',
             }}
           >
-            IT spend intelligence
+            Project delivery & commercial control
           </Typography>
           <Typography
             variant="h1"
@@ -77,7 +77,7 @@ export default function HomePage() {
               mb: 2,
             }}
           >
-            Know what you spend, before renewals surprise you.
+            One place for portfolio financials, contracts, and what happens on the ground.
           </Typography>
           <Typography
             variant="h6"
@@ -89,8 +89,9 @@ export default function HomePage() {
               mb: 4,
             }}
           >
-            Allatura centralizes systems, contracts, and renewals in one calm dashboard. Built for teams who outgrew
-            spreadsheets.
+            Allatura connects budgets, commercial workflows, and records across every job—ideal when you deliver
+            capital projects in construction, infrastructure, facilities, or industrial programs, without living in
+            disconnected spreadsheets.
           </Typography>
           <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}>
             <Button
@@ -119,19 +120,19 @@ export default function HomePage() {
         >
           {[
             {
-              icon: BarChart3,
-              title: 'Portfolio visibility',
-              body: 'Spend by category, renewal windows, and risk signals in one place.',
+              icon: GanttChartSquare,
+              title: 'Portfolio & project control',
+              body: 'Company-wide KPIs plus per-project budgets, milestones, progress, and site context so leadership and delivery stay aligned.',
             },
             {
-              icon: Shield,
-              title: 'Ownership & audit',
-              body: 'Business owners, duplicate vendors, and change history you can trust.',
+              icon: ClipboardList,
+              title: 'Commercial workflows',
+              body: 'Contracts, variations, payment claims, and expenses tied to the work—so exposure, approvals, and cash position stay legible.',
             },
             {
-              icon: Sparkles,
-              title: 'Investor-ready polish',
-              body: 'A product experience that matches the quality of your data model.',
+              icon: Files,
+              title: 'Records & relationships',
+              body: 'Central documents, subcontractor and supplier registers, and an audit trail you can rely on when stakeholders ask what changed.',
             },
           ].map(({ icon: Icon, title, body }) => (
             <Box

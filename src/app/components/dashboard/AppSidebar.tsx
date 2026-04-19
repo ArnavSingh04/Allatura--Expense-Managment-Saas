@@ -14,16 +14,16 @@ import {
   useTheme,
 } from '@mui/material';
 import {
-  Calendar,
   ChevronLeft,
   ChevronRight,
-  CloudUpload,
-  FileText,
+  ClipboardList,
+  Files,
+  GanttChartSquare,
+  HardHat,
   History,
   LayoutDashboard,
-  RefreshCw,
-  Server,
   Settings,
+  Truck,
   UserCheck,
   Users,
 } from 'lucide-react';
@@ -32,6 +32,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import { useAuthSession } from '@/contexts/AuthSessionContext';
+import type { RbacAction } from '@/lib/rbac';
 
 const DRAWER_WIDTH = 260;
 const DRAWER_COLLAPSED = 76;
@@ -40,26 +41,23 @@ type NavItem = {
   href: string;
   label: string;
   Icon: typeof LayoutDashboard;
-  /** When set, only roles in this list see the item. */
-  adminOnly?: boolean;
+  /** Action gate; item hides if user lacks this capability. */
+  needs?: RbacAction;
+  /** Owner-only items hidden from everyone else. */
+  ownerOnly?: boolean;
 };
 
 const items: NavItem[] = [
-  { href: '/dashboard', label: 'Dashboard', Icon: LayoutDashboard },
-  { href: '/dashboard/systems', label: 'Systems', Icon: Server },
-  { href: '/dashboard/contracts', label: 'Contracts', Icon: FileText },
-  { href: '/dashboard/renewals', label: 'Renewals', Icon: RefreshCw },
-  { href: '/dashboard/calendar', label: 'Calendar', Icon: Calendar },
-  { href: '/dashboard/import', label: 'Import', Icon: CloudUpload },
-  { href: '/dashboard/audit', label: 'Audit log', Icon: History },
-  { href: '/dashboard/users', label: 'Users', Icon: Users, adminOnly: true },
-  {
-    href: '/dashboard/users/pending',
-    label: 'Pending requests',
-    Icon: UserCheck,
-    adminOnly: true,
-  },
-  { href: '/dashboard/settings', label: 'Settings', Icon: Settings },
+  { href: '/dashboard', label: 'Overview', Icon: LayoutDashboard, needs: 'dashboard.view' },
+  { href: '/dashboard/projects', label: 'Projects', Icon: GanttChartSquare, needs: 'projects.view' },
+  { href: '/dashboard/variations', label: 'Variation inbox', Icon: ClipboardList, needs: 'variations.view' },
+  { href: '/dashboard/subcontractors', label: 'Subcontractors', Icon: HardHat, needs: 'subbies.view' },
+  { href: '/dashboard/suppliers', label: 'Suppliers', Icon: Truck, needs: 'suppliers.view' },
+  { href: '/dashboard/documents', label: 'Documents', Icon: Files, needs: 'documents.view' },
+  { href: '/dashboard/audit', label: 'Audit log', Icon: History, needs: 'audit.view' },
+  { href: '/dashboard/users', label: 'Users', Icon: Users, ownerOnly: true },
+  { href: '/dashboard/users/pending', label: 'Pending requests', Icon: UserCheck, ownerOnly: true },
+  { href: '/dashboard/settings', label: 'Settings', Icon: Settings, needs: 'settings.view' },
 ];
 
 const STORAGE_KEY = 'allatura-sidebar-collapsed';
@@ -74,15 +72,14 @@ export default function AppSidebar({ mobileOpen, onMobileClose }: AppSidebarProp
   const pathname = usePathname();
   const isMdUp = useMediaQuery(theme.breakpoints.up('md'));
   const [collapsed, setCollapsed] = useState(false);
-  const { session, isActive } = useAuthSession();
-  const isAdmin = isActive && session?.role === 'admin';
+  const { session, isActive, can } = useAuthSession();
+  const isOwner =
+    isActive && (session?.role === 'owner' || session?.role === 'admin');
 
   useEffect(() => {
     try {
       const v = localStorage.getItem(STORAGE_KEY);
-      if (v === '1') {
-        setCollapsed(true);
-      }
+      if (v === '1') setCollapsed(true);
     } catch {
       /* ignore */
     }
@@ -162,17 +159,14 @@ export default function AppSidebar({ mobileOpen, onMobileClose }: AppSidebarProp
       </Box>
 
       <List sx={{ flex: 1, px: 1, py: 0.5 }} dense>
-        {items.map(({ href, label, Icon, adminOnly }) => {
-          if (adminOnly && !isAdmin) {
-            return null;
-          }
-          // Exact-match for /dashboard/users so the Pending sub-item highlights independently.
+        {items.map(({ href, label, Icon, needs, ownerOnly }) => {
+          if (ownerOnly && !isOwner) return null;
+          if (needs && !can(needs)) return null;
           const active =
             href === '/dashboard'
               ? pathname === '/dashboard' || pathname === '/dashboard/'
               : href === '/dashboard/users'
-                ? pathname === '/dashboard/users' ||
-                  pathname === '/dashboard/users/'
+                ? pathname === '/dashboard/users' || pathname === '/dashboard/users/'
                 : pathname === href || pathname.startsWith(`${href}/`);
           const button = (
             <ListItemButton
@@ -180,9 +174,7 @@ export default function AppSidebar({ mobileOpen, onMobileClose }: AppSidebarProp
               href={href}
               selected={active}
               onClick={() => {
-                if (!isMdUp) {
-                  onMobileClose();
-                }
+                if (!isMdUp) onMobileClose();
               }}
               sx={{
                 borderRadius: 2,
@@ -197,7 +189,9 @@ export default function AppSidebar({ mobileOpen, onMobileClose }: AppSidebarProp
                 },
                 '&:hover': {
                   bgcolor: (th) =>
-                    th.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.06)' : 'rgba(15, 23, 42, 0.04)',
+                    th.palette.mode === 'dark'
+                      ? 'rgba(255, 255, 255, 0.06)'
+                      : 'rgba(15, 23, 42, 0.04)',
                 },
               }}
             >
@@ -231,8 +225,12 @@ export default function AppSidebar({ mobileOpen, onMobileClose }: AppSidebarProp
       </List>
 
       <Box sx={{ p: 1.5, borderTop: `1px solid ${theme.palette.divider}` }}>
-        <Typography variant="caption" color="text.secondary" sx={{ px: 1, display: collapsed ? 'none' : 'block' }}>
-          IT spend intelligence
+        <Typography
+          variant="caption"
+          color="text.secondary"
+          sx={{ px: 1, display: collapsed ? 'none' : 'block' }}
+        >
+          Built for builders.
         </Typography>
       </Box>
     </Box>
