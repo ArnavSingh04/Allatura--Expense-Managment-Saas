@@ -32,15 +32,29 @@ export default function LoginPage() {
   const onSubmit = async (data: FormValues) => {
     const api = new ApiHelper('auth/login');
     api.includeKey = false;
+    api.skipSessionHeaders = true;
     api.type = REQUEST_TYPE.POST;
-    api.body = { email: data.email, password: data.password };
+    const email = data.email.trim().toLowerCase();
+    api.body = { email, password: data.password };
     const res = (await api.fetchRequest()) as {
       failed?: boolean;
       accessToken?: string;
       error?: string;
+      user?: {
+        id: string;
+        email: string;
+        name?: string;
+        role: string;
+        tenantId: string;
+      };
     };
     if (res?.failed || !res?.accessToken) {
-      setFormError('root', { message: 'Invalid email or password' });
+      setFormError('root', {
+        message:
+          typeof res?.error === 'string' && res.error && res.error !== 'unauthorized.'
+            ? res.error
+            : 'Invalid email or password',
+      });
       return;
     }
     setAuthToken(res.accessToken);

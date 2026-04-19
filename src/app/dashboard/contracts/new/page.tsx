@@ -46,6 +46,7 @@ export default function NewContractPage() {
   } = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: {
+      systemId: '',
       billingCycle: 'Annual',
       currency: 'USD',
       expenseType: 'Recurring',
@@ -82,18 +83,37 @@ export default function NewContractPage() {
       <Controller
         name="systemId"
         control={control}
-        render={({ field }) => (
-          <FormControl fullWidth margin="normal">
-            <InputLabel>System</InputLabel>
-            <Select label="System" {...field}>
-              {(systems ?? []).map((s) => (
-                <MenuItem key={s.id} value={s.id}>
-                  {s.name}
+        render={({ field }) => {
+          const list = Array.isArray(systems) ? systems : [];
+          const emptySystems = list.length === 0;
+          return (
+            <FormControl fullWidth margin="normal">
+              <InputLabel>System</InputLabel>
+              <Select
+                label="System"
+                displayEmpty
+                value={field.value ?? ''}
+                onChange={field.onChange}
+                onBlur={field.onBlur}
+                name={field.name}
+                inputRef={field.ref}
+              >
+                <MenuItem value="" disabled>
+                  <em>
+                    {emptySystems
+                      ? 'No systems available — add one under Systems first'
+                      : 'Choose a system'}
+                  </em>
                 </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        )}
+                {list.map((s) => (
+                  <MenuItem key={s.id} value={s.id}>
+                    {s.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          );
+        }}
       />
       <TextField
         label="Cost amount"

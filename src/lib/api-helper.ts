@@ -1,3 +1,5 @@
+import { getJwtClaims } from "@/lib/jwt";
+
 export enum REQUEST_TYPE {
   GET = "GET",
   POST = "POST",
@@ -18,6 +20,20 @@ export function getStoredToken(): string | null {
     return null;
   }
   return localStorage.getItem("plutus_access_token");
+}
+
+function authHeaders(token: string | null): Record<string, string> {
+  if (!token) {
+    return {};
+  }
+  const headers: Record<string, string> = {
+    Authorization: `Bearer ${token}`,
+  };
+  const tenantId = getJwtClaims(token)?.tenantId;
+  if (tenantId) {
+    headers["x-tenant-id"] = tenantId;
+  }
+  return headers;
 }
 
 function cookieSecureSuffix(): string {
@@ -52,6 +68,12 @@ export class ApiHelper {
   private _requestType: REQUEST_TYPE;
   private _requestBody: unknown;
   private _includeKey: boolean;
+  /**
+   * When true, do not send Bearer / x-tenant-id from localStorage.
+   * Use for @Public() routes like auth/login and auth/register so a stale JWT
+   * from another session does not make the API reject the request with 401.
+   */
+  private _skipSessionHeaders: boolean;
 
   constructor(endpoint: string) {
     this._baseURL = apiBaseUrl();
@@ -60,6 +82,7 @@ export class ApiHelper {
     this._urlParams = "";
     this._includeKey = true;
     this._requestType = REQUEST_TYPE.GET;
+    this._skipSessionHeaders = false;
   }
 
   set baseURL(newBaseURL: string) {
@@ -80,6 +103,10 @@ export class ApiHelper {
 
   set body(newBody: unknown) {
     this._requestBody = newBody;
+  }
+
+  set skipSessionHeaders(skip: boolean) {
+    this._skipSessionHeaders = skip;
   }
 
   private logReturn(error: string) {
@@ -107,8 +134,8 @@ export class ApiHelper {
       ...(this._includeKey === true &&
         this._apiKey && { "x-api-key": this._apiKey }),
     };
-    if (token) {
-      headers.Authorization = `Bearer ${token}`;
+    if (!this._skipSessionHeaders) {
+      Object.assign(headers, authHeaders(token));
     }
     const hasJsonBody =
       this._requestBody !== undefined &&
@@ -128,8 +155,46 @@ export class ApiHelper {
     try {
       const response = await fetch(URL, config);
       if (response.status === 401) {
-        return this.logReturn("unauthorized.");
+        const errText = await response.text();
+        let detail = "unauthorized.";
+        if (errText) {
+          try {
+            const parsed = JSON.parse(errText) as { message?: string; error?: string };
+            if (typeof parsed.message === "string") {
+              detail = parsed.message;
+            } else if (typeof parsed.error === "string") {
+              detail = parsed.error;
+            }
+          } catch {
+            if (errText.length < 200) {
+              detail = errText;
+            }
+          }
+        }
+        return this.logReturn(detail);
       } else if (response.status === 404) {
+        // #region agent log
+        fetch("http://127.0.0.1:7325/ingest/3c71a81a-d4c8-4e9d-9fd0-2c75fba097b2", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Debug-Session-Id": "0af2d5",
+          },
+          body: JSON.stringify({
+            sessionId: "0af2d5",
+            hypothesisId: "A",
+            location: "api-helper.ts:fetchRequest:404",
+            message: "API returned 404",
+            data: {
+              url: URL,
+              method: this._requestType,
+              endpoint: this._endpoint,
+            },
+            timestamp: Date.now(),
+            runId: "contracts-debug",
+          }),
+        }).catch(() => {});
+        // #endregion
         return this.logReturn("Resource not found.");
       } else if (response.status === 500) {
         return this.logReturn("A server error occured.");
@@ -165,8 +230,8 @@ export class ApiHelper {
       ...(this._includeKey === true &&
         this._apiKey && { "x-api-key": this._apiKey }),
     };
-    if (token) {
-      headers.Authorization = `Bearer ${token}`;
+    if (!this._skipSessionHeaders) {
+      Object.assign(headers, authHeaders(token));
     }
 
     try {
