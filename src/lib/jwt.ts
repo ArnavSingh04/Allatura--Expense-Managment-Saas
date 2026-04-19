@@ -1,42 +1,37 @@
 /**
- * Decode JWT payload segment (no signature verification). Used client-side only
- * for UI convenience; API must enforce authz on every request.
+ * Typed helpers over the access token payload. Decoding is shared via
+ * `jwt-decode.ts` (also used by `jwt-payload.ts`).
  */
-function base64UrlDecode(segment: string): string {
-  const b64 = segment.replace(/-/g, '+').replace(/_/g, '/');
-  const padded = b64 + '='.repeat((4 - (b64.length % 4)) % 4);
-  return atob(padded);
-}
+
+import { decodeJwtPayloadJson } from './jwt-decode';
+
+export { decodeJwtPayloadJson };
 
 export type JwtClaims = {
   sub?: string;
   role?: 'admin' | 'editor' | 'viewer' | string;
+  status?: 'PendingApproval' | 'Active' | 'Rejected' | string;
   tenantId?: string;
   email?: string;
+  ver?: number;
 };
 
 export function getJwtClaims(token: string | null): JwtClaims | null {
-  if (!token) {
+  const payload = decodeJwtPayloadJson(token);
+  if (!payload) {
     return null;
   }
-  try {
-    const parts = token.split('.');
-    if (parts.length !== 3 || !parts[1]) {
-      return null;
-    }
-    const payload = JSON.parse(base64UrlDecode(parts[1])) as Record<string, unknown>;
-    return {
-      sub: typeof payload.sub === 'string' ? payload.sub : undefined,
-      role: typeof payload.role === 'string' ? payload.role : undefined,
-      tenantId: typeof payload.tenantId === 'string' ? payload.tenantId : undefined,
-      email: typeof payload.email === 'string' ? payload.email : undefined,
-    };
-  } catch {
-    return null;
-  }
+  return {
+    sub: typeof payload.sub === 'string' ? payload.sub : undefined,
+    role: typeof payload.role === 'string' ? payload.role : undefined,
+    status: typeof payload.status === 'string' ? payload.status : undefined,
+    tenantId:
+      typeof payload.tenantId === 'string' ? payload.tenantId : undefined,
+    email: typeof payload.email === 'string' ? payload.email : undefined,
+    ver: typeof payload.ver === 'number' ? payload.ver : undefined,
+  };
 }
 
 export function getJwtSubject(token: string | null): string | null {
-  const claims = getJwtClaims(token);
-  return claims?.sub ?? null;
+  return getJwtClaims(token)?.sub ?? null;
 }

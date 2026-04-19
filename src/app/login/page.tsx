@@ -2,6 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
+  Alert,
   Box,
   Button,
   Container,
@@ -10,6 +11,7 @@ import {
   Typography,
 } from '@mui/material';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { ApiHelper, REQUEST_TYPE, setAuthToken } from '@/lib/api-helper';
@@ -22,6 +24,8 @@ const schema = z.object({
 type FormValues = z.infer<typeof schema>;
 
 export default function LoginPage() {
+  const params = useSearchParams();
+  const reason = params.get('reason');
   const {
     register,
     handleSubmit,
@@ -34,33 +38,30 @@ export default function LoginPage() {
     api.includeKey = false;
     api.skipSessionHeaders = true;
     api.type = REQUEST_TYPE.POST;
-    const email = data.email.trim().toLowerCase();
-    api.body = { email, password: data.password };
+    api.body = {
+      email: data.email.trim().toLowerCase(),
+      password: data.password,
+    };
     const res = (await api.fetchRequest()) as {
       failed?: boolean;
       accessToken?: string;
       error?: string;
-      user?: {
-        id: string;
-        email: string;
-        name?: string;
-        role: string;
-        tenantId: string;
-      };
     };
     if (res?.failed || !res?.accessToken) {
       setFormError('root', {
         message:
-          typeof res?.error === 'string' && res.error && res.error !== 'unauthorized.'
+          typeof res?.error === 'string' &&
+          res.error &&
+          res.error !== 'unauthorized.'
             ? res.error
             : 'Invalid email or password',
       });
       return;
     }
     setAuthToken(res.accessToken);
-    // Full navigation so the next /dashboard request includes the cookie. Client
-    // router transitions can hit the proxy before the new cookie is visible, which
-    // redirects back to /login (localStorage still has the token).
+    // Full navigation so the next /dashboard request includes the cookie.
+    // The dashboard layout's gate will route Pending/Rejected users to the
+    // appropriate screen.
     window.location.assign('/dashboard');
   };
 
@@ -70,7 +71,13 @@ export default function LoginPage() {
         <Typography variant="h5" gutterBottom>
           Sign in to Allatura
         </Typography>
-        <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ mt: 2 }}>
+        {reason === 'rejected' && (
+          <Alert severity="error" sx={{ mb: 2 }}>
+            Your access to the previous session was rejected by an
+            administrator. Contact them if you believe this was a mistake.
+          </Alert>
+        )}
+        <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1 }}>
           <TextField
             label="Email"
             fullWidth
@@ -105,8 +112,7 @@ export default function LoginPage() {
             Sign in
           </Button>
           <Typography variant="body2" sx={{ mt: 2 }}>
-            No account?{' '}
-            <Link href="/register">Register</Link>
+            No account? <Link href="/register">Register</Link>
           </Typography>
         </Box>
       </Paper>

@@ -12,80 +12,50 @@ import {
   ToggleButtonGroup,
   Typography,
 } from '@mui/material';
-import { Moon, Sun, Shield } from 'lucide-react';
-import { useRouter } from 'next/navigation';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import useSWR from 'swr';
+import { Moon, Shield, Sun } from 'lucide-react';
+import { useMemo } from 'react';
 import AppCard from '@/components/ui/AppCard';
+import { useAuthSession } from '@/contexts/AuthSessionContext';
 import { useColorMode, type ColorModePreference } from '@/lib/colorModeContext';
-import { clearAuthToken, getStoredToken } from '@/lib/api-helper';
-import { getJwtSubject } from '@/lib/jwt';
-import { authFetcher } from '@/lib/swr-fetcher';
 import { dashboardHeader } from '@/styles/MaterialStyles/shared/sharedStyles';
 
-type MeResponse = {
-  id?: string;
-  email?: string;
-  name?: string;
-  nickname?: string;
-  role?: string;
-  found?: boolean;
-};
-
-function displayName(u: MeResponse | undefined): string {
-  if (!u || u.found === false) {
-    return '';
-  }
-  const n = (u.name || u.nickname || '').trim();
-  if (n) {
-    return n;
-  }
-  if (u.email) {
-    return u.email.split('@')[0] ?? u.email;
-  }
+function displayName(name?: string, email?: string): string {
+  const n = (name || '').trim();
+  if (n) return n;
+  if (email) return email.split('@')[0] ?? email;
   return '';
 }
 
-function initials(u: MeResponse | undefined): string {
-  const name = (u?.name || u?.nickname || '').trim();
-  if (name) {
-    const parts = name.split(/\s+/).filter(Boolean);
+function initials(name?: string, email?: string): string {
+  const n = (name || '').trim();
+  if (n) {
+    const parts = n.split(/\s+/).filter(Boolean);
     if (parts.length >= 2) {
       return `${parts[0][0] ?? ''}${parts[parts.length - 1][0] ?? ''}`.toUpperCase();
     }
-    return name.slice(0, 2).toUpperCase();
+    return n.slice(0, 2).toUpperCase();
   }
-  const email = u?.email?.trim();
-  if (email) {
-    return email.slice(0, 2).toUpperCase();
-  }
+  if (email) return email.slice(0, 2).toUpperCase();
   return '?';
 }
 
 export default function SettingsPage() {
-  const router = useRouter();
   const { preference, setPreference } = useColorMode();
-  const [userId, setUserId] = useState<string | null>(null);
+  const { session, signOut } = useAuthSession();
 
-  useEffect(() => {
-    setUserId(getJwtSubject(getStoredToken()));
-  }, []);
-
-  const { data: me, error: profileError } = useSWR<MeResponse>(
-    userId ? `users/id/${userId}` : null,
-    authFetcher,
+  const greeting = useMemo(
+    () => displayName(undefined, session?.email),
+    [session?.email],
+  );
+  const avatarLetter = useMemo(
+    () => initials(undefined, session?.email),
+    [session?.email],
   );
 
-  const greeting = useMemo(() => displayName(me), [me]);
-  const avatarLetter = useMemo(() => initials(me), [me]);
-
-  const logout = useCallback(() => {
-    clearAuthToken();
-    router.push('/login');
-    router.refresh();
-  }, [router]);
-
-  const handleAppearance = (_: React.MouseEvent<HTMLElement>, value: ColorModePreference | null) => {
+  const handleAppearance = (
+    _: React.MouseEvent<HTMLElement>,
+    value: ColorModePreference | null,
+  ) => {
     if (value !== null) {
       setPreference(value);
     }
@@ -101,7 +71,12 @@ export default function SettingsPage() {
       <Stack spacing={2.5}>
         <AppCard>
           <Box sx={{ p: { xs: 2, sm: 2.5 } }}>
-            <Stack direction="row" spacing={1.5} alignItems="flex-start" sx={{ mb: 2 }}>
+            <Stack
+              direction="row"
+              spacing={1.5}
+              alignItems="flex-start"
+              sx={{ mb: 2 }}
+            >
               <Avatar
                 sx={{
                   width: 48,
@@ -119,45 +94,54 @@ export default function SettingsPage() {
                 <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
                   Profile
                 </Typography>
-                {profileError || me?.found === false ? (
-                  <Typography variant="body2" color="error" sx={{ mt: 0.5 }}>
-                    Could not load your profile. Try refreshing the page.
-                  </Typography>
-                ) : greeting ? (
-                  <Typography variant="h6" sx={{ fontWeight: 600, mt: 0.5, letterSpacing: '-0.02em' }}>
+                {greeting && (
+                  <Typography
+                    variant="h6"
+                    sx={{ fontWeight: 600, mt: 0.5, letterSpacing: '-0.02em' }}
+                  >
                     {greeting}
                   </Typography>
-                ) : (
-                  <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
-                    {userId && me === undefined ? 'Loading your profile…' : 'Account identity in Allatura'}
+                )}
+                {session?.email && (
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    sx={{ mt: 0.5 }}
+                  >
+                    {session.email}
                   </Typography>
                 )}
-                {me?.email && (
-                  <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
-                    {me.email}
+                {session?.role && (
+                  <Typography
+                    variant="caption"
+                    color="text.secondary"
+                    sx={{ display: 'block', mt: 0.75 }}
+                  >
+                    Role: {session.role} · Status: {session.status}
                   </Typography>
                 )}
-                {me?.role && (
-                  <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 0.75 }}>
-                    Role: {me.role}
+                {session?.organisationName && (
+                  <Typography
+                    variant="caption"
+                    color="text.secondary"
+                    sx={{ display: 'block' }}
+                  >
+                    Organisation: {session.organisationName}
                   </Typography>
                 )}
               </Box>
             </Stack>
-            <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-              {greeting
-                ? "You're signed in to the Allatura dashboard. Profile details reflect your account; changes may follow your organization's user management."
-                : 'You are signed in to the dashboard. Name and email are managed by your organization and login provider.'}
-            </Typography>
-            <Typography variant="caption" color="text.secondary">
-              Tip: use the avatar in the header to return here quickly.
-            </Typography>
           </Box>
         </AppCard>
 
         <AppCard>
           <Box sx={{ p: { xs: 2, sm: 2.5 } }}>
-            <Stack direction="row" spacing={1.5} alignItems="center" sx={{ mb: 2 }}>
+            <Stack
+              direction="row"
+              spacing={1.5}
+              alignItems="center"
+              sx={{ mb: 2 }}
+            >
               <Box
                 sx={{
                   width: 40,
@@ -181,8 +165,15 @@ export default function SettingsPage() {
                 </Typography>
               </Box>
             </Stack>
-            <FormControl component="fieldset" variant="standard" sx={{ width: '100%' }}>
-              <FormLabel component="legend" sx={{ mb: 1.5, fontWeight: 600, color: 'text.primary' }}>
+            <FormControl
+              component="fieldset"
+              variant="standard"
+              sx={{ width: '100%' }}
+            >
+              <FormLabel
+                component="legend"
+                sx={{ mb: 1.5, fontWeight: 600, color: 'text.primary' }}
+              >
                 Theme
               </FormLabel>
               <ToggleButtonGroup
@@ -217,7 +208,12 @@ export default function SettingsPage() {
 
         <AppCard>
           <Box sx={{ p: { xs: 2, sm: 2.5 } }}>
-            <Stack direction="row" spacing={1.5} alignItems="center" sx={{ mb: 1 }}>
+            <Stack
+              direction="row"
+              spacing={1.5}
+              alignItems="center"
+              sx={{ mb: 1 }}
+            >
               <Box
                 sx={{
                   width: 40,
@@ -237,12 +233,15 @@ export default function SettingsPage() {
                   Data & access
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Tenant data stays scoped to your organization
+                  Tenant data stays scoped to your organisation
                 </Typography>
               </Box>
             </Stack>
             <Typography variant="body2" color="text.secondary">
-              Exports, retention, and admin policies can be added here as your deployment matures.
+              Your access is limited to the data that belongs to{' '}
+              {session?.organisationName || 'your organisation'}. Admin users
+              can manage roles and review access requests under{' '}
+              <em>Users → Pending requests</em>.
             </Typography>
           </Box>
         </AppCard>
@@ -252,7 +251,12 @@ export default function SettingsPage() {
           <Typography variant="subtitle2" color="text.secondary" sx={{ mb: 1 }}>
             Session
           </Typography>
-          <Button variant="outlined" color="error" onClick={logout} sx={{ fontWeight: 600 }}>
+          <Button
+            variant="outlined"
+            color="error"
+            onClick={signOut}
+            sx={{ fontWeight: 600 }}
+          >
             Sign out
           </Button>
         </Box>

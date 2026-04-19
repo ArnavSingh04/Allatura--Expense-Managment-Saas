@@ -1,4 +1,6 @@
+%%{init: {'theme':'base','themeVariables': {'fontSize':'16px','lineColor':'#0f172a','primaryColor':'#e2e8f0','primaryTextColor':'#0f172a','primaryBorderColor':'#334155','clusterBkg':'#f8fafc','clusterBorder':'#334155','tertiaryColor':'#ffffff'}}}%%
 flowchart TD
+  linkStyle default stroke:#0f172a,stroke-width:4px
   %% =========================
   %% LOGIN (PUBLIC) FLOW
   %% =========================
