@@ -1,11 +1,6 @@
-import type { Money } from '@/lib/money';
+import type {Money} from '@/lib/money';
 
-export type ProjectStatus =
-  | 'Planning'
-  | 'Active'
-  | 'OnHold'
-  | 'Completed'
-  | 'Archived';
+export type ProjectStatus =|'Planning'|'Active'|'OnHold'|'Completed'|'Archived';
 
 export const PROJECT_STATUSES: ProjectStatus[] = [
   'Planning',
@@ -15,21 +10,9 @@ export const PROJECT_STATUSES: ProjectStatus[] = [
   'Archived',
 ];
 
-export type DepartmentType =
-  | 'Sitework'
-  | 'Structural'
-  | 'Framing'
-  | 'Roofing'
-  | 'Electrical'
-  | 'Plumbing'
-  | 'HVAC'
-  | 'Flooring'
-  | 'Tiling'
-  | 'Painting'
-  | 'Cabinetry'
-  | 'Furnishing'
-  | 'Landscaping'
-  | 'Other';
+export type DepartmentType =|'Sitework'|'Structural'|'Framing'|'Roofing'|
+    'Electrical'|'Plumbing'|'HVAC'|'Flooring'|'Tiling'|'Painting'|'Cabinetry'|
+    'Furnishing'|'Landscaping'|'Other';
 
 export const DEPARTMENT_TYPES: DepartmentType[] = [
   'Sitework',
@@ -49,21 +32,14 @@ export const DEPARTMENT_TYPES: DepartmentType[] = [
 ];
 
 export type Department = {
-  _id: string;
-  type: DepartmentType;
-  name: string;
-  budget: Money;
+  _id: string; type: DepartmentType; name: string; budget: Money;
   percentComplete: number;
   costCode: string;
 };
 
 export type Project = {
   _id: string;
-  id?: string;
-  tenantId: string;
-  code: string;
-  name: string;
-  client: string;
+  id?: string; tenantId: string; code: string; name: string; client: string;
   siteAddress: string;
   status: ProjectStatus;
   startDate: string;
@@ -78,13 +54,7 @@ export type Project = {
 };
 
 export type ContractStatus =
-  | 'Draft'
-  | 'Issued'
-  | 'Signed'
-  | 'Active'
-  | 'OnHold'
-  | 'Completed'
-  | 'Terminated';
+    |'Draft'|'Issued'|'Signed'|'Active'|'OnHold'|'Completed'|'Terminated';
 export const CONTRACT_STATUSES: ContractStatus[] = [
   'Draft',
   'Issued',
@@ -95,11 +65,7 @@ export const CONTRACT_STATUSES: ContractStatus[] = [
   'Terminated',
 ];
 
-export type PaymentMilestoneStatus =
-  | 'Pending'
-  | 'Claimed'
-  | 'Certified'
-  | 'Paid';
+export type PaymentMilestoneStatus =|'Pending'|'Claimed'|'Certified'|'Paid';
 export const MILESTONE_STATUSES: PaymentMilestoneStatus[] = [
   'Pending',
   'Claimed',
@@ -108,19 +74,13 @@ export const MILESTONE_STATUSES: PaymentMilestoneStatus[] = [
 ];
 
 export type PaymentMilestone = {
-  _id: string;
-  name: string;
-  percentOfContract: number;
-  amount: Money;
+  _id: string; name: string; percentOfContract: number; amount: Money;
   dueDate: string | null;
   status: PaymentMilestoneStatus;
 };
 
 export type Contract = {
-  _id: string;
-  tenantId: string;
-  projectId: string;
-  departmentId: string;
+  _id: string; tenantId: string; projectId: string; departmentId: string;
   subcontractorId: string;
   reference: string;
   scope: string;
@@ -138,11 +98,7 @@ export type Contract = {
 };
 
 export type VariationStatus =
-  | 'Draft'
-  | 'Pending'
-  | 'Approved'
-  | 'Rejected'
-  | 'Cancelled';
+    |'Draft'|'Pending'|'Approved'|'Rejected'|'Cancelled';
 export const VARIATION_STATUSES: VariationStatus[] = [
   'Draft',
   'Pending',
@@ -152,11 +108,7 @@ export const VARIATION_STATUSES: VariationStatus[] = [
 ];
 
 export type VariationReason =
-  | 'ClientRequest'
-  | 'SiteCondition'
-  | 'DesignChange'
-  | 'CodeCompliance'
-  | 'Other';
+    |'ClientRequest'|'SiteCondition'|'DesignChange'|'CodeCompliance'|'Other';
 export const VARIATION_REASONS: VariationReason[] = [
   'ClientRequest',
   'SiteCondition',
@@ -166,9 +118,14 @@ export const VARIATION_REASONS: VariationReason[] = [
 ];
 
 /** List/detail APIs may populate this ref with `{ _id, name, code }`. */
-export type VariationProjectRef = string | { _id: string; name?: string; code?: string };
+export type VariationProjectRef = string|{
+  _id: string;
+  name?: string;
+  code?: string
+};
 
-export function resolveMongoRefId(ref: VariationProjectRef | null | undefined): string {
+export function resolveMongoRefId(ref: VariationProjectRef|null|undefined):
+    string {
   if (ref == null) return '';
   if (typeof ref === 'string') return ref;
   if (typeof ref === 'object' && ref._id != null) return String(ref._id);
@@ -176,9 +133,7 @@ export function resolveMongoRefId(ref: VariationProjectRef | null | undefined): 
 }
 
 export type Variation = {
-  _id: string;
-  tenantId: string;
-  contractId: string;
+  _id: string; tenantId: string; contractId: string;
   projectId: VariationProjectRef;
   number: string;
   title: string;
@@ -197,11 +152,7 @@ export type Variation = {
 };
 
 export type ExpenseKind =
-  | 'Material'
-  | 'Labor'
-  | 'Equipment'
-  | 'Subcontractor'
-  | 'Other';
+    |'Material'|'Labor'|'Equipment'|'Subcontractor'|'Other';
 export const EXPENSE_KINDS: ExpenseKind[] = [
   'Material',
   'Labor',
@@ -210,12 +161,7 @@ export const EXPENSE_KINDS: ExpenseKind[] = [
   'Other',
 ];
 
-export type ExpenseStatus =
-  | 'Draft'
-  | 'Committed'
-  | 'Invoiced'
-  | 'Paid'
-  | 'Disputed';
+export type ExpenseStatus =|'Draft'|'Committed'|'Invoiced'|'Paid'|'Disputed';
 export const EXPENSE_STATUSES: ExpenseStatus[] = [
   'Draft',
   'Committed',
@@ -225,10 +171,7 @@ export const EXPENSE_STATUSES: ExpenseStatus[] = [
 ];
 
 export type Expense = {
-  _id: string;
-  tenantId: string;
-  projectId: string;
-  departmentId: string;
+  _id: string; tenantId: string; projectId: string; departmentId: string;
   contractId: string | null;
   subcontractorId: string | null;
   supplierId: string | null;
@@ -247,11 +190,7 @@ export type Expense = {
 };
 
 export type PaymentClaimStatus =
-  | 'Submitted'
-  | 'UnderReview'
-  | 'Certified'
-  | 'Rejected'
-  | 'Paid';
+    |'Submitted'|'UnderReview'|'Certified'|'Rejected'|'Paid';
 export const PAYMENT_CLAIM_STATUSES: PaymentClaimStatus[] = [
   'Submitted',
   'UnderReview',
@@ -261,10 +200,7 @@ export const PAYMENT_CLAIM_STATUSES: PaymentClaimStatus[] = [
 ];
 
 export type PaymentClaim = {
-  _id: string;
-  tenantId: string;
-  contractId: string;
-  projectId: string;
+  _id: string; tenantId: string; contractId: string; projectId: string;
   milestoneId: string | null;
   claimNumber: string;
   claimDate: string;
@@ -281,11 +217,7 @@ export type PaymentClaim = {
 };
 
 export type Subcontractor = {
-  _id: string;
-  tenantId: string;
-  name: string;
-  abn: string;
-  trade: string;
+  _id: string; tenantId: string; name: string; abn: string; trade: string;
   email: string;
   phone: string;
   contactPerson: string;
@@ -297,27 +229,14 @@ export type Subcontractor = {
 };
 
 export type Supplier = {
-  _id: string;
-  tenantId: string;
-  name: string;
-  category: string;
-  email: string;
+  _id: string; tenantId: string; name: string; category: string; email: string;
   phone: string;
   accountNumber: string;
   notes: string;
 };
 
-export type DocumentCategory =
-  | 'Contract'
-  | 'Variation'
-  | 'Invoice'
-  | 'Receipt'
-  | 'Plan'
-  | 'Drawing'
-  | 'Permit'
-  | 'Photo'
-  | 'Report'
-  | 'Other';
+export type DocumentCategory =|'Contract'|'Variation'|'Invoice'|'Receipt'|
+    'Plan'|'Drawing'|'Permit'|'Photo'|'Report'|'Other';
 export const DOCUMENT_CATEGORIES: DocumentCategory[] = [
   'Contract',
   'Variation',
@@ -331,19 +250,11 @@ export const DOCUMENT_CATEGORIES: DocumentCategory[] = [
   'Other',
 ];
 
-export type DocumentEntityType =
-  | 'Project'
-  | 'Contract'
-  | 'Variation'
-  | 'Expense'
-  | 'PaymentClaim'
-  | 'SiteLog'
-  | 'Subcontractor';
+export type DocumentEntityType =|'Project'|'Contract'|'Variation'|'Expense'|
+    'PaymentClaim'|'SiteLog'|'Subcontractor';
 
 export type AppDocument = {
-  _id: string;
-  tenantId: string;
-  projectId: string | null;
+  _id: string; tenantId: string; projectId: string | null;
   departmentId: string | null;
   contractId: string | null;
   entityId: string | null;
@@ -361,20 +272,14 @@ export type AppDocument = {
 };
 
 export type ProgressUpdate = {
-  _id: string;
-  projectId: string;
-  departmentId: string;
-  percentComplete: number;
+  _id: string; projectId: string; departmentId: string; percentComplete: number;
   note: string;
   createdBy: string;
   createdAt?: string;
 };
 
 export type Milestone = {
-  _id: string;
-  projectId: string;
-  departmentId: string | null;
-  name: string;
+  _id: string; projectId: string; departmentId: string | null; name: string;
   description: string;
   plannedDate: string;
   actualDate: string | null;
@@ -382,16 +287,11 @@ export type Milestone = {
 };
 
 export type CrewLog = {
-  subcontractorId: string;
-  headcount: number;
-  hours: number;
+  subcontractorId: string; headcount: number; hours: number;
 };
 
 export type SiteLog = {
-  _id: string;
-  projectId: string;
-  logDate: string;
-  weather: string;
+  _id: string; projectId: string; logDate: string; weather: string;
   temperatureC: number | null;
   crewOnSite: CrewLog[];
   workCompleted: string;
@@ -403,9 +303,7 @@ export type SiteLog = {
 };
 
 export type ProjectFinancials = {
-  projectId: string;
-  tenantId: string;
-  originalBudget: Money;
+  projectId: string; tenantId: string; originalBudget: Money;
   approvedVariations: Money;
   revisedBudget: Money;
   committedTotal: Money;
@@ -418,9 +316,7 @@ export type ProjectFinancials = {
 };
 
 export type CompanyOverview = {
-  projectCount: number;
-  activeCount: number;
-  completedCount: number;
+  projectCount: number; activeCount: number; completedCount: number;
   onHoldCount: number;
   totalBudget: Money;
   totalCommitted: Money;
@@ -428,10 +324,7 @@ export type CompanyOverview = {
   pendingVariations: number;
   openPaymentClaims: number;
   projectsAtRisk: Array<{
-    id: string;
-    name: string;
-    code: string;
-    status: ProjectStatus;
+    id: string; name: string; code: string; status: ProjectStatus;
     plannedEndDate: string;
     variance: number;
     overrunPercent: number;
@@ -440,13 +333,9 @@ export type CompanyOverview = {
 };
 
 export type ProjectOverview = {
-  project: Project & { id: string };
-  financials: ProjectFinancials | null;
+  project: Project&{id: string}; financials: ProjectFinancials | null;
   departmentSummary: Array<{
-    departmentId: string;
-    name: string;
-    type: DepartmentType;
-    budget: Money;
+    departmentId: string; name: string; type: DepartmentType; budget: Money;
     committed: Money;
     paid: Money;
     percentComplete: number;
@@ -456,10 +345,7 @@ export type ProjectOverview = {
   approvedVariationCount: number;
   recentVariations: Variation[];
   upcomingMilestones: Array<{
-    contractId: string;
-    contractRef: string;
-    milestoneId: string;
-    name: string;
+    contractId: string; contractRef: string; milestoneId: string; name: string;
     dueDate: string;
     amount: Money;
     status: PaymentMilestoneStatus;
@@ -472,4 +358,15 @@ export type ProjectMember = {
   _id?: string;
   userId: string;
   projectRole: 'PM' | 'Supervisor' | 'Finance' | 'Subcontractor' | 'Viewer';
+  /**
+   * Backend may attach the populated user record alongside `userId` so the UI
+   * can render name/email without a separate /users fetch. Optional because
+   * mutation responses (add/remove) currently don't populate it.
+   */
+  user?: {
+    id: string;
+    name?: string | null;
+    email?: string | null;
+    role?: string | null;
+  } | null;
 };

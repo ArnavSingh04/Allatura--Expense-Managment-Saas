@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   Alert,
@@ -12,20 +12,20 @@ import {
   Stack,
   TextField,
   Tooltip,
-  Typography,
-} from '@mui/material';
-import { Trash2, UserPlus } from 'lucide-react';
-import { useParams } from 'next/navigation';
-import { useState } from 'react';
-import useSWR, { mutate } from 'swr';
-import AppCard from '@/components/ui/AppCard';
-import EmptyState from '@/components/ui/EmptyState';
-import { useAuthSession } from '@/contexts/AuthSessionContext';
-import { ApiError } from '@/lib/api-client';
-import { authFetcher } from '@/lib/swr-fetcher';
-import { keys } from '@/lib/swr-keys';
-import { projectService } from '@/services/projectService';
-import type { ProjectMember } from '@/types/construction';
+  Typography
+} from "@mui/material";
+import { Trash2, UserPlus } from "lucide-react";
+import { useParams } from "next/navigation";
+import { useState } from "react";
+import useSWR, { mutate } from "swr";
+import AppCard from "@/components/ui/AppCard";
+import EmptyState from "@/components/ui/EmptyState";
+import { useAuthSession } from "@/contexts/AuthSessionContext";
+import { ApiError } from "@/lib/api-client";
+import { authFetcher } from "@/lib/swr-fetcher";
+import { keys } from "@/lib/swr-keys";
+import { projectService } from "@/services/projectService";
+import type { ProjectMember } from "@/types/construction";
 
 type UserRow = {
   id: string;
@@ -35,29 +35,33 @@ type UserRow = {
   status: string;
 };
 
-const PROJECT_ROLES: ProjectMember['projectRole'][] = [
-  'PM',
-  'Supervisor',
-  'Finance',
-  'Subcontractor',
-  'Viewer',
+const PROJECT_ROLES: ProjectMember["projectRole"][] = [
+  "PM",
+  "Supervisor",
+  "Finance",
+  "Subcontractor",
+  "Viewer"
 ];
 
 export default function ProjectTeamPage() {
   const params = useParams<{ id: string }>();
   const id = params.id;
   const { can, session } = useAuthSession();
-  const isOwner = session?.role === 'owner' || session?.role === 'admin';
-  const canEdit = can('projects.edit') || isOwner;
+  const isOwner = session?.role === "owner" || session?.role === "admin";
+  const canEdit = can("projects.edit") || isOwner;
 
-  const { data: members, isLoading, error } = useSWR<ProjectMember[]>(
-    id ? keys.projectMembers(id) : null,
-    authFetcher,
+  const {
+    data: members,
+    isLoading,
+    error
+  } = useSWR<ProjectMember[]>(id ? keys.projectMembers(id) : null, authFetcher);
+  const { data: users } = useSWR<UserRow[]>(
+    canEdit ? "users" : null,
+    authFetcher
   );
-  const { data: users } = useSWR<UserRow[]>(canEdit ? 'users' : null, authFetcher);
 
-  const [userId, setUserId] = useState('');
-  const [role, setRole] = useState<ProjectMember['projectRole']>('PM');
+  const [userId, setUserId] = useState("");
+  const [role, setRole] = useState<ProjectMember["projectRole"]>("PM");
   const [busy, setBusy] = useState(false);
   const [actionError, setActionError] = useState<string | null>(null);
 
@@ -66,29 +70,33 @@ export default function ProjectTeamPage() {
   const add = async () => {
     setActionError(null);
     if (!userId) {
-      setActionError('Pick a teammate to add.');
+      setActionError("Pick a teammate to add.");
       return;
     }
     setBusy(true);
     try {
       await projectService.addMember(id, { userId, projectRole: role });
-      setUserId('');
+      setUserId("");
       refresh();
     } catch (e) {
-      setActionError(e instanceof ApiError ? e.message : 'Could not add member.');
+      setActionError(
+        e instanceof ApiError ? e.message : "Could not add member."
+      );
     } finally {
       setBusy(false);
     }
   };
 
   const remove = async (memberUserId: string) => {
-    if (!confirm('Remove from project?')) return;
+    if (!confirm("Remove from project?")) return;
     setActionError(null);
     try {
       await projectService.removeMember(id, memberUserId);
       refresh();
     } catch (e) {
-      setActionError(e instanceof ApiError ? e.message : 'Could not remove member.');
+      setActionError(
+        e instanceof ApiError ? e.message : "Could not remove member."
+      );
     }
   };
 
@@ -98,7 +106,7 @@ export default function ProjectTeamPage() {
   const userById = new Map((users ?? []).map((u) => [u.id, u]));
   const memberIds = new Set((members ?? []).map((m) => m.userId));
   const candidates = (users ?? []).filter(
-    (u) => u.status === 'Active' && !memberIds.has(u.id),
+    (u) => u.status === "Active" && !memberIds.has(u.id)
   );
 
   return (
@@ -112,9 +120,9 @@ export default function ProjectTeamPage() {
               Add team member
             </Typography>
             <Stack
-              direction={{ xs: 'column', sm: 'row' }}
+              direction={{ xs: "column", sm: "row" }}
               spacing={1.5}
-              alignItems={{ sm: 'center' }}
+              alignItems={{ sm: "center" }}
             >
               <TextField
                 select
@@ -137,7 +145,7 @@ export default function ProjectTeamPage() {
                 label="Role on this project"
                 value={role}
                 onChange={(e) =>
-                  setRole(e.target.value as ProjectMember['projectRole'])
+                  setRole(e.target.value as ProjectMember["projectRole"])
                 }
                 sx={{ minWidth: 200 }}
               >
@@ -169,9 +177,18 @@ export default function ProjectTeamPage() {
       ) : (
         <AppCard>
           <CardContent sx={{ p: 0 }}>
-            <Stack divider={<Box sx={{ borderTop: 1, borderColor: 'divider' }} />}>
+            <Stack
+              divider={<Box sx={{ borderTop: 1, borderColor: "divider" }} />}
+            >
               {(members ?? []).map((m) => {
-                const user = userById.get(m.userId);
+                // Prefer the user record populated by the backend on the
+                // member document; fall back to the /users lookup for older
+                // payloads (e.g. fresh add-member responses) and finally to a
+                // placeholder so we never render a raw object as a React child.
+                const fetched = userById.get(m.userId);
+                const name = m.user?.name ?? fetched?.name ?? null;
+                const email = m.user?.email ?? fetched?.email ?? null;
+                const display = name || email || "Unknown user";
                 return (
                   <Stack
                     key={m.userId}
@@ -180,17 +197,15 @@ export default function ProjectTeamPage() {
                     alignItems="center"
                     sx={{ p: 2 }}
                   >
-                    <Avatar sx={{ bgcolor: 'primary.main' }}>
-                      {(user?.name || user?.email || '?')
-                        .slice(0, 1)
-                        .toUpperCase()}
+                    <Avatar sx={{ bgcolor: "primary.main" }}>
+                      {display.slice(0, 1).toUpperCase()}
                     </Avatar>
                     <Box sx={{ flex: 1 }}>
                       <Typography variant="body2" sx={{ fontWeight: 600 }}>
-                        {user?.name || user?.email || m.userId}
+                        {display}
                       </Typography>
                       <Typography variant="caption" color="text.secondary">
-                        {user?.email ?? '—'}
+                        {email ?? "—"}
                       </Typography>
                     </Box>
                     <Typography variant="body2" color="text.secondary">

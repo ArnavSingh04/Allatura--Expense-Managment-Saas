@@ -1,7 +1,7 @@
 /**
- * Edge middleware: cookie-based gate for /dashboard/*. The JWT signature is
- * NOT verified here (no secret in the edge runtime); the API enforces real
- * authn/authz. This middleware exists only to short-circuit obvious cases
+ * Edge proxy (Next.js 16+): cookie-based gate for /dashboard/*. The JWT
+ * signature is NOT verified here (no secret in the edge runtime); the API
+ * enforces real authn/authz. This exists only to short-circuit obvious cases
  * (no token, rejected status) before the SPA shell loads.
  */
 
@@ -59,7 +59,7 @@ function readToken(request: NextRequest): string | undefined {
   }
 }
 
-export function middleware(request: NextRequest): NextResponse {
+export function proxy(request: NextRequest): NextResponse {
   const { pathname } = request.nextUrl;
   if (!pathname.startsWith(DASHBOARD_PREFIX)) {
     return NextResponse.next();

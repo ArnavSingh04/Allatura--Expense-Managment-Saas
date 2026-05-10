@@ -27,7 +27,13 @@ import {
   type CreateSubcontractorInput,
 } from '@/services/subcontractorService';
 
-const FIELDS = [
+type CsvImportField = {
+  key: string;
+  label: string;
+  aliases: string[];
+};
+
+const FIELDS: CsvImportField[] = [
   { key: 'name', label: 'Name', aliases: ['name', 'company', 'subcontractor'] },
   { key: 'abn', label: 'ABN', aliases: ['abn'] },
   { key: 'trade', label: 'Trade', aliases: ['trade', 'discipline'] },
@@ -55,7 +61,7 @@ const FIELDS = [
   },
   { key: 'preferred', label: 'Preferred', aliases: ['preferred'] },
   { key: 'notes', label: 'Notes', aliases: ['notes'] },
-] as const;
+];
 
 type Step = 0 | 1 | 2 | 3;
 

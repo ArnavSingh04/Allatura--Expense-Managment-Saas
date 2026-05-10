@@ -34,6 +34,7 @@ import { ApiError } from '@/lib/api-client';
 import { authFetcher } from '@/lib/swr-fetcher';
 import { keys } from '@/lib/swr-keys';
 import { expenseService } from '@/services/expenseService';
+import { normalizeCostLedger } from '@/lib/normalize-cost-ledger';
 import {
   EXPENSE_KINDS,
   EXPENSE_STATUSES,
@@ -45,8 +46,6 @@ import {
   type Subcontractor,
   type Supplier,
 } from '@/types/construction';
-
-type Ledger = Awaited<ReturnType<typeof expenseService.costLedger>>;
 
 export default function ProjectExpensesPage() {
   const params = useParams<{ id: string }>();
@@ -86,9 +85,13 @@ export default function ProjectExpensesPage() {
     expensesKey,
     authFetcher,
   );
-  const { data: ledger } = useSWR<Ledger>(
+  const { data: ledgerRaw } = useSWR<unknown>(
     id ? keys.costLedger(id) : null,
     authFetcher,
+  );
+  const ledger = useMemo(
+    () => normalizeCostLedger(ledgerRaw),
+    [ledgerRaw],
   );
 
   const refresh = () =>
@@ -152,7 +155,7 @@ export default function ProjectExpensesPage() {
         )}
       </Stack>
 
-      {ledger && ledger.perDepartment.length > 0 && (
+      {ledger && ledger.perDepartment.length > 0 ? (
         <AppCard sx={{ mb: 2.5 }}>
           <CardContent sx={{ p: { xs: 2, md: 2.5 } }}>
             <Typography variant="subtitle2" sx={{ mb: 1.5, fontWeight: 600 }}>
@@ -186,7 +189,7 @@ export default function ProjectExpensesPage() {
             </Stack>
           </CardContent>
         </AppCard>
-      )}
+      ) : null}
 
       <Stack
         direction={{ xs: 'column', md: 'row' }}

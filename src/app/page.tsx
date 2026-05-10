@@ -64,7 +64,7 @@ export default function HomePage() {
               display: 'block',
             }}
           >
-            Project delivery & commercial control
+            One stop Contract & Systems Management
           </Typography>
           <Typography
             variant="h1"

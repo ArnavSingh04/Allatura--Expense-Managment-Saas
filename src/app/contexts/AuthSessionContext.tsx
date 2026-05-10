@@ -27,6 +27,7 @@ export type UserStatus = 'PendingApproval' | 'Active' | 'Rejected';
 export type AuthSession = {
   role: UserRole;
   status: UserStatus;
+  name?: string;
   tenantId?: string;
   email?: string;
   sub?: string;
@@ -127,6 +128,7 @@ export function AuthSessionProvider({
       }
       setSession((prev) => ({
         sub: me.id ?? prev?.sub,
+        name: me.name ?? prev?.name,
         email: me.email ?? prev?.email,
         role: normalizeRole(me.role ?? prev?.role),
         status: normalizeStatus(me.status ?? prev?.status),
@@ -202,7 +204,7 @@ export function AuthSessionProvider({
     clearAuthToken();
     setSession(null);
     if (typeof window !== 'undefined') {
-      window.location.assign('/login');
+      window.location.assign('/');
     }
   }, []);
 
