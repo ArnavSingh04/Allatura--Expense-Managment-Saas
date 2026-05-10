@@ -39,8 +39,9 @@ const PlanPage = () => {
 
   useEffect(() => {
     if (!id) return;
-    void checkRoute(id).then((data: { redirectURL?: string } | null) => {
-      if (data?.redirectURL) router.push(data.redirectURL);
+    void checkRoute(id).then((data) => {
+      const d = data as { redirectURL?: string } | null | undefined;
+      if (d?.redirectURL) router.push(d.redirectURL);
     });
   }, [id, router]);
 

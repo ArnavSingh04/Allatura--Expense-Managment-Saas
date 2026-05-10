@@ -200,7 +200,7 @@ export default function ImportPage() {
           const iso = parseOptionalDate(raw);
           if (iso !== undefined) body[key] = iso;
         } else {
-          (body as Record<string, string>)[key] = raw;
+          (body as unknown as Record<string, string>)[key] = raw;
         }
       }
       try {
