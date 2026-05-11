@@ -71,6 +71,9 @@ export default function LoginPage() {
         <Typography variant="h5" gutterBottom>
           Sign in to Allatura
         </Typography>
+        <Typography variant="body2" sx={{ mb: 1 }}>
+          <Link href="/">← Back to home</Link>
+        </Typography>
         {reason === 'rejected' && (
           <Alert severity="error" sx={{ mb: 2 }}>
             Your access to the previous session was rejected by an

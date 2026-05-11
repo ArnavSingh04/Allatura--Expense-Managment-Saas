@@ -23,6 +23,7 @@ import {
   getDay,
 } from 'date-fns';
 import { enUS } from 'date-fns/locale';
+import { useRouter } from 'next/navigation';
 import { useCallback, useMemo, useState } from 'react';
 import {
   Calendar,
@@ -30,11 +31,13 @@ import {
   type View,
 } from 'react-big-calendar';
 import useSWR from 'swr';
-import { authFetcher } from '@/lib/swr-fetcher';
 import {
   dashboardHeader,
   dashboardSubheader,
 } from '@/styles/MaterialStyles/shared/sharedStyles';
+import { authFetcher } from '@/lib/swr-fetcher';
+import { keys } from '@/lib/swr-keys';
+import type { Project } from '@/types/construction';
 
 const locales = { 'en-US': enUS };
 
@@ -47,28 +50,38 @@ const localizer = dateFnsLocalizer({
   locales,
 });
 
-type CalContract = {
-  _id: string;
-  renewalDate: string;
-  costAmount: number;
-  autoRenew: boolean;
-  systemId?: {
-    name?: string;
-    vendor?: string;
-    department?: string;
-    criticality?: string;
-    businessOwner?: { _id?: string; name?: string };
-  };
+type CalendarApiEvent = {
+  id: string;
+  kind: string;
+  title: string;
+  at: string;
+  projectId: string;
+  projectName: string;
+  contractId?: string;
+  contractRef?: string;
+  link: string;
 };
 
-type UserOpt = { id: string; name?: string; email?: string };
+type CalendarResponse = {
+  from: string;
+  to: string;
+  events: CalendarApiEvent[];
+};
+
+const KIND_LABEL: Record<string, string> = {
+  project_start: 'Project start',
+  project_end: 'Planned completion',
+  contract_completion: 'Contract completion',
+  payment_milestone: 'Payment milestone',
+  site_milestone: 'Site milestone',
+};
 
 export default function CalendarPage() {
+  const router = useRouter();
   const [view, setView] = useState<View>('month');
   const [date, setDate] = useState(new Date());
-  const [department, setDepartment] = useState('');
-  const [ownerId, setOwnerId] = useState('');
-  const [criticality, setCriticality] = useState('');
+  const [projectId, setProjectId] = useState('');
+  const [kind, setKind] = useState('');
 
   const range = useMemo(() => {
     if (view === 'month') {
@@ -87,50 +100,56 @@ export default function CalendarPage() {
     };
   }, [view, date]);
 
-  const qs = useMemo(() => {
-    const p = new URLSearchParams();
-    p.set('from', range.from);
-    p.set('to', range.to);
-    if (department) {
-      p.set('department', department);
-    }
-    if (ownerId) {
-      p.set('ownerId', ownerId);
-    }
-    if (criticality) {
-      p.set('criticality', criticality);
-    }
-    return `contracts/calendar?${p.toString()}`;
-  }, [range, department, ownerId, criticality]);
+  const calKey = useMemo(
+    () =>
+      keys.companyCalendar({
+        from: range.from,
+        to: range.to,
+        projectId: projectId || undefined,
+      }),
+    [range.from, range.to, projectId],
+  );
 
-  const { data: contracts } = useSWR<CalContract[]>(qs, authFetcher);
-  const { data: users } = useSWR<UserOpt[]>('users', authFetcher);
+  const { data, isLoading } = useSWR<CalendarResponse>(calKey, authFetcher);
+  const { data: projects } = useSWR<Project[]>(keys.projects(), authFetcher);
 
   const events = useMemo(() => {
-    return (contracts ?? []).map((c) => {
-      const d = new Date(c.renewalDate);
-      const title = c.systemId?.name ?? 'Renewal';
-      return {
-        id: c._id,
-        title,
-        start: d,
-        end: d,
-        resource: c,
-      };
-    });
-  }, [contracts]);
+    const raw = data?.events ?? [];
+    const filtered = kind ? raw.filter((e) => e.kind === kind) : raw;
+    return filtered.map((e) => ({
+      id: e.id,
+      title: e.title,
+      start: new Date(e.at),
+      end: new Date(e.at),
+      resource: e,
+    }));
+  }, [data, kind]);
+
+  const kindOptions = useMemo(() => {
+    const set = new Set((data?.events ?? []).map((e) => e.kind));
+    return [...set].sort();
+  }, [data]);
 
   const onNavigate = useCallback((d: Date) => setDate(d), []);
   const onView = useCallback((v: View) => setView(v), []);
 
   return (
     <Box>
-      <Typography sx={dashboardHeader}>Renewal calendar</Typography>
+      <Typography sx={dashboardHeader}>Project calendar</Typography>
       <Typography sx={dashboardSubheader} gutterBottom>
-        Filter and explore renewals
+        Key dates across projects: starts, planned completion, contract targets,
+        payment milestones, and site milestones.
       </Typography>
 
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: 2, alignItems: 'center' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: 2,
+          mb: 2,
+          alignItems: 'center',
+        }}
+      >
         <ToggleButtonGroup
           value={view}
           exclusive
@@ -140,47 +159,37 @@ export default function CalendarPage() {
           <ToggleButton value="month">Month</ToggleButton>
           <ToggleButton value="week">Week</ToggleButton>
         </ToggleButtonGroup>
-        <FormControl size="small" sx={{ minWidth: 160 }}>
-          <InputLabel>Department</InputLabel>
+        <FormControl size="small" sx={{ minWidth: 200 }}>
+          <InputLabel>Project</InputLabel>
           <Select
-            label="Department"
-            value={department}
-            onChange={(e) => setDepartment(e.target.value)}
+            label="Project"
+            value={projectId}
+            onChange={(e) => setProjectId(e.target.value)}
           >
-            <MenuItem value="">All</MenuItem>
-            {[...new Set((contracts ?? []).map((c) => c.systemId?.department).filter(Boolean))].map(
-              (d) => (
-                <MenuItem key={d} value={d!}>
-                  {d}
-                </MenuItem>
-              ),
-            )}
-          </Select>
-        </FormControl>
-        <FormControl size="small" sx={{ minWidth: 160 }}>
-          <InputLabel>Owner</InputLabel>
-          <Select label="Owner" value={ownerId} onChange={(e) => setOwnerId(e.target.value)}>
-            <MenuItem value="">All</MenuItem>
-            {(users ?? []).map((u) => (
-              <MenuItem key={u.id} value={u.id}>
-                {u.name || u.email}
+            <MenuItem value="">All projects</MenuItem>
+            {(projects ?? []).map((p) => (
+              <MenuItem key={p._id} value={p._id}>
+                {p.code} — {p.name}
               </MenuItem>
             ))}
           </Select>
         </FormControl>
-        <FormControl size="small" sx={{ minWidth: 160 }}>
-          <InputLabel>Risk (criticality)</InputLabel>
-          <Select
-            label="Risk (criticality)"
-            value={criticality}
-            onChange={(e) => setCriticality(e.target.value)}
-          >
-            <MenuItem value="">All</MenuItem>
-            <MenuItem value="Low">Low</MenuItem>
-            <MenuItem value="Medium">Medium</MenuItem>
-            <MenuItem value="High">High</MenuItem>
+        <FormControl size="small" sx={{ minWidth: 200 }}>
+          <InputLabel>Event type</InputLabel>
+          <Select label="Event type" value={kind} onChange={(e) => setKind(e.target.value)}>
+            <MenuItem value="">All types</MenuItem>
+            {kindOptions.map((k) => (
+              <MenuItem key={k} value={k}>
+                {KIND_LABEL[k] ?? k}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
+        {isLoading && (
+          <Typography variant="caption" color="text.secondary">
+            Loading…
+          </Typography>
+        )}
       </Box>
 
       <Box className="plutus-calendar" sx={{ height: 560 }}>
@@ -194,10 +203,14 @@ export default function CalendarPage() {
           date={date}
           onNavigate={onNavigate}
           popup
+          onSelectEvent={(ev) => {
+            const r = ev.resource as CalendarApiEvent;
+            if (r?.link) router.push(r.link);
+          }}
           tooltipAccessor={(ev) => {
-            const c = ev.resource as CalContract;
-            const o = c.systemId?.businessOwner;
-            return `${c.systemId?.name}\n${c.costAmount} ${c.autoRenew ? '(auto-renew)' : ''}\n${o?.name ?? ''}`;
+            const r = ev.resource as CalendarApiEvent;
+            const typeLine = KIND_LABEL[r.kind] ?? r.kind;
+            return `${r.title}\n${typeLine}\n${r.projectName}`;
           }}
         />
       </Box>

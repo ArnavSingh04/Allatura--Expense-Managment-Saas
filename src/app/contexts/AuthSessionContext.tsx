@@ -5,7 +5,6 @@ import {
   useCallback,
   useContext,
   useEffect,
-  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -28,6 +27,7 @@ export type UserStatus = 'PendingApproval' | 'Active' | 'Rejected';
 export type AuthSession = {
   role: UserRole;
   status: UserStatus;
+  name?: string;
   tenantId?: string;
   email?: string;
   sub?: string;
@@ -128,6 +128,7 @@ export function AuthSessionProvider({
       }
       setSession((prev) => ({
         sub: me.id ?? prev?.sub,
+        name: me.name ?? prev?.name,
         email: me.email ?? prev?.email,
         role: normalizeRole(me.role ?? prev?.role),
         status: normalizeStatus(me.status ?? prev?.status),
@@ -146,7 +147,10 @@ export function AuthSessionProvider({
     void refreshFromMe();
   }, [refreshFromMe]);
 
-  useLayoutEffect(() => {
+  // useEffect (not useLayoutEffect) so the first client paint matches SSR:
+  // `ready` stays false until after hydration, avoiding a spinner vs shell mismatch
+  // in dashboard layout (see Next.js hydration warning).
+  useEffect(() => {
     setSession(readSessionFromStorage());
     setReady(true);
     void refreshFromMe();
@@ -154,7 +158,7 @@ export function AuthSessionProvider({
 
   // Re-read the token whenever auth changes (login/logout in the same tab,
   // or another tab via the storage event).
-  useLayoutEffect(() => {
+  useEffect(() => {
     const onUpdate = () => {
       setSession(readSessionFromStorage());
       void refreshFromMe();
@@ -200,7 +204,7 @@ export function AuthSessionProvider({
     clearAuthToken();
     setSession(null);
     if (typeof window !== 'undefined') {
-      window.location.assign('/login');
+      window.location.assign('/');
     }
   }, []);
 
