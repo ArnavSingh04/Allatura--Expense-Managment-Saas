@@ -3,7 +3,7 @@ name: Sync main Branch to Personal Repo
 on:
   push:
     branches:
-      - Development
+      - develop
 
 jobs:
   sync:
