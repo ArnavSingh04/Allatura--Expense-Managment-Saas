@@ -6,8 +6,6 @@ import {
   Button,
   Chip,
   FormControl,
-  IconButton,
-  InputAdornment,
   MenuItem,
   Select,
   Stack,
@@ -17,11 +15,8 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  TextField,
-  Tooltip,
   Typography,
 } from '@mui/material';
-import { Copy } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 import useSWR from 'swr';
@@ -31,8 +26,8 @@ import PageHeader from '@/components/ui/PageHeader';
 import { useAuthSession } from '@/contexts/AuthSessionContext';
 import { ApiHelper, REQUEST_TYPE } from '@/lib/api-helper';
 import { authFetcher } from '@/lib/swr-fetcher';
+import { ROLES, ROLE_LABEL, normalizeRole, type UserRole } from '@/lib/rbac';
 
-type UserRole = 'admin' | 'editor' | 'viewer';
 type UserStatus = 'PendingApproval' | 'Active' | 'Rejected';
 
 type UserRow = {
@@ -47,12 +42,6 @@ function statusColor(status: UserStatus): 'success' | 'warning' | 'default' {
   if (status === 'Active') return 'success';
   if (status === 'PendingApproval') return 'warning';
   return 'default';
-}
-
-function normalizeRole(value: unknown): UserRole {
-  return value === 'admin' || value === 'editor' || value === 'viewer'
-    ? value
-    : 'viewer';
 }
 
 export default function UsersPage() {
@@ -72,7 +61,6 @@ function UsersContent() {
   const [error, setError] = useState('');
 
   const rows = Array.isArray(data) ? data : [];
-  const tenantId = session?.tenantId ?? '';
 
   const updateRole = async (userId: string) => {
     const role = editedRoles[userId];
@@ -84,10 +72,7 @@ function UsersContent() {
     api.includeKey = false;
     api.type = REQUEST_TYPE.PATCH;
     api.body = { role };
-    const res = (await api.fetchRequest()) as {
-      failed?: boolean;
-      error?: string;
-    };
+    const res = (await api.fetchRequest()) as { failed?: boolean; error?: string };
     setBusy((b) => ({ ...b, [userId]: false }));
     if (res?.failed) {
       setError(res.error || 'Could not update role.');
@@ -110,10 +95,7 @@ function UsersContent() {
     api.includeKey = false;
     api.type = REQUEST_TYPE.PATCH;
     api.body = { status };
-    const res = (await api.fetchRequest()) as {
-      failed?: boolean;
-      error?: string;
-    };
+    const res = (await api.fetchRequest()) as { failed?: boolean; error?: string };
     setBusy((b) => ({ ...b, [userId]: false }));
     if (res?.failed) {
       setError(res.error || 'Could not change status.');
@@ -121,15 +103,6 @@ function UsersContent() {
     }
     setMessage(status === 'Active' ? 'Access restored.' : 'Access revoked.');
     await mutate();
-  };
-
-  const copyTenantId = async () => {
-    try {
-      await navigator.clipboard.writeText(tenantId);
-      setMessage('Organisation ID copied to clipboard.');
-    } catch {
-      setError('Could not copy to clipboard.');
-    }
   };
 
   return (
@@ -152,39 +125,18 @@ function UsersContent() {
                 Invite teammates
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                Share this organisation ID. They sign up at{' '}
-                <strong>/register</strong> using the “Join existing organisation”
-                tab — you'll then approve them on the pending page.
+                Send a secure email invitation and assign a role (admin, finance
+                or general). The link is single-use and expires automatically.
               </Typography>
             </Box>
             <Button
-              variant="outlined"
+              variant="contained"
               component={Link}
               href="/dashboard/users/pending"
             >
-              Pending requests
+              Manage invitations
             </Button>
           </Stack>
-          <Box sx={{ mt: 2, maxWidth: 400 }}>
-            <TextField
-              fullWidth
-              size="small"
-              label="Organisation ID"
-              value={tenantId}
-              InputProps={{
-                readOnly: true,
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <Tooltip title="Copy">
-                      <IconButton size="small" onClick={() => void copyTenantId()}>
-                        <Copy size={16} />
-                      </IconButton>
-                    </Tooltip>
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </Box>
         </Box>
       </AppCard>
 
@@ -224,7 +176,7 @@ function UsersContent() {
                         />
                       </TableCell>
                       <TableCell>
-                        <FormControl size="small" sx={{ minWidth: 130 }}>
+                        <FormControl size="small" sx={{ minWidth: 150 }}>
                           <Select
                             value={selectedRole}
                             disabled={isSelf || user.status !== 'Active'}
@@ -235,9 +187,11 @@ function UsersContent() {
                               }))
                             }
                           >
-                            <MenuItem value="viewer">Viewer</MenuItem>
-                            <MenuItem value="editor">Editor</MenuItem>
-                            <MenuItem value="admin">Admin</MenuItem>
+                            {ROLES.filter((r) => r !== 'editor').map((r) => (
+                              <MenuItem key={r} value={r}>
+                                {ROLE_LABEL[r]}
+                              </MenuItem>
+                            ))}
                           </Select>
                         </FormControl>
                       </TableCell>

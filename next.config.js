@@ -1,23 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'standalone',
-  async rewrites() {
-    // Target for proxy only, use absolute URL (not NEXT_PUBLIC=/api/v1).
-    const backend =
-      process.env.BACKEND_API_URL ||
-      process.env.INTERNAL_BACKEND_URL ||
-      'http://localhost:3001/v1';
-    const dest = String(backend).replace(/\/$/, '');
-    if (!dest.startsWith('http')) {
-      return [];
-    }
-    return [
-      {
-        source: '/api/v1/:path*',
-        destination: `${dest}/:path*`,
-      },
-    ];
-  },
+  // NOTE: /api/v1/* is handled by the auth-injecting route handler at
+  // src/app/api/v1/[...path]/route.ts (it forwards the Auth0 access token to
+  // the Nest backend), so there is no next.config rewrite for it anymore.
   turbopack: {
     rules: {
       '*.svg': {

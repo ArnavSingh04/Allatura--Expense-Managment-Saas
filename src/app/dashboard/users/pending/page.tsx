@@ -1,6 +1,7 @@
 'use client';
 
 import {
+  Alert,
   Box,
   Button,
   Chip,
@@ -23,179 +24,212 @@ import useSWR from 'swr';
 import RequireAdmin from '@/components/auth/RequireAdmin';
 import AppCard from '@/components/ui/AppCard';
 import PageHeader from '@/components/ui/PageHeader';
-import { ApiHelper, REQUEST_TYPE } from '@/lib/api-helper';
-import { authFetcher } from '@/lib/swr-fetcher';
+import { ApiError } from '@/lib/api-client';
+import { ROLE_LABEL } from '@/lib/rbac';
+import {
+  invitationService,
+  type Invitation,
+  type InvitationStatus,
+} from '@/services/invitationService';
 
-type AccessRequestRow = {
-  id: string;
-  userId: string;
-  email: string;
-  name: string;
-  userStatus?: 'PendingApproval' | 'Active' | 'Rejected';
-  currentRole?: 'admin' | 'editor' | 'viewer';
-  status: 'Pending' | 'Approved' | 'Rejected' | 'Cancelled';
-  requestedAt?: string;
-  reviewedAt?: string;
+const INVITE_ROLES: Array<'admin' | 'finance' | 'general'> = [
+  'admin',
+  'finance',
+  'general',
+];
+
+const STATUS_COLOR: Record<
+  InvitationStatus,
+  'default' | 'warning' | 'success' | 'error'
+> = {
+  Pending: 'warning',
+  Accepted: 'success',
+  Expired: 'default',
+  Revoked: 'error',
 };
 
-type UserRole = 'admin' | 'editor' | 'viewer';
-
-export default function PendingRequestsPage() {
+export default function InvitationsPage() {
   return (
     <RequireAdmin>
-      <PendingRequestsContent />
+      <InvitationsContent />
     </RequireAdmin>
   );
 }
 
-function PendingRequestsContent() {
-  const { data, mutate, isLoading } = useSWR<AccessRequestRow[]>(
-    'access-requests?status=Pending',
-    authFetcher,
+function InvitationsContent() {
+  const { data, mutate, isLoading } = useSWR<Invitation[]>('invitations', () =>
+    invitationService.list(),
   );
-  const [selectedRole, setSelectedRole] = useState<Record<string, UserRole>>(
-    {},
-  );
-  const [rejectReason, setRejectReason] = useState<Record<string, string>>({});
+  const [email, setEmail] = useState('');
+  const [role, setRole] = useState<'admin' | 'finance' | 'general'>('general');
   const [busy, setBusy] = useState<Record<string, boolean>>({});
+  const [creating, setCreating] = useState(false);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
 
   const rows = Array.isArray(data) ? data : [];
 
-  const approve = async (id: string) => {
-    const role = selectedRole[id] ?? 'viewer';
-    setBusy((b) => ({ ...b, [id]: true }));
+  const errText = (err: unknown, fallback: string) =>
+    err instanceof ApiError ? err.message : fallback;
+
+  const createInvite = async (e: React.FormEvent) => {
+    e.preventDefault();
     setError('');
     setMessage('');
-    const api = new ApiHelper(`access-requests/${id}/approve`);
-    api.includeKey = false;
-    api.type = REQUEST_TYPE.POST;
-    api.body = { role };
-    const res = (await api.fetchRequest()) as {
-      failed?: boolean;
-      error?: string;
-    };
-    setBusy((b) => ({ ...b, [id]: false }));
-    if (res?.failed) {
-      setError(res.error || 'Could not approve the request.');
+    if (!email.trim()) {
+      setError('Enter an email address.');
       return;
     }
-    setMessage(`Approved as ${role}.`);
-    await mutate();
+    setCreating(true);
+    try {
+      await invitationService.create(email.trim().toLowerCase(), role);
+      setMessage(`Invitation sent to ${email.trim().toLowerCase()}.`);
+      setEmail('');
+      await mutate();
+    } catch (err) {
+      setError(errText(err, 'Could not send the invitation.'));
+    } finally {
+      setCreating(false);
+    }
   };
 
-  const reject = async (id: string) => {
+  const resend = async (id: string) => {
     setBusy((b) => ({ ...b, [id]: true }));
     setError('');
     setMessage('');
-    const api = new ApiHelper(`access-requests/${id}/reject`);
-    api.includeKey = false;
-    api.type = REQUEST_TYPE.POST;
-    api.body = { reason: rejectReason[id]?.trim() || undefined };
-    const res = (await api.fetchRequest()) as {
-      failed?: boolean;
-      error?: string;
-    };
-    setBusy((b) => ({ ...b, [id]: false }));
-    if (res?.failed) {
-      setError(res.error || 'Could not reject the request.');
-      return;
+    try {
+      await invitationService.resend(id);
+      setMessage('Invitation resent with a fresh link.');
+      await mutate();
+    } catch (err) {
+      setError(errText(err, 'Could not resend the invitation.'));
+    } finally {
+      setBusy((b) => ({ ...b, [id]: false }));
     }
-    setMessage('Request rejected.');
-    await mutate();
+  };
+
+  const revoke = async (id: string) => {
+    setBusy((b) => ({ ...b, [id]: true }));
+    setError('');
+    setMessage('');
+    try {
+      await invitationService.revoke(id);
+      setMessage('Invitation revoked.');
+      await mutate();
+    } catch (err) {
+      setError(errText(err, 'Could not revoke the invitation.'));
+    } finally {
+      setBusy((b) => ({ ...b, [id]: false }));
+    }
   };
 
   return (
     <Box>
       <PageHeader
-        title="Pending access requests"
-        description="Approve new users and assign them a role, or reject the request."
+        title="User invitations"
+        description="Invite people by email and assign a role. Links are single-use and expire automatically."
       />
+
       <AppCard>
         <Box sx={{ p: { xs: 2, md: 2.5 } }}>
-          {message && <Chip color="success" label={message} sx={{ mb: 2 }} />}
-          {error && <Chip color="error" label={error} sx={{ mb: 2 }} />}
+          <Box
+            component="form"
+            onSubmit={createInvite}
+            sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', alignItems: 'center', mb: 3 }}
+          >
+            <TextField
+              label="Email"
+              type="email"
+              size="small"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              sx={{ minWidth: 260 }}
+            />
+            <FormControl size="small" sx={{ minWidth: 160 }}>
+              <InputLabel>Role</InputLabel>
+              <Select
+                label="Role"
+                value={role}
+                onChange={(e) =>
+                  setRole(e.target.value as 'admin' | 'finance' | 'general')
+                }
+              >
+                {INVITE_ROLES.map((r) => (
+                  <MenuItem key={r} value={r}>
+                    {ROLE_LABEL[r]}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <Button type="submit" variant="contained" disabled={creating}>
+              Send invitation
+            </Button>
+          </Box>
+
+          {message && (
+            <Alert severity="success" sx={{ mb: 2 }}>
+              {message}
+            </Alert>
+          )}
+          {error && (
+            <Alert severity="error" sx={{ mb: 2 }}>
+              {error}
+            </Alert>
+          )}
+
           <TableContainer>
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>Name</TableCell>
                   <TableCell>Email</TableCell>
-                  <TableCell>Requested</TableCell>
-                  <TableCell>Approve as</TableCell>
-                  <TableCell>Reject reason (optional)</TableCell>
+                  <TableCell>Role</TableCell>
+                  <TableCell>Status</TableCell>
+                  <TableCell>Expires</TableCell>
+                  <TableCell>Invited by</TableCell>
                   <TableCell align="right">Actions</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {rows.map((row) => {
-                  const role = selectedRole[row.id] ?? 'viewer';
                   const isBusy = !!busy[row.id];
+                  const canResend =
+                    row.status === 'Pending' || row.status === 'Expired';
+                  const canRevoke = row.status === 'Pending';
                   return (
                     <TableRow key={row.id} hover>
-                      <TableCell>{row.name || '-'}</TableCell>
-                      <TableCell>{row.email || '-'}</TableCell>
+                      <TableCell>{row.email}</TableCell>
+                      <TableCell>{ROLE_LABEL[row.role] ?? row.role}</TableCell>
                       <TableCell>
-                        {row.requestedAt
-                          ? new Date(row.requestedAt).toLocaleString()
-                          : '-'}
-                      </TableCell>
-                      <TableCell>
-                        <FormControl size="small" sx={{ minWidth: 130 }}>
-                          <InputLabel>Role</InputLabel>
-                          <Select
-                            label="Role"
-                            value={role}
-                            onChange={(e) =>
-                              setSelectedRole((prev) => ({
-                                ...prev,
-                                [row.id]: e.target.value as UserRole,
-                              }))
-                            }
-                          >
-                            <MenuItem value="viewer">Viewer</MenuItem>
-                            <MenuItem value="editor">Editor</MenuItem>
-                            <MenuItem value="admin">Admin</MenuItem>
-                          </Select>
-                        </FormControl>
-                      </TableCell>
-                      <TableCell>
-                        <TextField
+                        <Chip
                           size="small"
-                          placeholder="(optional)"
-                          value={rejectReason[row.id] ?? ''}
-                          onChange={(e) =>
-                            setRejectReason((prev) => ({
-                              ...prev,
-                              [row.id]: e.target.value,
-                            }))
-                          }
-                          inputProps={{ maxLength: 500 }}
+                          color={STATUS_COLOR[row.status]}
+                          label={row.status}
                         />
                       </TableCell>
+                      <TableCell>
+                        {row.expiresAt
+                          ? new Date(row.expiresAt).toLocaleString()
+                          : '-'}
+                      </TableCell>
+                      <TableCell>{row.invitedByName || '-'}</TableCell>
                       <TableCell align="right">
-                        <Stack
-                          direction="row"
-                          spacing={1}
-                          justifyContent="flex-end"
-                        >
+                        <Stack direction="row" spacing={1} justifyContent="flex-end">
                           <Button
-                            variant="contained"
+                            variant="outlined"
                             size="small"
-                            disabled={isBusy}
-                            onClick={() => void approve(row.id)}
+                            disabled={isBusy || !canResend}
+                            onClick={() => void resend(row.id)}
                           >
-                            Approve
+                            Resend
                           </Button>
                           <Button
                             variant="outlined"
                             color="error"
                             size="small"
-                            disabled={isBusy}
-                            onClick={() => void reject(row.id)}
+                            disabled={isBusy || !canRevoke}
+                            onClick={() => void revoke(row.id)}
                           >
-                            Reject
+                            Revoke
                           </Button>
                         </Stack>
                       </TableCell>
@@ -206,13 +240,9 @@ function PendingRequestsContent() {
                   <TableRow>
                     <TableCell
                       colSpan={6}
-                      sx={{
-                        py: 5,
-                        textAlign: 'center',
-                        color: 'text.secondary',
-                      }}
+                      sx={{ py: 5, textAlign: 'center', color: 'text.secondary' }}
                     >
-                      No pending requests.
+                      No invitations yet. Send one above.
                     </TableCell>
                   </TableRow>
                 )}
@@ -220,11 +250,7 @@ function PendingRequestsContent() {
                   <TableRow>
                     <TableCell
                       colSpan={6}
-                      sx={{
-                        py: 5,
-                        textAlign: 'center',
-                        color: 'text.secondary',
-                      }}
+                      sx={{ py: 5, textAlign: 'center', color: 'text.secondary' }}
                     >
                       Loading...
                     </TableCell>
@@ -233,14 +259,6 @@ function PendingRequestsContent() {
               </TableBody>
             </Table>
           </TableContainer>
-          <Typography
-            variant="caption"
-            color="text.secondary"
-            sx={{ display: 'block', mt: 2 }}
-          >
-            Approved users gain immediate access (their next API call within
-            ~30s revalidates the new role/status).
-          </Typography>
         </Box>
       </AppCard>
     </Box>

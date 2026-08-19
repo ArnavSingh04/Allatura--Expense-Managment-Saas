@@ -6,8 +6,7 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/GridLegacy";
 import { PLANS, type PlanCardData } from "@/data/plans";
 import getStripe from "@/utils/get-stripe";
-import { getStoredToken, REQUEST_TYPE } from "@/lib/api-helper";
-import { decodeAccessTokenPayload } from "@/lib/jwt-payload";
+import { REQUEST_TYPE } from "@/lib/api-helper";
 import StackmarksLogo from "@/components/shared/stackmarksLogo";
 import { planCardRoot } from "@/styles/MaterialStyles/plan/planCardStyles";
 import { Suspense } from "react";
@@ -29,13 +28,7 @@ const PlanPage = () => {
   const id = searchParams.get("id");
   const { session, ready } = useAuthSession();
 
-  const isAuthed = useMemo(() => {
-    if (session?.sub) return true;
-    if (typeof window === "undefined") return false;
-    const token = getStoredToken();
-    if (!token) return false;
-    return Boolean(decodeAccessTokenPayload(token)?.sub);
-  }, [ready, session?.sub]);
+  const isAuthed = useMemo(() => Boolean(session?.sub), [ready, session?.sub]);
 
   useEffect(() => {
     if (!id) return;
@@ -76,7 +69,7 @@ const PlanPage = () => {
         return { plan, url: "/dashboard" as const };
       }
       if (plan.productID) {
-        const userId = session?.sub ?? decodeAccessTokenPayload(getStoredToken() ?? "")?.sub;
+        const userId = session?.sub;
         if (!userId) {
           return { plan, url: "/register" as const };
         }

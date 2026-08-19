@@ -37,7 +37,15 @@ export default function DashboardAuthGate({
   children: React.ReactNode;
 }) {
   const router = useRouter();
-  const { ready, session, isActive, isPending, isRejected } = useAuthSession();
+  const {
+    ready,
+    isAuthenticated,
+    needsOnboarding,
+    session,
+    isActive,
+    isPending,
+    isRejected,
+  } = useAuthSession();
 
   // `mounted` is false on the server and on the very first client render, so
   // the gate's first paint is always the loader and always matches the SSR
@@ -50,17 +58,27 @@ export default function DashboardAuthGate({
   }, []);
 
   useEffect(() => {
-    if (mounted && ready && !session) {
-      router.replace('/login');
+    if (!mounted || !ready) return;
+    if (!isAuthenticated) {
+      // Full navigation into the Auth0 SDK login route (handled by middleware).
+      const returnTo = window.location.pathname + window.location.search;
+      window.location.assign(`/auth/login?returnTo=${encodeURIComponent(returnTo)}`);
+      return;
     }
-  }, [mounted, ready, session, router]);
+    if (needsOnboarding) {
+      router.replace('/onboarding');
+    }
+  }, [mounted, ready, isAuthenticated, needsOnboarding, router]);
 
   if (!mounted || !ready) {
     return <CenteredLoader />;
   }
-  if (!session) {
+  if (!isAuthenticated || needsOnboarding) {
     // Effect above is redirecting; render nothing in the meantime.
     return null;
+  }
+  if (!session) {
+    return <CenteredLoader />;
   }
   if (isRejected) {
     return <RejectedScreen />;

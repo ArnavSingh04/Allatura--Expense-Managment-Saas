@@ -27,6 +27,7 @@ export const ROLES = [
   'pm',
   'supervisor',
   'finance',
+  'general',
   'subcontractor',
   'viewer',
   'admin',
@@ -138,6 +139,15 @@ const matrix: Record<UserRole, Set<RbacAction>> = {
     'suppliers.view',
     'suppliers.edit',
   ]),
+  // 'general' onboarding role: can view relevant data and CREATE variations /
+  // payment requests, but cannot approve/decide anything or manage users.
+  general: new Set([
+    ...VIEW_ALL,
+    'variations.create',
+    'variations.submit',
+    'claims.submit',
+    'documents.upload',
+  ]),
   pm: new Set([
     ...VIEW_ALL,
     'projects.create',
@@ -190,6 +200,7 @@ export function normalizeRole(value: unknown): UserRole {
     s === 'pm' ||
     s === 'supervisor' ||
     s === 'finance' ||
+    s === 'general' ||
     s === 'subcontractor' ||
     s === 'viewer' ||
     s === 'admin' ||
@@ -229,8 +240,9 @@ export const ROLE_LABEL: Record<UserRole, string> = {
   pm: 'Project manager',
   supervisor: 'Site supervisor',
   finance: 'Finance',
+  general: 'General',
   subcontractor: 'Subcontractor',
   viewer: 'Viewer',
-  admin: 'Owner',
+  admin: 'Admin',
   editor: 'Project manager',
 };
