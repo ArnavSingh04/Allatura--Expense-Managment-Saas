@@ -43,6 +43,9 @@ export default function HomePage() {
           ALLATURA
         </Typography>
         <Box sx={{ display: 'flex', gap: 1.5, alignItems: 'center' }}>
+          <Button component={Link} href="/contact" color="inherit" sx={{ fontWeight: 600 }}>
+            Contact
+          </Button>
           <Button component={Link} href="/login" color="inherit" sx={{ fontWeight: 600 }}>
             Sign in
           </Button>
