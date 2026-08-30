@@ -1,135 +1,137 @@
 "use client";
 
-import { FormEvent, useEffect, useMemo } from "react";
+import { FormEvent, useMemo, useState } from "react";
 import PlanCard from "@/components/plans/planCard";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/GridLegacy";
+import Alert from "@mui/material/Alert";
 import { PLANS, type PlanCardData } from "@/data/plans";
-import getStripe from "@/utils/get-stripe";
-import { REQUEST_TYPE } from "@/lib/api-helper";
 import StackmarksLogo from "@/components/shared/stackmarksLogo";
 import { planCardRoot } from "@/styles/MaterialStyles/plan/planCardStyles";
-import { Suspense } from "react";
-import { submitRequest } from "@/utils/api-utils";
 import { useAuthSession } from "@/contexts/AuthSessionContext";
-import { FrontendService } from "@/services/frontendService";
-import { useSearchParams } from "next/navigation";
-import { useRouter } from "next/navigation";
+import { billingService } from "@/services/billingService";
+import { ApiError } from "@/lib/api-client";
 
-const checkRoute = async (id: string | null) => {
-  if (!id) return null;
-  const frontendService = new FrontendService(`checkout?id=${id}`);
-  return frontendService.sendRequest(REQUEST_TYPE.GET);
-};
+function friendlyBillingError(err: unknown): string {
+  const raw = err instanceof ApiError ? err.message : String(err);
+  switch (raw) {
+    case "already_on_plan_or_higher":
+      return "You're already on this plan or a higher one.";
+    case "stripe_not_configured":
+      return "Billing isn't configured yet. Please try again shortly.";
+    case "invalid_plan":
+      return "That plan can't be selected.";
+    case "Forbidden":
+    case "forbidden_role":
+      return "Only an organisation owner or admin can change the plan.";
+    case "missing_env:STRIPE_PRICE_PRO":
+    case "missing_env:STRIPE_PRICE_ENTERPRISE":
+      return "This plan isn't available for purchase yet.";
+    default:
+      return raw || "Something went wrong starting checkout.";
+  }
+}
 
 const PlanPage = () => {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const id = searchParams.get("id");
-  const { session, ready } = useAuthSession();
+  const { session } = useAuthSession();
+  const isAuthed = useMemo(() => Boolean(session?.sub), [session?.sub]);
+  const [busyTier, setBusyTier] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
-  const isAuthed = useMemo(() => Boolean(session?.sub), [ready, session?.sub]);
-
-  useEffect(() => {
-    if (!id) return;
-    void checkRoute(id).then((data) => {
-      const d = data as { redirectURL?: string } | null | undefined;
-      if (d?.redirectURL) router.push(d.redirectURL);
-    });
-  }, [id, router]);
-
-  const selectPlan = async (
-    e: FormEvent,
-    plan: PlanCardData,
-    userID: string,
-  ) => {
+  // Signed in + paid tier → ask the backend to create a Checkout Session and
+  // redirect to the URL it returns. No Stripe.js, no keys on the client.
+  const startCheckout = async (e: FormEvent, plan: PlanCardData) => {
     e.preventDefault();
-    if (!plan.productID) return;
-    const stripe = await getStripe();
-    const result = (await submitRequest(
-      { userID, planID: plan.productID },
-      "checkout",
-    )) as { id?: string };
-
-    if (stripe && result?.id) {
-      await stripe.redirectToCheckout({ sessionId: result.id });
+    if (plan.tier === "free") return;
+    setError(null);
+    setBusyTier(plan.tier);
+    try {
+      const { url } = await billingService.checkout(plan.tier);
+      if (url) {
+        window.location.assign(url);
+      } else {
+        setError("Could not start checkout. Please try again.");
+        setBusyTier(null);
+      }
+    } catch (err) {
+      setError(friendlyBillingError(err));
+      setBusyTier(null);
     }
   };
 
   const cardProps = useMemo(() => {
     return PLANS.map((plan) => {
-      const isPaid = plan.tier !== "free";
-      if (!isAuthed) {
-        if (plan.tier === "free") {
-          return { plan, url: "/register" as const };
-        }
-        return { plan, url: "/register" as const };
-      }
       if (plan.tier === "free") {
-        return { plan, url: "/dashboard" as const };
+        return { plan, url: isAuthed ? "/dashboard" : "/register" };
       }
-      if (plan.productID) {
-        const userId = session?.sub;
-        if (!userId) {
-          return { plan, url: "/register" as const };
-        }
-        return {
-          plan,
-          url: undefined as undefined,
-          clickHandler: (e: FormEvent) => selectPlan(e, plan, userId),
-        };
+      if (!isAuthed) {
+        return { plan, url: "/login?returnTo=/plans" };
       }
-      return { plan, url: "/dashboard/settings" as const };
+      return {
+        plan,
+        url: undefined as string | undefined,
+        clickHandler: (e: FormEvent) => startCheckout(e, plan),
+      };
     });
-  }, [isAuthed, session?.sub]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthed]);
 
   return (
-    <Suspense fallback={<p>Loading ...</p>}>
-      <Box>
+    <Box>
+      <Grid
+        sx={{ marginTop: "2%" }}
+        container
+        direction="column"
+        spacing={3}
+        justifyContent="center"
+        alignItems="center"
+      >
         <Grid
-          sx={{ marginTop: "2%" }}
+          item
+          lg={12}
+          xl={12}
+          sx={{
+            textAlign: "center",
+            display: {
+              xs: "none",
+              sm: "none",
+              md: "none",
+              lg: "block",
+              xl: "block",
+            },
+          }}
+        >
+          <StackmarksLogo />
+        </Grid>
+
+        {error && (
+          <Grid item xs={12} sx={{ width: "100%", maxWidth: 720 }}>
+            <Alert severity="error" onClose={() => setError(null)}>
+              {error}
+            </Alert>
+          </Grid>
+        )}
+
+        <Grid
+          sx={{
+            marginTop: "2%",
+            display: {
+              xs: "contents",
+              sm: "contents",
+              md: "contents",
+              lg: "flex",
+              xl: "flex",
+            },
+          }}
           container
-          direction="column"
+          direction="row"
           spacing={3}
           justifyContent="center"
           alignItems="center"
         >
-          <Grid
-            item
-            lg={12}
-            xl={12}
-            sx={{
-              textAlign: "center",
-              display: {
-                xs: "none",
-                sm: "none",
-                md: "none",
-                lg: "block",
-                xl: "block",
-              },
-            }}
-          >
-            <StackmarksLogo />
-          </Grid>
-
-          <Grid
-            sx={{
-              marginTop: "2%",
-              display: {
-                xs: "contents",
-                sm: "contents",
-                md: "contents",
-                lg: "flex",
-                xl: "flex",
-              },
-            }}
-            container
-            direction="row"
-            spacing={3}
-            justifyContent="center"
-            alignItems="center"
-          >
-            {cardProps.map(({ plan, url, clickHandler }, index) => (
+          {cardProps.map(({ plan, url, clickHandler }, index) => {
+            const busy = busyTier === plan.tier;
+            return (
               <Grid
                 item
                 xs={12}
@@ -146,17 +148,17 @@ const PlanPage = () => {
                   duration={plan.duration}
                   description={plan.description}
                   features={plan.features}
-                  buttonDisabled={plan.buttonDisabled}
-                  buttonText={plan.buttonText}
+                  buttonDisabled={plan.buttonDisabled || busy}
+                  buttonText={busy ? "Redirecting…" : plan.buttonText}
                   url={url}
                   clickHandler={clickHandler}
                 />
               </Grid>
-            ))}
-          </Grid>
+            );
+          })}
         </Grid>
-      </Box>
-    </Suspense>
+      </Grid>
+    </Box>
   );
 };
 
