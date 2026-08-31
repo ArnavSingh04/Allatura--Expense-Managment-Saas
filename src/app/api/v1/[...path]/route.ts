@@ -25,6 +25,7 @@ async function proxy(
   ctx: { params: Promise<{ path: string[] }> },
 ): Promise<Response> {
   const { path } = await ctx.params;
+  const method = req.method.toUpperCase();
   const target = `${backendBase()}/${(path || []).join('/')}${req.nextUrl.search}`;
 
   const headers = new Headers();
@@ -60,7 +61,6 @@ async function proxy(
     }
   }
 
-  const method = req.method.toUpperCase();
   const body =
     method === 'GET' || method === 'HEAD'
       ? undefined

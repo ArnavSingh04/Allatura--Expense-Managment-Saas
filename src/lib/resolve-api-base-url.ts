@@ -31,10 +31,13 @@ export function resolveApiBaseUrl(): string {
     try {
       const u = new URL(base);
       const path = u.pathname.replace(/\/$/, '');
-      if (
-        (u.hostname === 'localhost' || u.hostname === '127.0.0.1') &&
-        path.endsWith('/v1')
-      ) {
+      // Always route browser calls through the same-origin Next proxy (/api/v1).
+      // The proxy injects the Auth0 RS256 access token server-side from the
+      // session cookie; calling the API origin directly instead ships the
+      // browser's stale HS256 localStorage token, which the backend's Auth0/JWKS
+      // guard rejects with a 401 (and would also hit CORS). This must apply in
+      // production too — not just localhost.
+      if (path.endsWith('/v1')) {
         return `${window.location.origin}/api/v1`;
       }
     } catch {

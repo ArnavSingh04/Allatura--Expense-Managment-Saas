@@ -1,4 +1,5 @@
 import { getJwtClaims } from "@/lib/jwt";
+import { resolveApiBaseUrl } from "@/lib/resolve-api-base-url";
 
 export enum REQUEST_TYPE {
   GET = "GET",
@@ -8,11 +9,10 @@ export enum REQUEST_TYPE {
 }
 
 function apiBaseUrl(): string {
-  const url =
-    process.env.NEXT_PUBLIC_BACKEND_API_URL ||
-    process.env.BACKEND_API_URL ||
-    "";
-  return url.replace(/\/$/, "");
+  // Delegate to the shared resolver so browser calls go through the same-origin
+  // /api/v1 proxy (which injects the Auth0 RS256 token) instead of hitting the
+  // API origin directly with the stale HS256 localStorage token → 401.
+  return resolveApiBaseUrl().replace(/\/$/, "");
 }
 
 export function getStoredToken(): string | null {
