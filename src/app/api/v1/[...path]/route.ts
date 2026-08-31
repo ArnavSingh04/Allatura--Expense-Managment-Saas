@@ -36,9 +36,28 @@ async function proxy(
   try {
     const { token } = await auth0.getAccessToken();
     if (token) headers.set('authorization', `Bearer ${token}`);
-  } catch {
-    // No active session — forward unauthenticated (public routes still work;
-    // protected routes will return 401 from the backend).
+  } catch (err) {
+    // Two very different cases end up here, and conflating them silently is what
+    // made "session expired" impossible to diagnose:
+    //   1. No session at all — an anonymous call to a public route (fine).
+    //   2. There IS a session, but the access token can't be produced — almost
+    //      always because it expired and NO refresh token was issued. That
+    //      happens when the Auth0 API ("https://api.allatura.app") has
+    //      "Allow Offline Access" turned OFF, so `offline_access` is stripped
+    //      from the grant. The request is then forwarded without a Bearer and
+    //      the backend answers 401, which the UI renders as
+    //      "your session has expired". Enable Allow Offline Access to fix it.
+    // We forward unauthenticated either way (public routes must keep working),
+    // but we log case 2 loudly so it is not a silent failure.
+    const code = (err as { code?: string })?.code;
+    if (code && code !== 'missing_session') {
+      console.warn(
+        `[api-proxy] Could not attach an access token (code=${code}) for ` +
+          `${method} /${(path || []).join('/')}. If this is "missing_refresh_token"/` +
+          `"session_expired", enable "Allow Offline Access" on the Auth0 API so a ` +
+          `refresh token is issued; existing users must sign in once more.`,
+      );
+    }
   }
 
   const method = req.method.toUpperCase();
