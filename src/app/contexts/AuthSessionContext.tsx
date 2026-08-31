@@ -10,10 +10,22 @@ import {
   useState,
 } from 'react';
 import { useUser } from '@auth0/nextjs-auth0';
-import { apiGet } from '@/lib/api-client';
+import { ApiError, apiGet } from '@/lib/api-client';
 import { can, normalizeRole, type RbacAction, type UserRole } from '@/lib/rbac';
 
 export type UserStatus = 'PendingApproval' | 'Active' | 'Rejected';
+
+/**
+ * A failure resolving the internal profile (`GET /auth/me`) while Auth0 still
+ * considers the user logged in. `status` is the backend HTTP status when known
+ * (401/403 → the access token/session was rejected; treat as re-auth needed).
+ */
+export type AuthLoadError = {
+  status?: number;
+  message: string;
+  /** True for 401/403 — the session/token is invalid; signing in again fixes it. */
+  isAuthFailure: boolean;
+};
 
 export type AuthSession = {
   role: UserRole;
@@ -33,6 +45,11 @@ type AuthSessionContextValue = {
   /** True when authenticated but not yet linked to an org (needs onboarding). */
   needsOnboarding: boolean;
   session: AuthSession | null;
+  /**
+   * Set when authenticated but `/auth/me` could not be resolved (token rejected,
+   * server/network error). Lets the UI recover instead of spinning forever.
+   */
+  error: AuthLoadError | null;
   isActive: boolean;
   isPending: boolean;
   isRejected: boolean;
@@ -75,6 +92,7 @@ export function AuthSessionProvider({
   const [ready, setReady] = useState(false);
   const [session, setSession] = useState<AuthSession | null>(null);
   const [needsOnboarding, setNeedsOnboarding] = useState(false);
+  const [error, setError] = useState<AuthLoadError | null>(null);
   const inFlightRef = useRef<Promise<void> | null>(null);
 
   const refreshFromMe = useCallback(async () => {
@@ -82,21 +100,27 @@ export function AuthSessionProvider({
     if (!user) {
       setSession(null);
       setNeedsOnboarding(false);
+      setError(null);
       return;
     }
     const promise = (async () => {
       try {
         const me = await apiGet<MeResponse>('auth/me');
         if (!me) {
+          // Empty body from a 2xx — unexpected; surface as a recoverable error
+          // rather than an indefinite spinner.
           setSession(null);
+          setError({ message: 'Empty response from the server.', isAuthFailure: false });
           return;
         }
         if (me.needsOnboarding) {
           setNeedsOnboarding(true);
           setSession(null);
+          setError(null);
           return;
         }
         setNeedsOnboarding(false);
+        setError(null);
         setSession({
           sub: me.id,
           name: me.name,
@@ -106,9 +130,23 @@ export function AuthSessionProvider({
           tenantId: me.tenantId,
           organisationName: me.organisationName,
         });
-      } catch {
-        // Network / 401 — treat as no session; Auth0 state is source of truth.
+      } catch (err) {
+        // The Auth0 session exists (we have `user`) but the backend rejected the
+        // request or is unreachable. Record it so the gate can offer recovery
+        // (retry / sign out) instead of spinning forever. Auth0 remains the
+        // source of truth for `isAuthenticated`.
+        const status = err instanceof ApiError ? err.status : undefined;
+        const isAuthFailure = status === 401 || status === 403;
+        console.error('[auth] Failed to resolve /auth/me:', err);
         setSession(null);
+        setError({
+          status,
+          isAuthFailure,
+          message:
+            err instanceof Error && err.message
+              ? err.message
+              : 'Could not load your account.',
+        });
       }
     })().finally(() => {
       inFlightRef.current = null;
@@ -169,6 +207,7 @@ export function AuthSessionProvider({
       isAuthenticated: !!user,
       needsOnboarding,
       session,
+      error,
       isActive,
       isPending: status === 'PendingApproval',
       isRejected: status === 'Rejected',
@@ -177,7 +216,7 @@ export function AuthSessionProvider({
       login,
       signOut,
     };
-  }, [ready, user, needsOnboarding, session, refresh, login, signOut]);
+  }, [ready, user, needsOnboarding, session, error, refresh, login, signOut]);
 
   return (
     <AuthSessionContext.Provider value={value}>

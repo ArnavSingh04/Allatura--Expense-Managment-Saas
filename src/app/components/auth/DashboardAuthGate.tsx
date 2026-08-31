@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, CircularProgress } from '@mui/material';
+import { Box, Button, CircularProgress, Stack, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useAuthSession } from '@/contexts/AuthSessionContext';
@@ -31,6 +31,56 @@ function CenteredLoader() {
   );
 }
 
+/**
+ * Shown when the Auth0 session is valid but `/auth/me` could not be resolved
+ * (rejected token, server/network error). Replaces what used to be an endless
+ * spinner so the user can always recover — retry, or sign in again to mint a
+ * fresh token.
+ */
+function SessionErrorScreen({
+  isAuthFailure,
+  onRetry,
+  onSignOut,
+}: {
+  isAuthFailure: boolean;
+  onRetry: () => void;
+  onSignOut: () => void;
+}) {
+  return (
+    <Box
+      sx={{
+        flex: 1,
+        minHeight: '60vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        px: 2,
+      }}
+    >
+      <Stack spacing={2} alignItems="center" sx={{ maxWidth: 420, textAlign: 'center' }}>
+        <Typography variant="h6" sx={{ fontWeight: 600 }}>
+          We couldn&apos;t load your account
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {isAuthFailure
+            ? 'Your session has expired or is no longer valid. Sign in again to continue.'
+            : 'Something went wrong reaching the server. Check your connection and try again.'}
+        </Typography>
+        <Stack direction="row" spacing={1.5}>
+          {!isAuthFailure && (
+            <Button variant="outlined" onClick={onRetry}>
+              Try again
+            </Button>
+          )}
+          <Button variant="contained" onClick={onSignOut}>
+            Sign in again
+          </Button>
+        </Stack>
+      </Stack>
+    </Box>
+  );
+}
+
 export default function DashboardAuthGate({
   children,
 }: {
@@ -42,9 +92,12 @@ export default function DashboardAuthGate({
     isAuthenticated,
     needsOnboarding,
     session,
+    error,
     isActive,
     isPending,
     isRejected,
+    refresh,
+    signOut,
   } = useAuthSession();
 
   // `mounted` is false on the server and on the very first client render, so
@@ -78,6 +131,18 @@ export default function DashboardAuthGate({
     return null;
   }
   if (!session) {
+    // `ready` only flips true after /auth/me settles, so reaching here with no
+    // session means the fetch failed. Offer recovery instead of an endless
+    // spinner (the previous behaviour, which stranded users on a blank load).
+    if (error) {
+      return (
+        <SessionErrorScreen
+          isAuthFailure={error.isAuthFailure}
+          onRetry={refresh}
+          onSignOut={signOut}
+        />
+      );
+    }
     return <CenteredLoader />;
   }
   if (isRejected) {
