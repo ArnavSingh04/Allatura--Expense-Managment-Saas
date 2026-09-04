@@ -1,18 +1,34 @@
 'use client';
 
 import { Box, CircularProgress, Typography } from '@mui/material';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 /**
  * Login is delegated entirely to Auth0 Universal Login. This route just kicks
  * off the SDK login flow (mounted by middleware at /auth/login). After Auth0,
- * the callback returns the user to the dashboard, and the AuthSessionProvider
- * routes to onboarding if they have no organisation yet.
+ * the callback returns the user to `returnTo` (defaulting to the dashboard),
+ * and the AuthSessionProvider routes to onboarding if they have no
+ * organisation yet.
+ *
+ * The incoming `?returnTo=` is honoured so deep links (e.g. the "Upgrade" CTA
+ * on the pricing page → /dashboard/settings/billing) land where intended after
+ * sign-in. Only same-origin relative paths are accepted, to avoid an open
+ * redirect.
  */
-export default function LoginPage() {
+function LoginInner() {
+  const search = useSearchParams();
+
   useEffect(() => {
-    window.location.assign('/auth/login?returnTo=/dashboard');
-  }, []);
+    const requested = search.get('returnTo');
+    // Accept only same-origin absolute paths ("/foo"), never "//host" or
+    // "https://…"; fall back to the dashboard otherwise.
+    const returnTo =
+      requested && /^\/(?!\/)/.test(requested) ? requested : '/dashboard';
+    window.location.assign(
+      `/auth/login?returnTo=${encodeURIComponent(returnTo)}`,
+    );
+  }, [search]);
 
   return (
     <Box
@@ -30,5 +46,13 @@ export default function LoginPage() {
         Redirecting to secure sign-in…
       </Typography>
     </Box>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={null}>
+      <LoginInner />
+    </Suspense>
   );
 }

@@ -5,6 +5,7 @@ import { alpha } from '@mui/material/styles';
 import { ArrowRight, ClipboardList, Files, GanttChartSquare } from 'lucide-react';
 import Link from 'next/link';
 import { plutus } from '@/theme/tokens';
+import MarketingHeader from '@/components/marketing/MarketingHeader';
 
 export default function HomePage() {
   const theme = useTheme();
@@ -26,34 +27,7 @@ export default function HomePage() {
         `,
       }}
     >
-      <Box
-        component="header"
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          px: { xs: 2, md: 4 },
-          py: 2,
-          borderBottom: `1px solid ${theme.palette.divider}`,
-          bgcolor: (th) => alpha(th.palette.background.paper, isDark ? 0.75 : 0.7),
-          backdropFilter: 'blur(12px)',
-        }}
-      >
-        <Typography className="customfont" sx={{ fontSize: '1.125rem' }}>
-          ALLATURA
-        </Typography>
-        <Box sx={{ display: 'flex', gap: 1.5, alignItems: 'center' }}>
-          <Button component={Link} href="/contact" color="inherit" sx={{ fontWeight: 600 }}>
-            Contact
-          </Button>
-          <Button component={Link} href="/login" color="inherit" sx={{ fontWeight: 600 }}>
-            Sign in
-          </Button>
-          <Button component={Link} href="/register" variant="contained" sx={{ fontWeight: 600 }}>
-            Get started
-          </Button>
-        </Box>
-      </Box>
+      <MarketingHeader />
 
       <Container maxWidth="lg" sx={{ py: { xs: 8, md: 12 } }}>
         <Box sx={{ maxWidth: 720, mx: 'auto', textAlign: 'center' }}>

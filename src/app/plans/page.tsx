@@ -11,6 +11,7 @@ import { planCardRoot } from "@/styles/MaterialStyles/plan/planCardStyles";
 import { useAuthSession } from "@/contexts/AuthSessionContext";
 import { billingService } from "@/services/billingService";
 import { ApiError } from "@/lib/api-client";
+import MarketingHeader from "@/components/marketing/MarketingHeader";
 
 function friendlyBillingError(err: unknown): string {
   const raw = err instanceof ApiError ? err.message : String(err);
@@ -65,7 +66,11 @@ const PlanPage = () => {
         return { plan, url: isAuthed ? "/dashboard" : "/register" };
       }
       if (!isAuthed) {
-        return { plan, url: "/login?returnTo=/plans" };
+        // Sign in, then land on the billing page to complete the upgrade.
+        return {
+          plan,
+          url: "/login?returnTo=/dashboard/settings/billing",
+        };
       }
       return {
         plan,
@@ -78,6 +83,7 @@ const PlanPage = () => {
 
   return (
     <Box>
+      <MarketingHeader />
       <Grid
         sx={{ marginTop: "2%" }}
         container

@@ -18,6 +18,7 @@ import {
   ChevronLeft,
   ChevronRight,
   ClipboardList,
+  CreditCard,
   Files,
   GanttChartSquare,
   HardHat,
@@ -62,6 +63,7 @@ const items: NavItem[] = [
   { href: '/dashboard/users', label: 'Users', Icon: Users, ownerOnly: true },
   { href: '/dashboard/users/pending', label: 'Pending requests', Icon: UserCheck, ownerOnly: true },
   { href: '/dashboard/settings', label: 'Settings', Icon: Settings, needs: 'settings.view' },
+  { href: '/dashboard/settings/billing', label: 'Billing', Icon: CreditCard, needs: 'settings.view' },
 ];
 
 const STORAGE_KEY = 'allatura-sidebar-collapsed';

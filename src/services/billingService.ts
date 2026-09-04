@@ -17,10 +17,29 @@ export type BillingSnapshot = {
   subscriptionStatus: string | null;
   currentPeriodEnd: string | null;
   trialEndsAt: string | null;
+  cancelAtPeriodEnd: boolean;
   limits: { projects: number | null; users: number | null };
   usage: { projects: number; users: number };
   features: Record<string, boolean>;
   billingMode: 'mock' | 'stripe';
+};
+
+export type PlanFeatureKey =
+  | 'variations'
+  | 'departmentExpenses'
+  | 'analytics'
+  | 'auditLog'
+  | 'prioritySupport';
+
+/** One tier as returned by the public GET /plans catalog (mirrors the backend). */
+export type PlanCatalogEntry = {
+  tier: PlanTier;
+  name: string;
+  monthlyPriceCents: number;
+  trialDays: number;
+  limits: { projects: number | null; users: number | null };
+  features: Record<PlanFeatureKey, boolean>;
+  stripePriceEnvKey: string | null;
 };
 
 export const billingService = {
@@ -38,6 +57,20 @@ export const billingService = {
 
   /** Stripe Billing Portal session (null in mock mode). Owner/admin only. */
   portal: () => apiPost<{ url: string | null }>('billing/portal', {}),
+
+  /**
+   * Schedule cancellation at the end of the current billing period. The org
+   * keeps paid features until `currentPeriodEnd`. Owner/admin only.
+   */
+  cancel: () =>
+    apiPost<{ cancelAtPeriodEnd: boolean }>('billing/cancel', {}),
+
+  /** Undo a pending period-end cancellation. Owner/admin only. */
+  resume: () =>
+    apiPost<{ cancelAtPeriodEnd: boolean }>('billing/resume', {}),
+
+  /** Public catalog of all plans (tiers, limits, features) for comparison. */
+  plans: () => apiGet<PlanCatalogEntry[]>('plans'),
 
   /** Mock-mode only: simulate a successful checkout for the current org. */
   mockSimulateSuccess: (plan: PaidTier) =>
