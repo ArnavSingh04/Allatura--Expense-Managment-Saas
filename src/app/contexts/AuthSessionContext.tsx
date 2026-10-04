@@ -72,6 +72,28 @@ function normalizeStatus(value: unknown): UserStatus {
   return 'PendingApproval';
 }
 
+function isTransientAuthMeFailure(err: unknown): boolean {
+  if (!(err instanceof ApiError)) return true;
+  return !err.status || err.status === 0 || err.status === 502 || err.status >= 500;
+}
+
+async function loadAuthMe(): Promise<MeResponse> {
+  const pausesMs = [0, 400, 1000];
+  let lastErr: unknown;
+  for (const pause of pausesMs) {
+    if (pause) {
+      await new Promise((resolve) => setTimeout(resolve, pause));
+    }
+    try {
+      return await apiGet<MeResponse>('auth/me');
+    } catch (err) {
+      lastErr = err;
+      if (!isTransientAuthMeFailure(err)) throw err;
+    }
+  }
+  throw lastErr;
+}
+
 type MeResponse = {
   needsOnboarding?: boolean;
   id?: string;
@@ -105,7 +127,7 @@ export function AuthSessionProvider({
     }
     const promise = (async () => {
       try {
-        const me = await apiGet<MeResponse>('auth/me');
+        const me = await loadAuthMe();
         if (!me) {
           // Empty body from a 2xx — unexpected; surface as a recoverable error
           // rather than an indefinite spinner.

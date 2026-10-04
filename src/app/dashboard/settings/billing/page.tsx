@@ -51,6 +51,11 @@ function friendlyError(err: unknown): string {
     case 'missing_env:STRIPE_PRICE_PRO':
     case 'missing_env:STRIPE_PRICE_ENTERPRISE':
       return "This plan isn't available for purchase yet.";
+    case 'checkout_no_url':
+    case 'checkout_failed':
+      return 'Could not start checkout. Please try again.';
+    case 'portal_failed':
+      return 'Could not open the billing portal. Please try again.';
     default:
       return raw || 'Something went wrong.';
   }
@@ -226,8 +231,12 @@ function BillingInner() {
     setNotice(null);
     setBusy('cancel');
     try {
-      await billingService.cancel();
-      setNotice('Your subscription will cancel at the end of the current billing period.');
+      const result = await billingService.cancel();
+      setNotice(
+        result.cancelledNow
+          ? "Your plan is now Free."
+          : 'Your subscription will cancel at the end of the current billing period.',
+      );
       load();
     } catch (e) {
       setError(friendlyError(e));
@@ -250,6 +259,21 @@ function BillingInner() {
       setBusy(null);
     }
   };
+
+  const billed = Boolean(snap?.hasStripeSubscription);
+  const periodStillOpen = Boolean(
+    snap?.currentPeriodEnd && new Date(snap.currentPeriodEnd).getTime() > Date.now(),
+  );
+  const cancelAtPeriodEnd = Boolean(billed || periodStillOpen);
+  const showPro =
+    !!snap && snap.plan !== 'enterprise' && (!billed || snap.plan === 'free');
+  const showEnterprise = !!snap && (!billed || snap.plan !== 'enterprise');
+  const showResume =
+    !!snap &&
+    snap.plan !== 'free' &&
+    snap.cancelAtPeriodEnd &&
+    cancelAtPeriodEnd;
+  const showCancel = !!snap && snap.plan !== 'free' && !showResume;
 
   return (
     <Box sx={{ maxWidth: 820 }}>
@@ -335,26 +359,47 @@ function BillingInner() {
 
             <Divider sx={{ my: 2 }} />
 
+            {snap.billingMode === 'stripe' &&
+              snap.plan !== 'free' &&
+              !billed && (
+                <Alert severity="info" sx={{ mb: 2 }}>
+                  This plan is not linked to Stripe yet. You can pay to start a
+                  real subscription, or switch to Free now.
+                </Alert>
+              )}
+
             <Stack direction="row" spacing={2} flexWrap="wrap" useFlexGap>
-              {snap.plan !== 'pro' && snap.plan !== 'enterprise' && (
+              {showPro && (
                 <Button
                   variant="contained"
                   disabled={busy !== null}
                   onClick={() => upgrade('pro')}
                 >
-                  {busy === 'pro' ? 'Redirecting…' : 'Upgrade to Pro'}
+                  {busy === 'pro'
+                    ? 'Redirecting…'
+                    : !billed && snap.plan === 'pro'
+                      ? 'Pay with Stripe'
+                      : 'Upgrade to Pro'}
                 </Button>
               )}
-              {snap.plan !== 'enterprise' && (
+              {showEnterprise && (
                 <Button
-                  variant={snap.plan === 'pro' ? 'contained' : 'outlined'}
+                  variant={
+                    snap.plan === 'pro' || snap.plan === 'enterprise'
+                      ? 'contained'
+                      : 'outlined'
+                  }
                   disabled={busy !== null}
                   onClick={() => upgrade('enterprise')}
                 >
-                  {busy === 'enterprise' ? 'Redirecting…' : 'Upgrade to Enterprise'}
+                  {busy === 'enterprise'
+                    ? 'Redirecting…'
+                    : !billed && snap.plan === 'enterprise'
+                      ? 'Pay with Stripe'
+                      : 'Upgrade to Enterprise'}
                 </Button>
               )}
-              {snap.billingMode === 'stripe' && snap.plan !== 'free' && (
+              {snap.billingMode === 'stripe' && snap.hasStripeCustomer && (
                 <Button
                   variant="text"
                   disabled={busy !== null}
@@ -363,26 +408,30 @@ function BillingInner() {
                   {busy === 'portal' ? 'Opening…' : 'Manage billing'}
                 </Button>
               )}
-              {snap.plan !== 'free' &&
-                (snap.cancelAtPeriodEnd ? (
-                  <Button
-                    variant="outlined"
-                    color="success"
-                    disabled={busy !== null}
-                    onClick={resumeSubscription}
-                  >
-                    {busy === 'resume' ? 'Resuming…' : 'Resume subscription'}
-                  </Button>
-                ) : (
-                  <Button
-                    variant="text"
-                    color="error"
-                    disabled={busy !== null}
-                    onClick={() => setConfirmCancel(true)}
-                  >
-                    {busy === 'cancel' ? 'Cancelling…' : 'Cancel subscription'}
-                  </Button>
-                ))}
+              {showResume && (
+                <Button
+                  variant="outlined"
+                  color="success"
+                  disabled={busy !== null}
+                  onClick={resumeSubscription}
+                >
+                  {busy === 'resume' ? 'Resuming…' : 'Resume subscription'}
+                </Button>
+              )}
+              {showCancel && (
+                <Button
+                  variant="text"
+                  color="error"
+                  disabled={busy !== null}
+                  onClick={() => setConfirmCancel(true)}
+                >
+                  {busy === 'cancel'
+                    ? 'Cancelling…'
+                    : cancelAtPeriodEnd
+                      ? 'Cancel subscription'
+                      : 'Switch to Free'}
+                </Button>
+              )}
             </Stack>
           </Paper>
 
@@ -399,19 +448,34 @@ function BillingInner() {
       ) : null}
 
       <Dialog open={confirmCancel} onClose={() => setConfirmCancel(false)}>
-        <DialogTitle>Cancel subscription?</DialogTitle>
+        <DialogTitle>
+          {cancelAtPeriodEnd ? 'Cancel subscription?' : 'Switch to Free?'}
+        </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Your plan stays active until the end of the current billing period
-            {snap?.currentPeriodEnd ? ` (${fmtDate(snap.currentPeriodEnd)})` : ''}
-            . After that it reverts to the Free plan. You can resume any time
-            before then.
+            {cancelAtPeriodEnd ? (
+              <>
+                Your plan stays active until the end of the current billing
+                period
+                {snap?.currentPeriodEnd
+                  ? ` (${fmtDate(snap.currentPeriodEnd)})`
+                  : ''}
+                . After that it reverts to the Free plan. You can resume any
+                time before then.
+              </>
+            ) : (
+              <>
+                This plan is not billed through Stripe, so there is no period
+                to wait out. Cancelling switches you to the Free plan
+                immediately.
+              </>
+            )}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setConfirmCancel(false)}>Keep plan</Button>
           <Button color="error" onClick={cancelSubscription}>
-            Cancel at period end
+            {cancelAtPeriodEnd ? 'Cancel at period end' : 'Switch to Free'}
           </Button>
         </DialogActions>
       </Dialog>

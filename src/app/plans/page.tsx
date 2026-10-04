@@ -28,6 +28,9 @@ function friendlyBillingError(err: unknown): string {
     case "missing_env:STRIPE_PRICE_PRO":
     case "missing_env:STRIPE_PRICE_ENTERPRISE":
       return "This plan isn't available for purchase yet.";
+    case "checkout_no_url":
+    case "checkout_failed":
+      return "Could not start checkout. Please try again.";
     default:
       return raw || "Something went wrong starting checkout.";
   }

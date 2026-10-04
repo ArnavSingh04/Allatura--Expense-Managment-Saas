@@ -64,7 +64,7 @@ function SessionErrorScreen({
         <Typography variant="body2" color="text.secondary">
           {isAuthFailure
             ? 'Your session has expired or is no longer valid. Sign in again to continue.'
-            : 'Something went wrong reaching the server. Check your connection and try again.'}
+            : 'The API was unreachable. If you just came back from Stripe, wait a moment and try again — the backend may still be starting.'}
         </Typography>
         <Stack direction="row" spacing={1.5}>
           {!isAuthFailure && (

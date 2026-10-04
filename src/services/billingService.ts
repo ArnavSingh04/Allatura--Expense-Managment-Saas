@@ -22,6 +22,8 @@ export type BillingSnapshot = {
   usage: { projects: number; users: number };
   features: Record<string, boolean>;
   billingMode: 'mock' | 'stripe';
+  hasStripeCustomer?: boolean;
+  hasStripeSubscription?: boolean;
 };
 
 export type PlanFeatureKey =
@@ -63,7 +65,10 @@ export const billingService = {
    * keeps paid features until `currentPeriodEnd`. Owner/admin only.
    */
   cancel: () =>
-    apiPost<{ cancelAtPeriodEnd: boolean }>('billing/cancel', {}),
+    apiPost<{ cancelAtPeriodEnd: boolean; cancelledNow?: boolean }>(
+      'billing/cancel',
+      {},
+    ),
 
   /** Undo a pending period-end cancellation. Owner/admin only. */
   resume: () =>
