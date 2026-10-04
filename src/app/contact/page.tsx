@@ -11,11 +11,10 @@ import {
   Typography,
   useTheme,
 } from '@mui/material';
-import { alpha } from '@mui/material/styles';
-import Link from 'next/link';
 import { useState } from 'react';
 import { submitContact } from '@/services/contactService';
 import { ApiError } from '@/lib/api-client';
+import MarketingNav from '@/components/marketing/MarketingNav';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -89,40 +88,11 @@ export default function ContactPage() {
         minHeight: '100vh',
         bgcolor: 'background.default',
         backgroundImage: isDark
-          ? 'radial-gradient(ellipse 80% 50% at 50% -20%, rgba(45, 212, 191, 0.12), transparent)'
-          : 'radial-gradient(ellipse 80% 50% at 50% -20%, rgba(13, 148, 136, 0.15), transparent)',
+          ? 'radial-gradient(ellipse 80% 50% at 50% -20%, rgba(212, 175, 55, 0.14), transparent)'
+          : 'radial-gradient(ellipse 80% 50% at 50% -20%, rgba(27, 48, 34, 0.12), transparent)',
       }}
     >
-      <Box
-        component="header"
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          px: { xs: 2, md: 4 },
-          py: 2,
-          borderBottom: `1px solid ${theme.palette.divider}`,
-          bgcolor: (th) => alpha(th.palette.background.paper, isDark ? 0.75 : 0.7),
-          backdropFilter: 'blur(12px)',
-        }}
-      >
-        <Typography
-          component={Link}
-          href="/"
-          className="customfont"
-          sx={{ fontSize: '1.125rem', color: 'text.primary', textDecoration: 'none' }}
-        >
-          ALLATURA
-        </Typography>
-        <Box sx={{ display: 'flex', gap: 1.5, alignItems: 'center' }}>
-          <Button component={Link} href="/login" color="inherit" sx={{ fontWeight: 600 }}>
-            Sign in
-          </Button>
-          <Button component={Link} href="/register" variant="contained" sx={{ fontWeight: 600 }}>
-            Get started
-          </Button>
-        </Box>
-      </Box>
+      <MarketingNav />
 
       <Container maxWidth="sm" sx={{ py: { xs: 6, md: 10 } }}>
         <Typography

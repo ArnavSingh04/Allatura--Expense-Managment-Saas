@@ -1,4 +1,4 @@
-import { Inter } from 'next/font/google';
+import { Plus_Jakarta_Sans } from 'next/font/google';
 import { cookies } from 'next/headers';
 import ThemeRegistry from '@/components/ThemeRegistry/ThemeRegistry';
 import './globals.css';
@@ -8,7 +8,7 @@ import type { ColorModePreference } from '@/lib/colorModeContext';
 import { Auth0Provider } from '@auth0/nextjs-auth0';
 import { AuthSessionProvider } from '@/contexts/AuthSessionContext';
 
-const inter = Inter({ weight: ['400', '500', '600', '700'], subsets: ['latin'], display: 'swap' });
+const plusJakarta = Plus_Jakarta_Sans({ weight: ['400', '500', '600', '700'], subsets: ['latin'], display: 'swap' });
 
 export const metadata = {
   title: 'Allatura — project delivery & commercial control',
@@ -26,7 +26,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className} suppressHydrationWarning>
+      <body className={plusJakarta.className} suppressHydrationWarning>
         <Script
           id="plutus-theme-sync"
           strategy="beforeInteractive"

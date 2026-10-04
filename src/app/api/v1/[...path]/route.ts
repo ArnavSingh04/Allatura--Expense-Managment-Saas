@@ -16,7 +16,9 @@ function backendBase(): string {
   const base =
     process.env.BACKEND_API_URL ||
     process.env.INTERNAL_BACKEND_URL ||
-    'http://localhost:3001/v1';
+    // 127.0.0.1 (IPv4), not localhost: Node fetch may pick IPv6 ::1 while the
+    // backend binds 0.0.0.0 (IPv4 only), which surfaces as backend_unreachable.
+    'http://127.0.0.1:3001/v1';
   return base.replace(/\/$/, '');
 }
 

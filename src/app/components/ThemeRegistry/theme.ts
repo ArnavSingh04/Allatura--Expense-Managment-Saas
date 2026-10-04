@@ -1,8 +1,14 @@
-import { Inter } from 'next/font/google';
+import { Noto_Serif, Plus_Jakarta_Sans } from 'next/font/google';
 import { alpha, createTheme, type PaletteMode } from '@mui/material/styles';
 import { plutus } from '@/theme/tokens';
 
-const inter = Inter({
+const plusJakarta = Plus_Jakarta_Sans({
+  weight: ['400', '500', '600', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+});
+
+const notoSerif = Noto_Serif({
   weight: ['400', '500', '600', '700'],
   subsets: ['latin'],
   display: 'swap',
@@ -11,32 +17,32 @@ const inter = Inter({
 export function createAllaturaTheme(mode: PaletteMode) {
   const isDark = mode === 'dark';
 
-  const border = isDark ? 'rgba(148, 163, 184, 0.18)' : plutus.color.border;
-  const tableHeadBg = isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(15, 23, 42, 0.02)';
-  const rowHover = isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(15, 23, 42, 0.03)';
+  const border = isDark ? 'rgba(208, 200, 188, 0.16)' : plutus.color.border;
+  const tableHeadBg = isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(27, 48, 34, 0.04)';
+  const rowHover = isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(27, 48, 34, 0.04)';
 
   return createTheme({
     palette: {
       mode,
       primary: isDark
         ? {
-            main: '#2dd4bf',
-            dark: '#14b8a6',
-            light: '#5eead4',
-            contrastText: '#0f172a',
+            main: '#d4af37',
+            dark: '#b8922d',
+            light: '#e3c464',
+            contrastText: '#1b3022',
           }
         : {
             main: plutus.color.primary,
             dark: plutus.color.primaryDark,
-            contrastText: '#ffffff',
+            contrastText: '#f9f8f6',
           },
       secondary: {
-        main: isDark ? '#818cf8' : plutus.color.accentViolet,
+        main: isDark ? '#cdb8a1' : plutus.color.accentViolet,
       },
       background: isDark
         ? {
-            default: '#0f172a',
-            paper: '#1e293b',
+            default: '#101610',
+            paper: '#1a221b',
           }
         : {
             default: plutus.color.bg,
@@ -44,41 +50,41 @@ export function createAllaturaTheme(mode: PaletteMode) {
           },
       text: isDark
         ? {
-            primary: '#f1f5f9',
-            secondary: '#94a3b8',
+            primary: '#f7f3ea',
+            secondary: '#c4b8a7',
           }
         : {
             primary: plutus.color.text,
             secondary: plutus.color.muted,
           },
       divider: border,
-      success: { main: isDark ? '#2dd4bf' : plutus.color.primary },
-      error: { main: isDark ? '#fb7185' : plutus.color.accentRose },
-      warning: { main: isDark ? '#fbbf24' : plutus.color.accentAmber },
+      success: { main: isDark ? '#c3d2b1' : '#2f6b3f' },
+      error: { main: isDark ? '#e09a86' : plutus.color.accentRose },
+      warning: { main: isDark ? '#d4af37' : plutus.color.accentAmber },
     },
     shape: {
       borderRadius: plutus.radius.md,
     },
     typography: {
-      fontFamily: inter.style.fontFamily,
-      h1: { fontWeight: 600, letterSpacing: '-0.03em' },
-      h2: { fontWeight: 600, letterSpacing: '-0.02em' },
-      h3: { fontWeight: 600, letterSpacing: '-0.02em' },
-      h4: { fontWeight: 600, letterSpacing: '-0.02em' },
-      h5: { fontWeight: 600 },
-      h6: { fontWeight: 600 },
+      fontFamily: plusJakarta.style.fontFamily,
+      h1: { fontFamily: notoSerif.style.fontFamily, fontWeight: 600, letterSpacing: '-0.02em' },
+      h2: { fontFamily: notoSerif.style.fontFamily, fontWeight: 600, letterSpacing: '-0.02em' },
+      h3: { fontFamily: notoSerif.style.fontFamily, fontWeight: 600, letterSpacing: '-0.02em' },
+      h4: { fontFamily: notoSerif.style.fontFamily, fontWeight: 600, letterSpacing: '-0.01em' },
+      h5: { fontFamily: notoSerif.style.fontFamily, fontWeight: 600 },
+      h6: { fontFamily: notoSerif.style.fontFamily, fontWeight: 600 },
       subtitle1: {
         fontWeight: 500,
-        color: isDark ? '#94a3b8' : plutus.color.muted,
+        color: isDark ? '#c4b8a7' : plutus.color.muted,
       },
       subtitle2: {
         fontWeight: 500,
-        color: isDark ? '#94a3b8' : plutus.color.muted,
+        color: isDark ? '#c4b8a7' : plutus.color.muted,
       },
       body1: { lineHeight: 1.6 },
       body2: {
         lineHeight: 1.6,
-        color: isDark ? '#94a3b8' : plutus.color.muted,
+        color: isDark ? '#c4b8a7' : plutus.color.muted,
       },
       button: { fontWeight: 600, textTransform: 'none' },
     },
@@ -86,7 +92,12 @@ export function createAllaturaTheme(mode: PaletteMode) {
       MuiCssBaseline: {
         styleOverrides: {
           body: {
-            scrollbarColor: isDark ? `${alpha('#94a3b8', 0.5)} transparent` : `${plutus.color.subtle} transparent`,
+            scrollbarColor: isDark ? `${alpha('#c4b8a7', 0.5)} transparent` : `${plutus.color.subtle} transparent`,
+            backgroundImage: isDark
+              ? 'radial-gradient(1200px 600px at 50% -10%, rgba(212, 175, 55, 0.08), transparent), radial-gradient(900px 500px at 100% 0%, rgba(90, 74, 58, 0.14), transparent)'
+              : 'radial-gradient(1200px 600px at 50% -10%, rgba(27, 48, 34, 0.08), transparent), radial-gradient(900px 500px at 100% 0%, rgba(212, 175, 55, 0.18), transparent)',
+            backgroundRepeat: 'no-repeat',
+            backgroundAttachment: 'fixed',
           },
         },
       },
@@ -102,7 +113,7 @@ export function createAllaturaTheme(mode: PaletteMode) {
           containedPrimary: {
             boxShadow: 'none',
             '&:hover': {
-              boxShadow: isDark ? `0 2px 12px ${alpha('#2dd4bf', 0.25)}` : plutus.shadow.card,
+              boxShadow: isDark ? `0 2px 12px ${alpha('#d4af37', 0.3)}` : plutus.shadow.card,
             },
           },
         },

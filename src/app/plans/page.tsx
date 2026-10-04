@@ -11,7 +11,7 @@ import { planCardRoot } from "@/styles/MaterialStyles/plan/planCardStyles";
 import { useAuthSession } from "@/contexts/AuthSessionContext";
 import { billingService } from "@/services/billingService";
 import { ApiError } from "@/lib/api-client";
-import MarketingHeader from "@/components/marketing/MarketingHeader";
+import MarketingNav from "@/components/marketing/MarketingNav";
 
 function friendlyBillingError(err: unknown): string {
   const raw = err instanceof ApiError ? err.message : String(err);
@@ -86,7 +86,7 @@ const PlanPage = () => {
 
   return (
     <Box>
-      <MarketingHeader />
+      <MarketingNav />
       <Grid
         sx={{ marginTop: "2%" }}
         container

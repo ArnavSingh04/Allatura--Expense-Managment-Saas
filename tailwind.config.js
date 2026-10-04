@@ -10,7 +10,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      logo: ['Open Sans', 'sans-serif'],
+      logo: ['Noto Serif', 'serif'],
     },
     extend: {
       colors: {
