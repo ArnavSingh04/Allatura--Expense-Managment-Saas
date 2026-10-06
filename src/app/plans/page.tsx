@@ -3,10 +3,11 @@
 import { FormEvent, useMemo, useState } from "react";
 import PlanCard from "@/components/plans/planCard";
 import Box from "@mui/material/Box";
-import Grid from "@mui/material/GridLegacy";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
 import Alert from "@mui/material/Alert";
+import Typography from "@mui/material/Typography";
 import { PLANS, type PlanCardData } from "@/data/plans";
-import StackmarksLogo from "@/components/shared/stackmarksLogo";
 import { planCardRoot } from "@/styles/MaterialStyles/plan/planCardStyles";
 import { useAuthSession } from "@/contexts/AuthSessionContext";
 import { billingService } from "@/services/billingService";
@@ -87,68 +88,41 @@ const PlanPage = () => {
   return (
     <Box>
       <MarketingNav />
-      <Grid
-        sx={{ marginTop: "2%" }}
-        container
-        direction="column"
-        spacing={3}
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Grid
-          item
-          lg={12}
-          xl={12}
-          sx={{
-            textAlign: "center",
-            display: {
-              xs: "none",
-              sm: "none",
-              md: "none",
-              lg: "block",
-              xl: "block",
-            },
-          }}
-        >
-          <StackmarksLogo />
-        </Grid>
+      <Container maxWidth="lg" sx={{ py: { xs: 6, md: 10 } }}>
+        <Box sx={{ textAlign: "center", maxWidth: 640, mx: "auto", mb: { xs: 4, md: 6 } }}>
+          <Typography
+            variant="h2"
+            sx={{
+              fontSize: { xs: "1.9rem", md: "2.5rem" },
+              fontWeight: 700,
+              letterSpacing: "-0.03em",
+              mb: 1.5,
+            }}
+          >
+            Simple, transparent pricing
+          </Typography>
+          <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.7 }}>
+            Start free and upgrade as your portfolio grows. Every plan includes the
+            core commercial-control workflow: projects, contracts, and claims.
+          </Typography>
+        </Box>
 
         {error && (
-          <Grid item xs={12} sx={{ width: "100%", maxWidth: 720 }}>
+          <Box sx={{ maxWidth: 720, mx: "auto", mb: 3 }}>
             <Alert severity="error" onClose={() => setError(null)}>
               {error}
             </Alert>
-          </Grid>
+          </Box>
         )}
 
-        <Grid
-          sx={{
-            marginTop: "2%",
-            display: {
-              xs: "contents",
-              sm: "contents",
-              md: "contents",
-              lg: "flex",
-              xl: "flex",
-            },
-          }}
-          container
-          direction="row"
-          spacing={3}
-          justifyContent="center"
-          alignItems="center"
-        >
+        <Grid container spacing={3} justifyContent="center" alignItems="stretch">
           {cardProps.map(({ plan, url, clickHandler }, index) => {
             const busy = busyTier === plan.tier;
             return (
               <Grid
-                item
-                xs={12}
-                sm={12}
-                md={5}
-                lg={3}
-                xl={3}
                 key={`${plan.tier}-${index}`}
+                size={{ xs: 12, sm: 10, md: 4 }}
+                sx={{ display: "flex" }}
               >
                 <PlanCard
                   cardSX={planCardRoot}
@@ -157,6 +131,7 @@ const PlanPage = () => {
                   duration={plan.duration}
                   description={plan.description}
                   features={plan.features}
+                  popular={plan.popular}
                   buttonDisabled={plan.buttonDisabled || busy}
                   buttonText={busy ? "Redirecting…" : plan.buttonText}
                   url={url}
@@ -166,7 +141,7 @@ const PlanPage = () => {
             );
           })}
         </Grid>
-      </Grid>
+      </Container>
     </Box>
   );
 };

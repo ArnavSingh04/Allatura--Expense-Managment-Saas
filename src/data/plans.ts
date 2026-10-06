@@ -11,10 +11,10 @@ export type PlanCardData = {
   duration: string;
   description: string;
   features: string[];
-  priceColor: string;
-  btnColor: string;
   buttonDisabled: boolean;
   buttonText: string;
+  /** Emphasise this tier as the recommended choice. */
+  popular?: boolean;
 };
 
 export const PLANS: PlanCardData[] = [
@@ -29,8 +29,6 @@ export const PLANS: PlanCardData[] = [
       'Dashboard, projects, and contracts',
       'Portfolio overview & calendars',
     ],
-    priceColor: '#F8F802',
-    btnColor: '#F8F802',
     buttonDisabled: false,
     buttonText: 'Get started',
   },
@@ -45,10 +43,9 @@ export const PLANS: PlanCardData[] = [
       'Variations & department expenses',
       'Advanced analytics',
     ],
-    priceColor: '#F8F802',
-    btnColor: '#F8F802',
     buttonDisabled: false,
     buttonText: 'Upgrade to Pro',
+    popular: true,
   },
   {
     tier: 'enterprise',
@@ -61,8 +58,6 @@ export const PLANS: PlanCardData[] = [
       'Everything in Pro',
       'Audit log & priority support',
     ],
-    priceColor: '#F8F802',
-    btnColor: '#F8F802',
     buttonDisabled: false,
     buttonText: 'Upgrade to Enterprise',
   },
