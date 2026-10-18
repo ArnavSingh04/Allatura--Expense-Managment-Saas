@@ -27,22 +27,15 @@ export function resolveApiBaseUrl(): string {
     return `${origin}${base}`;
   }
 
+  // Always route browser calls through the same-origin Next proxy (/api/v1),
+  // whatever NEXT_PUBLIC_BACKEND_API_URL points at. The proxy injects the Auth0
+  // RS256 access token server-side from the session cookie; calling the API
+  // origin directly from the browser would both miss that token and hit CORS.
+  // This is unconditional on purpose — it previously applied only when the
+  // configured path happened to end in `/v1`, so a base URL without that suffix
+  // silently sent browser traffic straight to the API origin.
   if (typeof window !== 'undefined') {
-    try {
-      const u = new URL(base);
-      const path = u.pathname.replace(/\/$/, '');
-      // Always route browser calls through the same-origin Next proxy (/api/v1).
-      // The proxy injects the Auth0 RS256 access token server-side from the
-      // session cookie; calling the API origin directly instead ships the
-      // browser's stale HS256 localStorage token, which the backend's Auth0/JWKS
-      // guard rejects with a 401 (and would also hit CORS). This must apply in
-      // production too — not just localhost.
-      if (path.endsWith('/v1')) {
-        return `${window.location.origin}/api/v1`;
-      }
-    } catch {
-      /* ignore */
-    }
+    return `${window.location.origin}/api/v1`;
   }
 
   return base;

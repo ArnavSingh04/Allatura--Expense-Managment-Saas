@@ -1,15 +1,4 @@
-import { getStoredToken } from '@/lib/api-helper';
-import { getJwtClaims } from '@/lib/jwt';
 import { resolveApiBaseUrl } from '@/lib/resolve-api-base-url';
-
-function authHeaders(): Record<string, string> {
-  const token = getStoredToken();
-  if (!token) return {};
-  const headers: Record<string, string> = { Authorization: `Bearer ${token}` };
-  const tenantId = getJwtClaims(token)?.tenantId;
-  if (tenantId) headers['x-tenant-id'] = tenantId;
-  return headers;
-}
 
 export class ApiError extends Error {
   status: number;
@@ -54,7 +43,10 @@ async function request<T>(
     throw new ApiError('Backend API URL not configured', 0);
   }
   const url = `${base.replace(/\/$/, '')}/${path.replace(/^\/+/, '')}`;
-  const headers: Record<string, string> = { ...authHeaders() };
+  // No Authorization header here by design: the request goes to the same-origin
+  // /api/v1 proxy, which attaches the Auth0 access token server-side from the
+  // encrypted session cookie.
+  const headers: Record<string, string> = {};
   let payload: BodyInit | undefined;
   if (body instanceof FormData) {
     payload = body;
