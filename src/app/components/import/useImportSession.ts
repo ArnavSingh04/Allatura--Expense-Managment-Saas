@@ -269,6 +269,14 @@ export function useImportSession(sessionId: string | null): UseImportSession {
         typeof key === 'string' &&
         IMPORT_TOUCHED_PREFIXES.some((prefix) => key.startsWith(prefix)),
     );
+    // An already-open overview or calendar keeps its empty snapshot unless
+    // these keys are revalidated by name, including the calendar's query string.
+    void globalMutate(keys.companyDashboard());
+    void globalMutate(
+      (key) =>
+        typeof key === 'string' &&
+        (key === 'dashboards/calendar' || key.startsWith('dashboards/calendar?')),
+    );
   }, [currentSessionId, sessionStatus]);
 
   // Clear timers on unmount so a debounced write cannot fire into a dead tree.

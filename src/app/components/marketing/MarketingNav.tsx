@@ -27,12 +27,19 @@ const nav = [
   { label: 'Contact', href: '/contact' },
 ];
 
+/**
+ * Desktop row needs about 1000px for every label on one line. MUI `md` is
+ * 900px, and browser zoom shrinks the CSS viewport, so "How it works" wrapped
+ * and the bar grew taller before the hamburger took over.
+ */
+const DESKTOP_NAV_MIN_PX = 1024;
+
 export default function MarketingNav() {
   const theme = useTheme();
   const isDark = theme.palette.mode === 'dark';
   const { preference, setPreference } = useColorMode();
   const [drawer, setDrawer] = useState(false);
-  const mdUp = useMediaQuery(theme.breakpoints.up('md'));
+  const mdUp = useMediaQuery(theme.breakpoints.up(DESKTOP_NAV_MIN_PX));
 
   const demoHref = bookDemoHref();
   const demoExternal = bookDemoIsExternal();
@@ -67,7 +74,13 @@ export default function MarketingNav() {
                   component={Link}
                   href={item.href}
                   color="inherit"
-                  sx={{ fontWeight: 600, color: 'text.secondary', px: 1.25 }}
+                  sx={{
+                    fontWeight: 600,
+                    color: 'text.secondary',
+                    px: 1.25,
+                    whiteSpace: 'nowrap',
+                    flexShrink: 0,
+                  }}
                 >
                   {item.label}
                 </Button>
@@ -98,18 +111,28 @@ export default function MarketingNav() {
                     ? { component: 'a' as const, href: demoHref, target: '_blank', rel: 'noopener noreferrer' }
                     : { component: Link as typeof Link, href: demoHref })}
                   color="inherit"
-                  sx={{ fontWeight: 600, display: { xs: 'none', sm: 'inline-flex' } }}
+                  sx={{ fontWeight: 600, whiteSpace: 'nowrap', flexShrink: 0 }}
                 >
                   Book demo
                 </Button>
-                <Button component={Link} href="/login" color="inherit" sx={{ fontWeight: 600 }}>
+                <Button
+                  component={Link}
+                  href="/login"
+                  color="inherit"
+                  sx={{ fontWeight: 600, whiteSpace: 'nowrap', flexShrink: 0 }}
+                >
                   Sign in
                 </Button>
                 <Button
                   component={Link}
                   href="/register"
                   variant="contained"
-                  sx={{ fontWeight: 600, borderRadius: `${plutus.radius.sm}px` }}
+                  sx={{
+                    fontWeight: 600,
+                    borderRadius: `${plutus.radius.sm}px`,
+                    whiteSpace: 'nowrap',
+                    flexShrink: 0,
+                  }}
                 >
                   Get started
                 </Button>

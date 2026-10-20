@@ -1,7 +1,8 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import useSWR from 'swr';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import useSWR, { mutate as globalMutate } from 'swr';
 import {
   Alert,
   Box,
@@ -36,8 +37,13 @@ import type { ImportTarget, ImportTypeDef } from '@/types/imports';
 const STEPS = ['Source', 'Map columns', 'Review', 'Import'];
 
 export default function ImportWizard() {
-  const [sessionId, setSessionId] = useState<string | null>(null);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const querySession = searchParams.get('session');
+  const [sessionId, setSessionId] = useState<string | null>(querySession);
   const [step, setStep] = useState(0);
+  const hydrated = useRef(false);
+  const skipUrlSync = useRef(false);
   const [target, setTarget] = useState<ImportTarget>('pack');
   const [selectedKey, setSelectedKey] = useState<string>('__single__');
   const [uploading, setUploading] = useState(false);
@@ -54,6 +60,7 @@ export default function ImportWizard() {
 
   const {
     session,
+    isLoading: sessionLoading,
     isPolling,
     busy,
     error: sessionError,
@@ -80,6 +87,25 @@ export default function ImportWizard() {
     }
   }, [selectedKey, views]);
 
+  // Browser back/forward and a shared link restore the session. Our own
+  // replace() after upload or start-over is skipped so it cannot clobber
+  // the step the user is already on.
+  useEffect(() => {
+    if (skipUrlSync.current) {
+      skipUrlSync.current = false;
+      return;
+    }
+    setSessionId(querySession);
+    hydrated.current = false;
+  }, [querySession]);
+
+  useEffect(() => {
+    if (!session || hydrated.current) return;
+    if (querySession !== session.id) return;
+    hydrated.current = true;
+    setStep(stepForStatus(session));
+  }, [querySession, session]);
+
   // A background import finishing should move the user to the result.
   useEffect(() => {
     if (!session) return;
@@ -105,24 +131,33 @@ export default function ImportWizard() {
           ? 'pack'
           : target;
         const created = await importService.createSession(file, entityType);
+        await globalMutate(keys.importSession(created.id), created, {
+          revalidate: false,
+        });
+        skipUrlSync.current = true;
+        hydrated.current = true;
         setSessionId(created.id);
         setSelectedKey(memberKey(memberViews(created)[0]));
         setStep(stepForStatus(created));
+        router.replace(`/dashboard/import?session=${created.id}`);
       } catch (e) {
         setLocalError(importErrorMessage(e));
       } finally {
         setUploading(false);
       }
     },
-    [dismissError, target],
+    [dismissError, router, target],
   );
 
   const startOver = useCallback(() => {
     dismissError();
+    skipUrlSync.current = true;
+    hydrated.current = false;
     setSessionId(null);
     setStep(0);
     setSelectedKey('__single__');
-  }, [dismissError]);
+    router.replace('/dashboard/import');
+  }, [dismissError, router]);
 
   const goToReview = useCallback(async () => {
     dismissError();
@@ -139,7 +174,7 @@ export default function ImportWizard() {
   const readyToReview = session ? allRequiredMapped(session) : false;
   const importable = session ? previewTotals(session).importable : 0;
 
-  if (typesLoading) {
+  if (typesLoading || (sessionId && sessionLoading && !session)) {
     return (
       <Stack alignItems="center" sx={{ py: 8 }}>
         <CircularProgress size={28} />
