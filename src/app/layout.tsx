@@ -1,4 +1,3 @@
-import { Plus_Jakarta_Sans } from 'next/font/google';
 import { cookies } from 'next/headers';
 import ThemeRegistry from '@/components/ThemeRegistry/ThemeRegistry';
 import './globals.css';
@@ -7,8 +6,7 @@ import Script from 'next/script';
 import type { ColorModePreference } from '@/lib/colorModeContext';
 import { Auth0Provider } from '@auth0/nextjs-auth0';
 import { AuthSessionProvider } from '@/contexts/AuthSessionContext';
-
-const plusJakarta = Plus_Jakarta_Sans({ weight: ['400', '500', '600', '700'], subsets: ['latin'], display: 'swap' });
+import { notoSerif, plusJakarta } from './fonts';
 
 export const metadata = {
   title: 'Allatura — project delivery & commercial control',
@@ -25,7 +23,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     cookieVal === 'dark' || cookieVal === 'light' ? cookieVal : 'light';
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={`${plusJakarta.variable} ${notoSerif.variable}`} suppressHydrationWarning>
       <body className={plusJakarta.className} suppressHydrationWarning>
         <Script
           id="plutus-theme-sync"
