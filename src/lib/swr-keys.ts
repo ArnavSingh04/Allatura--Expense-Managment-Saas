@@ -117,6 +117,25 @@ export const keys = {
   siteLogsByProject: (projectId: string) => `projects/${projectId}/site-logs`,
   siteLog: (id: string) => `site-logs/${id}`,
 
+  // imports
+  importTypes: () => 'imports/types',
+  importSession: (id: string) => `imports/sessions/${id}`,
+
   // audit (legacy)
   audit: () => 'audit',
 };
+
+/**
+ * Key prefixes whose cached data a completed import invalidates.
+ *
+ * The pipeline writes through the normal domain services, so imported rows
+ * appear on the existing screens as soon as these caches are dropped.
+ */
+export const IMPORT_TOUCHED_PREFIXES = [
+  'projects',
+  'subcontractors',
+  'suppliers',
+  'contracts',
+  'variations',
+  'dashboards',
+] as const;
