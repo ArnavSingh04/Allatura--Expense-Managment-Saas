@@ -1,18 +1,8 @@
-import { Noto_Serif, Plus_Jakarta_Sans } from 'next/font/google';
 import { alpha, createTheme, type PaletteMode } from '@mui/material/styles';
 import { plutus } from '@/theme/tokens';
 
-const plusJakarta = Plus_Jakarta_Sans({
-  weight: ['400', '500', '600', '700'],
-  subsets: ['latin'],
-  display: 'swap',
-});
-
-const notoSerif = Noto_Serif({
-  weight: ['400', '500', '600', '700'],
-  subsets: ['latin'],
-  display: 'swap',
-});
+const sans = 'var(--font-plus-jakarta), "Plus Jakarta Sans", sans-serif';
+const serif = 'var(--font-noto-serif), "Noto Serif", serif';
 
 export function createAllaturaTheme(mode: PaletteMode) {
   const isDark = mode === 'dark';
@@ -66,13 +56,13 @@ export function createAllaturaTheme(mode: PaletteMode) {
       borderRadius: plutus.radius.md,
     },
     typography: {
-      fontFamily: plusJakarta.style.fontFamily,
-      h1: { fontFamily: notoSerif.style.fontFamily, fontWeight: 600, letterSpacing: '-0.02em' },
-      h2: { fontFamily: notoSerif.style.fontFamily, fontWeight: 600, letterSpacing: '-0.02em' },
-      h3: { fontFamily: notoSerif.style.fontFamily, fontWeight: 600, letterSpacing: '-0.02em' },
-      h4: { fontFamily: notoSerif.style.fontFamily, fontWeight: 600, letterSpacing: '-0.01em' },
-      h5: { fontFamily: notoSerif.style.fontFamily, fontWeight: 600 },
-      h6: { fontFamily: notoSerif.style.fontFamily, fontWeight: 600 },
+      fontFamily: sans,
+      h1: { fontFamily: serif, fontWeight: 600, letterSpacing: '-0.02em' },
+      h2: { fontFamily: serif, fontWeight: 600, letterSpacing: '-0.02em' },
+      h3: { fontFamily: serif, fontWeight: 600, letterSpacing: '-0.02em' },
+      h4: { fontFamily: serif, fontWeight: 600, letterSpacing: '-0.01em' },
+      h5: { fontFamily: serif, fontWeight: 600 },
+      h6: { fontFamily: serif, fontWeight: 600 },
       subtitle1: {
         fontWeight: 500,
         color: isDark ? '#c4b8a7' : plutus.color.muted,
