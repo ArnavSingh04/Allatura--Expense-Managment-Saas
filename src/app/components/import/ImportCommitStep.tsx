@@ -39,6 +39,7 @@ const DESTINATION: Record<string, { label: string; href: string }> = {
   },
   contracts: { label: 'Projects', href: '/dashboard/projects' },
   variations: { label: 'Variations', href: '/dashboard/variations' },
+  'payment-claims': { label: 'Overview', href: '/dashboard' },
 };
 
 type ImportCommitStepProps = {

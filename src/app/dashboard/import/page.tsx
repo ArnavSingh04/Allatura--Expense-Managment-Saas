@@ -10,7 +10,7 @@ export default function ImportPage() {
     <Box>
       <PageHeader
         title="Import data"
-        description="Bring in suppliers, subcontractors, projects, contracts and variations from a spreadsheet — or several at once in a zip. Nothing is saved until you have reviewed it."
+        description="Bring in suppliers, subcontractors, projects, contracts, variations and payment claims from a spreadsheet — or several at once in a zip. Nothing is saved until you have reviewed it."
       />
       <RoleGate action="imports.run">
         <ImportWizard />

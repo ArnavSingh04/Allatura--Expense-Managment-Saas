@@ -13,6 +13,7 @@ export const IMPORT_ENTITY_TYPES = [
   'subcontractors',
   'contracts',
   'variations',
+  'payment-claims',
 ] as const;
 export type ImportEntityType = (typeof IMPORT_ENTITY_TYPES)[number];
 
@@ -30,6 +31,7 @@ export const PACK_ENTITY_ORDER = [
   'projects',
   'contracts',
   'variations',
+  'payment-claims',
 ] as const;
 
 export type ImportSessionStatus =
