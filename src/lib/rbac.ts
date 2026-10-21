@@ -19,6 +19,7 @@
  * | Delete documents            | no     | no     | no  | no      | yes| yes   |
  * | Site logs                   | no     | no     | yes | no      | yes| yes   |
  * | Subcontractor / supplier    | no     | no     | no  | edit    | edit| edit |
+ * | Run data imports            | no     | no     | no  | no      | yes| yes   |
  * | Tenant admin (users)        | no     | no     | no  | no      | no | yes   |
  */
 
@@ -69,6 +70,7 @@ export const RBAC_ACTIONS = [
   'subbies.edit',
   'suppliers.view',
   'suppliers.edit',
+  'imports.run',
   'audit.view',
   'settings.view',
   'tenant.admin',
@@ -167,6 +169,7 @@ const matrix: Record<UserRole, Set<RbacAction>> = {
     'documents.delete',
     'subbies.edit',
     'suppliers.edit',
+    'imports.run',
   ]),
   owner: new Set(RBAC_ACTIONS),
   // Legacy roles map to nearest construction equivalent.
@@ -190,6 +193,7 @@ const matrix: Record<UserRole, Set<RbacAction>> = {
     'documents.delete',
     'subbies.edit',
     'suppliers.edit',
+    'imports.run',
   ]),
 };
 
@@ -228,6 +232,15 @@ export function assertRbacMatrixInvariants(): string[] {
   }
   if (!matrix.pm.has('contracts.create')) {
     errors.push('pm must create contracts');
+  }
+  // The backend gates /v1/imports on owner|pm only, and the pipeline creates
+  // projects and contracts. Granting finance here would hand it a path past
+  // its own missing projects.create / contracts.create.
+  if (matrix.finance.has('imports.run')) {
+    errors.push('finance must not run imports');
+  }
+  if (!matrix.pm.has('imports.run')) {
+    errors.push('pm must run imports');
   }
   if (!matrix.owner.has('tenant.admin')) {
     errors.push('owner must have tenant.admin');

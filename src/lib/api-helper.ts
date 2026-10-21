@@ -1,4 +1,3 @@
-import { getJwtClaims } from "@/lib/jwt";
 import { resolveApiBaseUrl } from "@/lib/resolve-api-base-url";
 
 export enum REQUEST_TYPE {
@@ -15,50 +14,14 @@ function apiBaseUrl(): string {
   return resolveApiBaseUrl().replace(/\/$/, "");
 }
 
-export function getStoredToken(): string | null {
-  if (typeof window === "undefined") {
-    return null;
-  }
-  return localStorage.getItem("plutus_access_token");
-}
-
-function authHeaders(token: string | null): Record<string, string> {
-  if (!token) {
-    return {};
-  }
-  const headers: Record<string, string> = {
-    Authorization: `Bearer ${token}`,
-  };
-  const tenantId = getJwtClaims(token)?.tenantId;
-  if (tenantId) {
-    headers["x-tenant-id"] = tenantId;
-  }
-  return headers;
-}
-
-function cookieSecureSuffix(): string {
-  return typeof window !== "undefined" && window.location.protocol === "https:"
-    ? "; Secure"
-    : "";
-}
-
-export function setAuthToken(token: string, maxAgeSeconds = 60 * 60 * 24 * 7) {
-  if (typeof window === "undefined") {
-    return;
-  }
-  localStorage.setItem("plutus_access_token", token);
-  const secure = cookieSecureSuffix();
-  document.cookie = `plutus_access_token=${encodeURIComponent(token)}; path=/; max-age=${maxAgeSeconds}; SameSite=Lax${secure}`;
-}
-
-export function clearAuthToken() {
-  if (typeof window === "undefined") {
-    return;
-  }
-  localStorage.removeItem("plutus_access_token");
-  const secure = cookieSecureSuffix();
-  document.cookie = `plutus_access_token=; path=/; max-age=0; SameSite=Lax${secure}`;
-}
+// Authentication is handled entirely server-side: the browser calls the
+// same-origin /api/v1 proxy, which reads the Auth0 access token from the
+// encrypted session cookie and forwards it as a Bearer token. The access token
+// is never exposed to client JavaScript, so there is nothing for this module to
+// store or attach. The previous setAuthToken/clearAuthToken/getStoredToken
+// helpers (a leftover of the pre-Auth0 local-JWT design) wrote a bearer token to
+// localStorage and to a non-HttpOnly cookie; they had no callers and have been
+// removed rather than left waiting to be wired up again.
 
 export class ApiHelper {
   private _baseURL: string;
@@ -68,12 +31,6 @@ export class ApiHelper {
   private _requestType: REQUEST_TYPE;
   private _requestBody: unknown;
   private _includeKey: boolean;
-  /**
-   * When true, do not send Bearer / x-tenant-id from localStorage.
-   * Use for @Public() routes like auth/login and auth/register so a stale JWT
-   * from another session does not make the API reject the request with 401.
-   */
-  private _skipSessionHeaders: boolean;
 
   constructor(endpoint: string) {
     this._baseURL = apiBaseUrl();
@@ -82,7 +39,6 @@ export class ApiHelper {
     this._urlParams = "";
     this._includeKey = true;
     this._requestType = REQUEST_TYPE.GET;
-    this._skipSessionHeaders = false;
   }
 
   set baseURL(newBaseURL: string) {
@@ -103,10 +59,6 @@ export class ApiHelper {
 
   set body(newBody: unknown) {
     this._requestBody = newBody;
-  }
-
-  set skipSessionHeaders(skip: boolean) {
-    this._skipSessionHeaders = skip;
   }
 
   private logReturn(error: string) {
@@ -171,14 +123,10 @@ export class ApiHelper {
       );
     }
     const URL = this.buildUrl();
-    const token = getStoredToken();
     const headers: Record<string, string> = {
       ...(this._includeKey === true &&
         this._apiKey && { "x-api-key": this._apiKey }),
     };
-    if (!this._skipSessionHeaders) {
-      Object.assign(headers, authHeaders(token));
-    }
     const hasJsonBody =
       this._requestBody !== undefined &&
       this._requestBody !== null &&
@@ -236,14 +184,10 @@ export class ApiHelper {
       );
     }
     const URL = this.buildUrl();
-    const token = getStoredToken();
     const headers: Record<string, string> = {
       ...(this._includeKey === true &&
         this._apiKey && { "x-api-key": this._apiKey }),
     };
-    if (!this._skipSessionHeaders) {
-      Object.assign(headers, authHeaders(token));
-    }
 
     try {
       const response = await fetch(URL, {

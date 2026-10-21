@@ -74,6 +74,7 @@ const KIND_LABEL: Record<string, string> = {
   contract_completion: 'Contract completion',
   payment_milestone: 'Payment milestone',
   site_milestone: 'Site milestone',
+  subcontractor_compliance: 'Compliance expiry',
 };
 
 export default function CalendarPage() {
