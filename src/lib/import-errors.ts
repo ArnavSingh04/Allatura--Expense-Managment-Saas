@@ -26,11 +26,11 @@ export const IMPORT_ERROR_MESSAGES: Record<string, string> = {
   // zip packs
   malformed_zip: "We couldn't open that zip file. Re-create it and try again.",
   too_many_zip_entries:
-    'That pack contains too many files. A pack should hold one file per entity type — at most five.',
+    'That pack contains too many files. A pack should hold one spreadsheet per entity type.',
   nested_zip_not_allowed:
     'That pack contains another zip inside it. Zip the spreadsheets directly, with no nested archives.',
   unknown_pack_file:
-    'Each file in a pack must be named after the type it holds — suppliers, subcontractors, projects, contracts or variations — optionally with a number in front, like 01-suppliers.csv or projects.xlsx.',
+    'Each file in a pack must be named after the type it holds — suppliers, subcontractors, projects, contracts, variations or payment-claims — optionally with a number in front, like 01-suppliers.csv or 06-payment-claims.csv.',
   duplicate_pack_entity:
     'The pack contains two files for the same type. Include at most one file per entity type.',
   zip_too_large:
