@@ -34,3 +34,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local QA coordination and raw tool output
+/.qa-agent-work/
+/qa-raw/vitest-coverage/
+/qa-raw/vitest-results/
+/qa-raw/playwright-report/
+/qa-raw/playwright-results/

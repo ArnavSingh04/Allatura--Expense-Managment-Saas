@@ -33,7 +33,7 @@ import {
 import { alpha } from '@mui/material/styles';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState, useSyncExternalStore } from 'react';
 import { useAuthSession } from '@/contexts/AuthSessionContext';
 import type { RbacAction } from '@/lib/rbac';
 
@@ -67,6 +67,14 @@ const items: NavItem[] = [
 ];
 
 const STORAGE_KEY = 'allatura-sidebar-collapsed';
+const subscribeStorage = (listener: () => void) => {
+  window.addEventListener('storage', listener);
+  return () => window.removeEventListener('storage', listener);
+};
+const readCollapsed = () => {
+  try { return localStorage.getItem(STORAGE_KEY) === '1'; } catch { return false; }
+};
+const serverCollapsed = () => false;
 
 type AppSidebarProps = {
   mobileOpen: boolean;
@@ -77,31 +85,18 @@ export default function AppSidebar({ mobileOpen, onMobileClose }: AppSidebarProp
   const theme = useTheme();
   const pathname = usePathname();
   const isMdUp = useMediaQuery(theme.breakpoints.up('md'));
-  const [collapsed, setCollapsed] = useState(false);
+  const storedCollapsed = useSyncExternalStore(subscribeStorage, readCollapsed, serverCollapsed);
+  const [chosenCollapsed, setCollapsed] = useState<boolean | null>(null);
+  const collapsed = chosenCollapsed ?? storedCollapsed;
   const { session, isActive, can } = useAuthSession();
   const isOwner =
     isActive && (session?.role === 'owner' || session?.role === 'admin');
 
-  useEffect(() => {
-    try {
-      const v = localStorage.getItem(STORAGE_KEY);
-      if (v === '1') setCollapsed(true);
-    } catch {
-      /* ignore */
-    }
-  }, []);
-
   const toggleCollapsed = useCallback(() => {
-    setCollapsed((c) => {
-      const next = !c;
-      try {
-        localStorage.setItem(STORAGE_KEY, next ? '1' : '0');
-      } catch {
-        /* ignore */
-      }
-      return next;
-    });
-  }, []);
+    const next = !collapsed;
+    setCollapsed(next);
+    try { localStorage.setItem(STORAGE_KEY, next ? '1' : '0'); } catch { /* Session-only preference. */ }
+  }, [collapsed]);
 
   const width = collapsed ? DRAWER_COLLAPSED : DRAWER_WIDTH;
 

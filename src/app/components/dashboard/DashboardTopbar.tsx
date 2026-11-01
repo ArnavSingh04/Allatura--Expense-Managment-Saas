@@ -15,6 +15,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAuthSession } from "@/contexts/AuthSessionContext";
 import { userInitials } from "@/lib/user-initials";
+import { useHydrated } from '@/lib/use-hydrated';
+import OrganisationSwitcher from './OrganisationSwitcher';
 
 const titles: { prefix: string; title: string }[] = [
   { prefix: "/dashboard/systems/new", title: "New system" },
@@ -49,7 +51,8 @@ export default function DashboardTopbar({ onMenuClick }: DashboardTopbarProps) {
   const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
   const title = titleFromPath(pathname);
   const { session } = useAuthSession();
-  const avatarLabel = userInitials(session?.name, session?.email);
+  const hydrated = useHydrated();
+  const avatarLabel = userInitials(hydrated ? session?.name : undefined, hydrated ? session?.email : undefined);
 
   return (
     <Box
@@ -100,6 +103,7 @@ export default function DashboardTopbar({ onMenuClick }: DashboardTopbarProps) {
       </Box>
 
       <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
+        {hydrated && <OrganisationSwitcher />}
         <Tooltip title="Settings">
           <IconButton
             component={Link}

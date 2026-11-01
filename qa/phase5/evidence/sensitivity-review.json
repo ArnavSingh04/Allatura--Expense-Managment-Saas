@@ -1,0 +1,266 @@
+{
+  "rawResults": {
+    "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/sensitivity-audit/results.json",
+    "sha256": "d72de4af3ff0766cb826c00b8d1431437112e9c88121e8e271940b104be484ea"
+  },
+  "startedAt": "2026-11-01T09:58:49.647Z",
+  "finishedAt": "2026-11-01T09:59:01.825Z",
+  "node": "v24.15.0",
+  "versions": {
+    "jest": "29.7.0",
+    "ts-jest": "29.4.9",
+    "typescript": "5.9.3",
+    "mongoose": "8.23.0",
+    "@nestjs/mongoose": "11.0.4"
+  },
+  "boundary": "Independent calibration only; existing unit assertions with model doubles. No application bootstrap, DB connection, native process, or network. Not real tenant security or durable persistence proof.",
+  "sourceFiles": [
+    {
+      "path": "src/schema/common.ts",
+      "sha256": "3bf25cd04fc95d4368738d33d7fd45d8e03f30577a34cd4650b5ad44fbbb34c0"
+    },
+    {
+      "path": "src/schema/common.qa.spec.ts",
+      "sha256": "59a5f7f708f6a1239a3cadbd6304417666bbd5a437eea9212d96cac6e4d703ce"
+    },
+    {
+      "path": "src/schema/contract.schema.ts",
+      "sha256": "9390a72c462a13cb79d506539d47f3f7f65cc47b2c2ff2542e379ca33059c311"
+    },
+    {
+      "path": "src/schema/expense.schema.ts",
+      "sha256": "ea34a1eebbf8d0f8a2d0a99ad5b03e2f26b9ba636bec8fe5ff744789b931c941"
+    },
+    {
+      "path": "src/schema/payment-claim.schema.ts",
+      "sha256": "5abba0b66f1da866857f66f2165f7dc73d38c9b442b7e5ad758653804f1412d4"
+    },
+    {
+      "path": "src/schema/project.schema.ts",
+      "sha256": "e668bc2f8d6a8b8e0888527212702edabf45380dc53bea9d51c8419bded65ae8"
+    },
+    {
+      "path": "src/schema/project-financials.schema.ts",
+      "sha256": "31c55a2429986e531e851ea575cf0f425da4bc0b2933a08cf0a9e9badceafc93"
+    },
+    {
+      "path": "src/schema/variation.schema.ts",
+      "sha256": "d3a6c8f8d0343af11faf07fd8ddd130c0ed2d910af18675eb04fcfee800c640b"
+    },
+    {
+      "path": "src/project/project-financials.service.ts",
+      "sha256": "62b98e879cd305a195fc067769f1195b311c437d6c076e2beb795a534e42508e"
+    },
+    {
+      "path": "src/project/project-financials.qa.spec.ts",
+      "sha256": "2e9c09a269a5f0c3345094d8888a869392aa3123d426cb4b85506b26c7588dfc"
+    },
+    {
+      "path": "test/jest-qa-unit.cjs",
+      "sha256": "efc30792ef19b698e855428d72c497129504b726da26d1a67af2c10ae2a6aef0"
+    },
+    {
+      "path": "test/tsconfig.qa.json",
+      "sha256": "63f5472ae39838943845e52424dcd1275afa5f1fa69afd426b8ba6c74d81c20e"
+    },
+    {
+      "path": "tsconfig.json",
+      "sha256": "e2e5bcc4c67967c4b1abb6af2137107804471e10695598536f4efc08b8489056"
+    },
+    {
+      "path": "test/qa/support/runtime-guard.cjs",
+      "sha256": "ccdcd4a52097a1e0316efe01b5032061e42ca7cc1666c2934bfa03617f0b7d9c"
+    }
+  ],
+  "sharedSourcesUnchanged": true,
+  "results": [
+    {
+      "id": "baseline",
+      "startedAt": "2026-11-01T09:58:49.649Z",
+      "finishedAt": "2026-11-01T09:58:53.033Z",
+      "mutation": null,
+      "exitCode": 0,
+      "cleanup": true,
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "--require",
+        "<OWNED_STAGE>\\test\\qa\\support\\runtime-guard.cjs",
+        "<WORKSPACE>\\plutus-be\\node_modules\\jest\\bin\\jest.js",
+        "--runInBand",
+        "--no-cache",
+        "--json",
+        "--outputFile",
+        "<WORKSPACE>\\plutus-be\\.qa-agent-work\\independent-validation-2026-11-01\\sensitivity-audit\\baseline\\jest.json",
+        "--config",
+        "test/jest-qa-unit.cjs",
+        "--runTestsByPath",
+        "src/schema/common.qa.spec.ts",
+        "src/project/project-financials.qa.spec.ts"
+      ],
+      "counts": {
+        "total": 28,
+        "passed": 28,
+        "failed": 0,
+        "pending": 0,
+        "runtimeErrorSuites": 0
+      },
+      "assertionFailures": [],
+      "calibrated": true
+    },
+    {
+      "id": "round-floor",
+      "startedAt": "2026-11-01T09:58:53.038Z",
+      "finishedAt": "2026-11-01T09:58:56.106Z",
+      "mutation": {
+        "file": "src/schema/common.ts",
+        "from": "amount: Math.round((a.amount * percent) / 100)",
+        "to": "amount: Math.floor((a.amount * percent) / 100)"
+      },
+      "exitCode": 1,
+      "cleanup": true,
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "--require",
+        "<OWNED_STAGE>\\test\\qa\\support\\runtime-guard.cjs",
+        "<WORKSPACE>\\plutus-be\\node_modules\\jest\\bin\\jest.js",
+        "--runInBand",
+        "--no-cache",
+        "--json",
+        "--outputFile",
+        "<WORKSPACE>\\plutus-be\\.qa-agent-work\\independent-validation-2026-11-01\\sensitivity-audit\\round-floor\\jest.json",
+        "--config",
+        "test/jest-qa-unit.cjs",
+        "--runTestsByPath",
+        "src/schema/common.qa.spec.ts",
+        "src/project/project-financials.qa.spec.ts"
+      ],
+      "counts": {
+        "total": 28,
+        "passed": 24,
+        "failed": 4,
+        "pending": 0,
+        "runtimeErrorSuites": 0
+      },
+      "assertionFailures": [
+        {
+          "title": "Money arithmetic (integer minor units) rounds 1 cents at 50 percent to 1 cents",
+          "message": "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  - 1\n+ Received  + 1\n\n  Object {\n-   \"amount\": 1,\n+   \"amount\": 0,\n    \"currency\": \"AUD\",\n  }\n    at <OWNED_STAGE>\\src\\schema\\common.qa.spec.ts:66:53\n    at Object.<anonymous> (<WORKSPACE>\\plutus-be\\node_modules\\jest-each\\build\\bind.js:81:13)\n    at Promise.then.completed (<WORKSPACE>\\plutus-be\\node_modules\\jest-circus\\build\\utils.js:298:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (<WORKSPACE>\\plutus-be\\node_modules\\jest-circus\\build\\utils.js:231:10)\n    at _callCircusTest (<WORKSPACE>\\plutus-be\\node_modules\\jest-circus\\build\\run.js:316:40)\n    at _runTest (<WORKSPACE>\\plutus-be\\node_modules\\jest-circus\\build\\run.js:252:3)\n    at _runTestsForDescribeBlock (<WORKSPACE>\\plutus-be\\node_modules\\jest-circus\\build\\run.js:126:9)\n    at _runTestsForDescribeBlock (<WORKSPACE>\\plutus-be\\node_modules\\jest-circus\\build\\run.js:121:9)\n    at run (<WORKSPACE>\\plutus-be\\node_modules\\jest-circus\\build\\run.js:71:3)\n    at runAndTransformResultsToJestFormat (<WORKSPACE>\\plutus-be\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapterInit.js:122:21)\n    at jestAdapter (<WORKSPACE>\\plutus-be\\node_modul"
+        },
+        {
+          "title": "Money arithmetic (integer minor units) rounds 1 cents at 51 percent to 1 cents",
+          "message": "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  - 1\n+ Received  + 1\n\n  Object {\n-   \"amount\": 1,\n+   \"amount\": 0,\n    \"currency\": \"AUD\",\n  }\n    at <OWNED_STAGE>\\src\\schema\\common.qa.spec.ts:66:53\n    at Object.<anonymous> (<WORKSPACE>\\plutus-be\\node_modules\\jest-each\\build\\bind.js:81:13)\n    at Promise.then.completed (<WORKSPACE>\\plutus-be\\node_modules\\jest-circus\\build\\utils.js:298:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (<WORKSPACE>\\plutus-be\\node_modules\\jest-circus\\build\\utils.js:231:10)\n    at _callCircusTest (<WORKSPACE>\\plutus-be\\node_modules\\jest-circus\\build\\run.js:316:40)\n    at _runTest (<WORKSPACE>\\plutus-be\\node_modules\\jest-circus\\build\\run.js:252:3)\n    at _runTestsForDescribeBlock (<WORKSPACE>\\plutus-be\\node_modules\\jest-circus\\build\\run.js:126:9)\n    at _runTestsForDescribeBlock (<WORKSPACE>\\plutus-be\\node_modules\\jest-circus\\build\\run.js:121:9)\n    at run (<WORKSPACE>\\plutus-be\\node_modules\\jest-circus\\build\\run.js:71:3)\n    at runAndTransformResultsToJestFormat (<WORKSPACE>\\plutus-be\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapterInit.js:122:21)\n    at jestAdapter (<WORKSPACE>\\plutus-be\\node_modul"
+        },
+        {
+          "title": "Money arithmetic (integer minor units) rounds 199 cents at 2.5 percent to 5 cents",
+          "message": "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  - 1\n+ Received  + 1\n\n  Object {\n-   \"amount\": 5,\n+   \"amount\": 4,\n    \"currency\": \"AUD\",\n  }\n    at <OWNED_STAGE>\\src\\schema\\common.qa.spec.ts:66:53\n    at Object.<anonymous> (<WORKSPACE>\\plutus-be\\node_modules\\jest-each\\build\\bind.js:81:13)\n    at Promise.then.completed (<WORKSPACE>\\plutus-be\\node_modules\\jest-circus\\build\\utils.js:298:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (<WORKSPACE>\\plutus-be\\node_modules\\jest-circus\\build\\utils.js:231:10)\n    at _callCircusTest (<WORKSPACE>\\plutus-be\\node_modules\\jest-circus\\build\\run.js:316:40)\n    at _runTest (<WORKSPACE>\\plutus-be\\node_modules\\jest-circus\\build\\run.js:252:3)\n    at _runTestsForDescribeBlock (<WORKSPACE>\\plutus-be\\node_modules\\jest-circus\\build\\run.js:126:9)\n    at _runTestsForDescribeBlock (<WORKSPACE>\\plutus-be\\node_modules\\jest-circus\\build\\run.js:121:9)\n    at run (<WORKSPACE>\\plutus-be\\node_modules\\jest-circus\\build\\run.js:71:3)\n    at runAndTransformResultsToJestFormat (<WORKSPACE>\\plutus-be\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapterInit.js:122:21)\n    at jestAdapter (<WORKSPACE>\\plutus-be\\node_modul"
+        },
+        {
+          "title": "Money arithmetic (integer minor units) rounds 999 cents at 5.5 percent to 55 cents",
+          "message": "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  - 1\n+ Received  + 1\n\n  Object {\n-   \"amount\": 55,\n+   \"amount\": 54,\n    \"currency\": \"AUD\",\n  }\n    at <OWNED_STAGE>\\src\\schema\\common.qa.spec.ts:66:53\n    at Object.<anonymous> (<WORKSPACE>\\plutus-be\\node_modules\\jest-each\\build\\bind.js:81:13)\n    at Promise.then.completed (<WORKSPACE>\\plutus-be\\node_modules\\jest-circus\\build\\utils.js:298:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (<WORKSPACE>\\plutus-be\\node_modules\\jest-circus\\build\\utils.js:231:10)\n    at _callCircusTest (<WORKSPACE>\\plutus-be\\node_modules\\jest-circus\\build\\run.js:316:40)\n    at _runTest (<WORKSPACE>\\plutus-be\\node_modules\\jest-circus\\build\\run.js:252:3)\n    at _runTestsForDescribeBlock (<WORKSPACE>\\plutus-be\\node_modules\\jest-circus\\build\\run.js:126:9)\n    at _runTestsForDescribeBlock (<WORKSPACE>\\plutus-be\\node_modules\\jest-circus\\build\\run.js:121:9)\n    at run (<WORKSPACE>\\plutus-be\\node_modules\\jest-circus\\build\\run.js:71:3)\n    at runAndTransformResultsToJestFormat (<WORKSPACE>\\plutus-be\\node_modules\\jest-circus\\build\\legacy-code-todo-rewrite\\jestAdapterInit.js:122:21)\n    at jestAdapter (<WORKSPACE>\\plutus-be\\node_mod"
+        }
+      ],
+      "calibrated": true
+    },
+    {
+      "id": "forecast-minimum",
+      "startedAt": "2026-11-01T09:58:56.108Z",
+      "finishedAt": "2026-11-01T09:58:58.884Z",
+      "mutation": {
+        "file": "src/project/project-financials.service.ts",
+        "from": "committedTotal.amount > paidFromExpenses.amount",
+        "to": "committedTotal.amount < paidFromExpenses.amount"
+      },
+      "exitCode": 1,
+      "cleanup": true,
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "--require",
+        "<OWNED_STAGE>\\test\\qa\\support\\runtime-guard.cjs",
+        "<WORKSPACE>\\plutus-be\\node_modules\\jest\\bin\\jest.js",
+        "--runInBand",
+        "--no-cache",
+        "--json",
+        "--outputFile",
+        "<WORKSPACE>\\plutus-be\\.qa-agent-work\\independent-validation-2026-11-01\\sensitivity-audit\\forecast-minimum\\jest.json",
+        "--config",
+        "test/jest-qa-unit.cjs",
+        "--runTestsByPath",
+        "src/schema/common.qa.spec.ts",
+        "src/project/project-financials.qa.spec.ts"
+      ],
+      "counts": {
+        "total": 28,
+        "passed": 24,
+        "failed": 4,
+        "pending": 0,
+        "runtimeErrorSuites": 0
+      },
+      "assertionFailures": [
+        {
+          "title": "Project financial recomputation (unit model doubles) calculates independent budget, commitment, expense and retention totals without double-counting contract expenses",
+          "message": "Error: expect(received).toMatchObject(expected)\n\n- Expected  - 2\n+ Received  + 2\n\n@@ -6,15 +6,15 @@\n    \"committedTotal\": Object {\n      \"amount\": 135000,\n      \"currency\": \"AUD\",\n    },\n    \"forecastFinalCost\": Object {\n-     \"amount\": 135000,\n+     \"amount\": 25000,\n      \"currency\": \"AUD\",\n    },\n    \"forecastVariance\": Object {\n-     \"amount\": 875000,\n+     \"amount\": 985000,\n      \"currency\": \"AUD\",\n    },\n    \"invoicedTotal\": Object {\n      \"amount\": 30000,\n      \"currency\": \"AUD\",\n    at Object.<anonymous> (<OWNED_STAGE>\\src\\project\\project-financials.qa.spec.ts:116:20)"
+        },
+        {
+          "title": "Project financial recomputation (unit model doubles) replaces stale budget and contract totals when those inputs change",
+          "message": "Error: expect(received).toMatchObject(expected)\n\n- Expected  - 2\n+ Received  + 2\n\n@@ -2,15 +2,15 @@\n    \"committedTotal\": Object {\n      \"amount\": 250000,\n      \"currency\": \"AUD\",\n    },\n    \"forecastFinalCost\": Object {\n-     \"amount\": 250000,\n+     \"amount\": 0,\n      \"currency\": \"AUD\",\n    },\n    \"forecastVariance\": Object {\n-     \"amount\": -50000,\n+     \"amount\": 200000,\n      \"currency\": \"AUD\",\n    },\n    \"originalBudget\": Object {\n      \"amount\": 200000,\n      \"currency\": \"AUD\",\n    at Object.<anonymous> (<OWNED_STAGE>\\src\\project\\project-financials.qa.spec.ts:170:27)"
+        },
+        {
+          "title": "Project financial recomputation (unit model doubles) repeated recomputation is financially idempotent rather than accumulating prior totals",
+          "message": "Error: expect(received).toMatchObject(expected)\n\n- Expected  - 1\n+ Received  + 1\n\n@@ -2,11 +2,11 @@\n    \"committedTotal\": Object {\n      \"amount\": 123456,\n      \"currency\": \"AUD\",\n    },\n    \"forecastVariance\": Object {\n-     \"amount\": 877333,\n+     \"amount\": 1000789,\n      \"currency\": \"AUD\",\n    },\n    \"revisedBudget\": Object {\n      \"amount\": 1000789,\n      \"currency\": \"AUD\",\n    at Object.<anonymous> (<OWNED_STAGE>\\src\\project\\project-financials.qa.spec.ts:182:20)"
+        },
+        {
+          "title": "Project financial recomputation (unit model doubles) uses actual expense payments as the forecast floor when they exceed commitments",
+          "message": "Error: expect(received).toMatchObject(expected)\n\n- Expected  - 2\n+ Received  + 2\n\n@@ -2,15 +2,15 @@\n    \"committedTotal\": Object {\n      \"amount\": 10000,\n      \"currency\": \"AUD\",\n    },\n    \"forecastFinalCost\": Object {\n-     \"amount\": 15000,\n+     \"amount\": 10000,\n      \"currency\": \"AUD\",\n    },\n    \"forecastVariance\": Object {\n-     \"amount\": 985000,\n+     \"amount\": 990000,\n      \"currency\": \"AUD\",\n    },\n    \"paidTotal\": Object {\n      \"amount\": 15000,\n      \"currency\": \"AUD\",\n    at Object.<anonymous> (<OWNED_STAGE>\\src\\project\\project-financials.qa.spec.ts:190:60)"
+        }
+      ],
+      "calibrated": true
+    },
+    {
+      "id": "variation-tenant-filter-omitted",
+      "startedAt": "2026-11-01T09:58:58.886Z",
+      "finishedAt": "2026-11-01T09:59:01.822Z",
+      "mutation": {
+        "file": "src/project/project-financials.service.ts",
+        "from": ".find({ tenantId, projectId, status: 'Approved', deletedAt: null })",
+        "to": ".find({ projectId, status: 'Approved', deletedAt: null })"
+      },
+      "exitCode": 1,
+      "cleanup": true,
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "--require",
+        "<OWNED_STAGE>\\test\\qa\\support\\runtime-guard.cjs",
+        "<WORKSPACE>\\plutus-be\\node_modules\\jest\\bin\\jest.js",
+        "--runInBand",
+        "--no-cache",
+        "--json",
+        "--outputFile",
+        "<WORKSPACE>\\plutus-be\\.qa-agent-work\\independent-validation-2026-11-01\\sensitivity-audit\\variation-tenant-filter-omitted\\jest.json",
+        "--config",
+        "test/jest-qa-unit.cjs",
+        "--runTestsByPath",
+        "src/schema/common.qa.spec.ts",
+        "src/project/project-financials.qa.spec.ts"
+      ],
+      "counts": {
+        "total": 28,
+        "passed": 27,
+        "failed": 1,
+        "pending": 0,
+        "runtimeErrorSuites": 0
+      },
+      "assertionFailures": [
+        {
+          "title": "Project financial recomputation (unit model doubles) queries only this tenant/project and excludes deleted and unapproved source rows",
+          "message": "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  - 1\n+ Received  + 1\n\n  Object {\n-   \"amount\": 100,\n+   \"amount\": 500,\n    \"currency\": \"AUD\",\n  }\n    at Object.<anonymous> (<OWNED_STAGE>\\src\\project\\project-financials.qa.spec.ts:137:39)"
+        }
+      ],
+      "calibrated": true
+    }
+  ],
+  "limitations": [
+    "No frontend mutation experiment",
+    "No real database/security/storage mutation experiment",
+    "Baseline28 and mutated reruns are calibration, not additional product coverage"
+  ]
+}

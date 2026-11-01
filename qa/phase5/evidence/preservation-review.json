@@ -1,0 +1,1355 @@
+{
+  "reviewer": "independent_preservation, fresh native reviewer; did not author reviewed changes",
+  "startedAtUtc": "2026-11-01T09:59:21.196Z",
+  "completedAtUtc": "2026-11-01T09:59:22.455Z",
+  "command": "node .qa-agent-work/independent-validation-2026-11-01/preservation-audit/audit.cjs",
+  "nodeVersion": "v24.15.0",
+  "scope": "Read-only baseline/Git/ignore/export inspection. Writes only this assigned raw review directory. No application checks, services, dependencies, network calls, credential reads, source changes or external actions.",
+  "baselineChecks": [
+    {
+      "repository": "plutus-fe",
+      "phase": "phase1",
+      "baseline": "plutus-fe/.qa-agent-work/phase-1-2026-11-01/baseline.json",
+      "baselineSha256": "2e190e5de374e4ed7134b93dbf59b8b028a0185ec43c91a8432c34393a875952",
+      "baselineHead": "a95174dffa8b41bd8650fd053178018dd03c18ad",
+      "total": 192,
+      "unchanged": 189,
+      "changes": [
+        {
+          "path": ".gitignore",
+          "before": "3260536738d2f7a1eba5895e582b34dea1411911cef7f697aa1c1105f48a4eca",
+          "after": "38080ca13bc1c6032b0f554d50a32ac53727ba5f3760e61303ba84a284d6a6fb",
+          "trackedAtBaseline": true
+        },
+        {
+          "path": "package-lock.json",
+          "before": "c1664bac093003fad5e38a440ae802e8a3ea57136a4bb870cdd20e0f2483fc67",
+          "after": "6c144af88fd9ddedbfe22f6cf91d25ca77b187fc1008938f52087ab3cd464e4f",
+          "trackedAtBaseline": true
+        },
+        {
+          "path": "package.json",
+          "before": "67dfafce03434b5cc4579f5bead418daa494ec8ec48a3d0568d0c6f72df16e88",
+          "after": "93a753f651a3372fa1c41718ef4255851eb08317e25c86d0516201d1f09e9566",
+          "trackedAtBaseline": true
+        }
+      ],
+      "originalWip": [
+        {
+          "path": "scripts/workspaces.test.cjs",
+          "before": "584f0742f45c93369445a19a0d0fb41907ffacb72063804ccfd01117fe92745c",
+          "after": "584f0742f45c93369445a19a0d0fb41907ffacb72063804ccfd01117fe92745c",
+          "trackedAtBaseline": false
+        },
+        {
+          "path": "src/app/api/active-organisation/route.ts",
+          "before": "8745c1ffa6462eec41e415b596bdf9c19fc627dacd9c128d9ec7e9064499aa0e",
+          "after": "8745c1ffa6462eec41e415b596bdf9c19fc627dacd9c128d9ec7e9064499aa0e",
+          "trackedAtBaseline": false
+        },
+        {
+          "path": "src/app/components/auth/InvitationAccountNotice.tsx",
+          "before": "f7f869903eea5d550d222ea3bffee60775499af0f65815e097205504efa43a1a",
+          "after": "f7f869903eea5d550d222ea3bffee60775499af0f65815e097205504efa43a1a",
+          "trackedAtBaseline": false
+        },
+        {
+          "path": "src/app/components/dashboard/OrganisationSwitcher.tsx",
+          "before": "9fb400b9154505b891f0cd7361426cbd2ebb93031ecd668ff49ed4b43b2a48c5",
+          "after": "9fb400b9154505b891f0cd7361426cbd2ebb93031ecd668ff49ed4b43b2a48c5",
+          "trackedAtBaseline": false
+        },
+        {
+          "path": "src/lib/active-organisation-cookie.ts",
+          "before": "09d8924273ecfc18501b7b67dca3ef0e039d45233090c25ae59d503d70eea4ed",
+          "after": "09d8924273ecfc18501b7b67dca3ef0e039d45233090c25ae59d503d70eea4ed",
+          "trackedAtBaseline": false
+        },
+        {
+          "path": "src/lib/invitation-account-switch.ts",
+          "before": "472ec453492bd7ae1fac43055b50ddbe38730c6298fdc5701c60253bd75fc69a",
+          "after": "472ec453492bd7ae1fac43055b50ddbe38730c6298fdc5701c60253bd75fc69a",
+          "trackedAtBaseline": false
+        },
+        {
+          "path": "src/lib/organisation-binding.ts",
+          "before": "e43948647e884f7f91a850bdc8bcff61ba752243cf45f57918c79a04007f6361",
+          "after": "e43948647e884f7f91a850bdc8bcff61ba752243cf45f57918c79a04007f6361",
+          "trackedAtBaseline": false
+        },
+        {
+          "path": "src/lib/organisation-routing.ts",
+          "before": "fa3dbcb411a31188d02c66274da957fc6ad6e188f6e7b96d1452158a6b762427",
+          "after": "fa3dbcb411a31188d02c66274da957fc6ad6e188f6e7b96d1452158a6b762427",
+          "trackedAtBaseline": false
+        },
+        {
+          "path": "src/lib/team-management-errors.ts",
+          "before": "af0417067ec2bc618a147f32035cec12167b980ddf94823848397239a772801c",
+          "after": "af0417067ec2bc618a147f32035cec12167b980ddf94823848397239a772801c",
+          "trackedAtBaseline": false
+        },
+        {
+          "path": "src/services/organisationService.ts",
+          "before": "65f79e0ffc73d485940502cf80f52cbe99f5af59fd664771c8cd5957b02d65e2",
+          "after": "65f79e0ffc73d485940502cf80f52cbe99f5af59fd664771c8cd5957b02d65e2",
+          "trackedAtBaseline": false
+        }
+      ],
+      "importantPathsAtBaseline": {
+        "package.json": {
+          "exists": true,
+          "tracked": true,
+          "dirty": false
+        },
+        "package-lock.json": {
+          "exists": true,
+          "tracked": true,
+          "dirty": false
+        },
+        "tsconfig.json": {
+          "exists": true,
+          "tracked": true,
+          "dirty": false
+        },
+        "AUDIT.md": {
+          "exists": false,
+          "tracked": false,
+          "dirty": false
+        }
+      }
+    },
+    {
+      "repository": "plutus-be",
+      "phase": "phase1",
+      "baseline": "plutus-be/.qa-agent-work/phase-1-2026-11-01/baseline.json",
+      "baselineSha256": "e5102a98afa1df31c409eefc248038dfd0c4fbeb726833aaf8d1ea37e9e26eed",
+      "baselineHead": "f3fdc7998a8b5e8bfc913cadf464f23eeb3332b7",
+      "total": 211,
+      "unchanged": 208,
+      "changes": [
+        {
+          "path": ".dockerignore",
+          "before": "fd1f7e871164d10116698de0b927b180a265c4abb5846d1dcf8bb77e634c3c42",
+          "after": "232266593e377a87b4c60daa267d0573d3954a455733a6ef8be9ce4a2309ba18",
+          "trackedAtBaseline": true
+        },
+        {
+          "path": ".gitignore",
+          "before": "5e72b90173cc0772a8a42226aac0de17cec19a2f626d316c8afc9a140bf184c1",
+          "after": "02c6862cd9b7d552da9b4923e9121260c4a9d98cac3c64b6e3e8c186ba4833c6",
+          "trackedAtBaseline": true
+        },
+        {
+          "path": "test/app.e2e-spec.ts",
+          "before": "5b0a1515e0e8742be82b50bdb4f35060b02bf323abaad22f32d3df482ae670b5",
+          "after": "e05a131870aaf7510da0c9d1d364a5626e9fdd5e56c1a54cb5058b328182b272",
+          "trackedAtBaseline": true
+        }
+      ],
+      "originalWip": [
+        {
+          "path": "scripts/diagnose.cjs",
+          "before": "e4e1bd85da07903d21330d47559f123c02ac8252a7f2f7c6c467845938524463",
+          "after": "e4e1bd85da07903d21330d47559f123c02ac8252a7f2f7c6c467845938524463",
+          "trackedAtBaseline": false
+        },
+        {
+          "path": "src/auth/status.guard.spec.ts",
+          "before": "555d4d009121e9247283d751f162a64bf2d66c7ccd26721d9e84d742b1bcb50f",
+          "after": "555d4d009121e9247283d751f162a64bf2d66c7ccd26721d9e84d742b1bcb50f",
+          "trackedAtBaseline": false
+        },
+        {
+          "path": "src/membership/membership.module.ts",
+          "before": "07ca75845856b6c02e9026973bddb1bf1a656491ce5a5ab65ed120d6b354050e",
+          "after": "07ca75845856b6c02e9026973bddb1bf1a656491ce5a5ab65ed120d6b354050e",
+          "trackedAtBaseline": false
+        },
+        {
+          "path": "src/membership/membership.service.ts",
+          "before": "c4859bf6ac4e558f4a1145ea12ee50465004db7ce139027f477e8e6c55e037f0",
+          "after": "c4859bf6ac4e558f4a1145ea12ee50465004db7ce139027f477e8e6c55e037f0",
+          "trackedAtBaseline": false
+        },
+        {
+          "path": "src/membership/organisation-membership.schema.ts",
+          "before": "2404742523db129ae21a8e2b8ccf29f7edc62b0521088b1fa3f6acc3db1ed392",
+          "after": "2404742523db129ae21a8e2b8ccf29f7edc62b0521088b1fa3f6acc3db1ed392",
+          "trackedAtBaseline": false
+        },
+        {
+          "path": "test/construction.e2e-spec.ts",
+          "before": "92f6cd57a0f11173177ffb67988801ef1a7fdb1d85f8592d3f27c12b9abd43bf",
+          "after": "92f6cd57a0f11173177ffb67988801ef1a7fdb1d85f8592d3f27c12b9abd43bf",
+          "trackedAtBaseline": false
+        },
+        {
+          "path": "test/membership.e2e-spec.ts",
+          "before": "277bed8eeffd31c557a183a6365f3db7788c6995fc6b515d4f5df9e6f065b7b7",
+          "after": "277bed8eeffd31c557a183a6365f3db7788c6995fc6b515d4f5df9e6f065b7b7",
+          "trackedAtBaseline": false
+        },
+        {
+          "path": "test/support/isolated-app.ts",
+          "before": "f10adc1e50fa939b5f405ad4a36a53bd87f921379f7038ff304888b32a8d34b9",
+          "after": "f10adc1e50fa939b5f405ad4a36a53bd87f921379f7038ff304888b32a8d34b9",
+          "trackedAtBaseline": false
+        },
+        {
+          "path": "test/tsconfig.json",
+          "before": "a013bb2c0a7d8e4879cbe5874c1768932e9ee2dc1bc12612298076090e9f5af1",
+          "after": "a013bb2c0a7d8e4879cbe5874c1768932e9ee2dc1bc12612298076090e9f5af1",
+          "trackedAtBaseline": false
+        }
+      ],
+      "importantPathsAtBaseline": {
+        "package.json": {
+          "exists": true,
+          "tracked": true,
+          "dirty": false
+        },
+        "package-lock.json": {
+          "exists": true,
+          "tracked": true,
+          "dirty": false
+        },
+        "tsconfig.json": {
+          "exists": true,
+          "tracked": true,
+          "dirty": false
+        },
+        "AUDIT.md": {
+          "exists": false,
+          "tracked": false,
+          "dirty": false
+        }
+      }
+    },
+    {
+      "repository": "plutus-be",
+      "phase": "phase2",
+      "baseline": "plutus-be/.qa-agent-work/backend-phase-2026-11-01/baseline.json",
+      "baselineSha256": "06c8ea01f9a287c18caa027780b82971f16baee1e0cea8bc4e3fa1abe2a0fc8b",
+      "baselineHead": "f3fdc7998a8b5e8bfc913cadf464f23eeb3332b7",
+      "total": 211,
+      "unchanged": 209,
+      "changes": [
+        {
+          "path": ".dockerignore",
+          "before": "fd1f7e871164d10116698de0b927b180a265c4abb5846d1dcf8bb77e634c3c42",
+          "after": "232266593e377a87b4c60daa267d0573d3954a455733a6ef8be9ce4a2309ba18",
+          "trackedAtBaseline": true
+        },
+        {
+          "path": "test/app.e2e-spec.ts",
+          "before": "5b0a1515e0e8742be82b50bdb4f35060b02bf323abaad22f32d3df482ae670b5",
+          "after": "e05a131870aaf7510da0c9d1d364a5626e9fdd5e56c1a54cb5058b328182b272",
+          "trackedAtBaseline": true
+        }
+      ],
+      "originalWip": [
+        {
+          "path": "scripts/diagnose.cjs",
+          "before": "e4e1bd85da07903d21330d47559f123c02ac8252a7f2f7c6c467845938524463",
+          "after": "e4e1bd85da07903d21330d47559f123c02ac8252a7f2f7c6c467845938524463",
+          "trackedAtBaseline": false
+        },
+        {
+          "path": "src/auth/status.guard.spec.ts",
+          "before": "555d4d009121e9247283d751f162a64bf2d66c7ccd26721d9e84d742b1bcb50f",
+          "after": "555d4d009121e9247283d751f162a64bf2d66c7ccd26721d9e84d742b1bcb50f",
+          "trackedAtBaseline": false
+        },
+        {
+          "path": "src/membership/membership.module.ts",
+          "before": "07ca75845856b6c02e9026973bddb1bf1a656491ce5a5ab65ed120d6b354050e",
+          "after": "07ca75845856b6c02e9026973bddb1bf1a656491ce5a5ab65ed120d6b354050e",
+          "trackedAtBaseline": false
+        },
+        {
+          "path": "src/membership/membership.service.ts",
+          "before": "c4859bf6ac4e558f4a1145ea12ee50465004db7ce139027f477e8e6c55e037f0",
+          "after": "c4859bf6ac4e558f4a1145ea12ee50465004db7ce139027f477e8e6c55e037f0",
+          "trackedAtBaseline": false
+        },
+        {
+          "path": "src/membership/organisation-membership.schema.ts",
+          "before": "2404742523db129ae21a8e2b8ccf29f7edc62b0521088b1fa3f6acc3db1ed392",
+          "after": "2404742523db129ae21a8e2b8ccf29f7edc62b0521088b1fa3f6acc3db1ed392",
+          "trackedAtBaseline": false
+        },
+        {
+          "path": "test/construction.e2e-spec.ts",
+          "before": "92f6cd57a0f11173177ffb67988801ef1a7fdb1d85f8592d3f27c12b9abd43bf",
+          "after": "92f6cd57a0f11173177ffb67988801ef1a7fdb1d85f8592d3f27c12b9abd43bf",
+          "trackedAtBaseline": false
+        },
+        {
+          "path": "test/membership.e2e-spec.ts",
+          "before": "277bed8eeffd31c557a183a6365f3db7788c6995fc6b515d4f5df9e6f065b7b7",
+          "after": "277bed8eeffd31c557a183a6365f3db7788c6995fc6b515d4f5df9e6f065b7b7",
+          "trackedAtBaseline": false
+        },
+        {
+          "path": "test/support/isolated-app.ts",
+          "before": "f10adc1e50fa939b5f405ad4a36a53bd87f921379f7038ff304888b32a8d34b9",
+          "after": "f10adc1e50fa939b5f405ad4a36a53bd87f921379f7038ff304888b32a8d34b9",
+          "trackedAtBaseline": false
+        },
+        {
+          "path": "test/tsconfig.json",
+          "before": "a013bb2c0a7d8e4879cbe5874c1768932e9ee2dc1bc12612298076090e9f5af1",
+          "after": "a013bb2c0a7d8e4879cbe5874c1768932e9ee2dc1bc12612298076090e9f5af1",
+          "trackedAtBaseline": false
+        }
+      ]
+    },
+    {
+      "repository": "plutus-fe",
+      "phase": "phase3",
+      "baseline": "plutus-fe/.qa-agent-work/frontend-phase-2026-11-01/plutus-fe-baseline.json",
+      "baselineSha256": "2ac710f3739c0d922bd12c93564a3cbc2648a07380f84ac0abee547ac22f8e53",
+      "baselineHead": "a95174dffa8b41bd8650fd053178018dd03c18ad",
+      "total": 234,
+      "unchanged": 232,
+      "changes": [
+        {
+          "path": "package-lock.json",
+          "before": "c1664bac093003fad5e38a440ae802e8a3ea57136a4bb870cdd20e0f2483fc67",
+          "after": "6c144af88fd9ddedbfe22f6cf91d25ca77b187fc1008938f52087ab3cd464e4f"
+        },
+        {
+          "path": "package.json",
+          "before": "67dfafce03434b5cc4579f5bead418daa494ec8ec48a3d0568d0c6f72df16e88",
+          "after": "93a753f651a3372fa1c41718ef4255851eb08317e25c86d0516201d1f09e9566"
+        }
+      ],
+      "originalWip": []
+    },
+    {
+      "repository": "plutus-be",
+      "phase": "phase3",
+      "baseline": "plutus-fe/.qa-agent-work/frontend-phase-2026-11-01/plutus-be-baseline.json",
+      "baselineSha256": "02285bbbfca7bf79eb6519769aef38ea3737d2bf1d85c6f56820c614791b2c6e",
+      "baselineHead": "f3fdc7998a8b5e8bfc913cadf464f23eeb3332b7",
+      "total": 236,
+      "unchanged": 234,
+      "changes": [
+        {
+          "path": ".dockerignore",
+          "before": "fd1f7e871164d10116698de0b927b180a265c4abb5846d1dcf8bb77e634c3c42",
+          "after": "232266593e377a87b4c60daa267d0573d3954a455733a6ef8be9ce4a2309ba18"
+        },
+        {
+          "path": "scripts/qa/run-isolated.cjs",
+          "before": "35e58dd842323c9fbc05f969dfedede0f852066a206028d6bbc1eb648831834d",
+          "after": "5f2a4c22c4bbac90a31cb65dd6ef19b11a266f0fc136d47b4ef00491477495b5"
+        }
+      ],
+      "originalWip": []
+    },
+    {
+      "repository": "plutus-fe",
+      "phase": "phase4",
+      "baseline": "plutus-fe/.qa-agent-work/ci-phase-2026-11-01/baseline.json",
+      "baselineSha256": "3f46fc47f59552fa48bfe84efc1f8b468fd58f7698f395b6ea32177af6b2bf06",
+      "baselineHead": "a95174dffa8b41bd8650fd053178018dd03c18ad",
+      "total": 268,
+      "unchanged": 268,
+      "changes": [],
+      "originalWip": []
+    },
+    {
+      "repository": "plutus-be",
+      "phase": "phase4",
+      "baseline": "plutus-be/.qa-agent-work/ci-phase-2026-11-01/baseline.json",
+      "baselineSha256": "4a0d3e8c9ffb027726b83652fe9f3221383dca9ff0e6a6ce36efe9a7dc5d42f6",
+      "baselineHead": "f3fdc7998a8b5e8bfc913cadf464f23eeb3332b7",
+      "total": 236,
+      "unchanged": 234,
+      "changes": [
+        {
+          "path": ".dockerignore",
+          "before": "fd1f7e871164d10116698de0b927b180a265c4abb5846d1dcf8bb77e634c3c42",
+          "after": "232266593e377a87b4c60daa267d0573d3954a455733a6ef8be9ce4a2309ba18"
+        },
+        {
+          "path": "scripts/qa/run-isolated.cjs",
+          "before": "35e58dd842323c9fbc05f969dfedede0f852066a206028d6bbc1eb648831834d",
+          "after": "5f2a4c22c4bbac90a31cb65dd6ef19b11a266f0fc136d47b4ef00491477495b5"
+        }
+      ],
+      "originalWip": []
+    }
+  ],
+  "repositories": [
+    {
+      "repository": "plutus-fe",
+      "head": "a95174dffa8b41bd8650fd053178018dd03c18ad",
+      "branch": "develop",
+      "status": [
+        " M .gitignore",
+        " M package-lock.json",
+        " M package.json",
+        "?? .github/workflows/qa.yml",
+        "?? eslint.config.mjs",
+        "?? playwright.qa.config.ts",
+        "?? qa/browser/fixtures.ts",
+        "?? qa/ci/export.test.cjs",
+        "?? qa/ci/validation.test.cjs",
+        "?? qa/defects.md",
+        "?? qa/evidence/change-inventory.json",
+        "?? qa/evidence/component-coverage.json",
+        "?? qa/evidence/contract-detail-404.chromium.png",
+        "?? qa/evidence/final-process-check.json",
+        "?? qa/evidence/frontend-phase-summary.json",
+        "?? qa/evidence/isolation-status.json",
+        "?? qa/evidence/preservation.json",
+        "?? qa/evidence/selected-artifacts.json",
+        "?? qa/frontend-testing.md",
+        "?? qa/harness/component-setup.ts",
+        "?? qa/harness/font-responses.cjs",
+        "?? qa/harness/next-server.cjs",
+        "?? qa/harness/node-guard.cjs",
+        "?? qa/harness/node-guard.test.ts",
+        "?? qa/harness/run-browser.cjs",
+        "?? qa/phase4/README.md",
+        "?? qa/phase4/ci-cd-evidence.md",
+        "?? qa/phase4/defect-register.md",
+        "?? qa/phase4/evidence/change-inventory.json",
+        "?? qa/phase4/evidence/export-result.json",
+        "?? qa/phase4/evidence/local-matrix.json",
+        "?? qa/phase4/evidence/preservation.json",
+        "?? qa/phase4/evidence/process-check.json",
+        "?? qa/phase4/export-allowlist.json",
+        "?? qa/phase4/human-validation.md",
+        "?? qa/phase4/requirement-risk-matrix.md",
+        "?? qa/phase4/review-record.md",
+        "?? qa/phase4/service-and-deployment-design.md",
+        "?? qa/requirements.md",
+        "?? qa/review-record.md",
+        "?? scripts/qa/ci-common.cjs",
+        "?? scripts/qa/ci-job.cjs",
+        "?? scripts/qa/ci-policy.cjs",
+        "?? scripts/qa/export-evidence.cjs",
+        "?? scripts/qa/prepare.cjs",
+        "?? scripts/qa/run-isolated.cjs",
+        "?? scripts/qa/validate-ci.cjs",
+        "?? scripts/workspaces.test.cjs",
+        "?? src/app/api/active-organisation/route.ts",
+        "?? src/app/components/auth/InvitationAccountNotice.tsx",
+        "?? src/app/components/dashboard/OrganisationSwitcher.tsx",
+        "?? src/lib/active-organisation-cookie.ts",
+        "?? src/lib/invitation-account-switch.ts",
+        "?? src/lib/organisation-binding.ts",
+        "?? src/lib/organisation-routing.ts",
+        "?? src/lib/team-management-errors.ts",
+        "?? src/services/organisationService.ts",
+        "?? tests/browser/auth-navigation.mocked-browser.spec.ts",
+        "?? tests/browser/contracts-navigation.mocked-browser.spec.ts",
+        "?? tests/browser/route-accessibility.mocked-browser.spec.ts",
+        "?? tests/components/auth-gates.test.tsx",
+        "?? tests/components/billing-page.test.tsx",
+        "?? tests/components/contact-page.test.tsx",
+        "?? tests/components/expense-dialog.test.tsx",
+        "?? tests/components/supplier-dialog.test.tsx",
+        "?? tests/components/suppliers-page.test.tsx",
+        "?? tsconfig.qa.json",
+        "?? vitest.config.mts"
+      ],
+      "trackedCount": 225,
+      "untrackedVersionableCount": 65,
+      "workingIdentityFileCount": 289,
+      "trackedRemovals": [],
+      "cachedRemovals": [],
+      "stagedNames": [],
+      "protectedPathsRead": 0,
+      "originalGitignorePrefixPreserved": true,
+      "addedGitignoreContent": "\r\n# Local QA coordination and raw tool output\r\n/.qa-agent-work/\r\n/qa-raw/vitest-coverage/\r\n/qa-raw/vitest-results/\r\n/qa-raw/playwright-report/\r\n/qa-raw/playwright-results/\r\n",
+      "trackedRawAgentPaths": [],
+      "roleFiles": [
+        {
+          "path": ".codex/agents/qa-planner.toml",
+          "exists": false
+        },
+        {
+          "path": ".codex/agents/qa-backend.toml",
+          "exists": false
+        },
+        {
+          "path": ".codex/agents/qa-frontend.toml",
+          "exists": false
+        },
+        {
+          "path": ".codex/agents/qa-system-tester.toml",
+          "exists": false
+        },
+        {
+          "path": ".codex/agents/qa-reviewer.toml",
+          "exists": false
+        }
+      ],
+      "deliverablePathsChecked": 52,
+      "deliveryIgnoreExit": 1,
+      "deliveryIgnoreOutput": "",
+      "rawIgnoreExit": 0,
+      "rawIgnoreOutput": ".gitignore:39:/.qa-agent-work/\t.qa-agent-work/independent-validation-2026-11-01/probe.txt\n.gitignore:40:/qa-raw/vitest-coverage/\tqa-raw/vitest-coverage/probe.json\n.gitignore:41:/qa-raw/vitest-results/\tqa-raw/vitest-results/probe.json\n.gitignore:42:/qa-raw/playwright-report/\tqa-raw/playwright-report/probe.html\n.gitignore:43:/qa-raw/playwright-results/\tqa-raw/playwright-results/probe.zip\n",
+      "negativeIgnoreExit": 1,
+      "negativeIgnoreOutput": "",
+      "ignoredDelivery": []
+    },
+    {
+      "repository": "plutus-be",
+      "head": "f3fdc7998a8b5e8bfc913cadf464f23eeb3332b7",
+      "branch": "development",
+      "status": [
+        " M .dockerignore",
+        " M .gitignore",
+        " M test/app.e2e-spec.ts",
+        "?? .github/workflows/qa.yml",
+        "?? eslint.config.mjs",
+        "?? qa/backend-testing.md",
+        "?? qa/ci/README.md",
+        "?? qa/ci/validation.test.cjs",
+        "?? qa/defects.md",
+        "?? qa/evidence/backend-phase-summary.json",
+        "?? qa/evidence/isolation-status.json",
+        "?? qa/evidence/preservation.json",
+        "?? qa/evidence/qa-unit-coverage.json",
+        "?? qa/requirements.md",
+        "?? qa/review-record.md",
+        "?? scripts/diagnose.cjs",
+        "?? scripts/qa/ci-common.cjs",
+        "?? scripts/qa/ci-job.cjs",
+        "?? scripts/qa/ci-policy.cjs",
+        "?? scripts/qa/prepare.cjs",
+        "?? scripts/qa/run-isolated.cjs",
+        "?? scripts/qa/validate-ci.cjs",
+        "?? src/auth/jwt.strategy.qa.spec.ts",
+        "?? src/auth/status.guard.qa.spec.ts",
+        "?? src/auth/status.guard.spec.ts",
+        "?? src/billing/guards/plan.guard.qa.spec.ts",
+        "?? src/document/document.service.qa.spec.ts",
+        "?? src/membership/membership.module.ts",
+        "?? src/membership/membership.service.ts",
+        "?? src/membership/organisation-membership.schema.ts",
+        "?? src/project/project-financials.qa.spec.ts",
+        "?? src/schema/common.qa.spec.ts",
+        "?? test/construction.e2e-spec.ts",
+        "?? test/jest-qa-contract.cjs",
+        "?? test/jest-qa-harness.cjs",
+        "?? test/jest-qa-unit.cjs",
+        "?? test/membership.e2e-spec.ts",
+        "?? test/qa/runtime-guard.spec.ts",
+        "?? test/qa/support/runtime-guard.cjs",
+        "?? test/support/isolated-app.ts",
+        "?? test/tsconfig.json",
+        "?? test/tsconfig.qa.json"
+      ],
+      "trackedCount": 207,
+      "untrackedVersionableCount": 39,
+      "workingIdentityFileCount": 245,
+      "trackedRemovals": [],
+      "cachedRemovals": [],
+      "stagedNames": [],
+      "protectedPathsRead": 0,
+      "originalGitignorePrefixPreserved": true,
+      "addedGitignoreContent": "\r\n# Local QA coordination and raw tool output\r\n/.qa-agent-work/\r\n/qa-raw/jest-coverage/\r\n/qa-raw/jest-results/\r\n",
+      "trackedRawAgentPaths": [],
+      "roleFiles": [
+        {
+          "path": ".codex/agents/qa-planner.toml",
+          "exists": false
+        },
+        {
+          "path": ".codex/agents/qa-backend.toml",
+          "exists": false
+        },
+        {
+          "path": ".codex/agents/qa-frontend.toml",
+          "exists": false
+        },
+        {
+          "path": ".codex/agents/qa-system-tester.toml",
+          "exists": false
+        },
+        {
+          "path": ".codex/agents/qa-reviewer.toml",
+          "exists": false
+        }
+      ],
+      "deliverablePathsChecked": 35,
+      "deliveryIgnoreExit": 1,
+      "deliveryIgnoreOutput": "",
+      "rawIgnoreExit": 0,
+      "rawIgnoreOutput": ".gitignore:34:/.qa-agent-work/\t.qa-agent-work/independent-validation-2026-11-01/probe.txt\n.gitignore:35:/qa-raw/jest-coverage/\tqa-raw/jest-coverage/probe.json\n.gitignore:36:/qa-raw/jest-results/\tqa-raw/jest-results/probe.json\n",
+      "negativeIgnoreExit": 1,
+      "negativeIgnoreOutput": "",
+      "ignoredDelivery": []
+    }
+  ],
+  "feManifestLock": {
+    "applicationDependenciesUnchanged": true,
+    "originalDevDependenciesPreserved": true,
+    "originalScriptsPreserved": true,
+    "originalNonRootLockEntries": 904,
+    "originalLockEntriesChanged": [],
+    "addedLockEntries": 196,
+    "addedDevDependencies": {
+      "vitest": "3.2.6",
+      "@vitest/coverage-v8": "3.2.6",
+      "vite": "6.4.1",
+      "@testing-library/react": "16.3.0",
+      "@testing-library/dom": "10.4.1",
+      "@testing-library/user-event": "14.6.1",
+      "@testing-library/jest-dom": "6.9.1",
+      "jsdom": "26.1.0",
+      "@playwright/test": "1.58.2",
+      "@types/estree": "1.0.8"
+    },
+    "addedPinsExact": true,
+    "rootTsconfigUnchangedFromPhase1": true,
+    "auditFileAbsent": true
+  },
+  "mirror": {
+    "originalSha256": "da41f8eef953d9b252cf35ec084ef6f6b95176b66db7b2554a951018fb25dccf",
+    "currentSha256": "da41f8eef953d9b252cf35ec084ef6f6b95176b66db7b2554a951018fb25dccf",
+    "byteIdentical": true
+  },
+  "export": {
+    "root": "plutus-fe/.qa-agent-work/ci-phase-2026-11-01/exports/reviewed-qaSIxc",
+    "allowlistSha256": "aa982b395344b2f5d9704f0fc7e8dff9a055a8219b311148e73ca3531c485c8e",
+    "reviewedCount": 32,
+    "actualFileCount": 33,
+    "extras": [],
+    "missing": [],
+    "entries": [
+      {
+        "path": "plutus-fe/qa/frontend-testing.md",
+        "reviewed": "8ebba6e2d1d86236f12c92516d780e3350872569ba47c1f95c7d009919be7160",
+        "current": "8ebba6e2d1d86236f12c92516d780e3350872569ba47c1f95c7d009919be7160",
+        "exported": "8ebba6e2d1d86236f12c92516d780e3350872569ba47c1f95c7d009919be7160",
+        "manifest": "8ebba6e2d1d86236f12c92516d780e3350872569ba47c1f95c7d009919be7160",
+        "matches": true
+      },
+      {
+        "path": "plutus-fe/qa/requirements.md",
+        "reviewed": "63b7eec7577e1d034994cf77f2d4c34fe2e387657c48309f12461ee4e6229818",
+        "current": "63b7eec7577e1d034994cf77f2d4c34fe2e387657c48309f12461ee4e6229818",
+        "exported": "63b7eec7577e1d034994cf77f2d4c34fe2e387657c48309f12461ee4e6229818",
+        "manifest": "63b7eec7577e1d034994cf77f2d4c34fe2e387657c48309f12461ee4e6229818",
+        "matches": true
+      },
+      {
+        "path": "plutus-fe/qa/defects.md",
+        "reviewed": "263b7872e2f35445c4d8f2b2e1e3089a1751cebdcaa1bff9190cd42f09423477",
+        "current": "263b7872e2f35445c4d8f2b2e1e3089a1751cebdcaa1bff9190cd42f09423477",
+        "exported": "263b7872e2f35445c4d8f2b2e1e3089a1751cebdcaa1bff9190cd42f09423477",
+        "manifest": "263b7872e2f35445c4d8f2b2e1e3089a1751cebdcaa1bff9190cd42f09423477",
+        "matches": true
+      },
+      {
+        "path": "plutus-fe/qa/review-record.md",
+        "reviewed": "2cbeca411dcbfff83d086608b935d92d00e4d53ddbda026a19bba21e461c6b53",
+        "current": "2cbeca411dcbfff83d086608b935d92d00e4d53ddbda026a19bba21e461c6b53",
+        "exported": "2cbeca411dcbfff83d086608b935d92d00e4d53ddbda026a19bba21e461c6b53",
+        "manifest": "2cbeca411dcbfff83d086608b935d92d00e4d53ddbda026a19bba21e461c6b53",
+        "matches": true
+      },
+      {
+        "path": "plutus-fe/qa/evidence/frontend-phase-summary.json",
+        "reviewed": "8ff2ed31167f91f6dbfeb8f27e9166157d7dd947cae051059d630d7834035fb2",
+        "current": "8ff2ed31167f91f6dbfeb8f27e9166157d7dd947cae051059d630d7834035fb2",
+        "exported": "8ff2ed31167f91f6dbfeb8f27e9166157d7dd947cae051059d630d7834035fb2",
+        "manifest": "8ff2ed31167f91f6dbfeb8f27e9166157d7dd947cae051059d630d7834035fb2",
+        "matches": true
+      },
+      {
+        "path": "plutus-fe/qa/evidence/component-coverage.json",
+        "reviewed": "aecb98340d24569dec1c32a27295f455b715bdb3c94857ae3b245086cbf7399e",
+        "current": "aecb98340d24569dec1c32a27295f455b715bdb3c94857ae3b245086cbf7399e",
+        "exported": "aecb98340d24569dec1c32a27295f455b715bdb3c94857ae3b245086cbf7399e",
+        "manifest": "aecb98340d24569dec1c32a27295f455b715bdb3c94857ae3b245086cbf7399e",
+        "matches": true
+      },
+      {
+        "path": "plutus-fe/qa/evidence/isolation-status.json",
+        "reviewed": "e4419275f87b0edd9ae9a629d862cd0311dd4c4583f28a58249ff48c560065a3",
+        "current": "e4419275f87b0edd9ae9a629d862cd0311dd4c4583f28a58249ff48c560065a3",
+        "exported": "e4419275f87b0edd9ae9a629d862cd0311dd4c4583f28a58249ff48c560065a3",
+        "manifest": "e4419275f87b0edd9ae9a629d862cd0311dd4c4583f28a58249ff48c560065a3",
+        "matches": true
+      },
+      {
+        "path": "plutus-fe/qa/evidence/preservation.json",
+        "reviewed": "ff31cd4c715ef0dd164520bbcabffc72651af028e2a3de45939f8586d994533d",
+        "current": "ff31cd4c715ef0dd164520bbcabffc72651af028e2a3de45939f8586d994533d",
+        "exported": "ff31cd4c715ef0dd164520bbcabffc72651af028e2a3de45939f8586d994533d",
+        "manifest": "ff31cd4c715ef0dd164520bbcabffc72651af028e2a3de45939f8586d994533d",
+        "matches": true
+      },
+      {
+        "path": "plutus-fe/qa/evidence/change-inventory.json",
+        "reviewed": "b8c22d4886e3355282f20662bc4f2dbc3985a7f55b292dfbe84113e0864004e9",
+        "current": "b8c22d4886e3355282f20662bc4f2dbc3985a7f55b292dfbe84113e0864004e9",
+        "exported": "b8c22d4886e3355282f20662bc4f2dbc3985a7f55b292dfbe84113e0864004e9",
+        "manifest": "b8c22d4886e3355282f20662bc4f2dbc3985a7f55b292dfbe84113e0864004e9",
+        "matches": true
+      },
+      {
+        "path": "plutus-fe/qa/evidence/final-process-check.json",
+        "reviewed": "ccb2325336997a9da6746951ee780578e700fca67c5327c38d22072a5a97a49c",
+        "current": "ccb2325336997a9da6746951ee780578e700fca67c5327c38d22072a5a97a49c",
+        "exported": "ccb2325336997a9da6746951ee780578e700fca67c5327c38d22072a5a97a49c",
+        "manifest": "ccb2325336997a9da6746951ee780578e700fca67c5327c38d22072a5a97a49c",
+        "matches": true
+      },
+      {
+        "path": "plutus-fe/qa/evidence/selected-artifacts.json",
+        "reviewed": "613eb223838d205a988f9314bb8748da9e0d2ef7217a9112d5704b9b19141650",
+        "current": "613eb223838d205a988f9314bb8748da9e0d2ef7217a9112d5704b9b19141650",
+        "exported": "613eb223838d205a988f9314bb8748da9e0d2ef7217a9112d5704b9b19141650",
+        "manifest": "613eb223838d205a988f9314bb8748da9e0d2ef7217a9112d5704b9b19141650",
+        "matches": true
+      },
+      {
+        "path": "plutus-fe/qa/evidence/contract-detail-404.chromium.png",
+        "reviewed": "8259a0d1b87f8524aafa1abdc64b09b2145dffb4ccf4617145cb8a1b7a1b2f01",
+        "current": "8259a0d1b87f8524aafa1abdc64b09b2145dffb4ccf4617145cb8a1b7a1b2f01",
+        "exported": "8259a0d1b87f8524aafa1abdc64b09b2145dffb4ccf4617145cb8a1b7a1b2f01",
+        "manifest": "8259a0d1b87f8524aafa1abdc64b09b2145dffb4ccf4617145cb8a1b7a1b2f01",
+        "matches": true
+      },
+      {
+        "path": "plutus-fe/qa/phase4/README.md",
+        "reviewed": "3795f3cc965d91b139e6b9b4e1f7fbd084d5f87f66eca88c85d15f4029a5d5fc",
+        "current": "3795f3cc965d91b139e6b9b4e1f7fbd084d5f87f66eca88c85d15f4029a5d5fc",
+        "exported": "3795f3cc965d91b139e6b9b4e1f7fbd084d5f87f66eca88c85d15f4029a5d5fc",
+        "manifest": "3795f3cc965d91b139e6b9b4e1f7fbd084d5f87f66eca88c85d15f4029a5d5fc",
+        "matches": true
+      },
+      {
+        "path": "plutus-fe/qa/phase4/human-validation.md",
+        "reviewed": "0f95db50aedbdcbcf34fb7825638e1d3c1fccc2db0a9d1f9ff854aab67526641",
+        "current": "0f95db50aedbdcbcf34fb7825638e1d3c1fccc2db0a9d1f9ff854aab67526641",
+        "exported": "0f95db50aedbdcbcf34fb7825638e1d3c1fccc2db0a9d1f9ff854aab67526641",
+        "manifest": "0f95db50aedbdcbcf34fb7825638e1d3c1fccc2db0a9d1f9ff854aab67526641",
+        "matches": true
+      },
+      {
+        "path": "plutus-fe/qa/phase4/requirement-risk-matrix.md",
+        "reviewed": "bf3c9670133c7263ce8b48c159e0d48879a6b51e309368c5a3d2172513c9efb5",
+        "current": "bf3c9670133c7263ce8b48c159e0d48879a6b51e309368c5a3d2172513c9efb5",
+        "exported": "bf3c9670133c7263ce8b48c159e0d48879a6b51e309368c5a3d2172513c9efb5",
+        "manifest": "bf3c9670133c7263ce8b48c159e0d48879a6b51e309368c5a3d2172513c9efb5",
+        "matches": true
+      },
+      {
+        "path": "plutus-fe/qa/phase4/defect-register.md",
+        "reviewed": "1ebf5704072e6c859d36ceccc66c37410007395fa5a26733b43a955d865422b9",
+        "current": "1ebf5704072e6c859d36ceccc66c37410007395fa5a26733b43a955d865422b9",
+        "exported": "1ebf5704072e6c859d36ceccc66c37410007395fa5a26733b43a955d865422b9",
+        "manifest": "1ebf5704072e6c859d36ceccc66c37410007395fa5a26733b43a955d865422b9",
+        "matches": true
+      },
+      {
+        "path": "plutus-fe/qa/phase4/service-and-deployment-design.md",
+        "reviewed": "e2869aead001f85ed0c879f6ebd7fa92809f294a71b05ca8cf40ad904750bf5a",
+        "current": "e2869aead001f85ed0c879f6ebd7fa92809f294a71b05ca8cf40ad904750bf5a",
+        "exported": "e2869aead001f85ed0c879f6ebd7fa92809f294a71b05ca8cf40ad904750bf5a",
+        "manifest": "e2869aead001f85ed0c879f6ebd7fa92809f294a71b05ca8cf40ad904750bf5a",
+        "matches": true
+      },
+      {
+        "path": "plutus-fe/qa/phase4/ci-cd-evidence.md",
+        "reviewed": "52335bf17b7593f26cb94aa7bbd3eeaae448f71236f58d3b027d0494cf3249ed",
+        "current": "52335bf17b7593f26cb94aa7bbd3eeaae448f71236f58d3b027d0494cf3249ed",
+        "exported": "52335bf17b7593f26cb94aa7bbd3eeaae448f71236f58d3b027d0494cf3249ed",
+        "manifest": "52335bf17b7593f26cb94aa7bbd3eeaae448f71236f58d3b027d0494cf3249ed",
+        "matches": true
+      },
+      {
+        "path": "plutus-fe/qa/phase4/review-record.md",
+        "reviewed": "85b40a5b02fdfe3bc5241c041d93d0f135d79908332908434f25c4dc7c2e1e3a",
+        "current": "85b40a5b02fdfe3bc5241c041d93d0f135d79908332908434f25c4dc7c2e1e3a",
+        "exported": "85b40a5b02fdfe3bc5241c041d93d0f135d79908332908434f25c4dc7c2e1e3a",
+        "manifest": "85b40a5b02fdfe3bc5241c041d93d0f135d79908332908434f25c4dc7c2e1e3a",
+        "matches": true
+      },
+      {
+        "path": "plutus-fe/qa/phase4/evidence/local-matrix.json",
+        "reviewed": "bad52de52f352823b11ae439758c0027301d71189e5a3714ecdc6085e3752c86",
+        "current": "bad52de52f352823b11ae439758c0027301d71189e5a3714ecdc6085e3752c86",
+        "exported": "bad52de52f352823b11ae439758c0027301d71189e5a3714ecdc6085e3752c86",
+        "manifest": "bad52de52f352823b11ae439758c0027301d71189e5a3714ecdc6085e3752c86",
+        "matches": true
+      },
+      {
+        "path": "plutus-fe/qa/phase4/evidence/preservation.json",
+        "reviewed": "7ceee54fc62fde824ba3a03adb4bd188fac8ebb217be5bca4f394126d8b9d4d1",
+        "current": "7ceee54fc62fde824ba3a03adb4bd188fac8ebb217be5bca4f394126d8b9d4d1",
+        "exported": "7ceee54fc62fde824ba3a03adb4bd188fac8ebb217be5bca4f394126d8b9d4d1",
+        "manifest": "7ceee54fc62fde824ba3a03adb4bd188fac8ebb217be5bca4f394126d8b9d4d1",
+        "matches": true
+      },
+      {
+        "path": "plutus-fe/qa/phase4/evidence/change-inventory.json",
+        "reviewed": "1e8e106388ce069c7837c8eed371d7687c6c921606d15b273c1d8f6e1ba417e8",
+        "current": "1e8e106388ce069c7837c8eed371d7687c6c921606d15b273c1d8f6e1ba417e8",
+        "exported": "1e8e106388ce069c7837c8eed371d7687c6c921606d15b273c1d8f6e1ba417e8",
+        "manifest": "1e8e106388ce069c7837c8eed371d7687c6c921606d15b273c1d8f6e1ba417e8",
+        "matches": true
+      },
+      {
+        "path": "plutus-fe/qa/phase4/evidence/process-check.json",
+        "reviewed": "2c354e30712e08d65acf9acacc31e50cbb3d64dfdd2fbad5bccafc58ba50a40e",
+        "current": "2c354e30712e08d65acf9acacc31e50cbb3d64dfdd2fbad5bccafc58ba50a40e",
+        "exported": "2c354e30712e08d65acf9acacc31e50cbb3d64dfdd2fbad5bccafc58ba50a40e",
+        "manifest": "2c354e30712e08d65acf9acacc31e50cbb3d64dfdd2fbad5bccafc58ba50a40e",
+        "matches": true
+      },
+      {
+        "path": "plutus-be/qa/backend-testing.md",
+        "reviewed": "b0f6c97eedfa42e5badfde90b7c035215e8324d38c5fe248b5005e3d74a28603",
+        "current": "b0f6c97eedfa42e5badfde90b7c035215e8324d38c5fe248b5005e3d74a28603",
+        "exported": "b0f6c97eedfa42e5badfde90b7c035215e8324d38c5fe248b5005e3d74a28603",
+        "manifest": "b0f6c97eedfa42e5badfde90b7c035215e8324d38c5fe248b5005e3d74a28603",
+        "matches": true
+      },
+      {
+        "path": "plutus-be/qa/requirements.md",
+        "reviewed": "a816199f34364436666a0b99d4bb5488865db05247dd1ad7dfea035c2b6e3473",
+        "current": "a816199f34364436666a0b99d4bb5488865db05247dd1ad7dfea035c2b6e3473",
+        "exported": "a816199f34364436666a0b99d4bb5488865db05247dd1ad7dfea035c2b6e3473",
+        "manifest": "a816199f34364436666a0b99d4bb5488865db05247dd1ad7dfea035c2b6e3473",
+        "matches": true
+      },
+      {
+        "path": "plutus-be/qa/defects.md",
+        "reviewed": "43dadfbd4a889db19301e005648ddb161a0ba49143a2678df1df739f1b2760c3",
+        "current": "43dadfbd4a889db19301e005648ddb161a0ba49143a2678df1df739f1b2760c3",
+        "exported": "43dadfbd4a889db19301e005648ddb161a0ba49143a2678df1df739f1b2760c3",
+        "manifest": "43dadfbd4a889db19301e005648ddb161a0ba49143a2678df1df739f1b2760c3",
+        "matches": true
+      },
+      {
+        "path": "plutus-be/qa/review-record.md",
+        "reviewed": "97c6fdac20564f76bf32635a56106d596e7de1acfb858eddf19fec16a12caa49",
+        "current": "97c6fdac20564f76bf32635a56106d596e7de1acfb858eddf19fec16a12caa49",
+        "exported": "97c6fdac20564f76bf32635a56106d596e7de1acfb858eddf19fec16a12caa49",
+        "manifest": "97c6fdac20564f76bf32635a56106d596e7de1acfb858eddf19fec16a12caa49",
+        "matches": true
+      },
+      {
+        "path": "plutus-be/qa/evidence/backend-phase-summary.json",
+        "reviewed": "626b8616cfdb9d6b5e3c1596eb0898ec48b680fba9a80adfbb3124ef3e39874b",
+        "current": "626b8616cfdb9d6b5e3c1596eb0898ec48b680fba9a80adfbb3124ef3e39874b",
+        "exported": "626b8616cfdb9d6b5e3c1596eb0898ec48b680fba9a80adfbb3124ef3e39874b",
+        "manifest": "626b8616cfdb9d6b5e3c1596eb0898ec48b680fba9a80adfbb3124ef3e39874b",
+        "matches": true
+      },
+      {
+        "path": "plutus-be/qa/evidence/isolation-status.json",
+        "reviewed": "907e418ec4ae99098671ddb043f93d95616f8308062f1efe3b2e77983260fa11",
+        "current": "907e418ec4ae99098671ddb043f93d95616f8308062f1efe3b2e77983260fa11",
+        "exported": "907e418ec4ae99098671ddb043f93d95616f8308062f1efe3b2e77983260fa11",
+        "manifest": "907e418ec4ae99098671ddb043f93d95616f8308062f1efe3b2e77983260fa11",
+        "matches": true
+      },
+      {
+        "path": "plutus-be/qa/evidence/preservation.json",
+        "reviewed": "badad5f85b111d6332c1662a4b0e5a3228f9a5aeaa26277a7b1c55a737e09ab9",
+        "current": "badad5f85b111d6332c1662a4b0e5a3228f9a5aeaa26277a7b1c55a737e09ab9",
+        "exported": "badad5f85b111d6332c1662a4b0e5a3228f9a5aeaa26277a7b1c55a737e09ab9",
+        "manifest": "badad5f85b111d6332c1662a4b0e5a3228f9a5aeaa26277a7b1c55a737e09ab9",
+        "matches": true
+      },
+      {
+        "path": "plutus-be/qa/evidence/qa-unit-coverage.json",
+        "reviewed": "a60caa98e1435b65e97d3652f23bee50e7f4860e69b4ed07fa1caa43646093f3",
+        "current": "a60caa98e1435b65e97d3652f23bee50e7f4860e69b4ed07fa1caa43646093f3",
+        "exported": "a60caa98e1435b65e97d3652f23bee50e7f4860e69b4ed07fa1caa43646093f3",
+        "manifest": "a60caa98e1435b65e97d3652f23bee50e7f4860e69b4ed07fa1caa43646093f3",
+        "matches": true
+      },
+      {
+        "path": "plutus-be/qa/ci/README.md",
+        "reviewed": "a3a2907082811df2f55a3087b38f3e7130cc9b929ed7808af1942a6833e7e823",
+        "current": "a3a2907082811df2f55a3087b38f3e7130cc9b929ed7808af1942a6833e7e823",
+        "exported": "a3a2907082811df2f55a3087b38f3e7130cc9b929ed7808af1942a6833e7e823",
+        "manifest": "a3a2907082811df2f55a3087b38f3e7130cc9b929ed7808af1942a6833e7e823",
+        "matches": true
+      }
+    ],
+    "manifestUploadedField": false,
+    "noUploadPerformedByThisReviewer": true
+  },
+  "workingStateIdentity": {
+    "sha256": "71ea6375d25f34ca8cb6ddd758ebca98aeb59e6773c6b1e7217e44ac0515e0ab",
+    "canonicalFile": "working-state-identity.canonical.json",
+    "repositoryFileCounts": [
+      {
+        "repository": "plutus-fe",
+        "files": 289
+      },
+      {
+        "repository": "plutus-be",
+        "files": 245
+      }
+    ]
+  },
+  "limitations": [
+    "Current hashes and original recorded baselines prove present content preservation, not that an intermediate overwrite never occurred.",
+    "No credential file content or hash was read. Historical never-read/copy/modify claims cannot be established from current Git and file metadata; no such positive claim is made.",
+    "File ownership is recorded history, not cryptographic authorship; current diff and baselines can detect unexpected present changes but do not reconstruct every writer.",
+    "This review did not contact hosted CI, remote storage, Git remotes or deployment targets; local files cannot independently prove an absence of prior external actions.",
+    "Git ignore behavior does not sanitize artifacts or control ZIP/export tools. The frozen export is verified separately against explicit reviewed hashes.",
+    "Hash agreement does not establish that prior content review detected every sensitive value. Independent selected-evidence inspection is reported separately."
+  ],
+  "commands": [
+    {
+      "repository": "plutus-fe",
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "timestampUtc": "2026-11-01T09:59:21.532Z",
+      "exitCode": 0
+    },
+    {
+      "repository": "plutus-fe",
+      "command": [
+        "git",
+        "branch",
+        "--show-current"
+      ],
+      "timestampUtc": "2026-11-01T09:59:21.565Z",
+      "exitCode": 0
+    },
+    {
+      "repository": "plutus-fe",
+      "command": [
+        "git",
+        "ls-files",
+        "-z"
+      ],
+      "timestampUtc": "2026-11-01T09:59:21.593Z",
+      "exitCode": 0
+    },
+    {
+      "repository": "plutus-fe",
+      "command": [
+        "git",
+        "ls-files",
+        "--others",
+        "--exclude-standard",
+        "-z"
+      ],
+      "timestampUtc": "2026-11-01T09:59:21.621Z",
+      "exitCode": 0
+    },
+    {
+      "repository": "plutus-fe",
+      "command": [
+        "git",
+        "status",
+        "--porcelain=v1",
+        "-z",
+        "--untracked-files=all"
+      ],
+      "timestampUtc": "2026-11-01T09:59:21.652Z",
+      "exitCode": 0
+    },
+    {
+      "repository": "plutus-fe",
+      "command": [
+        "git",
+        "diff",
+        "--name-only",
+        "--diff-filter=D",
+        "-z"
+      ],
+      "timestampUtc": "2026-11-01T09:59:21.694Z",
+      "exitCode": 0
+    },
+    {
+      "repository": "plutus-fe",
+      "command": [
+        "git",
+        "diff",
+        "--cached",
+        "--name-only",
+        "--diff-filter=D",
+        "-z"
+      ],
+      "timestampUtc": "2026-11-01T09:59:21.732Z",
+      "exitCode": 0
+    },
+    {
+      "repository": "plutus-fe",
+      "command": [
+        "git",
+        "diff",
+        "--cached",
+        "--name-only",
+        "-z"
+      ],
+      "timestampUtc": "2026-11-01T09:59:21.761Z",
+      "exitCode": 0
+    },
+    {
+      "repository": "plutus-fe",
+      "command": [
+        "git",
+        "check-ignore",
+        "--no-index",
+        "-v",
+        "--stdin"
+      ],
+      "inputPaths": [
+        ".github/workflows/main.yml",
+        ".github/workflows/qa.yml",
+        "qa/browser/fixtures.ts",
+        "qa/ci/export.test.cjs",
+        "qa/ci/validation.test.cjs",
+        "qa/defects.md",
+        "qa/evidence/change-inventory.json",
+        "qa/evidence/component-coverage.json",
+        "qa/evidence/contract-detail-404.chromium.png",
+        "qa/evidence/final-process-check.json",
+        "qa/evidence/frontend-phase-summary.json",
+        "qa/evidence/isolation-status.json",
+        "qa/evidence/preservation.json",
+        "qa/evidence/selected-artifacts.json",
+        "qa/frontend-testing.md",
+        "qa/harness/component-setup.ts",
+        "qa/harness/font-responses.cjs",
+        "qa/harness/next-server.cjs",
+        "qa/harness/node-guard.cjs",
+        "qa/harness/node-guard.test.ts",
+        "qa/harness/run-browser.cjs",
+        "qa/phase4/README.md",
+        "qa/phase4/ci-cd-evidence.md",
+        "qa/phase4/defect-register.md",
+        "qa/phase4/evidence/change-inventory.json",
+        "qa/phase4/evidence/export-result.json",
+        "qa/phase4/evidence/local-matrix.json",
+        "qa/phase4/evidence/preservation.json",
+        "qa/phase4/evidence/process-check.json",
+        "qa/phase4/export-allowlist.json",
+        "qa/phase4/human-validation.md",
+        "qa/phase4/requirement-risk-matrix.md",
+        "qa/phase4/review-record.md",
+        "qa/phase4/service-and-deployment-design.md",
+        "qa/requirements.md",
+        "qa/review-record.md",
+        "scripts/qa/ci-common.cjs",
+        "scripts/qa/ci-job.cjs",
+        "scripts/qa/ci-policy.cjs",
+        "scripts/qa/export-evidence.cjs",
+        "scripts/qa/prepare.cjs",
+        "scripts/qa/run-isolated.cjs",
+        "scripts/qa/validate-ci.cjs",
+        "tests/browser/auth-navigation.mocked-browser.spec.ts",
+        "tests/browser/contracts-navigation.mocked-browser.spec.ts",
+        "tests/browser/route-accessibility.mocked-browser.spec.ts",
+        "tests/components/auth-gates.test.tsx",
+        "tests/components/billing-page.test.tsx",
+        "tests/components/contact-page.test.tsx",
+        "tests/components/expense-dialog.test.tsx",
+        "tests/components/supplier-dialog.test.tsx",
+        "tests/components/suppliers-page.test.tsx"
+      ],
+      "timestampUtc": "2026-11-01T09:59:21.844Z",
+      "exitCode": 1
+    },
+    {
+      "repository": "plutus-fe",
+      "command": [
+        "git",
+        "check-ignore",
+        "-v",
+        "--stdin"
+      ],
+      "inputPaths": [
+        ".qa-agent-work/independent-validation-2026-11-01/probe.txt",
+        "qa-raw/vitest-coverage/probe.json",
+        "qa-raw/vitest-results/probe.json",
+        "qa-raw/playwright-report/probe.html",
+        "qa-raw/playwright-results/probe.zip"
+      ],
+      "timestampUtc": "2026-11-01T09:59:21.874Z",
+      "exitCode": 0
+    },
+    {
+      "repository": "plutus-fe",
+      "command": [
+        "git",
+        "check-ignore",
+        "--no-index",
+        "-v",
+        "--stdin"
+      ],
+      "inputPaths": [
+        "qa/probe.md",
+        "tests/probe.test.ts",
+        "test/fixtures/probe.json",
+        "docs/probe.md",
+        ".github/workflows/probe.yml",
+        "AGENTS.md",
+        ".codex/unrelated.toml"
+      ],
+      "timestampUtc": "2026-11-01T09:59:21.906Z",
+      "exitCode": 1
+    },
+    {
+      "repository": "plutus-fe",
+      "command": [
+        "git",
+        "ls-files",
+        "--others",
+        "--ignored",
+        "--exclude-standard",
+        "-z",
+        "--",
+        "qa",
+        "tests",
+        "test",
+        "src",
+        "scripts",
+        ".github"
+      ],
+      "timestampUtc": "2026-11-01T09:59:21.934Z",
+      "exitCode": 0
+    },
+    {
+      "repository": "plutus-be",
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "timestampUtc": "2026-11-01T09:59:21.966Z",
+      "exitCode": 0
+    },
+    {
+      "repository": "plutus-be",
+      "command": [
+        "git",
+        "branch",
+        "--show-current"
+      ],
+      "timestampUtc": "2026-11-01T09:59:21.993Z",
+      "exitCode": 0
+    },
+    {
+      "repository": "plutus-be",
+      "command": [
+        "git",
+        "ls-files",
+        "-z"
+      ],
+      "timestampUtc": "2026-11-01T09:59:22.019Z",
+      "exitCode": 0
+    },
+    {
+      "repository": "plutus-be",
+      "command": [
+        "git",
+        "ls-files",
+        "--others",
+        "--exclude-standard",
+        "-z"
+      ],
+      "timestampUtc": "2026-11-01T09:59:22.048Z",
+      "exitCode": 0
+    },
+    {
+      "repository": "plutus-be",
+      "command": [
+        "git",
+        "status",
+        "--porcelain=v1",
+        "-z",
+        "--untracked-files=all"
+      ],
+      "timestampUtc": "2026-11-01T09:59:22.080Z",
+      "exitCode": 0
+    },
+    {
+      "repository": "plutus-be",
+      "command": [
+        "git",
+        "diff",
+        "--name-only",
+        "--diff-filter=D",
+        "-z"
+      ],
+      "timestampUtc": "2026-11-01T09:59:22.112Z",
+      "exitCode": 0
+    },
+    {
+      "repository": "plutus-be",
+      "command": [
+        "git",
+        "diff",
+        "--cached",
+        "--name-only",
+        "--diff-filter=D",
+        "-z"
+      ],
+      "timestampUtc": "2026-11-01T09:59:22.146Z",
+      "exitCode": 0
+    },
+    {
+      "repository": "plutus-be",
+      "command": [
+        "git",
+        "diff",
+        "--cached",
+        "--name-only",
+        "-z"
+      ],
+      "timestampUtc": "2026-11-01T09:59:22.175Z",
+      "exitCode": 0
+    },
+    {
+      "repository": "plutus-be",
+      "command": [
+        "git",
+        "check-ignore",
+        "--no-index",
+        "-v",
+        "--stdin"
+      ],
+      "inputPaths": [
+        ".github/workflows/qa.yml",
+        "qa/backend-testing.md",
+        "qa/ci/README.md",
+        "qa/ci/validation.test.cjs",
+        "qa/defects.md",
+        "qa/evidence/backend-phase-summary.json",
+        "qa/evidence/isolation-status.json",
+        "qa/evidence/preservation.json",
+        "qa/evidence/qa-unit-coverage.json",
+        "qa/requirements.md",
+        "qa/review-record.md",
+        "scripts/qa/ci-common.cjs",
+        "scripts/qa/ci-job.cjs",
+        "scripts/qa/ci-policy.cjs",
+        "scripts/qa/prepare.cjs",
+        "scripts/qa/run-isolated.cjs",
+        "scripts/qa/validate-ci.cjs",
+        "src/auth/jwt.strategy.qa.spec.ts",
+        "src/auth/status.guard.qa.spec.ts",
+        "src/billing/guards/plan.guard.qa.spec.ts",
+        "src/document/document.service.qa.spec.ts",
+        "src/project/project-financials.qa.spec.ts",
+        "src/schema/common.qa.spec.ts",
+        "test/app.e2e-spec.ts",
+        "test/construction.e2e-spec.ts",
+        "test/jest-e2e.json",
+        "test/jest-qa-contract.cjs",
+        "test/jest-qa-harness.cjs",
+        "test/jest-qa-unit.cjs",
+        "test/membership.e2e-spec.ts",
+        "test/qa/runtime-guard.spec.ts",
+        "test/qa/support/runtime-guard.cjs",
+        "test/support/isolated-app.ts",
+        "test/tsconfig.json",
+        "test/tsconfig.qa.json"
+      ],
+      "timestampUtc": "2026-11-01T09:59:22.246Z",
+      "exitCode": 1
+    },
+    {
+      "repository": "plutus-be",
+      "command": [
+        "git",
+        "check-ignore",
+        "-v",
+        "--stdin"
+      ],
+      "inputPaths": [
+        ".qa-agent-work/independent-validation-2026-11-01/probe.txt",
+        "qa-raw/jest-coverage/probe.json",
+        "qa-raw/jest-results/probe.json"
+      ],
+      "timestampUtc": "2026-11-01T09:59:22.273Z",
+      "exitCode": 0
+    },
+    {
+      "repository": "plutus-be",
+      "command": [
+        "git",
+        "check-ignore",
+        "--no-index",
+        "-v",
+        "--stdin"
+      ],
+      "inputPaths": [
+        "qa/probe.md",
+        "tests/probe.test.ts",
+        "test/fixtures/probe.json",
+        "docs/probe.md",
+        ".github/workflows/probe.yml",
+        "AGENTS.md",
+        ".codex/unrelated.toml"
+      ],
+      "timestampUtc": "2026-11-01T09:59:22.302Z",
+      "exitCode": 1
+    },
+    {
+      "repository": "plutus-be",
+      "command": [
+        "git",
+        "ls-files",
+        "--others",
+        "--ignored",
+        "--exclude-standard",
+        "-z",
+        "--",
+        "qa",
+        "tests",
+        "test",
+        "src",
+        "scripts",
+        ".github"
+      ],
+      "timestampUtc": "2026-11-01T09:59:22.337Z",
+      "exitCode": 0
+    },
+    {
+      "repository": "plutus-fe",
+      "command": [
+        "git",
+        "show",
+        "HEAD:package.json"
+      ],
+      "timestampUtc": "2026-11-01T09:59:22.369Z",
+      "exitCode": 0
+    },
+    {
+      "repository": "plutus-fe",
+      "command": [
+        "git",
+        "show",
+        "HEAD:package-lock.json"
+      ],
+      "timestampUtc": "2026-11-01T09:59:22.401Z",
+      "exitCode": 0
+    }
+  ],
+  "rawAudit": {
+    "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/preservation-audit/preservation-audit.json",
+    "sha256": "c9963caf990f816b18b4cd1c6175c6d4b647c490149babe110b8c49f80041f6e"
+  },
+  "finalSourceRecheck": {
+    "timestampUtc": "2026-11-01T10:06:03.915Z",
+    "files": 534,
+    "allMatch": true
+  },
+  "explanation": "Protected credentials excluded from reads/hashes. Current hashes cannot prove historical never-read or individual-writer identity. Phase5 evidence is outside tested-source identity and outside frozen Phase4 export."
+}

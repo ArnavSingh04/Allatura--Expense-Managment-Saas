@@ -2,7 +2,8 @@
 
 import { Box, Button, CircularProgress, Stack, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useHydrated } from '@/lib/use-hydrated';
 import { useAuthSession } from '@/contexts/AuthSessionContext';
 import PendingApprovalScreen from './PendingApprovalScreen';
 import RejectedScreen from './RejectedScreen';
@@ -39,10 +40,12 @@ function CenteredLoader() {
  */
 function SessionErrorScreen({
   isAuthFailure,
+  isOrganisationFailure,
   onRetry,
   onSignOut,
 }: {
   isAuthFailure: boolean;
+  isOrganisationFailure?: boolean;
   onRetry: () => void;
   onSignOut: () => void;
 }) {
@@ -62,7 +65,9 @@ function SessionErrorScreen({
           We couldn&apos;t load your account
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {isAuthFailure
+          {isOrganisationFailure
+            ? 'This organisation is unavailable to your account. Choose an organisation above or try again after your access is restored.'
+            : isAuthFailure
             ? 'Your session has expired or is no longer valid. Sign in again to continue.'
             : 'The API was unreachable. If you just came back from Stripe, wait a moment and try again — the backend may still be starting.'}
         </Typography>
@@ -105,10 +110,7 @@ export default function DashboardAuthGate({
   // output. Without this, React 19's concurrent hydration could commit the
   // post-effect re-render (ready=true) against the SSR HTML (ready=false) and
   // surface that as a hydration mismatch instead of a normal state update.
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useHydrated();
 
   useEffect(() => {
     if (!mounted || !ready) return;
@@ -138,6 +140,7 @@ export default function DashboardAuthGate({
       return (
         <SessionErrorScreen
           isAuthFailure={error.isAuthFailure}
+          isOrganisationFailure={error.isOrganisationFailure}
           onRetry={refresh}
           onSignOut={signOut}
         />

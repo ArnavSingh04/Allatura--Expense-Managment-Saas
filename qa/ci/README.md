@@ -1,0 +1,13 @@
+# Frontend CI and real-system verification
+
+Updated 1 November 2026. The current workflow runs on pull requests and pushes to main/develop, plus manual dispatch. Pinned actions, read-only permissions, independent gates and failure propagation remain enforced by local policy tests. The existing mirror workflow remains unchanged. No production deployment, remote run or upload was executed.
+
+CI installs the locked dependencies into an owned directory; separate jobs run components, legacy regressions, full/focused types, lint, production build, browser checks, and real-system checks. The production build uses a physical copy of dependencies in its disposable stage so standalone tracing never depends on an absolute junction back into the development installation. The production build completed successfully; Auth0 dynamic-import and stale Browserslist warnings are retained.
+
+Run locally using node scripts/qa/run-isolated.cjs --layer <unit|legacy-unit|typecheck|qa-typecheck|lint|build|mocked-browser|stack>. Browser preparation is node scripts/qa/prepare.cjs --browsers. The stack coordinator resolves .qa-system-backend in CI, or sibling ../plutus-be locally; it requires the backend's declared test dependencies to be prepared.
+
+The real-system job checks out evoxedev/plutus-be development into .qa-system-backend and prepares its lockfile. Hosted access has not been verified: the default GITHUB_TOKEN may not read a private sibling repository. Before enabling hosted paired execution, commit the paired changes, configure least-privilege read access if needed, and verify/pin the intended backend revision. Current branch references do not themselves prove which backend commit a future run will test.
+
+The stack fixture hosts an actual Next application, its encrypted SDK session and proxy, real Nest API and disposable MongoDB. Session/JWT issuance uses test-owned signing material; external Auth0 login/refresh, email, storage and payments remain substituted or disabled. Expected real-system assertions cover supplier create/reload/persistence and denied role/foreign-organisation access with unchanged persisted state. Actual current outcomes are in [frontend-testing.md](../frontend-testing.md); failed intermediate runs are retained and are not converted to passes.
+
+Use node scripts/qa/validate-ci.cjs and node --test qa/ci/validation.test.cjs qa/ci/export.test.cjs for workflow/export policy tests. These check local configuration and failure propagation, not GitHub-hosted execution. No automated deployment or rollback evidence exists for this implementation. Raw logs/traces/screenshots can contain synthetic sessions and are excluded from the reviewed submission package.

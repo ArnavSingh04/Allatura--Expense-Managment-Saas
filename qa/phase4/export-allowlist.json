@@ -1,0 +1,172 @@
+{
+  "schemaVersion": 1,
+  "review": {
+    "status": "reviewed",
+    "reviewer": "Coordinator and independent AI reviewer quality_operations; no human acceptance implied",
+    "date": "2026-11-01",
+    "scope": "Exact evidence/documentation contents; prior reviewed screenshot retained with original provenance. No raw logs, traces, request bodies, credentials, source archive or automated upload.",
+    "finalization": "Independent AI content verdict received; coordinator applied documented reporting/provenance corrections and froze exact hashes before export."
+  },
+  "files": [
+    {
+      "repository": "plutus-fe",
+      "path": "qa/frontend-testing.md",
+      "sha256": "8ebba6e2d1d86236f12c92516d780e3350872569ba47c1f95c7d009919be7160"
+    },
+    {
+      "repository": "plutus-fe",
+      "path": "qa/requirements.md",
+      "sha256": "63b7eec7577e1d034994cf77f2d4c34fe2e387657c48309f12461ee4e6229818"
+    },
+    {
+      "repository": "plutus-fe",
+      "path": "qa/defects.md",
+      "sha256": "263b7872e2f35445c4d8f2b2e1e3089a1751cebdcaa1bff9190cd42f09423477"
+    },
+    {
+      "repository": "plutus-fe",
+      "path": "qa/review-record.md",
+      "sha256": "2cbeca411dcbfff83d086608b935d92d00e4d53ddbda026a19bba21e461c6b53"
+    },
+    {
+      "repository": "plutus-fe",
+      "path": "qa/evidence/frontend-phase-summary.json",
+      "sha256": "8ff2ed31167f91f6dbfeb8f27e9166157d7dd947cae051059d630d7834035fb2"
+    },
+    {
+      "repository": "plutus-fe",
+      "path": "qa/evidence/component-coverage.json",
+      "sha256": "aecb98340d24569dec1c32a27295f455b715bdb3c94857ae3b245086cbf7399e"
+    },
+    {
+      "repository": "plutus-fe",
+      "path": "qa/evidence/isolation-status.json",
+      "sha256": "e4419275f87b0edd9ae9a629d862cd0311dd4c4583f28a58249ff48c560065a3"
+    },
+    {
+      "repository": "plutus-fe",
+      "path": "qa/evidence/preservation.json",
+      "sha256": "ff31cd4c715ef0dd164520bbcabffc72651af028e2a3de45939f8586d994533d"
+    },
+    {
+      "repository": "plutus-fe",
+      "path": "qa/evidence/change-inventory.json",
+      "sha256": "b8c22d4886e3355282f20662bc4f2dbc3985a7f55b292dfbe84113e0864004e9"
+    },
+    {
+      "repository": "plutus-fe",
+      "path": "qa/evidence/final-process-check.json",
+      "sha256": "ccb2325336997a9da6746951ee780578e700fca67c5327c38d22072a5a97a49c"
+    },
+    {
+      "repository": "plutus-fe",
+      "path": "qa/evidence/selected-artifacts.json",
+      "sha256": "613eb223838d205a988f9314bb8748da9e0d2ef7217a9112d5704b9b19141650"
+    },
+    {
+      "repository": "plutus-fe",
+      "path": "qa/evidence/contract-detail-404.chromium.png",
+      "sha256": "8259a0d1b87f8524aafa1abdc64b09b2145dffb4ccf4617145cb8a1b7a1b2f01"
+    },
+    {
+      "repository": "plutus-fe",
+      "path": "qa/phase4/README.md",
+      "sha256": "3795f3cc965d91b139e6b9b4e1f7fbd084d5f87f66eca88c85d15f4029a5d5fc"
+    },
+    {
+      "repository": "plutus-fe",
+      "path": "qa/phase4/human-validation.md",
+      "sha256": "0f95db50aedbdcbcf34fb7825638e1d3c1fccc2db0a9d1f9ff854aab67526641"
+    },
+    {
+      "repository": "plutus-fe",
+      "path": "qa/phase4/requirement-risk-matrix.md",
+      "sha256": "bf3c9670133c7263ce8b48c159e0d48879a6b51e309368c5a3d2172513c9efb5"
+    },
+    {
+      "repository": "plutus-fe",
+      "path": "qa/phase4/defect-register.md",
+      "sha256": "1ebf5704072e6c859d36ceccc66c37410007395fa5a26733b43a955d865422b9"
+    },
+    {
+      "repository": "plutus-fe",
+      "path": "qa/phase4/service-and-deployment-design.md",
+      "sha256": "e2869aead001f85ed0c879f6ebd7fa92809f294a71b05ca8cf40ad904750bf5a"
+    },
+    {
+      "repository": "plutus-fe",
+      "path": "qa/phase4/ci-cd-evidence.md",
+      "sha256": "52335bf17b7593f26cb94aa7bbd3eeaae448f71236f58d3b027d0494cf3249ed"
+    },
+    {
+      "repository": "plutus-fe",
+      "path": "qa/phase4/review-record.md",
+      "sha256": "85b40a5b02fdfe3bc5241c041d93d0f135d79908332908434f25c4dc7c2e1e3a"
+    },
+    {
+      "repository": "plutus-fe",
+      "path": "qa/phase4/evidence/local-matrix.json",
+      "sha256": "bad52de52f352823b11ae439758c0027301d71189e5a3714ecdc6085e3752c86"
+    },
+    {
+      "repository": "plutus-fe",
+      "path": "qa/phase4/evidence/preservation.json",
+      "sha256": "7ceee54fc62fde824ba3a03adb4bd188fac8ebb217be5bca4f394126d8b9d4d1"
+    },
+    {
+      "repository": "plutus-fe",
+      "path": "qa/phase4/evidence/change-inventory.json",
+      "sha256": "1e8e106388ce069c7837c8eed371d7687c6c921606d15b273c1d8f6e1ba417e8"
+    },
+    {
+      "repository": "plutus-fe",
+      "path": "qa/phase4/evidence/process-check.json",
+      "sha256": "2c354e30712e08d65acf9acacc31e50cbb3d64dfdd2fbad5bccafc58ba50a40e"
+    },
+    {
+      "repository": "plutus-be",
+      "path": "qa/backend-testing.md",
+      "sha256": "b0f6c97eedfa42e5badfde90b7c035215e8324d38c5fe248b5005e3d74a28603"
+    },
+    {
+      "repository": "plutus-be",
+      "path": "qa/requirements.md",
+      "sha256": "a816199f34364436666a0b99d4bb5488865db05247dd1ad7dfea035c2b6e3473"
+    },
+    {
+      "repository": "plutus-be",
+      "path": "qa/defects.md",
+      "sha256": "43dadfbd4a889db19301e005648ddb161a0ba49143a2678df1df739f1b2760c3"
+    },
+    {
+      "repository": "plutus-be",
+      "path": "qa/review-record.md",
+      "sha256": "97c6fdac20564f76bf32635a56106d596e7de1acfb858eddf19fec16a12caa49"
+    },
+    {
+      "repository": "plutus-be",
+      "path": "qa/evidence/backend-phase-summary.json",
+      "sha256": "626b8616cfdb9d6b5e3c1596eb0898ec48b680fba9a80adfbb3124ef3e39874b"
+    },
+    {
+      "repository": "plutus-be",
+      "path": "qa/evidence/isolation-status.json",
+      "sha256": "907e418ec4ae99098671ddb043f93d95616f8308062f1efe3b2e77983260fa11"
+    },
+    {
+      "repository": "plutus-be",
+      "path": "qa/evidence/preservation.json",
+      "sha256": "badad5f85b111d6332c1662a4b0e5a3228f9a5aeaa26277a7b1c55a737e09ab9"
+    },
+    {
+      "repository": "plutus-be",
+      "path": "qa/evidence/qa-unit-coverage.json",
+      "sha256": "a60caa98e1435b65e97d3652f23bee50e7f4860e69b4ed07fa1caa43646093f3"
+    },
+    {
+      "repository": "plutus-be",
+      "path": "qa/ci/README.md",
+      "sha256": "a3a2907082811df2f55a3087b38f3e7130cc9b929ed7808af1942a6833e7e823"
+    }
+  ]
+}

@@ -21,6 +21,10 @@ import {
 } from '@/services/invitationService';
 import { ApiError } from '@/lib/api-client';
 import { ROLE_LABEL, normalizeRole } from '@/lib/rbac';
+import { useUser } from '@auth0/nextjs-auth0';
+import { activateOrganisation } from '@/services/organisationService';
+import { invitationEmailMismatch } from '@/lib/invitation-account-switch';
+import InvitationAccountNotice from '@/components/auth/InvitationAccountNotice';
 
 function friendlyError(err: unknown): string {
   const raw = err instanceof ApiError ? err.message : String(err);
@@ -48,10 +52,9 @@ function friendlyError(err: unknown): string {
   }
 }
 
-function OnboardingInner() {
-  const search = useSearchParams();
-  const inviteToken = search.get('invite') ?? undefined;
+function OnboardingContent({ inviteToken }: { inviteToken?: string }) {
   const { ready, isAuthenticated, session } = useAuthSession();
+  const { user } = useUser();
 
   const [name, setName] = useState('');
   const [organisationName, setOrganisationName] = useState('');
@@ -59,6 +62,9 @@ function OnboardingInner() {
   const [lookupLoading, setLookupLoading] = useState(!!inviteToken);
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [joinedOrganisationId, setJoinedOrganisationId] = useState<string | null>(null);
+  const currentEmail = session?.email || user?.email || '';
+  const wrongEmail = !!(lookup?.valid && invitationEmailMismatch(lookup.email, currentEmail));
 
   // Ensure the visitor is authenticated; otherwise send them through Auth0 and
   // return them right back here (preserving ?invite=...).
@@ -71,17 +77,16 @@ function OnboardingInner() {
       );
       return;
     }
-    if (session) {
+    if (session && !inviteToken) {
       // Already onboarded — nothing to do here.
       window.location.assign('/dashboard');
     }
-  }, [ready, isAuthenticated, session]);
+  }, [ready, isAuthenticated, session, inviteToken]);
 
   // Resolve invitation details for display.
   useEffect(() => {
     if (!inviteToken) return;
     let cancelled = false;
-    setLookupLoading(true);
     invitationService
       .lookup(inviteToken)
       .then((res) => {
@@ -100,7 +105,12 @@ function OnboardingInner() {
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (submitting) return;
     setError(null);
+    if (!joinedOrganisationId && wrongEmail) {
+      setError('Sign in with the invited email before joining this organisation.');
+      return;
+    }
     if (!name.trim()) {
       setError('Please enter your name.');
       return;
@@ -111,11 +121,25 @@ function OnboardingInner() {
     }
     setSubmitting(true);
     try {
-      await submitOnboarding({
-        name: name.trim(),
-        inviteToken,
-        organisationName: inviteToken ? undefined : organisationName.trim(),
-      });
+      let organisationId = joinedOrganisationId;
+      if (!organisationId) {
+        const result = await submitOnboarding({
+          name: name.trim(),
+          inviteToken,
+          organisationName: inviteToken ? undefined : organisationName.trim(),
+        });
+        organisationId = result.organisationId ?? null;
+        setJoinedOrganisationId(organisationId);
+      }
+      if (organisationId) {
+        try {
+          await activateOrganisation(organisationId);
+        } catch {
+          setError('Your membership is saved. Select Open organisation to try opening it again.');
+          setSubmitting(false);
+          return;
+        }
+      }
       // Full reload so the session/profile is re-fetched from scratch.
       window.location.assign('/dashboard');
     } catch (err) {
@@ -124,7 +148,7 @@ function OnboardingInner() {
     }
   };
 
-  if (!ready || !isAuthenticated || session) {
+  if (!ready || !isAuthenticated || (session && !inviteToken)) {
     return (
       <Box
         sx={{
@@ -148,6 +172,11 @@ function OnboardingInner() {
         <Typography variant="h5" gutterBottom>
           {inviteToken ? 'Accept your invitation' : 'Set up your organisation'}
         </Typography>
+
+        {currentEmail && <Typography variant="body2">Signed in as {currentEmail}</Typography>}
+        {inviteToken && lookup?.valid && !joinedOrganisationId && (
+          <InvitationAccountNotice invitedEmail={lookup.email} currentEmail={currentEmail} token={inviteToken} />
+        )}
 
         {inviteToken ? (
           lookupLoading ? (
@@ -211,15 +240,22 @@ function OnboardingInner() {
               variant="contained"
               fullWidth
               sx={{ mt: 2 }}
-              disabled={submitting}
+              disabled={submitting || (!joinedOrganisationId && wrongEmail)}
             >
-              {inviteToken ? 'Join organisation' : 'Create organisation'}
+              {joinedOrganisationId ? 'Open organisation' : inviteToken ? 'Join organisation' : 'Create organisation'}
             </Button>
           </Box>
         )}
       </Paper>
     </Container>
   );
+}
+
+function OnboardingInner() {
+  const search = useSearchParams();
+  const inviteToken = search.get('invite') ?? undefined;
+  // A changed invite gets fresh lookup/form state before its request begins.
+  return <OnboardingContent key={inviteToken ?? 'new-organisation'} inviteToken={inviteToken} />;
 }
 
 export default function OnboardingPage() {

@@ -1,0 +1,182 @@
+{
+  "repositories": [
+    {
+      "repository": "plutus-fe",
+      "newFiles": [
+        {
+          "path": ".github/workflows/qa.yml",
+          "owner": "coordinator",
+          "sha256": "78f2326db744279f25f74c1de772c51a6eff19f35cc31e39d666c6a11f036186"
+        },
+        {
+          "path": "qa/ci/export.test.cjs",
+          "owner": "coordinator",
+          "sha256": "2699229aba5d645d175e7dd2952a6a8c9a4e6be19911624a3d16aac9634fb5f3"
+        },
+        {
+          "path": "qa/ci/validation.test.cjs",
+          "owner": "coordinator",
+          "sha256": "4d29b5d000f5e1560e7a3fd13a5ad81aad608935204bd8dd82de43cc941907e2"
+        },
+        {
+          "path": "qa/phase4/README.md",
+          "owner": "coordinator",
+          "sha256": "3795f3cc965d91b139e6b9b4e1f7fbd084d5f87f66eca88c85d15f4029a5d5fc"
+        },
+        {
+          "path": "qa/phase4/ci-cd-evidence.md",
+          "owner": "coordinator",
+          "sha256": "52335bf17b7593f26cb94aa7bbd3eeaae448f71236f58d3b027d0494cf3249ed"
+        },
+        {
+          "path": "qa/phase4/defect-register.md",
+          "owner": "backend tester",
+          "sha256": "1ebf5704072e6c859d36ceccc66c37410007395fa5a26733b43a955d865422b9"
+        },
+        {
+          "path": "qa/phase4/evidence/change-inventory.json",
+          "owner": "coordinator",
+          "sha256": null
+        },
+        {
+          "path": "qa/phase4/evidence/export-result.json",
+          "owner": "coordinator",
+          "sha256": null
+        },
+        {
+          "path": "qa/phase4/evidence/local-matrix.json",
+          "owner": "coordinator",
+          "sha256": null
+        },
+        {
+          "path": "qa/phase4/evidence/preservation.json",
+          "owner": "coordinator",
+          "sha256": null
+        },
+        {
+          "path": "qa/phase4/evidence/process-check.json",
+          "owner": "coordinator",
+          "sha256": null
+        },
+        {
+          "path": "qa/phase4/export-allowlist.json",
+          "owner": "coordinator",
+          "sha256": null
+        },
+        {
+          "path": "qa/phase4/human-validation.md",
+          "owner": "planner",
+          "sha256": "0f95db50aedbdcbcf34fb7825638e1d3c1fccc2db0a9d1f9ff854aab67526641"
+        },
+        {
+          "path": "qa/phase4/requirement-risk-matrix.md",
+          "owner": "planner",
+          "sha256": "bf3c9670133c7263ce8b48c159e0d48879a6b51e309368c5a3d2172513c9efb5"
+        },
+        {
+          "path": "qa/phase4/review-record.md",
+          "owner": "coordinator",
+          "sha256": "85b40a5b02fdfe3bc5241c041d93d0f135d79908332908434f25c4dc7c2e1e3a"
+        },
+        {
+          "path": "qa/phase4/service-and-deployment-design.md",
+          "owner": "coordinator",
+          "sha256": "e2869aead001f85ed0c879f6ebd7fa92809f294a71b05ca8cf40ad904750bf5a"
+        },
+        {
+          "path": "scripts/qa/ci-common.cjs",
+          "owner": "coordinator",
+          "sha256": "cffef7aeb2ef3343c1a82fb950d697d8af100310532b5affc2f663ba1920a3b7"
+        },
+        {
+          "path": "scripts/qa/ci-job.cjs",
+          "owner": "coordinator",
+          "sha256": "37536af115ce7a651bddd987f837cf9c5f6c1805bbbdb0716e3855854e4caf1d"
+        },
+        {
+          "path": "scripts/qa/ci-policy.cjs",
+          "owner": "coordinator",
+          "sha256": "e95dabd85c912626e2a787f59e276a798affd687e9090f3095b8e90b517c46e9"
+        },
+        {
+          "path": "scripts/qa/export-evidence.cjs",
+          "owner": "coordinator",
+          "sha256": "4562364c2982d6786d5eb0d608bac5479375415e5bc29af485118cbca351eaad"
+        },
+        {
+          "path": "scripts/qa/validate-ci.cjs",
+          "owner": "coordinator",
+          "sha256": "82057338f0cdd81e6c1abf76212eeaa7a71884cf766673fc5682281add57cb84"
+        }
+      ],
+      "modifiedBaseline": []
+    },
+    {
+      "repository": "plutus-be",
+      "newFiles": [
+        {
+          "path": ".github/workflows/qa.yml",
+          "owner": "coordinator",
+          "sha256": "fd647f48e8fcff0618d71775b1dc377f8da4e3736f40791a17172df634522f0d"
+        },
+        {
+          "path": "eslint.config.mjs",
+          "owner": "coordinator",
+          "sha256": "e6e728c2a7c7ef4c1c2855a6b1aa47b330e78dc5d8ee91a638d5ec1c79ca023a"
+        },
+        {
+          "path": "qa/ci/README.md",
+          "owner": "coordinator",
+          "sha256": "a3a2907082811df2f55a3087b38f3e7130cc9b929ed7808af1942a6833e7e823"
+        },
+        {
+          "path": "qa/ci/validation.test.cjs",
+          "owner": "coordinator",
+          "sha256": "4d29b5d000f5e1560e7a3fd13a5ad81aad608935204bd8dd82de43cc941907e2"
+        },
+        {
+          "path": "scripts/qa/ci-common.cjs",
+          "owner": "coordinator",
+          "sha256": "cffef7aeb2ef3343c1a82fb950d697d8af100310532b5affc2f663ba1920a3b7"
+        },
+        {
+          "path": "scripts/qa/ci-job.cjs",
+          "owner": "coordinator",
+          "sha256": "fc7f4bb1721b249e2181b5c1f535674311c6711f4dc0c2cf2342927502fa5a72"
+        },
+        {
+          "path": "scripts/qa/ci-policy.cjs",
+          "owner": "coordinator",
+          "sha256": "e95dabd85c912626e2a787f59e276a798affd687e9090f3095b8e90b517c46e9"
+        },
+        {
+          "path": "scripts/qa/prepare.cjs",
+          "owner": "coordinator",
+          "sha256": "ae8916b28cffbac8306ec409e940a23e0a91942bb558574eaceec8ec03d0fc34"
+        },
+        {
+          "path": "scripts/qa/validate-ci.cjs",
+          "owner": "coordinator",
+          "sha256": "82057338f0cdd81e6c1abf76212eeaa7a71884cf766673fc5682281add57cb84"
+        }
+      ],
+      "modifiedBaseline": [
+        {
+          "path": ".dockerignore",
+          "beforeSha256": "fd1f7e871164d10116698de0b927b180a265c4abb5846d1dcf8bb77e634c3c42",
+          "afterSha256": "232266593e377a87b4c60daa267d0573d3954a455733a6ef8be9ce4a2309ba18",
+          "changed": true,
+          "approvedChange": true
+        },
+        {
+          "path": "scripts/qa/run-isolated.cjs",
+          "beforeSha256": "35e58dd842323c9fbc05f969dfedede0f852066a206028d6bbc1eb648831834d",
+          "afterSha256": "5f2a4c22c4bbac90a31cb65dd6ef19b11a266f0fc136d47b4ef00491477495b5",
+          "changed": true,
+          "approvedChange": true
+        }
+      ]
+    }
+  ],
+  "excludedHashReason": "Evidence and its review allowlist are excluded to avoid circular hashes; selected raw artifact hashes and export source hashes are recorded separately."
+}

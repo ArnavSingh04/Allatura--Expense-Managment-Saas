@@ -1,0 +1,510 @@
+{
+  "realSystem": {
+    "status": "BLOCKED",
+    "actualDatabaseProviderProven": false,
+    "connectionsAttempted": false,
+    "seedsAttempted": false,
+    "resetsAttempted": false,
+    "reason": "No proven disposable contained backend/database runtime"
+  },
+  "mockedBrowser": {
+    "boundary": "Reviewed process/application controls, not OS containment",
+    "actualNextDevelopmentServer": true,
+    "authProfileAndLoginMocked": true,
+    "domainAPIsMocked": true,
+    "realBackendUsed": false,
+    "domainWritesDenied": true,
+    "nativeProxyOwnedOriginOnly": true,
+    "contextOffOriginDenied": true,
+    "exactFontCSSFulfilledLocally": true,
+    "freshBrowserProfiles": true,
+    "serviceWorkers": "blocked",
+    "productionBuildPassed": false,
+    "finalRunId": "2026-11-01T09-37-10-901Z-c0449530",
+    "recordedLifecycle": {
+      "realBackend": false,
+      "readiness": {
+        "ready": true,
+        "guard": true
+      },
+      "cleanup": true,
+      "cleanupErrors": [],
+      "violations": [],
+      "browserExitCode": 1,
+      "serverExitCode": 0,
+      "browserSignal": null,
+      "serverSignal": null
+    },
+    "workerProofs": {
+      "count": 67,
+      "allGuardLoaded": true,
+      "allSyntheticReadsDenied": true,
+      "proofs": [
+        {
+          "pid": 10132,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 10256,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 10360,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 10360,
+          "threadId": 1,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 13024,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 13024,
+          "threadId": 1,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 20776,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 2252,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 2252,
+          "threadId": 1,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 23264,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 23832,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 24340,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 2512,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 2512,
+          "threadId": 1,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 27356,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 27356,
+          "threadId": 1,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 27988,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 28640,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 28640,
+          "threadId": 1,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 30600,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 30600,
+          "threadId": 1,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 3140,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 31792,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 32252,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 32320,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 33424,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 33424,
+          "threadId": 1,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 35208,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 36284,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 36284,
+          "threadId": 1,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 36960,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 37044,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 37308,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 39644,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 39736,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 40708,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 42924,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 42924,
+          "threadId": 1,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 43256,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 43256,
+          "threadId": 1,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 4476,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 46568,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 46568,
+          "threadId": 1,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 48660,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 49608,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 50232,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 51816,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 51816,
+          "threadId": 1,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 5212,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 53320,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 53536,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 53800,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 53832,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 54004,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 54004,
+          "threadId": 1,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 54028,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 54868,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 54868,
+          "threadId": 1,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 57140,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 57140,
+          "threadId": 1,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 5780,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 6124,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 6124,
+          "threadId": 1,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 6564,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 6564,
+          "threadId": 1,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 8548,
+          "threadId": 0,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        },
+        {
+          "pid": 8548,
+          "threadId": 1,
+          "guardLoaded": true,
+          "syntheticReadDenied": true
+        }
+      ]
+    }
+  },
+  "unitWorkerProofs": {
+    "count": 9,
+    "allGuardLoaded": true,
+    "allSyntheticReadsDenied": true,
+    "proofs": [
+      {
+        "pid": 3016,
+        "threadId": 0,
+        "guardLoaded": true,
+        "syntheticReadDenied": true
+      },
+      {
+        "pid": 3016,
+        "threadId": 1,
+        "guardLoaded": true,
+        "syntheticReadDenied": true
+      },
+      {
+        "pid": 3016,
+        "threadId": 2,
+        "guardLoaded": true,
+        "syntheticReadDenied": true
+      },
+      {
+        "pid": 3016,
+        "threadId": 3,
+        "guardLoaded": true,
+        "syntheticReadDenied": true
+      },
+      {
+        "pid": 3016,
+        "threadId": 4,
+        "guardLoaded": true,
+        "syntheticReadDenied": true
+      },
+      {
+        "pid": 3016,
+        "threadId": 5,
+        "guardLoaded": true,
+        "syntheticReadDenied": true
+      },
+      {
+        "pid": 3016,
+        "threadId": 6,
+        "guardLoaded": true,
+        "syntheticReadDenied": true
+      },
+      {
+        "pid": 3016,
+        "threadId": 7,
+        "guardLoaded": true,
+        "syntheticReadDenied": true
+      },
+      {
+        "pid": 3016,
+        "threadId": 8,
+        "guardLoaded": true,
+        "syntheticReadDenied": true
+      }
+    ]
+  },
+  "scope": "No native sandbox or persisted tenant-isolation claim"
+}

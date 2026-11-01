@@ -1,4 +1,5 @@
 import { resolveApiBaseUrl } from '@/lib/resolve-api-base-url';
+import { organisationRequestHeaders } from '@/lib/organisation-binding';
 
 export class ApiError extends Error {
   status: number;
@@ -55,7 +56,7 @@ async function request<T>(
   // No Authorization header here by design: the request goes to the same-origin
   // /api/v1 proxy, which attaches the Auth0 access token server-side from the
   // encrypted session cookie.
-  const headers: Record<string, string> = {};
+  const headers: Record<string, string> = organisationRequestHeaders(path);
   let payload: BodyInit | undefined;
   if (body instanceof FormData) {
     payload = body;
@@ -106,7 +107,7 @@ export async function apiPostRaw<T>(
     throw new ApiError('Backend API URL not configured', 0);
   }
   const url = `${base.replace(/\/$/, '')}/${path.replace(/^\/+/, '')}`;
-  const headers: Record<string, string> = {};
+  const headers: Record<string, string> = organisationRequestHeaders(path);
   let payload: BodyInit | undefined;
   if (body instanceof FormData) {
     payload = body;
@@ -151,7 +152,7 @@ export async function apiGetBlob(
     throw new ApiError('Backend API URL not configured', 0);
   }
   const url = `${base.replace(/\/$/, '')}/${path.replace(/^\/+/, '')}`;
-  const res = await fetch(url, { method: 'GET', cache: 'no-store' });
+  const res = await fetch(url, { method: 'GET', headers: organisationRequestHeaders(path), cache: 'no-store' });
   if (!res.ok) {
     const detail = await extractErrorDetail(
       res,

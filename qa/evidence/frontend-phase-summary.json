@@ -1,0 +1,2665 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-01",
+  "timezone": "Australia/Sydney",
+  "versions": {
+    "node": "v24.15.0",
+    "npm": "11.12.1",
+    "next": "16.2.1",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "typescript": "5.9.3",
+    "@auth0/nextjs-auth0": "4.27.0",
+    "eslint": "9.39.4",
+    "eslint-config-next": "16.2.1",
+    "vitest": "3.2.6",
+    "@vitest/coverage-v8": "3.2.6",
+    "vite": "6.4.1",
+    "@testing-library/react": "16.3.0",
+    "@testing-library/dom": "10.4.1",
+    "@testing-library/user-event": "14.6.1",
+    "@testing-library/jest-dom": "6.9.1",
+    "jsdom": "26.1.0",
+    "@playwright/test": "1.58.2"
+  },
+  "baseline": {
+    "frontend": {
+      "branch": "develop",
+      "head": "a95174dffa8b41bd8650fd053178018dd03c18ad"
+    },
+    "backend": {
+      "branch": "development",
+      "head": "f3fdc7998a8b5e8bfc913cadf464f23eeb3332b7"
+    },
+    "localChangesNotCommitted": true
+  },
+  "pathAliases": {
+    "<FE>": "frontend checkout",
+    "<BE>": "backend checkout",
+    "<STAGE>": "owned per-run temporary source, removed after execution",
+    "<TEMP>": "local temporary directory",
+    "<NODE>": "Node executable, version above",
+    "<NODE_DIR>": "Node installation directory"
+  },
+  "dependencyPreservation": {
+    "existingLockedPackages": 904,
+    "versionOrIntegrityChanges": [],
+    "addedEntries": 196,
+    "applicationRangesUnchanged": true,
+    "newExactDevPins": {
+      "vitest": "3.2.6",
+      "@vitest/coverage-v8": "3.2.6",
+      "vite": "6.4.1",
+      "@testing-library/react": "16.3.0",
+      "@testing-library/dom": "10.4.1",
+      "@testing-library/user-event": "14.6.1",
+      "@testing-library/jest-dom": "6.9.1",
+      "jsdom": "26.1.0",
+      "@playwright/test": "1.58.2",
+      "@types/estree": "1.0.8"
+    }
+  },
+  "preparation": {
+    "lock": {
+      "mode": "lock",
+      "pins": {
+        "vitest": "3.2.6",
+        "@vitest/coverage-v8": "3.2.6",
+        "vite": "6.4.1",
+        "@testing-library/react": "16.3.0",
+        "@testing-library/dom": "10.4.1",
+        "@testing-library/user-event": "14.6.1",
+        "@testing-library/jest-dom": "6.9.1",
+        "jsdom": "26.1.0",
+        "@playwright/test": "1.58.2",
+        "@types/estree": "1.0.8"
+      },
+      "command": [
+        "<NODE>",
+        "<NODE_DIR>\\node_modules\\npm\\bin\\npm-cli.js",
+        "install",
+        "--package-lock-only",
+        "--ignore-scripts",
+        "--no-audit",
+        "--no-fund"
+      ],
+      "exitCode": 0,
+      "dependencyDirectory": ".qa-agent-work\\frontend-phase-2026-11-01\\dependencies",
+      "preExistingPackageChanges": [],
+      "addedPackageEntries": 196
+    },
+    "installation": {
+      "mode": "install",
+      "pins": {
+        "vitest": "3.2.6",
+        "@vitest/coverage-v8": "3.2.6",
+        "vite": "6.4.1",
+        "@testing-library/react": "16.3.0",
+        "@testing-library/dom": "10.4.1",
+        "@testing-library/user-event": "14.6.1",
+        "@testing-library/jest-dom": "6.9.1",
+        "jsdom": "26.1.0",
+        "@playwright/test": "1.58.2",
+        "@types/estree": "1.0.8"
+      },
+      "command": [
+        "<NODE>",
+        "<NODE_DIR>\\node_modules\\npm\\bin\\npm-cli.js",
+        "ci",
+        "--ignore-scripts",
+        "--no-audit",
+        "--no-fund"
+      ],
+      "exitCode": 0,
+      "dependencyDirectory": ".qa-agent-work\\frontend-phase-2026-11-01\\dependencies",
+      "preExistingPackageChanges": [],
+      "addedPackageEntries": 0
+    },
+    "browsers": {
+      "command": [
+        "<NODE>",
+        "<FE>\\.qa-agent-work\\frontend-phase-2026-11-01\\dependencies\\node_modules\\@playwright\\test\\cli.js",
+        "install",
+        "chromium",
+        "firefox",
+        "webkit"
+      ],
+      "exitCode": 0,
+      "purpose": "Public dependency retrieval, not application test traffic"
+    },
+    "reusableWrapper": "scripts/qa/prepare.cjs was syntax-checked; equivalent underlying preparation commands were executed",
+    "traffic": "Public dependency retrieval only, separate from application testing"
+  },
+  "finalResults": [
+    {
+      "runId": "2026-11-01T09-30-00-193Z-eb63d4c9",
+      "layer": "unit",
+      "status": "PASS",
+      "childOrGateExitCode": 0,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer unit",
+      "durationMs": 64580,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-30-00-193Z-eb63d4c9",
+      "tests": {
+        "passed": 45,
+        "failed": 0,
+        "pending": 0,
+        "total": 45
+      },
+      "files": 7,
+      "suites": [
+        {
+          "path": "qa/harness/node-guard.test.ts",
+          "status": "passed",
+          "assertions": [
+            {
+              "name": "Node harness safeguards (reviewed APIs, not an OS sandbox) writes, reads and removes owned synthetic temporary data",
+              "status": "passed"
+            },
+            {
+              "name": "Node harness safeguards (reviewed APIs, not an OS sandbox) denies a synthetic sensitive path before filesystem access",
+              "status": "passed"
+            },
+            {
+              "name": "Node harness safeguards (reviewed APIs, not an OS sandbox) denies writes through the dependency junction",
+              "status": "passed"
+            },
+            {
+              "name": "Node harness safeguards (reviewed APIs, not an OS sandbox) denies unowned network sockets",
+              "status": "passed"
+            },
+            {
+              "name": "Node harness safeguards (reviewed APIs, not an OS sandbox) denies DNS resolver instances as well as top-level lookups",
+              "status": "passed"
+            },
+            {
+              "name": "Node harness safeguards (reviewed APIs, not an OS sandbox) denies shell execution even with an otherwise permitted executable",
+              "status": "passed"
+            },
+            {
+              "name": "Node harness safeguards (reviewed APIs, not an OS sandbox) denies Node eval with an allowed script smuggled later in argv",
+              "status": "passed"
+            },
+            {
+              "name": "Node harness safeguards (reviewed APIs, not an OS sandbox) denies recursive copies before opening their source",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "path": "tests/components/auth-gates.test.tsx",
+          "status": "passed",
+          "assertions": [
+            {
+              "name": "Role and session UI gates (not API authorization) does not expose gated content before the session is ready",
+              "status": "passed"
+            },
+            {
+              "name": "Role and session UI gates (not API authorization) renders project creation for owner according to the actual UI role matrix",
+              "status": "passed"
+            },
+            {
+              "name": "Role and session UI gates (not API authorization) renders project creation for viewer according to the actual UI role matrix",
+              "status": "passed"
+            },
+            {
+              "name": "Role and session UI gates (not API authorization) renders a caller-provided denial fallback without protected content",
+              "status": "passed"
+            },
+            {
+              "name": "Role and session UI gates (not API authorization) shows loading until ready, then reveals an active account dashboard",
+              "status": "passed"
+            },
+            {
+              "name": "Role and session UI gates (not API authorization) offers retry for a transient account failure and reveals content after recovery",
+              "status": "passed"
+            },
+            {
+              "name": "Role and session UI gates (not API authorization) offers reauthentication rather than retrying an invalid session",
+              "status": "passed"
+            },
+            {
+              "name": "Role and session UI gates (not API authorization) replaces the dashboard for a PendingApproval account",
+              "status": "passed"
+            },
+            {
+              "name": "Role and session UI gates (not API authorization) replaces the dashboard for a Rejected account",
+              "status": "passed"
+            },
+            {
+              "name": "Role and session UI gates (not API authorization) routes an unonboarded account to onboarding without displaying dashboard children",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "path": "tests/components/billing-page.test.tsx",
+          "status": "passed",
+          "assertions": [
+            {
+              "name": "Billing plan presentation and mutation feedback (mocked service, no payments) shows the free tier and only relevant upgrade actions",
+              "status": "passed"
+            },
+            {
+              "name": "Billing plan presentation and mutation feedback (mocked service, no payments) shows the pro tier and only relevant upgrade actions",
+              "status": "passed"
+            },
+            {
+              "name": "Billing plan presentation and mutation feedback (mocked service, no payments) shows the enterprise tier and only relevant upgrade actions",
+              "status": "passed"
+            },
+            {
+              "name": "Billing plan presentation and mutation feedback (mocked service, no payments) prevents duplicate checkout while pending and recovers from a denied API request",
+              "status": "passed"
+            },
+            {
+              "name": "Billing plan presentation and mutation feedback (mocked service, no payments) keeps cancellation reviewable, sends it only after confirmation and refreshes the visible plan",
+              "status": "passed"
+            },
+            {
+              "name": "Billing plan presentation and mutation feedback (mocked service, no payments) replaces initial loading with a visible service error and no fabricated plan",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "path": "tests/components/contact-page.test.tsx",
+          "status": "passed",
+          "assertions": [
+            {
+              "name": "Contact form shows validation feedback without submitting invalid input 0",
+              "status": "passed"
+            },
+            {
+              "name": "Contact form shows validation feedback without submitting invalid input 1",
+              "status": "passed"
+            },
+            {
+              "name": "Contact form shows validation feedback without submitting invalid input 2",
+              "status": "passed"
+            },
+            {
+              "name": "Contact form submits trimmed fields and displays the received-message confirmation",
+              "status": "passed"
+            },
+            {
+              "name": "Contact form disables submission while pending and prevents a user double click from sending twice",
+              "status": "passed"
+            },
+            {
+              "name": "Contact form preserves input after rejection and lets the user retry successfully",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "path": "tests/components/expense-dialog.test.tsx",
+          "status": "passed",
+          "assertions": [
+            {
+              "name": "Expense entry requires description and amount before submitting",
+              "status": "passed"
+            },
+            {
+              "name": "Expense entry converts entered major amounts into exact cents and reports the created record",
+              "status": "passed"
+            },
+            {
+              "name": "Expense entry does not close or duplicate the mutation while the API is pending",
+              "status": "passed"
+            },
+            {
+              "name": "Expense entry retains data after an API rejection and sends the corrected amount on retry",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "path": "tests/components/supplier-dialog.test.tsx",
+          "status": "passed",
+          "assertions": [
+            {
+              "name": "Supplier dialog requires a non-whitespace name and keeps the dialog available for correction",
+              "status": "passed"
+            },
+            {
+              "name": "Supplier dialog creates the trimmed supplier and omits blank optional values",
+              "status": "passed"
+            },
+            {
+              "name": "Supplier dialog prefills an existing supplier and sends edits to that supplier ID",
+              "status": "passed"
+            },
+            {
+              "name": "Supplier dialog disables saving and Cancel while pending without issuing duplicate creates",
+              "status": "passed"
+            },
+            {
+              "name": "Supplier dialog shows an API rejection, retains the entered name, then recovers on retry",
+              "status": "passed"
+            },
+            {
+              "name": "Supplier dialog cancels without creating or updating a supplier",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "path": "tests/components/suppliers-page.test.tsx",
+          "status": "passed",
+          "assertions": [
+            {
+              "name": "Supplier list with real SWR and a synthetic service boundary distinguishes a pending request from an empty list and then renders returned supplier data",
+              "status": "passed"
+            },
+            {
+              "name": "Supplier list with real SWR and a synthetic service boundary shows the empty state and lets an owner open the actual creation dialog",
+              "status": "passed"
+            },
+            {
+              "name": "Supplier list with real SWR and a synthetic service boundary shows an API error instead of falsely presenting an empty result",
+              "status": "passed"
+            },
+            {
+              "name": "Supplier list with real SWR and a synthetic service boundary hides create/edit/delete controls for a role denied supplier editing",
+              "status": "passed"
+            },
+            {
+              "name": "Supplier list with real SWR and a synthetic service boundary requests the encoded search value and displays the filtered result",
+              "status": "passed"
+            }
+          ]
+        }
+      ],
+      "childCommand": [
+        "<NODE>",
+        "<FE>\\.qa-agent-work\\frontend-phase-2026-11-01\\dependencies\\node_modules\\vitest\\vitest.mjs",
+        "run",
+        "--config",
+        "vitest.config.mts",
+        "--configLoader",
+        "native",
+        "--coverage",
+        "--reporter=default",
+        "--reporter=json",
+        "--outputFile.json=<FE>\\qa-raw\\vitest-results\\2026-11-01T09-30-00-193Z-eb63d4c9\\vitest.json"
+      ],
+      "artifactSha256": {
+        "execution.json": "358acf40fe17a00b4cc5a8f5810e8063b79d73b7e1565ceb07dd4c043511a0f5",
+        "source-manifest.json": "a04c859b9686f89855082dccfe6e352eca06377570fa5a7145b4b4d48df5ad61",
+        "vitest.json": "8f68f032f5ed49489fbe94c3686775ea66f3e0f1f8d9d69ff994ab8574389f03"
+      },
+      "workerProofs": {
+        "count": 9,
+        "allGuardLoaded": true,
+        "allSyntheticReadsDenied": true,
+        "proofs": [
+          {
+            "pid": 3016,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 3016,
+            "threadId": 1,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 3016,
+            "threadId": 2,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 3016,
+            "threadId": 3,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 3016,
+            "threadId": 4,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 3016,
+            "threadId": 5,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 3016,
+            "threadId": 6,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 3016,
+            "threadId": 7,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 3016,
+            "threadId": 8,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          }
+        ]
+      }
+    },
+    {
+      "runId": "2026-11-01T09-25-04-324Z-38769c19",
+      "layer": "legacy-unit",
+      "status": "FAIL",
+      "childOrGateExitCode": 1,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer legacy-unit",
+      "durationMs": 346,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-25-04-324Z-38769c19",
+      "tests": {
+        "tests": 14,
+        "pass": 6,
+        "fail": 8,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "childCommand": [
+        "<NODE>",
+        "<STAGE>\\scripts\\workspaces.test.cjs"
+      ],
+      "artifactSha256": {
+        "execution.json": "cca95219338aa60732b3a756eba4e5cb1ebd07d73cfa217666e4681a2ce2514c",
+        "source-manifest.json": "ac47adcde35a76560206bef512ee82af8eae23d323e6e6cf01101b636b5a6e1a"
+      },
+      "workerProofs": {
+        "count": 1,
+        "allGuardLoaded": true,
+        "allSyntheticReadsDenied": true,
+        "proofs": [
+          {
+            "pid": 37228,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          }
+        ]
+      }
+    },
+    {
+      "runId": "2026-11-01T09-20-34-095Z-9a812acb",
+      "layer": "typecheck",
+      "status": "FAIL",
+      "childOrGateExitCode": 2,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer typecheck",
+      "durationMs": 4880,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-20-34-095Z-9a812acb",
+      "childCommand": [
+        "<NODE>",
+        "<FE>\\.qa-agent-work\\frontend-phase-2026-11-01\\dependencies\\node_modules\\typescript\\bin\\tsc",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "-p",
+        "tsconfig.json"
+      ],
+      "artifactSha256": {
+        "execution.json": "d4ece9532e29025b08211e97499db381650bb56d415d0cf9955916d4213ca64f",
+        "source-manifest.json": "5c4e0cedecc1f885ef278a4481fe03869ff1adae3c8da16430f46294368bdd19"
+      },
+      "diagnostics": [
+        "src/app/components/dashboard/OrganisationSwitcher.tsx(11,27): error TS2339: Property 'organisations' does not exist on type 'AuthSessionContextValue'.",
+        "src/app/components/dashboard/OrganisationSwitcher.tsx(17,37): error TS2339: Property 'organisationId' does not exist on type 'AuthSession'.",
+        "src/app/components/dashboard/OrganisationSwitcher.tsx(37,27): error TS2339: Property 'organisationId' does not exist on type 'AuthSession'.",
+        "src/app/components/dashboard/OrganisationSwitcher.tsx(42,31): error TS7006: Parameter 'organisation' implicitly has an 'any' type.",
+        "src/app/components/dashboard/OrganisationSwitcher.tsx(44,38): error TS7053: Element implicitly has an 'any' type because expression of type 'any' can't be used to index type 'Record<\"owner\" | \"viewer\" | \"editor\" | \"admin\" | \"pm\" | \"supervisor\" | \"finance\" | \"general\" | \"subcontractor\", string>'."
+      ],
+      "workerProofs": {
+        "count": 1,
+        "allGuardLoaded": true,
+        "allSyntheticReadsDenied": true,
+        "proofs": [
+          {
+            "pid": 49140,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          }
+        ]
+      }
+    },
+    {
+      "runId": "2026-11-01T09-37-21-083Z-b9d3dd90",
+      "layer": "qa-typecheck",
+      "status": "PASS",
+      "childOrGateExitCode": 0,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer qa-typecheck",
+      "durationMs": 2409,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-37-21-083Z-b9d3dd90",
+      "childCommand": [
+        "<NODE>",
+        "<FE>\\.qa-agent-work\\frontend-phase-2026-11-01\\dependencies\\node_modules\\typescript\\bin\\tsc",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "-p",
+        "tsconfig.qa.json"
+      ],
+      "artifactSha256": {
+        "execution.json": "1635f02ae958c753d402c716df810fbda3c4657ed08c84e45d777cda9364cfb2",
+        "source-manifest.json": "9c55b1c9e7bce83e1be24ee0f395b23dad96235e39e3375429f7e9174acd2ee0"
+      },
+      "diagnostics": [],
+      "workerProofs": {
+        "count": 1,
+        "allGuardLoaded": true,
+        "allSyntheticReadsDenied": true,
+        "proofs": [
+          {
+            "pid": 30492,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          }
+        ]
+      }
+    },
+    {
+      "runId": "2026-11-01T09-36-58-836Z-5ca35baf",
+      "layer": "lint",
+      "status": "FAIL",
+      "childOrGateExitCode": 1,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer lint",
+      "durationMs": 10147,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-36-58-836Z-5ca35baf",
+      "childCommand": [
+        "<NODE>",
+        "<FE>\\.qa-agent-work\\frontend-phase-2026-11-01\\dependencies\\node_modules\\eslint\\bin\\eslint.js",
+        ".",
+        "--format",
+        "json",
+        "--output-file",
+        "<FE>\\qa-raw\\vitest-results\\2026-11-01T09-36-58-836Z-5ca35baf\\eslint.json"
+      ],
+      "artifactSha256": {
+        "execution.json": "ed95d0f7568ca09952dbbc67713e0eeb606b2d8d413f2148337de6133d4cecf5",
+        "source-manifest.json": "9c55b1c9e7bce83e1be24ee0f395b23dad96235e39e3375429f7e9174acd2ee0",
+        "eslint.json": "5c362f36581ce482ca3cba7aa4e974148c554b08df1ac60c116ea8d7e5e50898"
+      },
+      "workerProofs": {
+        "count": 1,
+        "allGuardLoaded": true,
+        "allSyntheticReadsDenied": true,
+        "proofs": [
+          {
+            "pid": 47260,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          }
+        ]
+      },
+      "lint": {
+        "files": 184,
+        "errors": 13,
+        "warnings": 4,
+        "findings": [
+          {
+            "path": "scripts/workspaces.test.cjs",
+            "messages": [
+              {
+                "line": 26,
+                "column": 3,
+                "severity": 2,
+                "rule": "@next/next/no-assign-module-variable",
+                "message": "Do not assign to the variable `module`. See: https://nextjs.org/docs/messages/no-assign-module-variable"
+              }
+            ]
+          },
+          {
+            "path": "src/app/components/auth/DashboardAuthGate.tsx",
+            "messages": [
+              {
+                "line": 110,
+                "column": 5,
+                "severity": 2,
+                "rule": "react-hooks/set-state-in-effect",
+                "message": "Error: Calling setState synchronously within an effect can trigger cascading renders"
+              }
+            ]
+          },
+          {
+            "path": "src/app/components/auth/PendingApprovalScreen.tsx",
+            "messages": [
+              {
+                "line": 49,
+                "column": 31,
+                "severity": 2,
+                "rule": "react/no-unescaped-entities",
+                "message": "`'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`."
+              }
+            ]
+          },
+          {
+            "path": "src/app/components/construction/SubcontractorDialog.tsx",
+            "messages": [
+              {
+                "line": 12,
+                "column": 3,
+                "severity": 1,
+                "rule": "@typescript-eslint/no-unused-vars",
+                "message": "'Stack' is defined but never used."
+              }
+            ]
+          },
+          {
+            "path": "src/app/components/dashboard/AppSidebar.tsx",
+            "messages": [
+              {
+                "line": 88,
+                "column": 22,
+                "severity": 2,
+                "rule": "react-hooks/set-state-in-effect",
+                "message": "Error: Calling setState synchronously within an effect can trigger cascading renders"
+              }
+            ]
+          },
+          {
+            "path": "src/app/dashboard/projects/[id]/contracts/new/page.tsx",
+            "messages": [
+              {
+                "line": 283,
+                "column": 30,
+                "severity": 2,
+                "rule": "react/no-unescaped-entities",
+                "message": "`'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`."
+              }
+            ]
+          },
+          {
+            "path": "src/app/dashboard/settings/billing/page.tsx",
+            "messages": [
+              {
+                "line": 111,
+                "column": 25,
+                "severity": 2,
+                "rule": "@typescript-eslint/no-explicit-any",
+                "message": "Unexpected any. Specify a different type."
+              }
+            ]
+          },
+          {
+            "path": "src/app/dashboard/subcontractors/page.tsx",
+            "messages": [
+              {
+                "line": 164,
+                "column": 71,
+                "severity": 2,
+                "rule": "react-hooks/purity",
+                "message": "Error: Cannot call impure function during render"
+              },
+              {
+                "line": 165,
+                "column": 71,
+                "severity": 2,
+                "rule": "react-hooks/purity",
+                "message": "Error: Cannot call impure function during render"
+              }
+            ]
+          },
+          {
+            "path": "src/app/dashboard/users/pending/page.tsx",
+            "messages": [
+              {
+                "line": 20,
+                "column": 3,
+                "severity": 1,
+                "rule": "@typescript-eslint/no-unused-vars",
+                "message": "'Typography' is defined but never used."
+              }
+            ]
+          },
+          {
+            "path": "src/app/global-error.tsx",
+            "messages": [
+              {
+                "line": 4,
+                "column": 3,
+                "severity": 1,
+                "rule": "@typescript-eslint/no-unused-vars",
+                "message": "'error' is defined but never used."
+              }
+            ]
+          },
+          {
+            "path": "src/app/onboarding/page.tsx",
+            "messages": [
+              {
+                "line": 84,
+                "column": 5,
+                "severity": 2,
+                "rule": "react-hooks/set-state-in-effect",
+                "message": "Error: Calling setState synchronously within an effect can trigger cascading renders"
+              }
+            ]
+          },
+          {
+            "path": "src/app/plans/page.tsx",
+            "messages": [
+              {
+                "line": 85,
+                "column": 5,
+                "severity": 1,
+                "rule": null,
+                "message": "Unused eslint-disable directive (no problems were reported from 'react-hooks/exhaustive-deps')."
+              }
+            ]
+          },
+          {
+            "path": "src/app/services/frontendService.ts",
+            "messages": [
+              {
+                "line": 16,
+                "column": 55,
+                "severity": 2,
+                "rule": "@typescript-eslint/no-explicit-any",
+                "message": "Unexpected any. Specify a different type."
+              }
+            ]
+          },
+          {
+            "path": "src/lib/colorModeContext.tsx",
+            "messages": [
+              {
+                "line": 67,
+                "column": 5,
+                "severity": 2,
+                "rule": "react-hooks/set-state-in-effect",
+                "message": "Error: Calling setState synchronously within an effect can trigger cascading renders"
+              }
+            ]
+          },
+          {
+            "path": "src/utils/api-utils.ts",
+            "messages": [
+              {
+                "line": 4,
+                "column": 46,
+                "severity": 2,
+                "rule": "@typescript-eslint/no-explicit-any",
+                "message": "Unexpected any. Specify a different type."
+              }
+            ]
+          },
+          {
+            "path": "src/utils/routing-utils.ts",
+            "messages": [
+              {
+                "line": 10,
+                "column": 34,
+                "severity": 2,
+                "rule": "@typescript-eslint/no-explicit-any",
+                "message": "Unexpected any. Specify a different type."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "runId": "2026-11-01T09-21-25-872Z-c4b9621a",
+      "layer": "build",
+      "status": "FAIL",
+      "childOrGateExitCode": 1,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer build",
+      "durationMs": 33440,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-21-25-872Z-c4b9621a",
+      "childCommand": [
+        "<NODE>",
+        "<FE>\\.qa-agent-work\\frontend-phase-2026-11-01\\dependencies\\node_modules\\next\\dist\\bin\\next",
+        "build",
+        "--webpack"
+      ],
+      "artifactSha256": {
+        "execution.json": "00cc5202df7dc981b2c9c072e3eaea9fcef2c2862007432bbbfd83af78afb42c",
+        "source-manifest.json": "1c60cf3dc85b555923f4a0149a5974a9daa10f412a7e9a636caad73c19e9a0ac"
+      },
+      "failureEvidence": [
+        "Failed to type check.",
+        "./src/app/components/dashboard/OrganisationSwitcher.tsx:11:27",
+        "Type error: Property 'organisations' does not exist on type 'AuthSessionContextValue'."
+      ],
+      "workerProofs": {
+        "count": 2,
+        "allGuardLoaded": true,
+        "allSyntheticReadsDenied": true,
+        "proofs": [
+          {
+            "pid": 30292,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 54056,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          }
+        ]
+      }
+    },
+    {
+      "runId": "2026-11-01T09-37-10-901Z-c0449530",
+      "layer": "mocked-browser",
+      "status": "FAIL",
+      "childOrGateExitCode": 1,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer mocked-browser",
+      "durationMs": 171645,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/playwright-results/2026-11-01T09-37-10-901Z-c0449530",
+      "childCommand": [
+        "<NODE>",
+        "<STAGE>\\qa\\harness\\run-browser.cjs"
+      ],
+      "artifactSha256": {
+        "execution.json": "3cf871fa7ad3775ac72498c5220d7e556b6f77190676aac20b211c55bda3022f",
+        "source-manifest.json": "9c55b1c9e7bce83e1be24ee0f395b23dad96235e39e3375429f7e9174acd2ee0",
+        "playwright.json": "6e9d718175d950eaacf7bf1f366d2c23953ea225321cd202ce5ff493c89d18af",
+        "browser-execution.json": "d2cbb3e60bc817dcac76cd106fc17f739e35c5283a88b8519b5724b91eb23350"
+      },
+      "workerProofs": {
+        "count": 67,
+        "allGuardLoaded": true,
+        "allSyntheticReadsDenied": true,
+        "proofs": [
+          {
+            "pid": 10132,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 10256,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 10360,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 10360,
+            "threadId": 1,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 13024,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 13024,
+            "threadId": 1,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 20776,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 2252,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 2252,
+            "threadId": 1,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 23264,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 23832,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 24340,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 2512,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 2512,
+            "threadId": 1,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 27356,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 27356,
+            "threadId": 1,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 27988,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 28640,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 28640,
+            "threadId": 1,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 30600,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 30600,
+            "threadId": 1,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 3140,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 31792,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 32252,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 32320,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 33424,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 33424,
+            "threadId": 1,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 35208,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 36284,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 36284,
+            "threadId": 1,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 36960,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 37044,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 37308,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 39644,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 39736,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 40708,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 42924,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 42924,
+            "threadId": 1,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 43256,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 43256,
+            "threadId": 1,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 4476,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 46568,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 46568,
+            "threadId": 1,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 48660,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 49608,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 50232,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 51816,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 51816,
+            "threadId": 1,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 5212,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 53320,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 53536,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 53800,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 53832,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 54004,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 54004,
+            "threadId": 1,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 54028,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 54868,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 54868,
+            "threadId": 1,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 57140,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 57140,
+            "threadId": 1,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 5780,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 6124,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 6124,
+            "threadId": 1,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 6564,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 6564,
+            "threadId": 1,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 8548,
+            "threadId": 0,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          },
+          {
+            "pid": 8548,
+            "threadId": 1,
+            "guardLoaded": true,
+            "syntheticReadDenied": true
+          }
+        ]
+      },
+      "browser": {
+        "stats": {
+          "startTime": "2026-11-01T09:37:13.057Z",
+          "duration": 169282.634,
+          "expected": 24,
+          "skipped": 0,
+          "unexpected": 15,
+          "flaky": 0
+        },
+        "projects": {
+          "chromium": {
+            "executed": 13,
+            "passed": 9,
+            "failed": 4,
+            "notRun": 0
+          },
+          "firefox": {
+            "executed": 13,
+            "passed": 10,
+            "failed": 3,
+            "notRun": 0
+          },
+          "webkit": {
+            "executed": 13,
+            "passed": 5,
+            "failed": 8,
+            "notRun": 0
+          }
+        },
+        "cases": [
+          {
+            "engine": "chromium",
+            "file": "auth-navigation.mocked-browser.spec.ts",
+            "line": 4,
+            "title": "auth-navigation.mocked-browser.spec.ts > mocked-browser: authentication navigation > a protected deep link preserves its path and query through synthetic sign-in",
+            "status": "failed",
+            "durationMs": 21136,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 1,
+              "pageErrorKinds": [
+                "React hydration mismatch"
+              ],
+              "avatarMismatch": true
+            },
+            "errors": [
+              "Unhandled browser page error: React hydration mismatch (server ? / client QU)"
+            ]
+          },
+          {
+            "engine": "chromium",
+            "file": "auth-navigation.mocked-browser.spec.ts",
+            "line": 20,
+            "title": "auth-navigation.mocked-browser.spec.ts > mocked-browser: authentication navigation > the login entry route preserves a safe internal returnTo including its query",
+            "status": "passed",
+            "durationMs": 2192,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 0,
+              "pageErrorKinds": [],
+              "avatarMismatch": false
+            },
+            "errors": []
+          },
+          {
+            "engine": "chromium",
+            "file": "auth-navigation.mocked-browser.spec.ts",
+            "line": 35,
+            "title": "auth-navigation.mocked-browser.spec.ts > mocked-browser: authentication navigation > the login entry route rejects a absolute external URL",
+            "status": "passed",
+            "durationMs": 1157,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 0,
+              "pageErrorKinds": [],
+              "avatarMismatch": false
+            },
+            "errors": []
+          },
+          {
+            "engine": "chromium",
+            "file": "auth-navigation.mocked-browser.spec.ts",
+            "line": 35,
+            "title": "auth-navigation.mocked-browser.spec.ts > mocked-browser: authentication navigation > the login entry route rejects a protocol-relative external URL",
+            "status": "passed",
+            "durationMs": 1244,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 0,
+              "pageErrorKinds": [],
+              "avatarMismatch": false
+            },
+            "errors": []
+          },
+          {
+            "engine": "chromium",
+            "file": "auth-navigation.mocked-browser.spec.ts",
+            "line": 35,
+            "title": "auth-navigation.mocked-browser.spec.ts > mocked-browser: authentication navigation > the login entry route rejects a backslash-normalized external URL",
+            "status": "failed",
+            "durationMs": 1600,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 0,
+              "pageErrorKinds": [],
+              "avatarMismatch": false
+            },
+            "errors": [
+              "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: \"/dashboard\"\nReceived: \"/\\\\qa.invalid/escape\"\n\n  40 |\n  41 |       // Inspect what the product forwarded, before the fixture's own safe-redirect guard.\n> 42 |       expect(new URL(page.url()).searchParams.get('returnTo')).toBe('/dashboard');\n     |                                                                ^\n  43 |     });\n  44 |   }\n  45 |\n    at <STAGE>\\tests\\browser\\auth-navigation.mocked-browser.spec.ts:42:64"
+            ]
+          },
+          {
+            "engine": "chromium",
+            "file": "auth-navigation.mocked-browser.spec.ts",
+            "line": 46,
+            "title": "auth-navigation.mocked-browser.spec.ts > mocked-browser: authentication navigation > the login entry route defaults to the dashboard without a returnTo",
+            "status": "passed",
+            "durationMs": 1023,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 0,
+              "pageErrorKinds": [],
+              "avatarMismatch": false
+            },
+            "errors": []
+          },
+          {
+            "engine": "firefox",
+            "file": "auth-navigation.mocked-browser.spec.ts",
+            "line": 4,
+            "title": "auth-navigation.mocked-browser.spec.ts > mocked-browser: authentication navigation > a protected deep link preserves its path and query through synthetic sign-in",
+            "status": "passed",
+            "durationMs": 6289,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 0,
+              "pageErrorKinds": [],
+              "avatarMismatch": false
+            },
+            "errors": []
+          },
+          {
+            "engine": "firefox",
+            "file": "auth-navigation.mocked-browser.spec.ts",
+            "line": 20,
+            "title": "auth-navigation.mocked-browser.spec.ts > mocked-browser: authentication navigation > the login entry route preserves a safe internal returnTo including its query",
+            "status": "passed",
+            "durationMs": 2418,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 0,
+              "pageErrorKinds": [],
+              "avatarMismatch": false
+            },
+            "errors": []
+          },
+          {
+            "engine": "firefox",
+            "file": "auth-navigation.mocked-browser.spec.ts",
+            "line": 35,
+            "title": "auth-navigation.mocked-browser.spec.ts > mocked-browser: authentication navigation > the login entry route rejects a absolute external URL",
+            "status": "passed",
+            "durationMs": 2903,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 0,
+              "pageErrorKinds": [],
+              "avatarMismatch": false
+            },
+            "errors": []
+          },
+          {
+            "engine": "firefox",
+            "file": "auth-navigation.mocked-browser.spec.ts",
+            "line": 35,
+            "title": "auth-navigation.mocked-browser.spec.ts > mocked-browser: authentication navigation > the login entry route rejects a protocol-relative external URL",
+            "status": "passed",
+            "durationMs": 2534,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 0,
+              "pageErrorKinds": [],
+              "avatarMismatch": false
+            },
+            "errors": []
+          },
+          {
+            "engine": "firefox",
+            "file": "auth-navigation.mocked-browser.spec.ts",
+            "line": 35,
+            "title": "auth-navigation.mocked-browser.spec.ts > mocked-browser: authentication navigation > the login entry route rejects a backslash-normalized external URL",
+            "status": "failed",
+            "durationMs": 2673,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 0,
+              "pageErrorKinds": [],
+              "avatarMismatch": false
+            },
+            "errors": [
+              "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: \"/dashboard\"\nReceived: \"/\\\\qa.invalid/escape\"\n\n  40 |\n  41 |       // Inspect what the product forwarded, before the fixture's own safe-redirect guard.\n> 42 |       expect(new URL(page.url()).searchParams.get('returnTo')).toBe('/dashboard');\n     |                                                                ^\n  43 |     });\n  44 |   }\n  45 |\n    at <STAGE>\\tests\\browser\\auth-navigation.mocked-browser.spec.ts:42:64"
+            ]
+          },
+          {
+            "engine": "firefox",
+            "file": "auth-navigation.mocked-browser.spec.ts",
+            "line": 46,
+            "title": "auth-navigation.mocked-browser.spec.ts > mocked-browser: authentication navigation > the login entry route defaults to the dashboard without a returnTo",
+            "status": "passed",
+            "durationMs": 2409,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 0,
+              "pageErrorKinds": [],
+              "avatarMismatch": false
+            },
+            "errors": []
+          },
+          {
+            "engine": "webkit",
+            "file": "auth-navigation.mocked-browser.spec.ts",
+            "line": 4,
+            "title": "auth-navigation.mocked-browser.spec.ts > mocked-browser: authentication navigation > a protected deep link preserves its path and query through synthetic sign-in",
+            "status": "failed",
+            "durationMs": 4195,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 1,
+              "pageErrorKinds": [
+                "React hydration mismatch"
+              ],
+              "avatarMismatch": true
+            },
+            "errors": [
+              "Unhandled browser page error: React hydration mismatch (server ? / client QU)"
+            ]
+          },
+          {
+            "engine": "webkit",
+            "file": "auth-navigation.mocked-browser.spec.ts",
+            "line": 20,
+            "title": "auth-navigation.mocked-browser.spec.ts > mocked-browser: authentication navigation > the login entry route preserves a safe internal returnTo including its query",
+            "status": "passed",
+            "durationMs": 1353,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 0,
+              "pageErrorKinds": [],
+              "avatarMismatch": false
+            },
+            "errors": []
+          },
+          {
+            "engine": "webkit",
+            "file": "auth-navigation.mocked-browser.spec.ts",
+            "line": 35,
+            "title": "auth-navigation.mocked-browser.spec.ts > mocked-browser: authentication navigation > the login entry route rejects a absolute external URL",
+            "status": "passed",
+            "durationMs": 1322,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 0,
+              "pageErrorKinds": [],
+              "avatarMismatch": false
+            },
+            "errors": []
+          },
+          {
+            "engine": "webkit",
+            "file": "auth-navigation.mocked-browser.spec.ts",
+            "line": 35,
+            "title": "auth-navigation.mocked-browser.spec.ts > mocked-browser: authentication navigation > the login entry route rejects a protocol-relative external URL",
+            "status": "passed",
+            "durationMs": 1672,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 0,
+              "pageErrorKinds": [],
+              "avatarMismatch": false
+            },
+            "errors": []
+          },
+          {
+            "engine": "webkit",
+            "file": "auth-navigation.mocked-browser.spec.ts",
+            "line": 35,
+            "title": "auth-navigation.mocked-browser.spec.ts > mocked-browser: authentication navigation > the login entry route rejects a backslash-normalized external URL",
+            "status": "failed",
+            "durationMs": 1673,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 0,
+              "pageErrorKinds": [],
+              "avatarMismatch": false
+            },
+            "errors": [
+              "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: \"/dashboard\"\nReceived: \"/\\\\qa.invalid/escape\"\n\n  40 |\n  41 |       // Inspect what the product forwarded, before the fixture's own safe-redirect guard.\n> 42 |       expect(new URL(page.url()).searchParams.get('returnTo')).toBe('/dashboard');\n     |                                                                ^\n  43 |     });\n  44 |   }\n  45 |\n    at <STAGE>\\tests\\browser\\auth-navigation.mocked-browser.spec.ts:42:64"
+            ]
+          },
+          {
+            "engine": "webkit",
+            "file": "auth-navigation.mocked-browser.spec.ts",
+            "line": 46,
+            "title": "auth-navigation.mocked-browser.spec.ts > mocked-browser: authentication navigation > the login entry route defaults to the dashboard without a returnTo",
+            "status": "passed",
+            "durationMs": 1343,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 0,
+              "pageErrorKinds": [],
+              "avatarMismatch": false
+            },
+            "errors": []
+          },
+          {
+            "engine": "chromium",
+            "file": "contracts-navigation.mocked-browser.spec.ts",
+            "line": 4,
+            "title": "contracts-navigation.mocked-browser.spec.ts > mocked-browser: contract navigation > a contract reference opens an actual detail route with its contract",
+            "status": "failed",
+            "durationMs": 5389,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 1,
+              "pageErrorKinds": [
+                "React hydration mismatch"
+              ],
+              "avatarMismatch": true
+            },
+            "errors": [
+              "Error: A linked contract detail route must resolve successfully\n\nexpect(received).toBe(expected) // Object.is equality\n\nExpected: 200\nReceived: 404\n\n  17 |     // Reload tests the real route response even when Next initially navigates with RSC.\n  18 |     const detailResponse = await page.reload();\n> 19 |     expect(detailResponse?.status(), 'A linked contract detail route must resolve successfully').toBe(200);\n     |                                                                                                  ^\n  20 |     await expect(page.getByRole('main')).toContainText(app.records.contract.reference);\n  21 |   });\n  22 |\n    at <STAGE>\\tests\\browser\\contracts-navigation.mocked-browser.spec.ts:19:98",
+              "Unhandled browser page error: React hydration mismatch (server ? / client QU)"
+            ]
+          },
+          {
+            "engine": "chromium",
+            "file": "contracts-navigation.mocked-browser.spec.ts",
+            "line": 23,
+            "title": "contracts-navigation.mocked-browser.spec.ts > mocked-browser: contract navigation > a viewer can read the contract list without a creation control",
+            "status": "passed",
+            "durationMs": 1539,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 0,
+              "pageErrorKinds": [],
+              "avatarMismatch": false
+            },
+            "errors": []
+          },
+          {
+            "engine": "firefox",
+            "file": "contracts-navigation.mocked-browser.spec.ts",
+            "line": 4,
+            "title": "contracts-navigation.mocked-browser.spec.ts > mocked-browser: contract navigation > a contract reference opens an actual detail route with its contract",
+            "status": "failed",
+            "durationMs": 8830,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 0,
+              "pageErrorKinds": [],
+              "avatarMismatch": false
+            },
+            "errors": [
+              "Error: A linked contract detail route must resolve successfully\n\nexpect(received).toBe(expected) // Object.is equality\n\nExpected: 200\nReceived: 404\n\n  17 |     // Reload tests the real route response even when Next initially navigates with RSC.\n  18 |     const detailResponse = await page.reload();\n> 19 |     expect(detailResponse?.status(), 'A linked contract detail route must resolve successfully').toBe(200);\n     |                                                                                                  ^\n  20 |     await expect(page.getByRole('main')).toContainText(app.records.contract.reference);\n  21 |   });\n  22 |\n    at <STAGE>\\tests\\browser\\contracts-navigation.mocked-browser.spec.ts:19:98"
+            ]
+          },
+          {
+            "engine": "firefox",
+            "file": "contracts-navigation.mocked-browser.spec.ts",
+            "line": 23,
+            "title": "contracts-navigation.mocked-browser.spec.ts > mocked-browser: contract navigation > a viewer can read the contract list without a creation control",
+            "status": "failed",
+            "durationMs": 9001,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 0,
+              "pageErrorKinds": [],
+              "avatarMismatch": false
+            },
+            "errors": [
+              "Error: browserContext.close: Protocol error (Browser.removeBrowserContext): can't access property \"_maybeDontRestoreTabs\", this._windows[aWindow.__SSi] is undefined"
+            ]
+          },
+          {
+            "engine": "webkit",
+            "file": "contracts-navigation.mocked-browser.spec.ts",
+            "line": 4,
+            "title": "contracts-navigation.mocked-browser.spec.ts > mocked-browser: contract navigation > a contract reference opens an actual detail route with its contract",
+            "status": "failed",
+            "durationMs": 5157,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 1,
+              "pageErrorKinds": [
+                "React hydration mismatch"
+              ],
+              "avatarMismatch": true
+            },
+            "errors": [
+              "Error: A linked contract detail route must resolve successfully\n\nexpect(received).toBe(expected) // Object.is equality\n\nExpected: 200\nReceived: 404\n\n  17 |     // Reload tests the real route response even when Next initially navigates with RSC.\n  18 |     const detailResponse = await page.reload();\n> 19 |     expect(detailResponse?.status(), 'A linked contract detail route must resolve successfully').toBe(200);\n     |                                                                                                  ^\n  20 |     await expect(page.getByRole('main')).toContainText(app.records.contract.reference);\n  21 |   });\n  22 |\n    at <STAGE>\\tests\\browser\\contracts-navigation.mocked-browser.spec.ts:19:98",
+              "Unhandled browser page error: React hydration mismatch (server ? / client QU)"
+            ]
+          },
+          {
+            "engine": "webkit",
+            "file": "contracts-navigation.mocked-browser.spec.ts",
+            "line": 23,
+            "title": "contracts-navigation.mocked-browser.spec.ts > mocked-browser: contract navigation > a viewer can read the contract list without a creation control",
+            "status": "failed",
+            "durationMs": 2339,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 1,
+              "pageErrorKinds": [
+                "React hydration mismatch"
+              ],
+              "avatarMismatch": true
+            },
+            "errors": [
+              "Unhandled browser page error: React hydration mismatch (server ? / client QU)"
+            ]
+          },
+          {
+            "engine": "chromium",
+            "file": "route-accessibility.mocked-browser.spec.ts",
+            "line": 4,
+            "title": "route-accessibility.mocked-browser.spec.ts > mocked-browser: accessible route workflows > contract entry supports labelled fields, keyboard controls and a readable validation error",
+            "status": "failed",
+            "durationMs": 6981,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 1,
+              "pageErrorKinds": [
+                "React hydration mismatch"
+              ],
+              "avatarMismatch": true
+            },
+            "errors": [
+              "Unhandled browser page error: React hydration mismatch (server ? / client QU)"
+            ]
+          },
+          {
+            "engine": "chromium",
+            "file": "route-accessibility.mocked-browser.spec.ts",
+            "line": 39,
+            "title": "route-accessibility.mocked-browser.spec.ts > mocked-browser: accessible route workflows > mobile navigation can be opened and dismissed using the keyboard",
+            "status": "passed",
+            "durationMs": 1666,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 0,
+              "pageErrorKinds": [],
+              "avatarMismatch": false
+            },
+            "errors": []
+          },
+          {
+            "engine": "chromium",
+            "file": "route-accessibility.mocked-browser.spec.ts",
+            "line": 59,
+            "title": "route-accessibility.mocked-browser.spec.ts > mocked-browser: accessible route workflows > pending users receive a clear status screen instead of project content",
+            "status": "passed",
+            "durationMs": 1275,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 0,
+              "pageErrorKinds": [],
+              "avatarMismatch": false
+            },
+            "errors": []
+          },
+          {
+            "engine": "chromium",
+            "file": "route-accessibility.mocked-browser.spec.ts",
+            "line": 59,
+            "title": "route-accessibility.mocked-browser.spec.ts > mocked-browser: accessible route workflows > rejected users receive a clear status screen instead of project content",
+            "status": "passed",
+            "durationMs": 1635,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 0,
+              "pageErrorKinds": [],
+              "avatarMismatch": false
+            },
+            "errors": []
+          },
+          {
+            "engine": "chromium",
+            "file": "route-accessibility.mocked-browser.spec.ts",
+            "line": 69,
+            "title": "route-accessibility.mocked-browser.spec.ts > mocked-browser: accessible route workflows > an unavailable account API presents retry and recovers without losing the route",
+            "status": "passed",
+            "durationMs": 3591,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 0,
+              "pageErrorKinds": [],
+              "avatarMismatch": false
+            },
+            "errors": []
+          },
+          {
+            "engine": "firefox",
+            "file": "route-accessibility.mocked-browser.spec.ts",
+            "line": 4,
+            "title": "route-accessibility.mocked-browser.spec.ts > mocked-browser: accessible route workflows > contract entry supports labelled fields, keyboard controls and a readable validation error",
+            "status": "passed",
+            "durationMs": 7753,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 0,
+              "pageErrorKinds": [],
+              "avatarMismatch": false
+            },
+            "errors": []
+          },
+          {
+            "engine": "firefox",
+            "file": "route-accessibility.mocked-browser.spec.ts",
+            "line": 39,
+            "title": "route-accessibility.mocked-browser.spec.ts > mocked-browser: accessible route workflows > mobile navigation can be opened and dismissed using the keyboard",
+            "status": "passed",
+            "durationMs": 4879,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 0,
+              "pageErrorKinds": [],
+              "avatarMismatch": false
+            },
+            "errors": []
+          },
+          {
+            "engine": "firefox",
+            "file": "route-accessibility.mocked-browser.spec.ts",
+            "line": 59,
+            "title": "route-accessibility.mocked-browser.spec.ts > mocked-browser: accessible route workflows > pending users receive a clear status screen instead of project content",
+            "status": "passed",
+            "durationMs": 4024,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 0,
+              "pageErrorKinds": [],
+              "avatarMismatch": false
+            },
+            "errors": []
+          },
+          {
+            "engine": "firefox",
+            "file": "route-accessibility.mocked-browser.spec.ts",
+            "line": 59,
+            "title": "route-accessibility.mocked-browser.spec.ts > mocked-browser: accessible route workflows > rejected users receive a clear status screen instead of project content",
+            "status": "passed",
+            "durationMs": 3647,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 0,
+              "pageErrorKinds": [],
+              "avatarMismatch": false
+            },
+            "errors": []
+          },
+          {
+            "engine": "firefox",
+            "file": "route-accessibility.mocked-browser.spec.ts",
+            "line": 69,
+            "title": "route-accessibility.mocked-browser.spec.ts > mocked-browser: accessible route workflows > an unavailable account API presents retry and recovers without losing the route",
+            "status": "passed",
+            "durationMs": 5472,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 0,
+              "pageErrorKinds": [],
+              "avatarMismatch": false
+            },
+            "errors": []
+          },
+          {
+            "engine": "webkit",
+            "file": "route-accessibility.mocked-browser.spec.ts",
+            "line": 4,
+            "title": "route-accessibility.mocked-browser.spec.ts > mocked-browser: accessible route workflows > contract entry supports labelled fields, keyboard controls and a readable validation error",
+            "status": "failed",
+            "durationMs": 3526,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 1,
+              "pageErrorKinds": [
+                "React hydration mismatch"
+              ],
+              "avatarMismatch": true
+            },
+            "errors": [
+              "Unhandled browser page error: React hydration mismatch (server ? / client QU)"
+            ]
+          },
+          {
+            "engine": "webkit",
+            "file": "route-accessibility.mocked-browser.spec.ts",
+            "line": 39,
+            "title": "route-accessibility.mocked-browser.spec.ts > mocked-browser: accessible route workflows > mobile navigation can be opened and dismissed using the keyboard",
+            "status": "failed",
+            "durationMs": 2414,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 1,
+              "pageErrorKinds": [
+                "React hydration mismatch"
+              ],
+              "avatarMismatch": true
+            },
+            "errors": [
+              "Unhandled browser page error: React hydration mismatch (server ? / client QU)"
+            ]
+          },
+          {
+            "engine": "webkit",
+            "file": "route-accessibility.mocked-browser.spec.ts",
+            "line": 59,
+            "title": "route-accessibility.mocked-browser.spec.ts > mocked-browser: accessible route workflows > pending users receive a clear status screen instead of project content",
+            "status": "failed",
+            "durationMs": 2168,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 1,
+              "pageErrorKinds": [
+                "React hydration mismatch"
+              ],
+              "avatarMismatch": true
+            },
+            "errors": [
+              "Unhandled browser page error: React hydration mismatch (server ? / client QU)"
+            ]
+          },
+          {
+            "engine": "webkit",
+            "file": "route-accessibility.mocked-browser.spec.ts",
+            "line": 59,
+            "title": "route-accessibility.mocked-browser.spec.ts > mocked-browser: accessible route workflows > rejected users receive a clear status screen instead of project content",
+            "status": "failed",
+            "durationMs": 1808,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 1,
+              "pageErrorKinds": [
+                "React hydration mismatch"
+              ],
+              "avatarMismatch": true
+            },
+            "errors": [
+              "Unhandled browser page error: React hydration mismatch (server ? / client QU)"
+            ]
+          },
+          {
+            "engine": "webkit",
+            "file": "route-accessibility.mocked-browser.spec.ts",
+            "line": 69,
+            "title": "route-accessibility.mocked-browser.spec.ts > mocked-browser: accessible route workflows > an unavailable account API presents retry and recovers without losing the route",
+            "status": "passed",
+            "durationMs": 3722,
+            "retry": 0,
+            "boundary": {
+              "realBackendUsed": false,
+              "violations": [],
+              "pageErrorCount": 0,
+              "pageErrorKinds": [],
+              "avatarMismatch": false
+            },
+            "errors": []
+          }
+        ]
+      },
+      "browserLifecycle": {
+        "realBackend": false,
+        "readiness": {
+          "ready": true,
+          "guard": true
+        },
+        "cleanup": true,
+        "cleanupErrors": [],
+        "violations": [],
+        "browserExitCode": 1,
+        "serverExitCode": 0,
+        "browserSignal": null,
+        "serverSignal": null
+      }
+    },
+    {
+      "runId": "2026-11-01T09-20-34-116Z-2a166c6e",
+      "layer": "stack",
+      "status": "BLOCKED",
+      "childOrGateExitCode": 2,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer stack",
+      "durationMs": null,
+      "stageRemoved": false,
+      "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-20-34-116Z-2a166c6e",
+      "reason": "No independently verified disposable backend/database runner is provisioned. Real-system browser setup, seeding and cleanup were not attempted.",
+      "childCommand": [],
+      "artifactSha256": {
+        "execution.json": "47505e410669b0e1a1cf54908d5b43d2d20532466b0ad51032b48e6becfa507a"
+      }
+    }
+  ],
+  "attemptHistory": [
+    {
+      "runId": "2026-11-01T09-18-31-646Z-590c5225",
+      "layer": "unit",
+      "status": "HARNESS_ERROR",
+      "childOrGateExitCode": 2,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer unit",
+      "durationMs": null,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-18-31-646Z-590c5225",
+      "harnessError": "Staging candidate requires explicit review"
+    },
+    {
+      "runId": "2026-11-01T09-18-31-646Z-ef88d10d",
+      "layer": "typecheck",
+      "status": "HARNESS_ERROR",
+      "childOrGateExitCode": 2,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer typecheck",
+      "durationMs": null,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-18-31-646Z-ef88d10d",
+      "harnessError": "Staging candidate requires explicit review"
+    },
+    {
+      "runId": "2026-11-01T09-18-31-663Z-a40842a6",
+      "layer": "lint",
+      "status": "HARNESS_ERROR",
+      "childOrGateExitCode": 2,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer lint",
+      "durationMs": null,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-18-31-663Z-a40842a6",
+      "harnessError": "Staging candidate requires explicit review"
+    },
+    {
+      "runId": "2026-11-01T09-18-37-689Z-25cd69da",
+      "layer": "unit",
+      "status": "FAIL",
+      "childOrGateExitCode": 1,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer unit",
+      "durationMs": 52,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-18-37-689Z-25cd69da"
+    },
+    {
+      "runId": "2026-11-01T09-18-37-691Z-7779374b",
+      "layer": "typecheck",
+      "status": "FAIL",
+      "childOrGateExitCode": 1,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer typecheck",
+      "durationMs": 48,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-18-37-691Z-7779374b"
+    },
+    {
+      "runId": "2026-11-01T09-18-37-691Z-7eec6ee1",
+      "layer": "lint",
+      "status": "FAIL",
+      "childOrGateExitCode": 1,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer lint",
+      "durationMs": 49,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-18-37-691Z-7eec6ee1"
+    },
+    {
+      "runId": "2026-11-01T09-18-40-887Z-86cc058a",
+      "layer": "lint",
+      "status": "FAIL",
+      "childOrGateExitCode": 1,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer lint",
+      "durationMs": 6399,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-18-40-887Z-86cc058a",
+      "lint": {
+        "files": 180,
+        "errors": 38,
+        "warnings": 4
+      }
+    },
+    {
+      "runId": "2026-11-01T09-18-40-889Z-adc26eb8",
+      "layer": "typecheck",
+      "status": "FAIL",
+      "childOrGateExitCode": 2,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer typecheck",
+      "durationMs": 4160,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-18-40-889Z-adc26eb8"
+    },
+    {
+      "runId": "2026-11-01T09-18-40-889Z-f245ba63",
+      "layer": "unit",
+      "status": "FAIL",
+      "childOrGateExitCode": 1,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer unit",
+      "durationMs": 1821,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-18-40-889Z-f245ba63"
+    },
+    {
+      "runId": "2026-11-01T09-19-06-901Z-50cd5108",
+      "layer": "unit",
+      "status": "FAIL",
+      "childOrGateExitCode": 1,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer unit",
+      "durationMs": 248,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-19-06-901Z-50cd5108"
+    },
+    {
+      "runId": "2026-11-01T09-19-10-434Z-5818fc0f",
+      "layer": "unit",
+      "status": "FAIL",
+      "childOrGateExitCode": 1,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer unit",
+      "durationMs": 551,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-19-10-434Z-5818fc0f"
+    },
+    {
+      "runId": "2026-11-01T09-19-25-605Z-700e20e6",
+      "layer": "unit",
+      "status": "PASS",
+      "childOrGateExitCode": 0,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer unit",
+      "durationMs": 32263,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-19-25-605Z-700e20e6",
+      "tests": {
+        "passed": 45,
+        "failed": 0,
+        "pending": 0,
+        "total": 45
+      },
+      "files": 7
+    },
+    {
+      "runId": "2026-11-01T09-20-34-089Z-b9a40179",
+      "layer": "qa-typecheck",
+      "status": "FAIL",
+      "childOrGateExitCode": 2,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer qa-typecheck",
+      "durationMs": 4853,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-20-34-089Z-b9a40179"
+    },
+    {
+      "runId": "2026-11-01T09-20-34-089Z-ba627bf5",
+      "layer": "lint",
+      "status": "FAIL",
+      "childOrGateExitCode": 1,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer lint",
+      "durationMs": 7292,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-20-34-089Z-ba627bf5",
+      "lint": {
+        "files": 183,
+        "errors": 14,
+        "warnings": 4
+      }
+    },
+    {
+      "runId": "2026-11-01T09-20-34-095Z-9a812acb",
+      "layer": "typecheck",
+      "status": "FAIL",
+      "childOrGateExitCode": 2,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer typecheck",
+      "durationMs": 4880,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-20-34-095Z-9a812acb"
+    },
+    {
+      "runId": "2026-11-01T09-20-34-099Z-4562375d",
+      "layer": "build",
+      "status": "FAIL",
+      "childOrGateExitCode": 1,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer build",
+      "durationMs": 15712,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-20-34-099Z-4562375d"
+    },
+    {
+      "runId": "2026-11-01T09-20-34-116Z-2a166c6e",
+      "layer": "stack",
+      "status": "BLOCKED",
+      "childOrGateExitCode": 2,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer stack",
+      "durationMs": null,
+      "stageRemoved": false,
+      "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-20-34-116Z-2a166c6e",
+      "reason": "No independently verified disposable backend/database runner is provisioned. Real-system browser setup, seeding and cleanup were not attempted."
+    },
+    {
+      "runId": "2026-11-01T09-21-02-689Z-f5826974",
+      "layer": "qa-typecheck",
+      "status": "PASS",
+      "childOrGateExitCode": 0,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer qa-typecheck",
+      "durationMs": 2207,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-21-02-689Z-f5826974"
+    },
+    {
+      "runId": "2026-11-01T09-21-25-872Z-c4b9621a",
+      "layer": "build",
+      "status": "FAIL",
+      "childOrGateExitCode": 1,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer build",
+      "durationMs": 33440,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-21-25-872Z-c4b9621a"
+    },
+    {
+      "runId": "2026-11-01T09-22-18-966Z-200cb6a2",
+      "layer": "lint",
+      "status": "FAIL",
+      "childOrGateExitCode": 1,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer lint",
+      "durationMs": 10407,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-22-18-966Z-200cb6a2",
+      "lint": {
+        "files": 183,
+        "errors": 13,
+        "warnings": 4
+      }
+    },
+    {
+      "runId": "2026-11-01T09-22-38-540Z-8b319934",
+      "layer": "mocked-browser",
+      "status": "HARNESS_ERROR",
+      "childOrGateExitCode": 2,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer mocked-browser",
+      "durationMs": 87457,
+      "stageRemoved": false,
+      "rawDirectory": "qa-raw/playwright-results/2026-11-01T09-22-38-540Z-8b319934",
+      "cleanupError": "EPERM, Permission denied: \\\\?\\<STAGE> '\\\\?\\<STAGE>'",
+      "cleanupFollowup": {
+        "stageRemoved": true,
+        "checkedResolvedTempParent": true,
+        "checkedOwnershipMarker": true,
+        "checkedManifest": true,
+        "reason": "Initial removal raced Windows termination handles; owned tree was terminated and removed after closure"
+      }
+    },
+    {
+      "runId": "2026-11-01T09-25-04-324Z-38769c19",
+      "layer": "legacy-unit",
+      "status": "FAIL",
+      "childOrGateExitCode": 1,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer legacy-unit",
+      "durationMs": 346,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-25-04-324Z-38769c19",
+      "tests": {
+        "tests": 14,
+        "pass": 6,
+        "fail": 8,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "runId": "2026-11-01T09-25-09-960Z-07525aaf",
+      "layer": "mocked-browser",
+      "status": "FAIL",
+      "childOrGateExitCode": 1,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer mocked-browser --project chromium --max-failures=1",
+      "durationMs": 31495,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/playwright-results/2026-11-01T09-25-09-960Z-07525aaf",
+      "browser": {
+        "stats": {
+          "startTime": "2026-11-01T09:25:11.972Z",
+          "duration": 29334.240999999998,
+          "expected": 0,
+          "skipped": 12,
+          "unexpected": 1,
+          "flaky": 0
+        },
+        "projects": {
+          "chromium": {
+            "executed": 1,
+            "passed": 0,
+            "failed": 1,
+            "notRun": 0
+          },
+          "firefox": {
+            "executed": 0,
+            "passed": 0,
+            "failed": 0,
+            "notRun": 0
+          },
+          "webkit": {
+            "executed": 0,
+            "passed": 0,
+            "failed": 0,
+            "notRun": 0
+          }
+        }
+      }
+    },
+    {
+      "runId": "2026-11-01T09-26-05-962Z-30713842",
+      "layer": "mocked-browser",
+      "status": "FAIL",
+      "childOrGateExitCode": 1,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer mocked-browser --project chromium --max-failures=1",
+      "durationMs": 31704,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/playwright-results/2026-11-01T09-26-05-962Z-30713842",
+      "browser": {
+        "stats": {
+          "startTime": "2026-11-01T09:26:07.993Z",
+          "duration": 29537.05,
+          "expected": 0,
+          "skipped": 12,
+          "unexpected": 1,
+          "flaky": 0
+        },
+        "projects": {
+          "chromium": {
+            "executed": 1,
+            "passed": 0,
+            "failed": 1,
+            "notRun": 0
+          },
+          "firefox": {
+            "executed": 0,
+            "passed": 0,
+            "failed": 0,
+            "notRun": 0
+          },
+          "webkit": {
+            "executed": 0,
+            "passed": 0,
+            "failed": 0,
+            "notRun": 0
+          }
+        }
+      }
+    },
+    {
+      "runId": "2026-11-01T09-26-49-147Z-3c942866",
+      "layer": "mocked-browser",
+      "status": "FAIL",
+      "childOrGateExitCode": 1,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer mocked-browser",
+      "durationMs": 240419,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/playwright-results/2026-11-01T09-26-49-147Z-3c942866"
+    },
+    {
+      "runId": "2026-11-01T09-29-14-340Z-d31ab430",
+      "layer": "qa-typecheck",
+      "status": "PASS",
+      "childOrGateExitCode": 0,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer qa-typecheck",
+      "durationMs": 2500,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-29-14-340Z-d31ab430"
+    },
+    {
+      "runId": "2026-11-01T09-30-00-193Z-eb63d4c9",
+      "layer": "unit",
+      "status": "PASS",
+      "childOrGateExitCode": 0,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer unit",
+      "durationMs": 64580,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-30-00-193Z-eb63d4c9",
+      "tests": {
+        "passed": 45,
+        "failed": 0,
+        "pending": 0,
+        "total": 45
+      },
+      "files": 7
+    },
+    {
+      "runId": "2026-11-01T09-30-00-196Z-ff508af0",
+      "layer": "lint",
+      "status": "FAIL",
+      "childOrGateExitCode": 1,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer lint",
+      "durationMs": 12261,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-30-00-196Z-ff508af0",
+      "lint": {
+        "files": 184,
+        "errors": 13,
+        "warnings": 4
+      }
+    },
+    {
+      "runId": "2026-11-01T09-31-10-752Z-1269ef2b",
+      "layer": "mocked-browser",
+      "status": "FAIL",
+      "childOrGateExitCode": 1,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer mocked-browser --project webkit --max-failures=1",
+      "durationMs": 24319,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/playwright-results/2026-11-01T09-31-10-752Z-1269ef2b",
+      "browser": {
+        "stats": {
+          "startTime": "2026-11-01T09:31:12.806Z",
+          "duration": 22121.206,
+          "expected": 0,
+          "skipped": 12,
+          "unexpected": 1,
+          "flaky": 0
+        },
+        "projects": {
+          "chromium": {
+            "executed": 0,
+            "passed": 0,
+            "failed": 0,
+            "notRun": 0
+          },
+          "firefox": {
+            "executed": 0,
+            "passed": 0,
+            "failed": 0,
+            "notRun": 0
+          },
+          "webkit": {
+            "executed": 1,
+            "passed": 0,
+            "failed": 1,
+            "notRun": 0
+          }
+        }
+      }
+    },
+    {
+      "runId": "2026-11-01T09-32-52-537Z-63f8955e",
+      "layer": "mocked-browser",
+      "status": "FAIL",
+      "childOrGateExitCode": 1,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer mocked-browser",
+      "durationMs": 159544,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/playwright-results/2026-11-01T09-32-52-537Z-63f8955e",
+      "browser": {
+        "stats": {
+          "startTime": "2026-11-01T09:32:54.605Z",
+          "duration": 157263.22400000002,
+          "expected": 23,
+          "skipped": 0,
+          "unexpected": 16,
+          "flaky": 0
+        },
+        "projects": {
+          "chromium": {
+            "executed": 13,
+            "passed": 8,
+            "failed": 5,
+            "notRun": 0
+          },
+          "firefox": {
+            "executed": 13,
+            "passed": 10,
+            "failed": 3,
+            "notRun": 0
+          },
+          "webkit": {
+            "executed": 13,
+            "passed": 5,
+            "failed": 8,
+            "notRun": 0
+          }
+        }
+      }
+    },
+    {
+      "runId": "2026-11-01T09-36-58-836Z-5ca35baf",
+      "layer": "lint",
+      "status": "FAIL",
+      "childOrGateExitCode": 1,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer lint",
+      "durationMs": 10147,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-36-58-836Z-5ca35baf",
+      "lint": {
+        "files": 184,
+        "errors": 13,
+        "warnings": 4
+      }
+    },
+    {
+      "runId": "2026-11-01T09-37-10-901Z-c0449530",
+      "layer": "mocked-browser",
+      "status": "FAIL",
+      "childOrGateExitCode": 1,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer mocked-browser",
+      "durationMs": 171645,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/playwright-results/2026-11-01T09-37-10-901Z-c0449530",
+      "browser": {
+        "stats": {
+          "startTime": "2026-11-01T09:37:13.057Z",
+          "duration": 169282.634,
+          "expected": 24,
+          "skipped": 0,
+          "unexpected": 15,
+          "flaky": 0
+        },
+        "projects": {
+          "chromium": {
+            "executed": 13,
+            "passed": 9,
+            "failed": 4,
+            "notRun": 0
+          },
+          "firefox": {
+            "executed": 13,
+            "passed": 10,
+            "failed": 3,
+            "notRun": 0
+          },
+          "webkit": {
+            "executed": 13,
+            "passed": 5,
+            "failed": 8,
+            "notRun": 0
+          }
+        }
+      }
+    },
+    {
+      "runId": "2026-11-01T09-37-21-083Z-b9d3dd90",
+      "layer": "qa-typecheck",
+      "status": "PASS",
+      "childOrGateExitCode": 0,
+      "launcherCommand": "node scripts/qa/run-isolated.cjs --layer qa-typecheck",
+      "durationMs": 2409,
+      "stageRemoved": true,
+      "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-37-21-083Z-b9d3dd90"
+    }
+  ],
+  "coverage": {
+    "lines": {
+      "total": 14255,
+      "covered": 1797,
+      "skipped": 0,
+      "pct": 12.6
+    },
+    "statements": {
+      "total": 14255,
+      "covered": 1797,
+      "skipped": 0,
+      "pct": 12.6
+    },
+    "functions": {
+      "total": 276,
+      "covered": 147,
+      "skipped": 0,
+      "pct": 53.26
+    },
+    "branches": {
+      "total": 468,
+      "covered": 331,
+      "skipped": 0,
+      "pct": 70.72
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "uniqueScenarioAccounting": {
+    "newComponentCases": 37,
+    "nodeHarnessCases": 8,
+    "browserScenarios": 13,
+    "browserMatrixSlots": 39,
+    "legacyExistingCases": 14,
+    "doNotAddLayersAsIndependentRequirementProof": true
+  },
+  "notRun": [
+    "real FE-to-BE persisted mutation and reload",
+    "real JWT/callback/security pipeline",
+    "real role/plan/cross-tenant denied-write state checks",
+    "live payments/email/storage",
+    "human peer review",
+    "human UAT",
+    "CI execution",
+    "deployment"
+  ],
+  "reviewedEvidencePolicy": {
+    "headersRetained": false,
+    "cookiesRetained": false,
+    "tokensRetained": false,
+    "requestBodiesRetained": false,
+    "rawTracesSelected": false
+  },
+  "allStagesEventuallyRemoved": true
+}

@@ -47,4 +47,4 @@ export const invitationService = {
 
 /** Complete onboarding (create org or accept invite) for the signed-in user. */
 export const submitOnboarding = (body: OnboardingBody) =>
-  apiPost<{ needsOnboarding: boolean }>('auth/onboarding', body);
+  apiPost<{ needsOnboarding: boolean; organisationId?: string }>('auth/onboarding', body);

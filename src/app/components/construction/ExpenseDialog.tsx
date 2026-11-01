@@ -126,13 +126,15 @@ export default function ExpenseDialog({
   };
 
   return (
-    <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
+    <Dialog open={open} onClose={busy ? undefined : onClose} fullWidth maxWidth="sm">
       <DialogTitle sx={{ pr: 6 }}>
         New expense
         <Typography variant="body2" color="text.secondary" sx={{ mt: 0.25 }}>
           Material, labor, equipment or subcontract spend against this job.
         </Typography>
         <IconButton
+          aria-label="Close expense dialog"
+          disabled={busy}
           onClick={onClose}
           sx={{ position: 'absolute', right: 8, top: 8 }}
           size="small"

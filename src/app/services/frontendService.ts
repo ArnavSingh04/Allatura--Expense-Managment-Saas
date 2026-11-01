@@ -13,7 +13,7 @@ export class FrontendService {
     this._apiInstance.baseURL = this.BASE_URL;
   }
 
-  async sendRequest(requestType: REQUEST_TYPE, body?: any ) {
+  async sendRequest(requestType: REQUEST_TYPE, body?: unknown ) {
     this._apiInstance.type = requestType;
     if(body) {
       this._apiInstance.body = body;

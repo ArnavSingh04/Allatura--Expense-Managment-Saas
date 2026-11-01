@@ -1,5 +1,7 @@
 import type { NextRequest } from 'next/server';
 import { auth0 } from '@/lib/auth0';
+import { ACTIVE_ORGANISATION_COOKIE, isOrganisationId, readActiveOrganisation } from '@/lib/active-organisation-cookie';
+import { isOrganisationIndependentPath } from '@/lib/organisation-routing';
 
 export const dynamic = 'force-dynamic';
 
@@ -35,6 +37,21 @@ async function proxy(
   if (contentType) headers.set('content-type', contentType);
   const accept = req.headers.get('accept');
   if (accept) headers.set('accept', accept);
+
+  if (!isOrganisationIndependentPath((path || []).join('/'))) {
+    const session = await auth0.getSession().catch(() => null);
+    const subject = session?.user.sub;
+    if (subject) {
+      const explicit = req.headers.get('x-organisation-id');
+      const preference = readActiveOrganisation(req.cookies.get(ACTIVE_ORGANISATION_COOKIE)?.value, subject);
+      if ((explicit !== null && !isOrganisationId(explicit)) || (explicit === null && preference.invalid)) {
+        return Response.json({ message: 'invalid_organisation' }, { status: 403 });
+      }
+      const organisationId = explicit ?? preference.organisationId;
+      // Selection is not authority: the backend verifies membership for every request.
+      if (organisationId) headers.set('x-organisation-id', organisationId);
+    }
+  }
 
   try {
     const { token } = await auth0.getAccessToken();
@@ -87,8 +104,10 @@ async function proxy(
   const resHeaders = new Headers();
   const resType = upstream.headers.get('content-type');
   if (resType) resHeaders.set('content-type', resType);
+  const disposition = upstream.headers.get('content-disposition');
+  if (disposition) resHeaders.set('content-disposition', disposition);
   const buf = await upstream.arrayBuffer();
-  return new Response(buf, { status: upstream.status, headers: resHeaders });
+  return new Response([204, 205, 304].includes(upstream.status) ? null : buf, { status: upstream.status, headers: resHeaders });
 }
 
 export {

@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-01",
+  "reviewer": "coordinator, visual inspection",
+  "artifacts": [
+    {
+      "path": "contract-detail-404.chromium.png",
+      "sha256": "8259a0d1b87f8524aafa1abdc64b09b2145dffb4ccf4617145cb8a1b7a1b2f01",
+      "sourceRunId": "2026-11-01T09-37-10-901Z-c0449530",
+      "source": "qa-raw/playwright-results/2026-11-01T09-37-10-901Z-c0449530/artifacts/contracts-navigation.mocke-26558-ail-route-with-its-contract-chromium/test-failed-1.png",
+      "layer": "mocked-browser, actual Next route",
+      "observed": "Generic 404 page and Next development indicator only",
+      "reviewedFor": ["secrets", "tokens", "personal data", "request bodies"],
+      "sensitiveContentFound": false,
+      "realBackendUsed": false
+    }
+  ],
+  "rawTracesIncluded": false,
+  "rawOutputsAreNotSubmissionAllowlist": true
+}

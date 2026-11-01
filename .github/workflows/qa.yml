@@ -1,0 +1,81 @@
+# PR and integration-branch validation; no production credentials or deployment.
+name: frontend QA
+'on':
+  pull_request:
+    branches:
+      - main
+      - develop
+  push:
+    branches:
+      - main
+      - develop
+  workflow_dispatch: {}
+permissions:
+  contents: read
+defaults:
+  run:
+    shell: pwsh
+jobs:
+  checks:
+    runs-on: windows-2025
+    timeout-minutes: 30
+    steps:
+      - name: Checkout without persisted credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Pinned Node and bundled npm
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.15.0
+      - name: Run one fail-closed QA gate
+        run: node scripts/qa/ci-job.cjs --layer ${{ matrix.layer }}
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        layer:
+          - unit
+          - legacy-unit
+          - typecheck
+          - qa-typecheck
+          - lint
+          - build
+          - ci-config
+  mocked-browser:
+    runs-on: windows-2025
+    timeout-minutes: 30
+    steps:
+      - name: Checkout without persisted credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Pinned Node and bundled npm
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.15.0
+      - name: Run one fail-closed QA gate
+        run: node scripts/qa/ci-job.cjs --layer mocked-browser
+  real-system:
+    runs-on: windows-2025
+    timeout-minutes: 30
+    steps:
+      - name: Checkout without persisted credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Pinned Node and bundled npm
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.15.0
+      - name: Checkout paired backend
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: evoxedev/plutus-be
+          ref: development
+          path: .qa-system-backend
+          persist-credentials: false
+      - name: Prepare paired backend lockfile
+        run: node .qa-system-backend/scripts/qa/prepare.cjs
+      - name: Run one fail-closed QA gate
+        run: node scripts/qa/ci-job.cjs --layer stack

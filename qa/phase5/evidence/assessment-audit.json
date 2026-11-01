@@ -1,0 +1,211 @@
+{
+  "checkedAtUtc": "2026-11-01T10:06:38.808Z",
+  "purpose": "Final coordinator metadata screen, versionability and source-preservation check; no application execution or implementation repair",
+  "assessmentFiles": [
+    {
+      "path": "qa/phase5/evidence/browser-results.json",
+      "sha256": "138ec6dfc7a1f3360de41d32259360dd43eaca684ceff0f799b60985d86d594f",
+      "issues": []
+    },
+    {
+      "path": "qa/phase5/evidence/preservation-review.json",
+      "sha256": "8ba54e9086d0bec158128c8a515db3eb45b1285b5a673ec08cb446320fcb6a82",
+      "issues": []
+    },
+    {
+      "path": "qa/phase5/evidence/run-audit.json",
+      "sha256": "1637e29473ce42a82e646a4ad8a6fe62d2d6d65b468d35449be0ead1b594c3c2",
+      "issues": []
+    },
+    {
+      "path": "qa/phase5/evidence/sensitivity-review.json",
+      "sha256": "e9f9f0cc4589f0655ad9ced51b3387e762bb76a31f70a92fc3e93b637684b437",
+      "issues": []
+    },
+    {
+      "path": "qa/phase5/evidence/validation-matrix.json",
+      "sha256": "19adf30020fd6127cbf12c351674182ecb411ab56fe457ce6985d882fca933a7",
+      "issues": []
+    },
+    {
+      "path": "qa/phase5/evidence/working-state-identity.canonical.json",
+      "sha256": "71ea6375d25f34ca8cb6ddd758ebca98aeb59e6773c6b1e7217e44ac0515e0ab",
+      "issues": []
+    },
+    {
+      "path": "qa/phase5/README.md",
+      "sha256": "7a3c5962c61bb155b40c907f3269c98a18dc1083bd6647abc1bccdc9ef04f50a",
+      "issues": []
+    }
+  ],
+  "assessmentIgnoreExitCode": 1,
+  "assessmentIgnoreMatches": [],
+  "repositories": [
+    {
+      "repository": "plutus-fe",
+      "head": "a95174dffa8b41bd8650fd053178018dd03c18ad",
+      "trackedCount": 225,
+      "rawTracked": [],
+      "trackedDeletions": [],
+      "stagedChanges": [],
+      "assessmentStatus": [
+        "?? qa/phase5/README.md",
+        "?? qa/phase5/evidence/assessment-audit.json",
+        "?? qa/phase5/evidence/browser-results.json",
+        "?? qa/phase5/evidence/preservation-review.json",
+        "?? qa/phase5/evidence/run-audit.json",
+        "?? qa/phase5/evidence/sensitivity-review.json",
+        "?? qa/phase5/evidence/validation-matrix.json",
+        "?? qa/phase5/evidence/working-state-identity.canonical.json"
+      ]
+    },
+    {
+      "repository": "plutus-be",
+      "head": "f3fdc7998a8b5e8bfc913cadf464f23eeb3332b7",
+      "trackedCount": 207,
+      "rawTracked": [],
+      "trackedDeletions": [],
+      "stagedChanges": [],
+      "assessmentStatus": []
+    }
+  ],
+  "sourceFilesRehashed": 534,
+  "sourceDifferences": [],
+  "workingStateSha256": "71ea6375d25f34ca8cb6ddd758ebca98aeb59e6773c6b1e7217e44ac0515e0ab",
+  "commands": [
+    {
+      "repository": "plutus-fe",
+      "command": [
+        "git",
+        "check-ignore",
+        "-v",
+        "--",
+        "qa/phase5/evidence/browser-results.json",
+        "qa/phase5/evidence/preservation-review.json",
+        "qa/phase5/evidence/run-audit.json",
+        "qa/phase5/evidence/sensitivity-review.json",
+        "qa/phase5/evidence/validation-matrix.json",
+        "qa/phase5/evidence/working-state-identity.canonical.json",
+        "qa/phase5/README.md",
+        "qa/phase5/evidence/assessment-audit.json"
+      ],
+      "exitCode": 1,
+      "timestampUtc": "2026-11-01T10:06:38.490Z"
+    },
+    {
+      "repository": "plutus-fe",
+      "command": [
+        "git",
+        "ls-files",
+        "-z"
+      ],
+      "exitCode": 0,
+      "timestampUtc": "2026-11-01T10:06:38.518Z"
+    },
+    {
+      "repository": "plutus-fe",
+      "command": [
+        "git",
+        "status",
+        "--porcelain=v1",
+        "-z",
+        "--untracked-files=all"
+      ],
+      "exitCode": 0,
+      "timestampUtc": "2026-11-01T10:06:38.549Z"
+    },
+    {
+      "repository": "plutus-fe",
+      "command": [
+        "git",
+        "diff",
+        "--name-only",
+        "--diff-filter=D",
+        "-z"
+      ],
+      "exitCode": 0,
+      "timestampUtc": "2026-11-01T10:06:38.588Z"
+    },
+    {
+      "repository": "plutus-fe",
+      "command": [
+        "git",
+        "diff",
+        "--cached",
+        "--name-only",
+        "-z"
+      ],
+      "exitCode": 0,
+      "timestampUtc": "2026-11-01T10:06:38.616Z"
+    },
+    {
+      "repository": "plutus-fe",
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exitCode": 0,
+      "timestampUtc": "2026-11-01T10:06:38.642Z"
+    },
+    {
+      "repository": "plutus-be",
+      "command": [
+        "git",
+        "ls-files",
+        "-z"
+      ],
+      "exitCode": 0,
+      "timestampUtc": "2026-11-01T10:06:38.668Z"
+    },
+    {
+      "repository": "plutus-be",
+      "command": [
+        "git",
+        "status",
+        "--porcelain=v1",
+        "-z",
+        "--untracked-files=all"
+      ],
+      "exitCode": 0,
+      "timestampUtc": "2026-11-01T10:06:38.697Z"
+    },
+    {
+      "repository": "plutus-be",
+      "command": [
+        "git",
+        "diff",
+        "--name-only",
+        "--diff-filter=D",
+        "-z"
+      ],
+      "exitCode": 0,
+      "timestampUtc": "2026-11-01T10:06:38.726Z"
+    },
+    {
+      "repository": "plutus-be",
+      "command": [
+        "git",
+        "diff",
+        "--cached",
+        "--name-only",
+        "-z"
+      ],
+      "exitCode": 0,
+      "timestampUtc": "2026-11-01T10:06:38.753Z"
+    },
+    {
+      "repository": "plutus-be",
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exitCode": 0,
+      "timestampUtc": "2026-11-01T10:06:38.779Z"
+    }
+  ],
+  "screenLimitations": "Pattern checks supplement manual review; raw logs/screenshots/traces are excluded, not sanitized by ignoring. No credentials read or hashed.",
+  "correction": "Independent reviewer found one owned Temp path in newly generated assessment metadata. Coordinator redacted it before handoff and repeated this screen; no reviewed product/test/configuration or prior phase evidence changed.",
+  "export": "Frozen Phase4 selection unchanged; no Phase5 file added to export, no ZIP/upload."
+}

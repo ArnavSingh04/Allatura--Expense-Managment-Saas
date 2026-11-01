@@ -280,7 +280,7 @@ export default function NewContractPage() {
               </Stack>
               {milestones.length === 0 ? (
                 <Typography variant="body2" color="text.secondary">
-                  Skip if you'll claim against scope only. Most progress contracts have 3–5
+                  Skip if you&apos;ll claim against scope only. Most progress contracts have 3–5
                   milestones tied to handover stages.
                 </Typography>
               ) : (

@@ -82,13 +82,15 @@ export default function SupplierDialog({
   };
 
   return (
-    <Dialog open={open} onClose={onClose} fullWidth maxWidth="xs">
+    <Dialog open={open} onClose={busy ? undefined : onClose} fullWidth maxWidth="xs">
       <DialogTitle sx={{ pr: 6 }}>
         {existing ? `Edit ${existing.name}` : 'New supplier'}
         <Typography variant="body2" color="text.secondary" sx={{ mt: 0.25 }}>
           Materials, fixtures, equipment hire — anyone you buy from.
         </Typography>
         <IconButton
+          aria-label="Close supplier dialog"
+          disabled={busy}
           onClick={onClose}
           sx={{ position: 'absolute', right: 8, top: 8 }}
           size="small"

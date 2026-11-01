@@ -12,7 +12,6 @@ import {
 } from '@mui/material';
 import { UploadCloud } from 'lucide-react';
 import { useRef, useState } from 'react';
-import { ApiError } from '@/lib/api-client';
 import { uploadFile } from '@/services/documentService';
 import {
   DOCUMENT_CATEGORIES,
@@ -65,7 +64,7 @@ export default function DocumentDropzone({
         });
         onUploaded?.(doc);
       } catch (e) {
-        setError(e instanceof ApiError ? e.message : `Failed to upload ${file.name}`);
+        setError(e instanceof Error ? e.message : `Failed to upload ${file.name}`);
       } finally {
         setBusy((b) => b - 1);
       }
@@ -103,7 +102,16 @@ export default function DocumentDropzone({
       </Stack>
 
       <Box
+        role="button"
+        tabIndex={0}
+        aria-label="Choose documents to upload"
         onClick={() => inputRef.current?.click()}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            inputRef.current?.click();
+          }
+        }}
         onDragOver={(e) => {
           e.preventDefault();
           setHover(true);
@@ -128,9 +136,14 @@ export default function DocumentDropzone({
         <input
           ref={inputRef}
           type="file"
+          aria-label="Document files"
           multiple
           hidden
-          onChange={(e) => upload(e.target.files)}
+          onChange={(e) => {
+            void upload(e.target.files);
+            // Allow the same file to be selected again after a failed attempt.
+            e.target.value = '';
+          }}
         />
         <UploadCloud size={28} style={{ opacity: 0.7 }} />
         <Typography variant="body2" sx={{ mt: 1, fontWeight: 600 }}>

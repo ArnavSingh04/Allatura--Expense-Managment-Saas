@@ -63,8 +63,7 @@ export const documentService = {
 
 /**
  * Drive a full upload: ask BE for a signed URL, PUT the bytes, then finalise.
- * In dev the BE returns a stub URL we POST to ourselves so the workflow stays
- * end-to-end testable without GCS configured.
+ * Completion requires an actual byte upload and successful backend validation.
  */
 export async function uploadFile(
   file: File,
@@ -82,8 +81,10 @@ export async function uploadFile(
     throw new Error('Upload URL response missing documentId');
   }
 
-  const isStub = created.uploadUrl.startsWith('stub://');
-  if (!isStub) {
+  if (created.uploadUrl.startsWith('stub://')) {
+    throw new Error('Document storage is not configured. Your file has not been uploaded. Please try again after storage is available.');
+  }
+  {
     const headers: Record<string, string> = {
       'content-type': file.type || 'application/octet-stream',
       ...created.headers,

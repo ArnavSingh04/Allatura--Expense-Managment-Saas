@@ -21,7 +21,7 @@ import {
   Typography,
 } from '@mui/material';
 import { HardHat, Pencil, Plus, Star, Trash2 } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import useSWR, { mutate } from 'swr';
 import AppCard from '@/components/ui/AppCard';
 import EmptyState from '@/components/ui/EmptyState';
@@ -41,6 +41,11 @@ export default function SubcontractorsPage() {
   const [editing, setEditing] = useState<Subcontractor | null>(null);
   const [creating, setCreating] = useState(false);
   const [actionError, setActionError] = useState<string | null>(null);
+  const [now, setNow] = useState(Date.now);
+  useEffect(() => {
+    const timer = window.setInterval(() => setNow(Date.now()), 60_000);
+    return () => window.clearInterval(timer);
+  }, []);
 
   const swrKey = useMemo(
     () =>
@@ -161,8 +166,8 @@ export default function SubcontractorsPage() {
                     const insExp = s.insuranceExpiresAt
                       ? new Date(s.insuranceExpiresAt)
                       : null;
-                    const isLicExpired = licExp && licExp.getTime() < Date.now();
-                    const isInsExpired = insExp && insExp.getTime() < Date.now();
+                    const isLicExpired = licExp && licExp.getTime() < now;
+                    const isInsExpired = insExp && insExp.getTime() < now;
                     return (
                       <TableRow key={s._id} hover>
                         <TableCell sx={{ fontWeight: 600 }}>{s.name}</TableCell>

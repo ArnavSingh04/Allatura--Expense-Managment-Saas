@@ -12,6 +12,8 @@ import {
 import { useUser } from '@auth0/nextjs-auth0';
 import { ApiError, apiGet } from '@/lib/api-client';
 import { can, normalizeRole, type RbacAction, type UserRole } from '@/lib/rbac';
+import { setOrganisationBinding } from '@/lib/organisation-binding';
+import { takeInvitationContinuation } from '@/lib/invitation-account-switch';
 
 export type UserStatus = 'PendingApproval' | 'Active' | 'Rejected';
 
@@ -25,6 +27,16 @@ export type AuthLoadError = {
   message: string;
   /** True for 401/403 — the session/token is invalid; signing in again fixes it. */
   isAuthFailure: boolean;
+  isOrganisationFailure?: boolean;
+};
+
+export type OrganisationMembership = {
+  id: string;
+  name: string;
+  tenantId?: string;
+  role: UserRole;
+  status: UserStatus;
+  isOrganisationOwner?: boolean;
 };
 
 export type AuthSession = {
@@ -35,6 +47,7 @@ export type AuthSession = {
   email?: string;
   sub?: string;
   organisationName?: string;
+  organisationId?: string;
 };
 
 type AuthSessionContextValue = {
@@ -45,6 +58,7 @@ type AuthSessionContextValue = {
   /** True when authenticated but not yet linked to an org (needs onboarding). */
   needsOnboarding: boolean;
   session: AuthSession | null;
+  organisations: OrganisationMembership[];
   /**
    * Set when authenticated but `/auth/me` could not be resolved (token rejected,
    * server/network error). Lets the UI recover instead of spinning forever.
@@ -103,7 +117,18 @@ type MeResponse = {
   status?: string;
   tenantId?: string;
   organisationName?: string;
+  organisationId?: string;
+  isOrganisationOwner?: boolean;
+  organisations?: OrganisationMembership[];
 };
+
+function normalizeMemberships(entries: OrganisationMembership[] = []): OrganisationMembership[] {
+  return entries.map((entry) => ({
+    ...entry,
+    role: entry.isOrganisationOwner ? 'owner' : normalizeRole(entry.role),
+    status: normalizeStatus(entry.status),
+  }));
+}
 
 export function AuthSessionProvider({
   children,
@@ -115,19 +140,43 @@ export function AuthSessionProvider({
   const [session, setSession] = useState<AuthSession | null>(null);
   const [needsOnboarding, setNeedsOnboarding] = useState(false);
   const [error, setError] = useState<AuthLoadError | null>(null);
-  const inFlightRef = useRef<Promise<void> | null>(null);
+  const [organisations, setOrganisations] = useState<OrganisationMembership[]>([]);
+  const inFlightRef = useRef<{ subject: string; generation: number; promise: Promise<void> } | null>(null);
+  const generationRef = useRef(0);
+  const subjectRef = useRef<string | null>(null);
 
   const refreshFromMe = useCallback(async () => {
-    if (inFlightRef.current) return inFlightRef.current;
+    const subject = user?.sub ?? '';
+    const generation = generationRef.current;
+    if (inFlightRef.current?.subject === subject && inFlightRef.current.generation === generation) {
+      return inFlightRef.current.promise;
+    }
+    if (subjectRef.current !== subject) {
+      subjectRef.current = subject;
+      setOrganisationBinding(null);
+      setOrganisations([]);
+      setSession(null);
+      setReady(false);
+    }
+    const isCurrent = () => generationRef.current === generation && subjectRef.current === subject;
     if (!user) {
       setSession(null);
       setNeedsOnboarding(false);
       setError(null);
+      if (typeof window !== 'undefined') {
+        try {
+          const continuation = takeInvitationContinuation(window.sessionStorage, window.location.origin);
+          if (continuation) window.location.assign(`/auth/login?returnTo=${encodeURIComponent(continuation)}`);
+        } catch {
+          // Storage can be unavailable; a normal sign-in remains available.
+        }
+      }
       return;
     }
     const promise = (async () => {
       try {
         const me = await loadAuthMe();
+        if (!isCurrent()) return;
         if (!me) {
           // Empty body from a 2xx — unexpected; surface as a recoverable error
           // rather than an indefinite spinner.
@@ -139,6 +188,7 @@ export function AuthSessionProvider({
           setNeedsOnboarding(true);
           setSession(null);
           setError(null);
+          setOrganisations(normalizeMemberships(me.organisations));
           return;
         }
         setNeedsOnboarding(false);
@@ -147,33 +197,50 @@ export function AuthSessionProvider({
           sub: me.id,
           name: me.name,
           email: me.email,
-          role: normalizeRole(me.role),
+          role: me.isOrganisationOwner ? 'owner' : normalizeRole(me.role),
           status: normalizeStatus(me.status),
           tenantId: me.tenantId,
           organisationName: me.organisationName,
+          organisationId: me.organisationId,
         });
+        setOrganisations(normalizeMemberships(me.organisations));
+        setOrganisationBinding(me.organisationId ?? null);
       } catch (err) {
+        if (!isCurrent()) return;
         // The Auth0 session exists (we have `user`) but the backend rejected the
         // request or is unreachable. Record it so the gate can offer recovery
         // (retry / sign out) instead of spinning forever. Auth0 remains the
         // source of truth for `isAuthenticated`.
         const status = err instanceof ApiError ? err.status : undefined;
-        const isAuthFailure = status === 401 || status === 403;
+        const isOrganisationFailure = err instanceof ApiError &&
+          ['organisation_access_denied', 'invalid_organisation', 'active_organisation_member_required'].includes(err.message);
+        const isAuthFailure = !isOrganisationFailure && (status === 401 || status === 403);
         console.error('[auth] Failed to resolve /auth/me:', err);
         setSession(null);
         setError({
           status,
           isAuthFailure,
+          isOrganisationFailure,
           message:
             err instanceof Error && err.message
               ? err.message
               : 'Could not load your account.',
         });
+        if (isOrganisationFailure) {
+          // Discovery is identity-scoped. Never silently switch away from the
+          // selected workspace or retarget this tab's pending writes.
+          try {
+            const memberships = await apiGet<OrganisationMembership[]>('auth/organisations');
+            if (isCurrent()) setOrganisations(normalizeMemberships(memberships));
+          } catch {
+            // Keep the original actionable selection error.
+          }
+        }
       }
     })().finally(() => {
-      inFlightRef.current = null;
+      if (inFlightRef.current?.promise === promise) inFlightRef.current = null;
     });
-    inFlightRef.current = promise;
+    inFlightRef.current = { subject, generation, promise };
     return promise;
   }, [user]);
 
@@ -192,6 +259,7 @@ export function AuthSessionProvider({
     })();
     return () => {
       cancelled = true;
+      generationRef.current += 1;
     };
   }, [isLoading, user, refreshFromMe]);
 
@@ -217,6 +285,7 @@ export function AuthSessionProvider({
   }, []);
 
   const signOut = useCallback(() => {
+    setOrganisationBinding(null);
     window.location.assign('/auth/logout');
   }, []);
 
@@ -229,6 +298,7 @@ export function AuthSessionProvider({
       isAuthenticated: !!user,
       needsOnboarding,
       session,
+      organisations,
       error,
       isActive,
       isPending: status === 'PendingApproval',
@@ -238,7 +308,7 @@ export function AuthSessionProvider({
       login,
       signOut,
     };
-  }, [ready, user, needsOnboarding, session, error, refresh, login, signOut]);
+  }, [ready, user, needsOnboarding, session, organisations, error, refresh, login, signOut]);
 
   return (
     <AuthSessionContext.Provider value={value}>

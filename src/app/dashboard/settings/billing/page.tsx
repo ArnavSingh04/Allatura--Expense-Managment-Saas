@@ -108,7 +108,7 @@ function PlanComparison({
   if (!catalog.length) return null;
   const highlight = (tier: string) =>
     tier === currentPlan
-      ? { bgcolor: (th: any) => th.palette.action.selected }
+      ? { bgcolor: 'action.selected' }
       : undefined;
 
   return (

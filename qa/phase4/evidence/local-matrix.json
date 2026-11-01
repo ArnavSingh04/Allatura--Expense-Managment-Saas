@@ -1,0 +1,4218 @@
+{
+  "date": "2026-11-01",
+  "kind": "actual local checks, not hosted CI",
+  "pathBases": {
+    "repositoryRunRawDirectory": "relative to its named repository",
+    "commandStdoutAndStderr": "relative to outputRepository; central command capture is in plutus-fe for BOTH repositories"
+  },
+  "repositories": [
+    {
+      "repository": "plutus-fe",
+      "branch": "develop",
+      "head": "a95174dffa8b41bd8650fd053178018dd03c18ad",
+      "versions": {
+        "node": "v24.15.0",
+        "npm": "11.12.1",
+        "next": "16.2.1",
+        "react": "19.2.4",
+        "react-dom": "19.2.4",
+        "typescript": "5.9.3",
+        "vitest": "3.2.6",
+        "@testing-library/react": "16.3.0",
+        "@playwright/test": "1.58.2",
+        "eslint": "9.39.4",
+        "js-yaml": "4.1.1"
+      },
+      "dependencySource": "previously prepared owned dependency directory",
+      "freshInstallThisPhase": false,
+      "finalResults": [
+        {
+          "runId": "2026-11-01T09-45-58-373Z-f891e16a",
+          "layer": "unit",
+          "status": "PASS",
+          "exitCode": 0,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "unit"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "<FE>\\.qa-agent-work\\frontend-phase-2026-11-01\\dependencies\\node_modules\\vitest\\vitest.mjs",
+            "run",
+            "--config",
+            "vitest.config.mts",
+            "--configLoader",
+            "native",
+            "--coverage",
+            "--reporter=default",
+            "--reporter=json",
+            "--outputFile.json=<FE>\\qa-raw\\vitest-results\\2026-11-01T09-45-58-373Z-f891e16a\\vitest.json"
+          ],
+          "durationMs": 44948,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-45-58-373Z-f891e16a",
+          "hashes": {
+            "execution.json": "5581779c538768a46adccb9ee99d6544fd6819df2866a2ac95b413cfadb66844",
+            "source-manifest.json": "ccb618b2199ec560b2a8b4f82fcdb1056927ac45e651869212d633fa80330c96",
+            "vitest.json": "83424e326d379fc282c6efe02361e78ee88ae69fedecaa97823fce978558d77b"
+          },
+          "tests": {
+            "passed": 45,
+            "failed": 0,
+            "pending": 0,
+            "total": 45,
+            "files": 7,
+            "failedSuites": 0
+          }
+        },
+        {
+          "runId": "2026-11-01T09-45-58-440Z-278852c5",
+          "layer": "legacy-unit",
+          "status": "FAIL",
+          "exitCode": 1,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "legacy-unit"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "<STAGE>\\scripts\\workspaces.test.cjs"
+          ],
+          "durationMs": 477,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-45-58-440Z-278852c5",
+          "hashes": {
+            "execution.json": "5fbeb9d46f4ac06982646bed1cf2f4efdf7e985cfc0708675d1a3d8467194b0d",
+            "source-manifest.json": "ccb618b2199ec560b2a8b4f82fcdb1056927ac45e651869212d633fa80330c96"
+          },
+          "tests": {
+            "tests": 14,
+            "pass": 6,
+            "fail": 8,
+            "skipped": 0
+          }
+        },
+        {
+          "runId": "2026-11-01T09-45-59-139Z-fb117322",
+          "layer": "typecheck",
+          "status": "FAIL",
+          "exitCode": 2,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "typecheck"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "<FE>\\.qa-agent-work\\frontend-phase-2026-11-01\\dependencies\\node_modules\\typescript\\bin\\tsc",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "-p",
+            "tsconfig.json"
+          ],
+          "durationMs": 4099,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-45-59-139Z-fb117322",
+          "hashes": {
+            "execution.json": "4748d5580eeeba136b5d905aa65ba7afde18387001e28f41c71c990c49ccfad7",
+            "source-manifest.json": "ccb618b2199ec560b2a8b4f82fcdb1056927ac45e651869212d633fa80330c96"
+          },
+          "diagnostics": [
+            "src/app/components/dashboard/OrganisationSwitcher.tsx(11,27): error TS2339: Property 'organisations' does not exist on type 'AuthSessionContextValue'.",
+            "src/app/components/dashboard/OrganisationSwitcher.tsx(17,37): error TS2339: Property 'organisationId' does not exist on type 'AuthSession'.",
+            "src/app/components/dashboard/OrganisationSwitcher.tsx(37,27): error TS2339: Property 'organisationId' does not exist on type 'AuthSession'.",
+            "src/app/components/dashboard/OrganisationSwitcher.tsx(42,31): error TS7006: Parameter 'organisation' implicitly has an 'any' type.",
+            "src/app/components/dashboard/OrganisationSwitcher.tsx(44,38): error TS7053: Element implicitly has an 'any' type because expression of type 'any' can't be used to index type 'Record<\"owner\" | \"viewer\" | \"editor\" | \"admin\" | \"pm\" | \"supervisor\" | \"finance\" | \"general\" | \"subcontractor\", string>'."
+          ]
+        },
+        {
+          "runId": "2026-11-01T09-46-03-464Z-d228e5f3",
+          "layer": "qa-typecheck",
+          "status": "PASS",
+          "exitCode": 0,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "qa-typecheck"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "<FE>\\.qa-agent-work\\frontend-phase-2026-11-01\\dependencies\\node_modules\\typescript\\bin\\tsc",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "-p",
+            "tsconfig.qa.json"
+          ],
+          "durationMs": 2247,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-46-03-464Z-d228e5f3",
+          "hashes": {
+            "execution.json": "b7dfa8c1453f0c440d88902419c14a82e6d0f55eb13f9b46c723c47318c275a1",
+            "source-manifest.json": "ccb618b2199ec560b2a8b4f82fcdb1056927ac45e651869212d633fa80330c96"
+          },
+          "diagnostics": []
+        },
+        {
+          "runId": "2026-11-01T09-53-01-532Z-2acf2703",
+          "layer": "lint",
+          "status": "FAIL",
+          "exitCode": 1,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "lint"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "<FE>\\.qa-agent-work\\frontend-phase-2026-11-01\\dependencies\\node_modules\\eslint\\bin\\eslint.js",
+            ".",
+            "--format",
+            "json",
+            "--output-file",
+            "<FE>\\qa-raw\\vitest-results\\2026-11-01T09-53-01-532Z-2acf2703\\eslint.json"
+          ],
+          "durationMs": 6267,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-53-01-532Z-2acf2703",
+          "hashes": {
+            "execution.json": "b91823573ef957c96e7a70646cf9b0448be37edee3f47df9e14107dcdd3a9fdb",
+            "source-manifest.json": "d127ea1607fab0416a1ad07ed537b389b1679d80eeaf16a07ca744c2afe445f3",
+            "eslint.json": "6d7f6a182e7aceb1249b74ea5f4b096c50a0e404ec604e727eb6d67daf4f5225"
+          },
+          "lint": {
+            "files": 191,
+            "errors": 13,
+            "warnings": 4,
+            "findings": [
+              {
+                "path": "scripts/workspaces.test.cjs",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@next/next/no-assign-module-variable"
+                ]
+              },
+              {
+                "path": "src/app/components/auth/DashboardAuthGate.tsx",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "react-hooks/set-state-in-effect"
+                ]
+              },
+              {
+                "path": "src/app/components/auth/PendingApprovalScreen.tsx",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "react/no-unescaped-entities"
+                ]
+              },
+              {
+                "path": "src/app/components/construction/SubcontractorDialog.tsx",
+                "errors": 0,
+                "warnings": 1,
+                "rules": [
+                  "@typescript-eslint/no-unused-vars"
+                ]
+              },
+              {
+                "path": "src/app/components/dashboard/AppSidebar.tsx",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "react-hooks/set-state-in-effect"
+                ]
+              },
+              {
+                "path": "src/app/dashboard/projects/[id]/contracts/new/page.tsx",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "react/no-unescaped-entities"
+                ]
+              },
+              {
+                "path": "src/app/dashboard/settings/billing/page.tsx",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/app/dashboard/subcontractors/page.tsx",
+                "errors": 2,
+                "warnings": 0,
+                "rules": [
+                  "react-hooks/purity"
+                ]
+              },
+              {
+                "path": "src/app/dashboard/users/pending/page.tsx",
+                "errors": 0,
+                "warnings": 1,
+                "rules": [
+                  "@typescript-eslint/no-unused-vars"
+                ]
+              },
+              {
+                "path": "src/app/global-error.tsx",
+                "errors": 0,
+                "warnings": 1,
+                "rules": [
+                  "@typescript-eslint/no-unused-vars"
+                ]
+              },
+              {
+                "path": "src/app/onboarding/page.tsx",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "react-hooks/set-state-in-effect"
+                ]
+              },
+              {
+                "path": "src/app/plans/page.tsx",
+                "errors": 0,
+                "warnings": 1,
+                "rules": [
+                  null
+                ]
+              },
+              {
+                "path": "src/app/services/frontendService.ts",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/lib/colorModeContext.tsx",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "react-hooks/set-state-in-effect"
+                ]
+              },
+              {
+                "path": "src/utils/api-utils.ts",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/utils/routing-utils.ts",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "runId": "2026-11-01T09-46-12-638Z-f3b57e73",
+          "layer": "build",
+          "status": "FAIL",
+          "exitCode": 1,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "build"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "<FE>\\.qa-agent-work\\frontend-phase-2026-11-01\\dependencies\\node_modules\\next\\dist\\bin\\next",
+            "build",
+            "--webpack"
+          ],
+          "durationMs": 27898,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-46-12-638Z-f3b57e73",
+          "hashes": {
+            "execution.json": "44280aeafcdfc6a2606acb89ac6ddce809e679cb03b4b2f8db06b31e0ed17d06",
+            "source-manifest.json": "ccb618b2199ec560b2a8b4f82fcdb1056927ac45e651869212d633fa80330c96"
+          }
+        },
+        {
+          "runId": "2026-11-01T09-46-40-931Z-c6f24302",
+          "layer": "mocked-browser",
+          "status": "FAIL",
+          "exitCode": 1,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "mocked-browser"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "<STAGE>\\qa\\harness\\run-browser.cjs"
+          ],
+          "durationMs": 126785,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/playwright-results/2026-11-01T09-46-40-931Z-c6f24302",
+          "hashes": {
+            "execution.json": "5cac08e9f4a22a2ae1a7860efd88b5faa865819b0f19f8690cbc24b29c991d4e",
+            "source-manifest.json": "ccb618b2199ec560b2a8b4f82fcdb1056927ac45e651869212d633fa80330c96",
+            "playwright.json": "bff9f7bf687d89c92efe8250462dd3c3be2daa7264d5f09a9e80c47c5e7ae6a3",
+            "browser-execution.json": "ec1e53567766846d43fdae232769e63a2f94d6360ead39e473ebe7965e5f8ee3"
+          },
+          "browser": {
+            "stats": {
+              "startTime": "2026-11-01T09:46:43.326Z",
+              "duration": 124349.57800000001,
+              "expected": 20,
+              "skipped": 0,
+              "unexpected": 19,
+              "flaky": 0
+            },
+            "projects": {
+              "chromium": {
+                "executed": 13,
+                "passed": 6,
+                "failed": 7,
+                "skipped": 0
+              },
+              "firefox": {
+                "executed": 13,
+                "passed": 9,
+                "failed": 4,
+                "skipped": 0
+              },
+              "webkit": {
+                "executed": 13,
+                "passed": 5,
+                "failed": 8,
+                "skipped": 0
+              }
+            },
+            "cases": [
+              {
+                "engine": "chromium",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "a protected deep link preserves its path and query through synthetic sign-in",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "chromium",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "the login entry route preserves a safe internal returnTo including its query",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "chromium",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "the login entry route rejects a absolute external URL",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "chromium",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "the login entry route rejects a protocol-relative external URL",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "chromium",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "the login entry route rejects a backslash-normalized external URL",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-REDIRECT-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "chromium",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "the login entry route defaults to the dashboard without a returnTo",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "firefox",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "a protected deep link preserves its path and query through synthetic sign-in",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-HYDRATE-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 1
+                }
+              },
+              {
+                "engine": "firefox",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "the login entry route preserves a safe internal returnTo including its query",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "firefox",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "the login entry route rejects a absolute external URL",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "firefox",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "the login entry route rejects a protocol-relative external URL",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "firefox",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "the login entry route rejects a backslash-normalized external URL",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-REDIRECT-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "firefox",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "the login entry route defaults to the dashboard without a returnTo",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "webkit",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "a protected deep link preserves its path and query through synthetic sign-in",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-HYDRATE-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 1
+                }
+              },
+              {
+                "engine": "webkit",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "the login entry route preserves a safe internal returnTo including its query",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "webkit",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "the login entry route rejects a absolute external URL",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "webkit",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "the login entry route rejects a protocol-relative external URL",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "webkit",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "the login entry route rejects a backslash-normalized external URL",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-REDIRECT-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "webkit",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "the login entry route defaults to the dashboard without a returnTo",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "chromium",
+                "file": "contracts-navigation.mocked-browser.spec.ts",
+                "title": "a contract reference opens an actual detail route with its contract",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-ROUTE-01",
+                  "FE-HYDRATE-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 1
+                }
+              },
+              {
+                "engine": "chromium",
+                "file": "contracts-navigation.mocked-browser.spec.ts",
+                "title": "a viewer can read the contract list without a creation control",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-HYDRATE-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 1
+                }
+              },
+              {
+                "engine": "firefox",
+                "file": "contracts-navigation.mocked-browser.spec.ts",
+                "title": "a contract reference opens an actual detail route with its contract",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-ROUTE-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "firefox",
+                "file": "contracts-navigation.mocked-browser.spec.ts",
+                "title": "a viewer can read the contract list without a creation control",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "webkit",
+                "file": "contracts-navigation.mocked-browser.spec.ts",
+                "title": "a contract reference opens an actual detail route with its contract",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-ROUTE-01",
+                  "FE-HYDRATE-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 1
+                }
+              },
+              {
+                "engine": "webkit",
+                "file": "contracts-navigation.mocked-browser.spec.ts",
+                "title": "a viewer can read the contract list without a creation control",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-HYDRATE-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 1
+                }
+              },
+              {
+                "engine": "chromium",
+                "file": "route-accessibility.mocked-browser.spec.ts",
+                "title": "contract entry supports labelled fields, keyboard controls and a readable validation error",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-HYDRATE-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 1
+                }
+              },
+              {
+                "engine": "chromium",
+                "file": "route-accessibility.mocked-browser.spec.ts",
+                "title": "mobile navigation can be opened and dismissed using the keyboard",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-HYDRATE-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 1
+                }
+              },
+              {
+                "engine": "chromium",
+                "file": "route-accessibility.mocked-browser.spec.ts",
+                "title": "pending users receive a clear status screen instead of project content",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-HYDRATE-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 1
+                }
+              },
+              {
+                "engine": "chromium",
+                "file": "route-accessibility.mocked-browser.spec.ts",
+                "title": "rejected users receive a clear status screen instead of project content",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-HYDRATE-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 1
+                }
+              },
+              {
+                "engine": "chromium",
+                "file": "route-accessibility.mocked-browser.spec.ts",
+                "title": "an unavailable account API presents retry and recovers without losing the route",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "firefox",
+                "file": "route-accessibility.mocked-browser.spec.ts",
+                "title": "contract entry supports labelled fields, keyboard controls and a readable validation error",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "firefox",
+                "file": "route-accessibility.mocked-browser.spec.ts",
+                "title": "mobile navigation can be opened and dismissed using the keyboard",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-HYDRATE-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 1
+                }
+              },
+              {
+                "engine": "firefox",
+                "file": "route-accessibility.mocked-browser.spec.ts",
+                "title": "pending users receive a clear status screen instead of project content",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "firefox",
+                "file": "route-accessibility.mocked-browser.spec.ts",
+                "title": "rejected users receive a clear status screen instead of project content",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "firefox",
+                "file": "route-accessibility.mocked-browser.spec.ts",
+                "title": "an unavailable account API presents retry and recovers without losing the route",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "webkit",
+                "file": "route-accessibility.mocked-browser.spec.ts",
+                "title": "contract entry supports labelled fields, keyboard controls and a readable validation error",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-HYDRATE-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 1
+                }
+              },
+              {
+                "engine": "webkit",
+                "file": "route-accessibility.mocked-browser.spec.ts",
+                "title": "mobile navigation can be opened and dismissed using the keyboard",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-HYDRATE-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 1
+                }
+              },
+              {
+                "engine": "webkit",
+                "file": "route-accessibility.mocked-browser.spec.ts",
+                "title": "pending users receive a clear status screen instead of project content",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-HYDRATE-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 1
+                }
+              },
+              {
+                "engine": "webkit",
+                "file": "route-accessibility.mocked-browser.spec.ts",
+                "title": "rejected users receive a clear status screen instead of project content",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-HYDRATE-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 1
+                }
+              },
+              {
+                "engine": "webkit",
+                "file": "route-accessibility.mocked-browser.spec.ts",
+                "title": "an unavailable account API presents retry and recovers without losing the route",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              }
+            ]
+          },
+          "lifecycle": {
+            "readiness": {
+              "ready": true,
+              "guard": true
+            },
+            "cleanup": true,
+            "cleanupErrors": [],
+            "violations": [],
+            "serverExitCode": 0,
+            "browserExitCode": 1,
+            "realBackend": false
+          }
+        },
+        {
+          "runId": "2026-11-01T09-53-10-635Z-98ff958b",
+          "layer": "stack",
+          "status": "BLOCKED",
+          "exitCode": 2,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "stack"
+          ],
+          "childCommand": [],
+          "durationMs": null,
+          "stageRemoved": false,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-53-10-635Z-98ff958b",
+          "hashes": {
+            "execution.json": "81a926720d2ba5471c2e1dfcc3c61b9f06c4cc129b86564259476cb52d87d0a0"
+          },
+          "reason": "No independently verified disposable backend/database runner is provisioned. Real-system browser setup, seeding and cleanup were not attempted."
+        }
+      ],
+      "attempts": [
+        {
+          "runId": "2026-11-01T09-45-58-373Z-f891e16a",
+          "layer": "unit",
+          "status": "PASS",
+          "exitCode": 0,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "unit"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "<FE>\\.qa-agent-work\\frontend-phase-2026-11-01\\dependencies\\node_modules\\vitest\\vitest.mjs",
+            "run",
+            "--config",
+            "vitest.config.mts",
+            "--configLoader",
+            "native",
+            "--coverage",
+            "--reporter=default",
+            "--reporter=json",
+            "--outputFile.json=<FE>\\qa-raw\\vitest-results\\2026-11-01T09-45-58-373Z-f891e16a\\vitest.json"
+          ],
+          "durationMs": 44948,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-45-58-373Z-f891e16a",
+          "hashes": {
+            "execution.json": "5581779c538768a46adccb9ee99d6544fd6819df2866a2ac95b413cfadb66844",
+            "source-manifest.json": "ccb618b2199ec560b2a8b4f82fcdb1056927ac45e651869212d633fa80330c96",
+            "vitest.json": "83424e326d379fc282c6efe02361e78ee88ae69fedecaa97823fce978558d77b"
+          },
+          "tests": {
+            "passed": 45,
+            "failed": 0,
+            "pending": 0,
+            "total": 45,
+            "files": 7,
+            "failedSuites": 0
+          }
+        },
+        {
+          "runId": "2026-11-01T09-45-58-440Z-278852c5",
+          "layer": "legacy-unit",
+          "status": "FAIL",
+          "exitCode": 1,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "legacy-unit"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "<STAGE>\\scripts\\workspaces.test.cjs"
+          ],
+          "durationMs": 477,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-45-58-440Z-278852c5",
+          "hashes": {
+            "execution.json": "5fbeb9d46f4ac06982646bed1cf2f4efdf7e985cfc0708675d1a3d8467194b0d",
+            "source-manifest.json": "ccb618b2199ec560b2a8b4f82fcdb1056927ac45e651869212d633fa80330c96"
+          },
+          "tests": {
+            "tests": 14,
+            "pass": 6,
+            "fail": 8,
+            "skipped": 0
+          }
+        },
+        {
+          "runId": "2026-11-01T09-45-59-139Z-fb117322",
+          "layer": "typecheck",
+          "status": "FAIL",
+          "exitCode": 2,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "typecheck"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "<FE>\\.qa-agent-work\\frontend-phase-2026-11-01\\dependencies\\node_modules\\typescript\\bin\\tsc",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "-p",
+            "tsconfig.json"
+          ],
+          "durationMs": 4099,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-45-59-139Z-fb117322",
+          "hashes": {
+            "execution.json": "4748d5580eeeba136b5d905aa65ba7afde18387001e28f41c71c990c49ccfad7",
+            "source-manifest.json": "ccb618b2199ec560b2a8b4f82fcdb1056927ac45e651869212d633fa80330c96"
+          },
+          "diagnostics": [
+            "src/app/components/dashboard/OrganisationSwitcher.tsx(11,27): error TS2339: Property 'organisations' does not exist on type 'AuthSessionContextValue'.",
+            "src/app/components/dashboard/OrganisationSwitcher.tsx(17,37): error TS2339: Property 'organisationId' does not exist on type 'AuthSession'.",
+            "src/app/components/dashboard/OrganisationSwitcher.tsx(37,27): error TS2339: Property 'organisationId' does not exist on type 'AuthSession'.",
+            "src/app/components/dashboard/OrganisationSwitcher.tsx(42,31): error TS7006: Parameter 'organisation' implicitly has an 'any' type.",
+            "src/app/components/dashboard/OrganisationSwitcher.tsx(44,38): error TS7053: Element implicitly has an 'any' type because expression of type 'any' can't be used to index type 'Record<\"owner\" | \"viewer\" | \"editor\" | \"admin\" | \"pm\" | \"supervisor\" | \"finance\" | \"general\" | \"subcontractor\", string>'."
+          ]
+        },
+        {
+          "runId": "2026-11-01T09-46-03-464Z-d228e5f3",
+          "layer": "qa-typecheck",
+          "status": "PASS",
+          "exitCode": 0,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "qa-typecheck"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "<FE>\\.qa-agent-work\\frontend-phase-2026-11-01\\dependencies\\node_modules\\typescript\\bin\\tsc",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "-p",
+            "tsconfig.qa.json"
+          ],
+          "durationMs": 2247,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-46-03-464Z-d228e5f3",
+          "hashes": {
+            "execution.json": "b7dfa8c1453f0c440d88902419c14a82e6d0f55eb13f9b46c723c47318c275a1",
+            "source-manifest.json": "ccb618b2199ec560b2a8b4f82fcdb1056927ac45e651869212d633fa80330c96"
+          },
+          "diagnostics": []
+        },
+        {
+          "runId": "2026-11-01T09-46-05-926Z-545ec798",
+          "layer": "lint",
+          "status": "FAIL",
+          "exitCode": 1,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "lint"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "<FE>\\.qa-agent-work\\frontend-phase-2026-11-01\\dependencies\\node_modules\\eslint\\bin\\eslint.js",
+            ".",
+            "--format",
+            "json",
+            "--output-file",
+            "<FE>\\qa-raw\\vitest-results\\2026-11-01T09-46-05-926Z-545ec798\\eslint.json"
+          ],
+          "durationMs": 6367,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-46-05-926Z-545ec798",
+          "hashes": {
+            "execution.json": "8af377479983cbd4b5247de322e00169c5230584c64f4f19ed8708f1f00ef2aa",
+            "source-manifest.json": "ccb618b2199ec560b2a8b4f82fcdb1056927ac45e651869212d633fa80330c96",
+            "eslint.json": "cdf79394bc061a49383dd1fcd4ce5f4d134374cc942a091dfc7dd2e90d67416e"
+          },
+          "lint": {
+            "files": 189,
+            "errors": 13,
+            "warnings": 4,
+            "findings": [
+              {
+                "path": "scripts/workspaces.test.cjs",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@next/next/no-assign-module-variable"
+                ]
+              },
+              {
+                "path": "src/app/components/auth/DashboardAuthGate.tsx",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "react-hooks/set-state-in-effect"
+                ]
+              },
+              {
+                "path": "src/app/components/auth/PendingApprovalScreen.tsx",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "react/no-unescaped-entities"
+                ]
+              },
+              {
+                "path": "src/app/components/construction/SubcontractorDialog.tsx",
+                "errors": 0,
+                "warnings": 1,
+                "rules": [
+                  "@typescript-eslint/no-unused-vars"
+                ]
+              },
+              {
+                "path": "src/app/components/dashboard/AppSidebar.tsx",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "react-hooks/set-state-in-effect"
+                ]
+              },
+              {
+                "path": "src/app/dashboard/projects/[id]/contracts/new/page.tsx",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "react/no-unescaped-entities"
+                ]
+              },
+              {
+                "path": "src/app/dashboard/settings/billing/page.tsx",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/app/dashboard/subcontractors/page.tsx",
+                "errors": 2,
+                "warnings": 0,
+                "rules": [
+                  "react-hooks/purity"
+                ]
+              },
+              {
+                "path": "src/app/dashboard/users/pending/page.tsx",
+                "errors": 0,
+                "warnings": 1,
+                "rules": [
+                  "@typescript-eslint/no-unused-vars"
+                ]
+              },
+              {
+                "path": "src/app/global-error.tsx",
+                "errors": 0,
+                "warnings": 1,
+                "rules": [
+                  "@typescript-eslint/no-unused-vars"
+                ]
+              },
+              {
+                "path": "src/app/onboarding/page.tsx",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "react-hooks/set-state-in-effect"
+                ]
+              },
+              {
+                "path": "src/app/plans/page.tsx",
+                "errors": 0,
+                "warnings": 1,
+                "rules": [
+                  null
+                ]
+              },
+              {
+                "path": "src/app/services/frontendService.ts",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/lib/colorModeContext.tsx",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "react-hooks/set-state-in-effect"
+                ]
+              },
+              {
+                "path": "src/utils/api-utils.ts",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/utils/routing-utils.ts",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "runId": "2026-11-01T09-46-12-638Z-f3b57e73",
+          "layer": "build",
+          "status": "FAIL",
+          "exitCode": 1,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "build"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "<FE>\\.qa-agent-work\\frontend-phase-2026-11-01\\dependencies\\node_modules\\next\\dist\\bin\\next",
+            "build",
+            "--webpack"
+          ],
+          "durationMs": 27898,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-46-12-638Z-f3b57e73",
+          "hashes": {
+            "execution.json": "44280aeafcdfc6a2606acb89ac6ddce809e679cb03b4b2f8db06b31e0ed17d06",
+            "source-manifest.json": "ccb618b2199ec560b2a8b4f82fcdb1056927ac45e651869212d633fa80330c96"
+          }
+        },
+        {
+          "runId": "2026-11-01T09-46-40-931Z-c6f24302",
+          "layer": "mocked-browser",
+          "status": "FAIL",
+          "exitCode": 1,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "mocked-browser"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "<STAGE>\\qa\\harness\\run-browser.cjs"
+          ],
+          "durationMs": 126785,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/playwright-results/2026-11-01T09-46-40-931Z-c6f24302",
+          "hashes": {
+            "execution.json": "5cac08e9f4a22a2ae1a7860efd88b5faa865819b0f19f8690cbc24b29c991d4e",
+            "source-manifest.json": "ccb618b2199ec560b2a8b4f82fcdb1056927ac45e651869212d633fa80330c96",
+            "playwright.json": "bff9f7bf687d89c92efe8250462dd3c3be2daa7264d5f09a9e80c47c5e7ae6a3",
+            "browser-execution.json": "ec1e53567766846d43fdae232769e63a2f94d6360ead39e473ebe7965e5f8ee3"
+          },
+          "browser": {
+            "stats": {
+              "startTime": "2026-11-01T09:46:43.326Z",
+              "duration": 124349.57800000001,
+              "expected": 20,
+              "skipped": 0,
+              "unexpected": 19,
+              "flaky": 0
+            },
+            "projects": {
+              "chromium": {
+                "executed": 13,
+                "passed": 6,
+                "failed": 7,
+                "skipped": 0
+              },
+              "firefox": {
+                "executed": 13,
+                "passed": 9,
+                "failed": 4,
+                "skipped": 0
+              },
+              "webkit": {
+                "executed": 13,
+                "passed": 5,
+                "failed": 8,
+                "skipped": 0
+              }
+            },
+            "cases": [
+              {
+                "engine": "chromium",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "a protected deep link preserves its path and query through synthetic sign-in",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "chromium",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "the login entry route preserves a safe internal returnTo including its query",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "chromium",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "the login entry route rejects a absolute external URL",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "chromium",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "the login entry route rejects a protocol-relative external URL",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "chromium",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "the login entry route rejects a backslash-normalized external URL",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-REDIRECT-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "chromium",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "the login entry route defaults to the dashboard without a returnTo",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "firefox",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "a protected deep link preserves its path and query through synthetic sign-in",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-HYDRATE-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 1
+                }
+              },
+              {
+                "engine": "firefox",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "the login entry route preserves a safe internal returnTo including its query",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "firefox",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "the login entry route rejects a absolute external URL",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "firefox",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "the login entry route rejects a protocol-relative external URL",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "firefox",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "the login entry route rejects a backslash-normalized external URL",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-REDIRECT-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "firefox",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "the login entry route defaults to the dashboard without a returnTo",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "webkit",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "a protected deep link preserves its path and query through synthetic sign-in",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-HYDRATE-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 1
+                }
+              },
+              {
+                "engine": "webkit",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "the login entry route preserves a safe internal returnTo including its query",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "webkit",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "the login entry route rejects a absolute external URL",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "webkit",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "the login entry route rejects a protocol-relative external URL",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "webkit",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "the login entry route rejects a backslash-normalized external URL",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-REDIRECT-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "webkit",
+                "file": "auth-navigation.mocked-browser.spec.ts",
+                "title": "the login entry route defaults to the dashboard without a returnTo",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "chromium",
+                "file": "contracts-navigation.mocked-browser.spec.ts",
+                "title": "a contract reference opens an actual detail route with its contract",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-ROUTE-01",
+                  "FE-HYDRATE-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 1
+                }
+              },
+              {
+                "engine": "chromium",
+                "file": "contracts-navigation.mocked-browser.spec.ts",
+                "title": "a viewer can read the contract list without a creation control",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-HYDRATE-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 1
+                }
+              },
+              {
+                "engine": "firefox",
+                "file": "contracts-navigation.mocked-browser.spec.ts",
+                "title": "a contract reference opens an actual detail route with its contract",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-ROUTE-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "firefox",
+                "file": "contracts-navigation.mocked-browser.spec.ts",
+                "title": "a viewer can read the contract list without a creation control",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "webkit",
+                "file": "contracts-navigation.mocked-browser.spec.ts",
+                "title": "a contract reference opens an actual detail route with its contract",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-ROUTE-01",
+                  "FE-HYDRATE-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 1
+                }
+              },
+              {
+                "engine": "webkit",
+                "file": "contracts-navigation.mocked-browser.spec.ts",
+                "title": "a viewer can read the contract list without a creation control",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-HYDRATE-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 1
+                }
+              },
+              {
+                "engine": "chromium",
+                "file": "route-accessibility.mocked-browser.spec.ts",
+                "title": "contract entry supports labelled fields, keyboard controls and a readable validation error",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-HYDRATE-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 1
+                }
+              },
+              {
+                "engine": "chromium",
+                "file": "route-accessibility.mocked-browser.spec.ts",
+                "title": "mobile navigation can be opened and dismissed using the keyboard",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-HYDRATE-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 1
+                }
+              },
+              {
+                "engine": "chromium",
+                "file": "route-accessibility.mocked-browser.spec.ts",
+                "title": "pending users receive a clear status screen instead of project content",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-HYDRATE-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 1
+                }
+              },
+              {
+                "engine": "chromium",
+                "file": "route-accessibility.mocked-browser.spec.ts",
+                "title": "rejected users receive a clear status screen instead of project content",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-HYDRATE-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 1
+                }
+              },
+              {
+                "engine": "chromium",
+                "file": "route-accessibility.mocked-browser.spec.ts",
+                "title": "an unavailable account API presents retry and recovers without losing the route",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "firefox",
+                "file": "route-accessibility.mocked-browser.spec.ts",
+                "title": "contract entry supports labelled fields, keyboard controls and a readable validation error",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "firefox",
+                "file": "route-accessibility.mocked-browser.spec.ts",
+                "title": "mobile navigation can be opened and dismissed using the keyboard",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-HYDRATE-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 1
+                }
+              },
+              {
+                "engine": "firefox",
+                "file": "route-accessibility.mocked-browser.spec.ts",
+                "title": "pending users receive a clear status screen instead of project content",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "firefox",
+                "file": "route-accessibility.mocked-browser.spec.ts",
+                "title": "rejected users receive a clear status screen instead of project content",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "firefox",
+                "file": "route-accessibility.mocked-browser.spec.ts",
+                "title": "an unavailable account API presents retry and recovers without losing the route",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              },
+              {
+                "engine": "webkit",
+                "file": "route-accessibility.mocked-browser.spec.ts",
+                "title": "contract entry supports labelled fields, keyboard controls and a readable validation error",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-HYDRATE-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 1
+                }
+              },
+              {
+                "engine": "webkit",
+                "file": "route-accessibility.mocked-browser.spec.ts",
+                "title": "mobile navigation can be opened and dismissed using the keyboard",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-HYDRATE-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 1
+                }
+              },
+              {
+                "engine": "webkit",
+                "file": "route-accessibility.mocked-browser.spec.ts",
+                "title": "pending users receive a clear status screen instead of project content",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-HYDRATE-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 1
+                }
+              },
+              {
+                "engine": "webkit",
+                "file": "route-accessibility.mocked-browser.spec.ts",
+                "title": "rejected users receive a clear status screen instead of project content",
+                "status": "failed",
+                "retry": 0,
+                "failures": [
+                  "FE-HYDRATE-01"
+                ],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 1
+                }
+              },
+              {
+                "engine": "webkit",
+                "file": "route-accessibility.mocked-browser.spec.ts",
+                "title": "an unavailable account API presents retry and recovers without losing the route",
+                "status": "passed",
+                "retry": 0,
+                "failures": [],
+                "boundary": {
+                  "realBackendUsed": false,
+                  "violations": [],
+                  "pageErrorCount": 0
+                }
+              }
+            ]
+          },
+          "lifecycle": {
+            "readiness": {
+              "ready": true,
+              "guard": true
+            },
+            "cleanup": true,
+            "cleanupErrors": [],
+            "violations": [],
+            "serverExitCode": 0,
+            "browserExitCode": 1,
+            "realBackend": false
+          }
+        },
+        {
+          "runId": "2026-11-01T09-46-43-578Z-5735a393",
+          "layer": "stack",
+          "status": "BLOCKED",
+          "exitCode": 2,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "stack"
+          ],
+          "childCommand": [],
+          "durationMs": null,
+          "stageRemoved": false,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-46-43-578Z-5735a393",
+          "hashes": {
+            "execution.json": "217dda90e985c850563770d730628b1a52ec2c1d57bb6b0c021ac50fa40e5e83"
+          },
+          "reason": "No independently verified disposable backend/database runner is provisioned. Real-system browser setup, seeding and cleanup were not attempted."
+        },
+        {
+          "runId": "2026-11-01T09-49-13-053Z-a325ae9d",
+          "layer": "lint",
+          "status": "FAIL",
+          "exitCode": 1,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "lint"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "<FE>\\.qa-agent-work\\frontend-phase-2026-11-01\\dependencies\\node_modules\\eslint\\bin\\eslint.js",
+            ".",
+            "--format",
+            "json",
+            "--output-file",
+            "<FE>\\qa-raw\\vitest-results\\2026-11-01T09-49-13-053Z-a325ae9d\\eslint.json"
+          ],
+          "durationMs": 6284,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-49-13-053Z-a325ae9d",
+          "hashes": {
+            "execution.json": "96086e64cacb4d11544392f46f881b701960a55ce948967823595514262f8778",
+            "source-manifest.json": "1349cf2f80d6897899e71128f3bedee07dc3f6720de4134d3a11f5e51e3d4520",
+            "eslint.json": "f2977ab6afeac1132a261d2c711fa2678bdeb5bb83f6350096dcbe279b22fca4"
+          },
+          "lint": {
+            "files": 191,
+            "errors": 13,
+            "warnings": 4,
+            "findings": [
+              {
+                "path": "scripts/workspaces.test.cjs",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@next/next/no-assign-module-variable"
+                ]
+              },
+              {
+                "path": "src/app/components/auth/DashboardAuthGate.tsx",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "react-hooks/set-state-in-effect"
+                ]
+              },
+              {
+                "path": "src/app/components/auth/PendingApprovalScreen.tsx",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "react/no-unescaped-entities"
+                ]
+              },
+              {
+                "path": "src/app/components/construction/SubcontractorDialog.tsx",
+                "errors": 0,
+                "warnings": 1,
+                "rules": [
+                  "@typescript-eslint/no-unused-vars"
+                ]
+              },
+              {
+                "path": "src/app/components/dashboard/AppSidebar.tsx",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "react-hooks/set-state-in-effect"
+                ]
+              },
+              {
+                "path": "src/app/dashboard/projects/[id]/contracts/new/page.tsx",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "react/no-unescaped-entities"
+                ]
+              },
+              {
+                "path": "src/app/dashboard/settings/billing/page.tsx",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/app/dashboard/subcontractors/page.tsx",
+                "errors": 2,
+                "warnings": 0,
+                "rules": [
+                  "react-hooks/purity"
+                ]
+              },
+              {
+                "path": "src/app/dashboard/users/pending/page.tsx",
+                "errors": 0,
+                "warnings": 1,
+                "rules": [
+                  "@typescript-eslint/no-unused-vars"
+                ]
+              },
+              {
+                "path": "src/app/global-error.tsx",
+                "errors": 0,
+                "warnings": 1,
+                "rules": [
+                  "@typescript-eslint/no-unused-vars"
+                ]
+              },
+              {
+                "path": "src/app/onboarding/page.tsx",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "react-hooks/set-state-in-effect"
+                ]
+              },
+              {
+                "path": "src/app/plans/page.tsx",
+                "errors": 0,
+                "warnings": 1,
+                "rules": [
+                  null
+                ]
+              },
+              {
+                "path": "src/app/services/frontendService.ts",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/lib/colorModeContext.tsx",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "react-hooks/set-state-in-effect"
+                ]
+              },
+              {
+                "path": "src/utils/api-utils.ts",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/utils/routing-utils.ts",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "runId": "2026-11-01T09-49-22-117Z-2f629e19",
+          "layer": "stack",
+          "status": "BLOCKED",
+          "exitCode": 2,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "stack"
+          ],
+          "childCommand": [],
+          "durationMs": null,
+          "stageRemoved": false,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-49-22-117Z-2f629e19",
+          "hashes": {
+            "execution.json": "45b9ec8856d2bc529fd6e1e03e63b402bb02a13fa0932b054918f5c85d4b5156"
+          },
+          "reason": "No independently verified disposable backend/database runner is provisioned. Real-system browser setup, seeding and cleanup were not attempted."
+        },
+        {
+          "runId": "2026-11-01T09-53-01-532Z-2acf2703",
+          "layer": "lint",
+          "status": "FAIL",
+          "exitCode": 1,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "lint"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "<FE>\\.qa-agent-work\\frontend-phase-2026-11-01\\dependencies\\node_modules\\eslint\\bin\\eslint.js",
+            ".",
+            "--format",
+            "json",
+            "--output-file",
+            "<FE>\\qa-raw\\vitest-results\\2026-11-01T09-53-01-532Z-2acf2703\\eslint.json"
+          ],
+          "durationMs": 6267,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-53-01-532Z-2acf2703",
+          "hashes": {
+            "execution.json": "b91823573ef957c96e7a70646cf9b0448be37edee3f47df9e14107dcdd3a9fdb",
+            "source-manifest.json": "d127ea1607fab0416a1ad07ed537b389b1679d80eeaf16a07ca744c2afe445f3",
+            "eslint.json": "6d7f6a182e7aceb1249b74ea5f4b096c50a0e404ec604e727eb6d67daf4f5225"
+          },
+          "lint": {
+            "files": 191,
+            "errors": 13,
+            "warnings": 4,
+            "findings": [
+              {
+                "path": "scripts/workspaces.test.cjs",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@next/next/no-assign-module-variable"
+                ]
+              },
+              {
+                "path": "src/app/components/auth/DashboardAuthGate.tsx",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "react-hooks/set-state-in-effect"
+                ]
+              },
+              {
+                "path": "src/app/components/auth/PendingApprovalScreen.tsx",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "react/no-unescaped-entities"
+                ]
+              },
+              {
+                "path": "src/app/components/construction/SubcontractorDialog.tsx",
+                "errors": 0,
+                "warnings": 1,
+                "rules": [
+                  "@typescript-eslint/no-unused-vars"
+                ]
+              },
+              {
+                "path": "src/app/components/dashboard/AppSidebar.tsx",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "react-hooks/set-state-in-effect"
+                ]
+              },
+              {
+                "path": "src/app/dashboard/projects/[id]/contracts/new/page.tsx",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "react/no-unescaped-entities"
+                ]
+              },
+              {
+                "path": "src/app/dashboard/settings/billing/page.tsx",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/app/dashboard/subcontractors/page.tsx",
+                "errors": 2,
+                "warnings": 0,
+                "rules": [
+                  "react-hooks/purity"
+                ]
+              },
+              {
+                "path": "src/app/dashboard/users/pending/page.tsx",
+                "errors": 0,
+                "warnings": 1,
+                "rules": [
+                  "@typescript-eslint/no-unused-vars"
+                ]
+              },
+              {
+                "path": "src/app/global-error.tsx",
+                "errors": 0,
+                "warnings": 1,
+                "rules": [
+                  "@typescript-eslint/no-unused-vars"
+                ]
+              },
+              {
+                "path": "src/app/onboarding/page.tsx",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "react-hooks/set-state-in-effect"
+                ]
+              },
+              {
+                "path": "src/app/plans/page.tsx",
+                "errors": 0,
+                "warnings": 1,
+                "rules": [
+                  null
+                ]
+              },
+              {
+                "path": "src/app/services/frontendService.ts",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/lib/colorModeContext.tsx",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "react-hooks/set-state-in-effect"
+                ]
+              },
+              {
+                "path": "src/utils/api-utils.ts",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/utils/routing-utils.ts",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "runId": "2026-11-01T09-53-10-635Z-98ff958b",
+          "layer": "stack",
+          "status": "BLOCKED",
+          "exitCode": 2,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "stack"
+          ],
+          "childCommand": [],
+          "durationMs": null,
+          "stageRemoved": false,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/vitest-results/2026-11-01T09-53-10-635Z-98ff958b",
+          "hashes": {
+            "execution.json": "81a926720d2ba5471c2e1dfcc3c61b9f06c4cc129b86564259476cb52d87d0a0"
+          },
+          "reason": "No independently verified disposable backend/database runner is provisioned. Real-system browser setup, seeding and cleanup were not attempted."
+        }
+      ],
+      "coverage": {
+        "runId": "2026-11-01T09-45-58-373Z-f891e16a",
+        "layer": "unit",
+        "totals": {
+          "lines": {
+            "total": 14255,
+            "covered": 1797,
+            "skipped": 0,
+            "pct": 12.6
+          },
+          "statements": {
+            "total": 14255,
+            "covered": 1797,
+            "skipped": 0,
+            "pct": 12.6
+          },
+          "functions": {
+            "total": 276,
+            "covered": 147,
+            "skipped": 0,
+            "pct": 53.26
+          },
+          "branches": {
+            "total": 468,
+            "covered": 331,
+            "skipped": 0,
+            "pct": 70.72
+          },
+          "branchesTrue": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "sourceSha256": "2195303f11a49167c3c84cca1104fe509dc721df83957e74d218b84b2a7e31ba"
+      }
+    },
+    {
+      "repository": "plutus-be",
+      "branch": "development",
+      "head": "f3fdc7998a8b5e8bfc913cadf464f23eeb3332b7",
+      "versions": {
+        "node": "v24.15.0",
+        "npm": "11.12.1",
+        "@nestjs/core": "11.1.18",
+        "mongoose": "8.23.0",
+        "jest": "29.7.0",
+        "ts-jest": "29.4.9",
+        "supertest": "7.2.2",
+        "typescript": "5.9.3",
+        "eslint": "9.39.4",
+        "@typescript-eslint/eslint-plugin": "8.58.0",
+        "js-yaml": "4.1.1"
+      },
+      "dependencySource": "pre-existing local node_modules",
+      "freshInstallThisPhase": false,
+      "finalResults": [
+        {
+          "runId": "2026-11-01T09-46-43-855Z-836fddd4",
+          "layer": "unit",
+          "status": "FAIL",
+          "exitCode": 1,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "unit"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "--require",
+            "<STAGE>\\test\\qa\\support\\runtime-guard.cjs",
+            "<BE>\\node_modules\\jest\\bin\\jest.js",
+            "--runInBand",
+            "--no-cache",
+            "--json",
+            "--outputFile",
+            "<BE>\\qa-raw\\jest-results\\2026-11-01T09-46-43-855Z-836fddd4\\jest.json"
+          ],
+          "durationMs": 18968,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/jest-results/2026-11-01T09-46-43-855Z-836fddd4",
+          "hashes": {
+            "execution.json": "19bf5ea9be42c11aafe3bad6cae69104aed3ac3f209f822578536e8e80ca5455",
+            "source-manifest.json": "12a7064a4b86b3e1f06bad7b7896c7ffb369e74ae2f3dd6ec652ffc85f6cb51a",
+            "jest.json": "38845883a8b0cab5953d45bf5ddaf09837f8c572a73aff5a247b7686e69fb8c6"
+          },
+          "tests": {
+            "passed": 214,
+            "failed": 0,
+            "pending": 0,
+            "total": 214,
+            "files": 28,
+            "failedSuites": 1
+          }
+        },
+        {
+          "runId": "2026-11-01T09-47-03-119Z-12927093",
+          "layer": "qa-unit",
+          "status": "PASS",
+          "exitCode": 0,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "qa-unit"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "--require",
+            "<STAGE>\\test\\qa\\support\\runtime-guard.cjs",
+            "<BE>\\node_modules\\jest\\bin\\jest.js",
+            "--runInBand",
+            "--no-cache",
+            "--json",
+            "--outputFile",
+            "<BE>\\qa-raw\\jest-results\\2026-11-01T09-47-03-119Z-12927093\\jest.json",
+            "--config",
+            "test/jest-qa-unit.cjs",
+            "--coverage",
+            "--coverageDirectory",
+            "<BE>\\qa-raw\\jest-coverage\\2026-11-01T09-47-03-119Z-12927093"
+          ],
+          "durationMs": 13369,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/jest-results/2026-11-01T09-47-03-119Z-12927093",
+          "hashes": {
+            "execution.json": "1b12c4b65ae49f87bc7a78146eb69b42c732761686ec586cd5cc64c92328fd48",
+            "source-manifest.json": "12a7064a4b86b3e1f06bad7b7896c7ffb369e74ae2f3dd6ec652ffc85f6cb51a",
+            "jest.json": "6a04d40d0a6fc771ab3de15b9049a4cdd824e2598335ddb9f6e35edfd7c69fcd"
+          },
+          "tests": {
+            "passed": 106,
+            "failed": 0,
+            "pending": 0,
+            "total": 106,
+            "files": 6,
+            "failedSuites": 0
+          }
+        },
+        {
+          "runId": "2026-11-01T09-47-16-829Z-2b5cee09",
+          "layer": "harness",
+          "status": "PASS",
+          "exitCode": 0,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "harness"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "--require",
+            "<STAGE>\\test\\qa\\support\\runtime-guard.cjs",
+            "<BE>\\node_modules\\jest\\bin\\jest.js",
+            "--runInBand",
+            "--no-cache",
+            "--json",
+            "--outputFile",
+            "<BE>\\qa-raw\\jest-results\\2026-11-01T09-47-16-829Z-2b5cee09\\jest.json",
+            "--config",
+            "test/jest-qa-harness.cjs"
+          ],
+          "durationMs": 2424,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/jest-results/2026-11-01T09-47-16-829Z-2b5cee09",
+          "hashes": {
+            "execution.json": "55be3e0798ed282be81c55159915a3a208d14c2479873ec221fc458b51e1e37a",
+            "source-manifest.json": "12a7064a4b86b3e1f06bad7b7896c7ffb369e74ae2f3dd6ec652ffc85f6cb51a",
+            "jest.json": "55d6a6f1670676f83ec9352deb820d197064c7516d714b08da73937d1aabe331"
+          },
+          "tests": {
+            "passed": 15,
+            "failed": 0,
+            "pending": 0,
+            "total": 15,
+            "files": 1,
+            "failedSuites": 0
+          }
+        },
+        {
+          "runId": "2026-11-01T09-47-19-502Z-688ce3e5",
+          "layer": "contract",
+          "status": "PASS",
+          "exitCode": 0,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "contract"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "--require",
+            "<STAGE>\\test\\qa\\support\\runtime-guard.cjs",
+            "<BE>\\node_modules\\jest\\bin\\jest.js",
+            "--runInBand",
+            "--no-cache",
+            "--json",
+            "--outputFile",
+            "<BE>\\qa-raw\\jest-results\\2026-11-01T09-47-19-502Z-688ce3e5\\jest.json",
+            "--config",
+            "test/jest-qa-contract.cjs"
+          ],
+          "durationMs": 3043,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/jest-results/2026-11-01T09-47-19-502Z-688ce3e5",
+          "hashes": {
+            "execution.json": "4696781cba8fa973e9da2d619080fd89e253b29eee4eb8f392d5d9e9a404cc88",
+            "source-manifest.json": "12a7064a4b86b3e1f06bad7b7896c7ffb369e74ae2f3dd6ec652ffc85f6cb51a",
+            "jest.json": "a3138ac62609b1a4086dd5932f6f358770b037ffa6ba9dcb2bd6802c36410e00"
+          },
+          "tests": {
+            "passed": 4,
+            "failed": 0,
+            "pending": 0,
+            "total": 4,
+            "files": 1,
+            "failedSuites": 0
+          }
+        },
+        {
+          "runId": "2026-11-01T09-47-22-765Z-70886155",
+          "layer": "typecheck",
+          "status": "FAIL",
+          "exitCode": 2,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "typecheck"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "--require",
+            "<STAGE>\\test\\qa\\support\\runtime-guard.cjs",
+            "<BE>\\node_modules\\typescript\\bin\\tsc",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "-p",
+            "tsconfig.json"
+          ],
+          "durationMs": 2839,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/jest-results/2026-11-01T09-47-22-765Z-70886155",
+          "hashes": {
+            "execution.json": "d2f55344c9007b749d8466537593ddfc142a35dee5ca276862bebf01316459d1",
+            "source-manifest.json": "12a7064a4b86b3e1f06bad7b7896c7ffb369e74ae2f3dd6ec652ffc85f6cb51a"
+          },
+          "diagnostics": [
+            "src/auth/status.guard.spec.ts(23,7): error TS2554: Expected 2 arguments, but got 3.",
+            "test/support/isolated-app.ts(130,37): error TS2550: Property 'findLast' does not exist on type 'InvitationEmail[]'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2023' or later.",
+            "test/support/isolated-app.ts(131,8): error TS7006: Parameter 'entry' implicitly has an 'any' type."
+          ]
+        },
+        {
+          "runId": "2026-11-01T09-47-25-849Z-bfc82b1c",
+          "layer": "qa-typecheck",
+          "status": "PASS",
+          "exitCode": 0,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "qa-typecheck"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "--require",
+            "<STAGE>\\test\\qa\\support\\runtime-guard.cjs",
+            "<BE>\\node_modules\\typescript\\bin\\tsc",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "-p",
+            "test/tsconfig.qa.json"
+          ],
+          "durationMs": 1429,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/jest-results/2026-11-01T09-47-25-849Z-bfc82b1c",
+          "hashes": {
+            "execution.json": "da8f98fac9cb810965d80d73e52773593938aaf05d2d732f7b967321e8fc76a0",
+            "source-manifest.json": "12a7064a4b86b3e1f06bad7b7896c7ffb369e74ae2f3dd6ec652ffc85f6cb51a"
+          },
+          "diagnostics": []
+        },
+        {
+          "runId": "2026-11-01T09-53-08-165Z-31140adf",
+          "layer": "lint",
+          "status": "FAIL",
+          "exitCode": 1,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "lint"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "--require",
+            "<STAGE>\\test\\qa\\support\\runtime-guard.cjs",
+            "<BE>\\node_modules\\eslint\\bin\\eslint.js",
+            ".",
+            "--format",
+            "json",
+            "--output-file",
+            "<BE>\\qa-raw\\jest-results\\2026-11-01T09-53-08-165Z-31140adf\\eslint.json"
+          ],
+          "durationMs": 2153,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/jest-results/2026-11-01T09-53-08-165Z-31140adf",
+          "hashes": {
+            "execution.json": "1077d1ced26f5ef7eee22f7978ec3950e95ac9c7fdc3d97356ab72bcb6ca16aa",
+            "source-manifest.json": "e4556c44a97ce8cced96dd931613a4ff0d3f17cce2c9cf099194755751a3661b",
+            "eslint.json": "b8178d2d21d8259a5a66998bd6d1d34d21644f9d1860ee4ebcf1204bfad2eff3"
+          },
+          "lint": {
+            "files": 198,
+            "errors": 58,
+            "warnings": 0,
+            "findings": [
+              {
+                "path": "scripts/qa/run-isolated.cjs",
+                "errors": 2,
+                "warnings": 0,
+                "rules": [
+                  "no-unsafe-finally"
+                ]
+              },
+              {
+                "path": "src/document/document.service.qa.spec.ts",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-unused-vars"
+                ]
+              },
+              {
+                "path": "src/imports/services/import.service.spec.ts",
+                "errors": 14,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/imports/strategies/contract-import.strategy.spec.ts",
+                "errors": 8,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/imports/strategies/contract-import.strategy.ts",
+                "errors": 2,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/imports/strategies/project-import.strategy.spec.ts",
+                "errors": 8,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/imports/strategies/project-import.strategy.ts",
+                "errors": 4,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/imports/strategies/variation-import.strategy.ts",
+                "errors": 2,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/invitation/invitation.service.spec.ts",
+                "errors": 11,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/main.ts",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/project/project-financials.qa.spec.ts",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-unused-vars"
+                ]
+              },
+              {
+                "path": "src/user/user.service.ts",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "test/membership.e2e-spec.ts",
+                "errors": 3,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "runId": "2026-11-01T09-48-16-293Z-b3e50f23",
+          "layer": "build",
+          "status": "PASS",
+          "exitCode": 0,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "build"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "--require",
+            "<STAGE>\\test\\qa\\support\\runtime-guard.cjs",
+            "<BE>\\node_modules\\@nestjs\\cli\\bin\\nest.js",
+            "build"
+          ],
+          "durationMs": 5118,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/jest-results/2026-11-01T09-48-16-293Z-b3e50f23",
+          "hashes": {
+            "execution.json": "318a4b4eff92adef13083bdcbcd394422f93e4f9970a4adcfddee12f4db7db01",
+            "source-manifest.json": "4ab99ce9d872a9b1adbfb89c15713bba09ea4716ff26ec9545d9b2dc18533e90"
+          }
+        },
+        {
+          "runId": "2026-11-01T09-53-10-722Z-015d9f7c",
+          "layer": "http",
+          "status": "BLOCKED",
+          "exitCode": 2,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "http"
+          ],
+          "childCommand": [],
+          "durationMs": null,
+          "stageRemoved": false,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/jest-results/2026-11-01T09-53-10-722Z-015d9f7c",
+          "hashes": {
+            "execution.json": "2882efb1dc9cddd86f0610ce23d38fb09c6592eefa6c7e02370739011b176980"
+          },
+          "reason": "No independently verified disposable runner with native-process network containment is provisioned. Database connection and seeding were not attempted."
+        }
+      ],
+      "attempts": [
+        {
+          "runId": "2026-11-01T09-46-43-855Z-836fddd4",
+          "layer": "unit",
+          "status": "FAIL",
+          "exitCode": 1,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "unit"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "--require",
+            "<STAGE>\\test\\qa\\support\\runtime-guard.cjs",
+            "<BE>\\node_modules\\jest\\bin\\jest.js",
+            "--runInBand",
+            "--no-cache",
+            "--json",
+            "--outputFile",
+            "<BE>\\qa-raw\\jest-results\\2026-11-01T09-46-43-855Z-836fddd4\\jest.json"
+          ],
+          "durationMs": 18968,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/jest-results/2026-11-01T09-46-43-855Z-836fddd4",
+          "hashes": {
+            "execution.json": "19bf5ea9be42c11aafe3bad6cae69104aed3ac3f209f822578536e8e80ca5455",
+            "source-manifest.json": "12a7064a4b86b3e1f06bad7b7896c7ffb369e74ae2f3dd6ec652ffc85f6cb51a",
+            "jest.json": "38845883a8b0cab5953d45bf5ddaf09837f8c572a73aff5a247b7686e69fb8c6"
+          },
+          "tests": {
+            "passed": 214,
+            "failed": 0,
+            "pending": 0,
+            "total": 214,
+            "files": 28,
+            "failedSuites": 1
+          }
+        },
+        {
+          "runId": "2026-11-01T09-47-03-119Z-12927093",
+          "layer": "qa-unit",
+          "status": "PASS",
+          "exitCode": 0,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "qa-unit"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "--require",
+            "<STAGE>\\test\\qa\\support\\runtime-guard.cjs",
+            "<BE>\\node_modules\\jest\\bin\\jest.js",
+            "--runInBand",
+            "--no-cache",
+            "--json",
+            "--outputFile",
+            "<BE>\\qa-raw\\jest-results\\2026-11-01T09-47-03-119Z-12927093\\jest.json",
+            "--config",
+            "test/jest-qa-unit.cjs",
+            "--coverage",
+            "--coverageDirectory",
+            "<BE>\\qa-raw\\jest-coverage\\2026-11-01T09-47-03-119Z-12927093"
+          ],
+          "durationMs": 13369,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/jest-results/2026-11-01T09-47-03-119Z-12927093",
+          "hashes": {
+            "execution.json": "1b12c4b65ae49f87bc7a78146eb69b42c732761686ec586cd5cc64c92328fd48",
+            "source-manifest.json": "12a7064a4b86b3e1f06bad7b7896c7ffb369e74ae2f3dd6ec652ffc85f6cb51a",
+            "jest.json": "6a04d40d0a6fc771ab3de15b9049a4cdd824e2598335ddb9f6e35edfd7c69fcd"
+          },
+          "tests": {
+            "passed": 106,
+            "failed": 0,
+            "pending": 0,
+            "total": 106,
+            "files": 6,
+            "failedSuites": 0
+          }
+        },
+        {
+          "runId": "2026-11-01T09-47-16-829Z-2b5cee09",
+          "layer": "harness",
+          "status": "PASS",
+          "exitCode": 0,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "harness"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "--require",
+            "<STAGE>\\test\\qa\\support\\runtime-guard.cjs",
+            "<BE>\\node_modules\\jest\\bin\\jest.js",
+            "--runInBand",
+            "--no-cache",
+            "--json",
+            "--outputFile",
+            "<BE>\\qa-raw\\jest-results\\2026-11-01T09-47-16-829Z-2b5cee09\\jest.json",
+            "--config",
+            "test/jest-qa-harness.cjs"
+          ],
+          "durationMs": 2424,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/jest-results/2026-11-01T09-47-16-829Z-2b5cee09",
+          "hashes": {
+            "execution.json": "55be3e0798ed282be81c55159915a3a208d14c2479873ec221fc458b51e1e37a",
+            "source-manifest.json": "12a7064a4b86b3e1f06bad7b7896c7ffb369e74ae2f3dd6ec652ffc85f6cb51a",
+            "jest.json": "55d6a6f1670676f83ec9352deb820d197064c7516d714b08da73937d1aabe331"
+          },
+          "tests": {
+            "passed": 15,
+            "failed": 0,
+            "pending": 0,
+            "total": 15,
+            "files": 1,
+            "failedSuites": 0
+          }
+        },
+        {
+          "runId": "2026-11-01T09-47-19-502Z-688ce3e5",
+          "layer": "contract",
+          "status": "PASS",
+          "exitCode": 0,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "contract"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "--require",
+            "<STAGE>\\test\\qa\\support\\runtime-guard.cjs",
+            "<BE>\\node_modules\\jest\\bin\\jest.js",
+            "--runInBand",
+            "--no-cache",
+            "--json",
+            "--outputFile",
+            "<BE>\\qa-raw\\jest-results\\2026-11-01T09-47-19-502Z-688ce3e5\\jest.json",
+            "--config",
+            "test/jest-qa-contract.cjs"
+          ],
+          "durationMs": 3043,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/jest-results/2026-11-01T09-47-19-502Z-688ce3e5",
+          "hashes": {
+            "execution.json": "4696781cba8fa973e9da2d619080fd89e253b29eee4eb8f392d5d9e9a404cc88",
+            "source-manifest.json": "12a7064a4b86b3e1f06bad7b7896c7ffb369e74ae2f3dd6ec652ffc85f6cb51a",
+            "jest.json": "a3138ac62609b1a4086dd5932f6f358770b037ffa6ba9dcb2bd6802c36410e00"
+          },
+          "tests": {
+            "passed": 4,
+            "failed": 0,
+            "pending": 0,
+            "total": 4,
+            "files": 1,
+            "failedSuites": 0
+          }
+        },
+        {
+          "runId": "2026-11-01T09-47-22-765Z-70886155",
+          "layer": "typecheck",
+          "status": "FAIL",
+          "exitCode": 2,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "typecheck"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "--require",
+            "<STAGE>\\test\\qa\\support\\runtime-guard.cjs",
+            "<BE>\\node_modules\\typescript\\bin\\tsc",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "-p",
+            "tsconfig.json"
+          ],
+          "durationMs": 2839,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/jest-results/2026-11-01T09-47-22-765Z-70886155",
+          "hashes": {
+            "execution.json": "d2f55344c9007b749d8466537593ddfc142a35dee5ca276862bebf01316459d1",
+            "source-manifest.json": "12a7064a4b86b3e1f06bad7b7896c7ffb369e74ae2f3dd6ec652ffc85f6cb51a"
+          },
+          "diagnostics": [
+            "src/auth/status.guard.spec.ts(23,7): error TS2554: Expected 2 arguments, but got 3.",
+            "test/support/isolated-app.ts(130,37): error TS2550: Property 'findLast' does not exist on type 'InvitationEmail[]'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2023' or later.",
+            "test/support/isolated-app.ts(131,8): error TS7006: Parameter 'entry' implicitly has an 'any' type."
+          ]
+        },
+        {
+          "runId": "2026-11-01T09-47-25-849Z-bfc82b1c",
+          "layer": "qa-typecheck",
+          "status": "PASS",
+          "exitCode": 0,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "qa-typecheck"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "--require",
+            "<STAGE>\\test\\qa\\support\\runtime-guard.cjs",
+            "<BE>\\node_modules\\typescript\\bin\\tsc",
+            "--noEmit",
+            "--incremental",
+            "false",
+            "-p",
+            "test/tsconfig.qa.json"
+          ],
+          "durationMs": 1429,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/jest-results/2026-11-01T09-47-25-849Z-bfc82b1c",
+          "hashes": {
+            "execution.json": "da8f98fac9cb810965d80d73e52773593938aaf05d2d732f7b967321e8fc76a0",
+            "source-manifest.json": "12a7064a4b86b3e1f06bad7b7896c7ffb369e74ae2f3dd6ec652ffc85f6cb51a"
+          },
+          "diagnostics": []
+        },
+        {
+          "runId": "2026-11-01T09-47-27-497Z-ed050c8e",
+          "layer": "lint",
+          "status": "FAIL",
+          "exitCode": 1,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "lint"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "--require",
+            "<STAGE>\\test\\qa\\support\\runtime-guard.cjs",
+            "<BE>\\node_modules\\eslint\\bin\\eslint.js",
+            ".",
+            "--format",
+            "json",
+            "--output-file",
+            "<BE>\\qa-raw\\jest-results\\2026-11-01T09-47-27-497Z-ed050c8e\\eslint.json"
+          ],
+          "durationMs": 2449,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/jest-results/2026-11-01T09-47-27-497Z-ed050c8e",
+          "hashes": {
+            "execution.json": "4b018f618bb38f08d4c88de31a481591450cb87895163dfd3f933e58900ec940",
+            "source-manifest.json": "12a7064a4b86b3e1f06bad7b7896c7ffb369e74ae2f3dd6ec652ffc85f6cb51a",
+            "eslint.json": "271929d92589b327c0d9b261cbba9f9a22741de843d28c7d7510e93f2f0c14fe"
+          },
+          "lint": {
+            "files": 198,
+            "errors": 58,
+            "warnings": 0,
+            "findings": [
+              {
+                "path": "scripts/qa/run-isolated.cjs",
+                "errors": 2,
+                "warnings": 0,
+                "rules": [
+                  "no-unsafe-finally"
+                ]
+              },
+              {
+                "path": "src/document/document.service.qa.spec.ts",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-unused-vars"
+                ]
+              },
+              {
+                "path": "src/imports/services/import.service.spec.ts",
+                "errors": 14,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/imports/strategies/contract-import.strategy.spec.ts",
+                "errors": 8,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/imports/strategies/contract-import.strategy.ts",
+                "errors": 2,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/imports/strategies/project-import.strategy.spec.ts",
+                "errors": 8,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/imports/strategies/project-import.strategy.ts",
+                "errors": 4,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/imports/strategies/variation-import.strategy.ts",
+                "errors": 2,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/invitation/invitation.service.spec.ts",
+                "errors": 11,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/main.ts",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/project/project-financials.qa.spec.ts",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-unused-vars"
+                ]
+              },
+              {
+                "path": "src/user/user.service.ts",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "test/membership.e2e-spec.ts",
+                "errors": 3,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "runId": "2026-11-01T09-47-30-229Z-17e694cb",
+          "layer": "build",
+          "status": "FAIL",
+          "exitCode": 1,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "build"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "--require",
+            "<STAGE>\\test\\qa\\support\\runtime-guard.cjs",
+            "<BE>\\node_modules\\@nestjs\\cli\\bin\\nest.js",
+            "build"
+          ],
+          "durationMs": 5543,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/jest-results/2026-11-01T09-47-30-229Z-17e694cb",
+          "hashes": {
+            "execution.json": "93f20658a51007c27e7a775e29d2cf6f0ee8ec83eea11ff43c6c9d1cebe830fa",
+            "source-manifest.json": "12a7064a4b86b3e1f06bad7b7896c7ffb369e74ae2f3dd6ec652ffc85f6cb51a"
+          }
+        },
+        {
+          "runId": "2026-11-01T09-47-36-089Z-ec595d8d",
+          "layer": "http",
+          "status": "BLOCKED",
+          "exitCode": 2,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "http"
+          ],
+          "childCommand": [],
+          "durationMs": null,
+          "stageRemoved": false,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/jest-results/2026-11-01T09-47-36-089Z-ec595d8d",
+          "hashes": {
+            "execution.json": "8349561516e8f83e77226f07844e2d98765fbc400523256e2d86428de748950b"
+          },
+          "reason": "No independently verified disposable runner with native-process network containment is provisioned. Database connection and seeding were not attempted."
+        },
+        {
+          "runId": "2026-11-01T09-48-16-293Z-b3e50f23",
+          "layer": "build",
+          "status": "PASS",
+          "exitCode": 0,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "build"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "--require",
+            "<STAGE>\\test\\qa\\support\\runtime-guard.cjs",
+            "<BE>\\node_modules\\@nestjs\\cli\\bin\\nest.js",
+            "build"
+          ],
+          "durationMs": 5118,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/jest-results/2026-11-01T09-48-16-293Z-b3e50f23",
+          "hashes": {
+            "execution.json": "318a4b4eff92adef13083bdcbcd394422f93e4f9970a4adcfddee12f4db7db01",
+            "source-manifest.json": "4ab99ce9d872a9b1adbfb89c15713bba09ea4716ff26ec9545d9b2dc18533e90"
+          }
+        },
+        {
+          "runId": "2026-11-01T09-49-19-734Z-3ce65590",
+          "layer": "lint",
+          "status": "FAIL",
+          "exitCode": 1,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "lint"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "--require",
+            "<STAGE>\\test\\qa\\support\\runtime-guard.cjs",
+            "<BE>\\node_modules\\eslint\\bin\\eslint.js",
+            ".",
+            "--format",
+            "json",
+            "--output-file",
+            "<BE>\\qa-raw\\jest-results\\2026-11-01T09-49-19-734Z-3ce65590\\eslint.json"
+          ],
+          "durationMs": 2079,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/jest-results/2026-11-01T09-49-19-734Z-3ce65590",
+          "hashes": {
+            "execution.json": "cf369a31535e9a682e4594ea80ea9357f565e6ec3909332d407262c143417990",
+            "source-manifest.json": "4ab99ce9d872a9b1adbfb89c15713bba09ea4716ff26ec9545d9b2dc18533e90",
+            "eslint.json": "8044017b9c7b99514c8fb5bf1ee4286fe657f52a1097c2095fe0a91c6b7781c8"
+          },
+          "lint": {
+            "files": 198,
+            "errors": 58,
+            "warnings": 0,
+            "findings": [
+              {
+                "path": "scripts/qa/run-isolated.cjs",
+                "errors": 2,
+                "warnings": 0,
+                "rules": [
+                  "no-unsafe-finally"
+                ]
+              },
+              {
+                "path": "src/document/document.service.qa.spec.ts",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-unused-vars"
+                ]
+              },
+              {
+                "path": "src/imports/services/import.service.spec.ts",
+                "errors": 14,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/imports/strategies/contract-import.strategy.spec.ts",
+                "errors": 8,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/imports/strategies/contract-import.strategy.ts",
+                "errors": 2,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/imports/strategies/project-import.strategy.spec.ts",
+                "errors": 8,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/imports/strategies/project-import.strategy.ts",
+                "errors": 4,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/imports/strategies/variation-import.strategy.ts",
+                "errors": 2,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/invitation/invitation.service.spec.ts",
+                "errors": 11,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/main.ts",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/project/project-financials.qa.spec.ts",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-unused-vars"
+                ]
+              },
+              {
+                "path": "src/user/user.service.ts",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "test/membership.e2e-spec.ts",
+                "errors": 3,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "runId": "2026-11-01T09-49-22-202Z-c7ba056c",
+          "layer": "http",
+          "status": "BLOCKED",
+          "exitCode": 2,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "http"
+          ],
+          "childCommand": [],
+          "durationMs": null,
+          "stageRemoved": false,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/jest-results/2026-11-01T09-49-22-202Z-c7ba056c",
+          "hashes": {
+            "execution.json": "7734ddd0ae5f747afc211dfc517b426b54d4bcaa500e234c063f26ca07ce09da"
+          },
+          "reason": "No independently verified disposable runner with native-process network containment is provisioned. Database connection and seeding were not attempted."
+        },
+        {
+          "runId": "2026-11-01T09-53-08-165Z-31140adf",
+          "layer": "lint",
+          "status": "FAIL",
+          "exitCode": 1,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "lint"
+          ],
+          "childCommand": [
+            "<NODE>",
+            "--require",
+            "<STAGE>\\test\\qa\\support\\runtime-guard.cjs",
+            "<BE>\\node_modules\\eslint\\bin\\eslint.js",
+            ".",
+            "--format",
+            "json",
+            "--output-file",
+            "<BE>\\qa-raw\\jest-results\\2026-11-01T09-53-08-165Z-31140adf\\eslint.json"
+          ],
+          "durationMs": 2153,
+          "stageRemoved": true,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/jest-results/2026-11-01T09-53-08-165Z-31140adf",
+          "hashes": {
+            "execution.json": "1077d1ced26f5ef7eee22f7978ec3950e95ac9c7fdc3d97356ab72bcb6ca16aa",
+            "source-manifest.json": "e4556c44a97ce8cced96dd931613a4ff0d3f17cce2c9cf099194755751a3661b",
+            "eslint.json": "b8178d2d21d8259a5a66998bd6d1d34d21644f9d1860ee4ebcf1204bfad2eff3"
+          },
+          "lint": {
+            "files": 198,
+            "errors": 58,
+            "warnings": 0,
+            "findings": [
+              {
+                "path": "scripts/qa/run-isolated.cjs",
+                "errors": 2,
+                "warnings": 0,
+                "rules": [
+                  "no-unsafe-finally"
+                ]
+              },
+              {
+                "path": "src/document/document.service.qa.spec.ts",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-unused-vars"
+                ]
+              },
+              {
+                "path": "src/imports/services/import.service.spec.ts",
+                "errors": 14,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/imports/strategies/contract-import.strategy.spec.ts",
+                "errors": 8,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/imports/strategies/contract-import.strategy.ts",
+                "errors": 2,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/imports/strategies/project-import.strategy.spec.ts",
+                "errors": 8,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/imports/strategies/project-import.strategy.ts",
+                "errors": 4,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/imports/strategies/variation-import.strategy.ts",
+                "errors": 2,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/invitation/invitation.service.spec.ts",
+                "errors": 11,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/main.ts",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "src/project/project-financials.qa.spec.ts",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-unused-vars"
+                ]
+              },
+              {
+                "path": "src/user/user.service.ts",
+                "errors": 1,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              },
+              {
+                "path": "test/membership.e2e-spec.ts",
+                "errors": 3,
+                "warnings": 0,
+                "rules": [
+                  "@typescript-eslint/no-explicit-any"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "runId": "2026-11-01T09-53-10-722Z-015d9f7c",
+          "layer": "http",
+          "status": "BLOCKED",
+          "exitCode": 2,
+          "command": [
+            "node",
+            "scripts/qa/run-isolated.cjs",
+            "--layer",
+            "http"
+          ],
+          "childCommand": [],
+          "durationMs": null,
+          "stageRemoved": false,
+          "stageStillExists": false,
+          "rawDirectory": "qa-raw/jest-results/2026-11-01T09-53-10-722Z-015d9f7c",
+          "hashes": {
+            "execution.json": "2882efb1dc9cddd86f0610ce23d38fb09c6592eefa6c7e02370739011b176980"
+          },
+          "reason": "No independently verified disposable runner with native-process network containment is provisioned. Database connection and seeding were not attempted."
+        }
+      ],
+      "coverage": {
+        "runId": "2026-11-01T09-47-03-119Z-12927093",
+        "layer": "qa-unit",
+        "totals": {
+          "lines": {
+            "total": 4576,
+            "covered": 583,
+            "skipped": 0,
+            "pct": 12.74
+          },
+          "statements": {
+            "total": 5075,
+            "covered": 649,
+            "skipped": 0,
+            "pct": 12.78
+          },
+          "functions": {
+            "total": 688,
+            "covered": 46,
+            "skipped": 0,
+            "pct": 6.68
+          },
+          "branches": {
+            "total": 2138,
+            "covered": 130,
+            "skipped": 0,
+            "pct": 6.08
+          },
+          "branchesTrue": {
+            "total": 0,
+            "covered": 0,
+            "skipped": 0,
+            "pct": 100
+          }
+        },
+        "sourceSha256": "57fa0086236c81c4d99e31ee2b3a3836bdb3d51d6e8b51b967d07e198c71ba75"
+      }
+    }
+  ],
+  "initialMatrixCommands": [
+    {
+      "repo": "plutus-fe",
+      "name": "workflow-validation",
+      "command": [
+        "node",
+        "scripts/qa/validate-ci.cjs"
+      ],
+      "startedAtUtc": "2026-11-01T09:45:58.265Z",
+      "finishedAtUtc": "2026-11-01T09:45:58.331Z",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-fe-workflow-validation.stdout.log",
+      "stderr": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-fe-workflow-validation.stderr.log",
+      "outputRepository": "plutus-fe",
+      "stdoutSha256": "4a3c1fe9a1fdef0e124923950d817d412075294bcf1e4b551c369c70870aa473",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "repo": "plutus-fe",
+      "name": "ci-policy-tests",
+      "command": [
+        "node",
+        "--test",
+        "qa/ci/validation.test.cjs"
+      ],
+      "startedAtUtc": "2026-11-01T09:45:58.270Z",
+      "finishedAtUtc": "2026-11-01T09:45:58.398Z",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-fe-ci-policy-tests.stdout.log",
+      "stderr": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-fe-ci-policy-tests.stderr.log",
+      "outputRepository": "plutus-fe",
+      "stdoutSha256": "2a2b04c2458f69a90a94bdc82ae4ece9e9f353279bc5788633817d0dc3b525a1",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "repo": "plutus-fe",
+      "name": "legacy-unit",
+      "command": [
+        "node",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "legacy-unit"
+      ],
+      "startedAtUtc": "2026-11-01T09:45:58.399Z",
+      "finishedAtUtc": "2026-11-01T09:45:59.096Z",
+      "exitCode": 1,
+      "signal": null,
+      "stdout": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-fe-legacy-unit.stdout.log",
+      "stderr": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-fe-legacy-unit.stderr.log",
+      "outputRepository": "plutus-fe",
+      "stdoutSha256": "b1fc564eb6db705682a1dc1fd75d69bb4a18f95f87cbaca28187a6c13fcf7fa0",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "repo": "plutus-fe",
+      "name": "typecheck",
+      "command": [
+        "node",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "typecheck"
+      ],
+      "startedAtUtc": "2026-11-01T09:45:59.097Z",
+      "finishedAtUtc": "2026-11-01T09:46:03.423Z",
+      "exitCode": 2,
+      "signal": null,
+      "stdout": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-fe-typecheck.stdout.log",
+      "stderr": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-fe-typecheck.stderr.log",
+      "outputRepository": "plutus-fe",
+      "stdoutSha256": "49fe7d4884061d61d88a5dd79439ecd959ddace4eda96c17c0d30b346a439f02",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "repo": "plutus-fe",
+      "name": "qa-typecheck",
+      "command": [
+        "node",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "qa-typecheck"
+      ],
+      "startedAtUtc": "2026-11-01T09:46:03.423Z",
+      "finishedAtUtc": "2026-11-01T09:46:05.889Z",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-fe-qa-typecheck.stdout.log",
+      "stderr": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-fe-qa-typecheck.stderr.log",
+      "outputRepository": "plutus-fe",
+      "stdoutSha256": "ccf5daed29321c0214427e9e4e7133ab135d06d7a31845b984f034aa322ada00",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "repo": "plutus-fe",
+      "name": "lint",
+      "command": [
+        "node",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "lint"
+      ],
+      "startedAtUtc": "2026-11-01T09:46:05.889Z",
+      "finishedAtUtc": "2026-11-01T09:46:12.598Z",
+      "exitCode": 1,
+      "signal": null,
+      "stdout": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-fe-lint.stdout.log",
+      "stderr": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-fe-lint.stderr.log",
+      "outputRepository": "plutus-fe",
+      "stdoutSha256": "3e2bea9f4ae65c7e9e96b3cd7977bbe73e4cc404671bf4adb757af481738e9f6",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "repo": "plutus-fe",
+      "name": "build",
+      "command": [
+        "node",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "build"
+      ],
+      "startedAtUtc": "2026-11-01T09:46:12.598Z",
+      "finishedAtUtc": "2026-11-01T09:46:40.887Z",
+      "exitCode": 1,
+      "signal": null,
+      "stdout": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-fe-build.stdout.log",
+      "stderr": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-fe-build.stderr.log",
+      "outputRepository": "plutus-fe",
+      "stdoutSha256": "7c1cfb0c0db6864119b321bf695e16402781ce40db07506caf96c5ca58632ec1",
+      "stderrSha256": "7042272c73dcbd1595ce011af9e61ae10905a4196bcb1dc7443655feb06657b0"
+    },
+    {
+      "repo": "plutus-fe",
+      "name": "unit",
+      "command": [
+        "node",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "unit"
+      ],
+      "startedAtUtc": "2026-11-01T09:45:58.331Z",
+      "finishedAtUtc": "2026-11-01T09:46:43.533Z",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-fe-unit.stdout.log",
+      "stderr": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-fe-unit.stderr.log",
+      "outputRepository": "plutus-fe",
+      "stdoutSha256": "70889a5f0be405edc1724dc0511b59da05921eacbb849446e68ef0a07b790d8d",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "repo": "plutus-fe",
+      "name": "stack",
+      "command": [
+        "node",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "stack"
+      ],
+      "startedAtUtc": "2026-11-01T09:46:43.534Z",
+      "finishedAtUtc": "2026-11-01T09:46:43.586Z",
+      "exitCode": 2,
+      "signal": null,
+      "stdout": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-fe-stack.stdout.log",
+      "stderr": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-fe-stack.stderr.log",
+      "outputRepository": "plutus-fe",
+      "stdoutSha256": "17507920c19564e19a3a56568ac8159e5d4cff4a93969ed2b3926c1ecd6eb4f4",
+      "stderrSha256": "f50b91f7f1ebfe6ca72d50fdb395ee4bc1ef37756f2b8066d01705c2e4158d38"
+    },
+    {
+      "repo": "plutus-be",
+      "name": "workflow-validation",
+      "command": [
+        "node",
+        "scripts/qa/validate-ci.cjs"
+      ],
+      "startedAtUtc": "2026-11-01T09:46:43.588Z",
+      "finishedAtUtc": "2026-11-01T09:46:43.684Z",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-be-workflow-validation.stdout.log",
+      "stderr": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-be-workflow-validation.stderr.log",
+      "outputRepository": "plutus-fe",
+      "stdoutSha256": "451e911d2735db45605a45f63aaa27d6dfacda000d67f6c3f373715c8ac2ad5b",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "repo": "plutus-be",
+      "name": "ci-policy-tests",
+      "command": [
+        "node",
+        "--test",
+        "qa/ci/validation.test.cjs"
+      ],
+      "startedAtUtc": "2026-11-01T09:46:43.685Z",
+      "finishedAtUtc": "2026-11-01T09:46:43.817Z",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-be-ci-policy-tests.stdout.log",
+      "stderr": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-be-ci-policy-tests.stderr.log",
+      "outputRepository": "plutus-fe",
+      "stdoutSha256": "aa07a7602bf70522e69208a8830321a571979f41bb322ccbd75a6e5002399f36",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "repo": "plutus-be",
+      "name": "unit",
+      "command": [
+        "node",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "unit"
+      ],
+      "startedAtUtc": "2026-11-01T09:46:43.817Z",
+      "finishedAtUtc": "2026-11-01T09:47:03.067Z",
+      "exitCode": 1,
+      "signal": null,
+      "stdout": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-be-unit.stdout.log",
+      "stderr": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-be-unit.stderr.log",
+      "outputRepository": "plutus-fe",
+      "stdoutSha256": "c947f9b580513e13ed9c2a1ccb78d44d9aa0a2b6b57fce05fc98d52150b63056",
+      "stderrSha256": "5b6c90aa2b6190ec04312b38ec4cfed77f77258e330dc9e7c80267ff0fdd19a7"
+    },
+    {
+      "repo": "plutus-be",
+      "name": "qa-unit",
+      "command": [
+        "node",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "qa-unit"
+      ],
+      "startedAtUtc": "2026-11-01T09:47:03.068Z",
+      "finishedAtUtc": "2026-11-01T09:47:16.779Z",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-be-qa-unit.stdout.log",
+      "stderr": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-be-qa-unit.stderr.log",
+      "outputRepository": "plutus-fe",
+      "stdoutSha256": "f6e31abf3033a4008c1bfdbe6639011487b94bf1aceaf002b68371aa1db1f266",
+      "stderrSha256": "8d80b83bdafd82cf56093fdc49cbfc05e05aee5991fa24113ab56d5b06fdef6a"
+    },
+    {
+      "repo": "plutus-be",
+      "name": "harness",
+      "command": [
+        "node",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "harness"
+      ],
+      "startedAtUtc": "2026-11-01T09:47:16.780Z",
+      "finishedAtUtc": "2026-11-01T09:47:19.458Z",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-be-harness.stdout.log",
+      "stderr": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-be-harness.stderr.log",
+      "outputRepository": "plutus-fe",
+      "stdoutSha256": "d2fb6aff9920a0a68b8fbc5de043faace0e6278e4f43a41296f1b46ebd6e04a7",
+      "stderrSha256": "818a0581e5cb429ca11d793444a23d225d5d0444db252f01a7c0cf491e97f30f"
+    },
+    {
+      "repo": "plutus-be",
+      "name": "contract",
+      "command": [
+        "node",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "contract"
+      ],
+      "startedAtUtc": "2026-11-01T09:47:19.459Z",
+      "finishedAtUtc": "2026-11-01T09:47:22.728Z",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-be-contract.stdout.log",
+      "stderr": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-be-contract.stderr.log",
+      "outputRepository": "plutus-fe",
+      "stdoutSha256": "01600396bd45c2ac3527f5f7343cd3cbe5b8005e2443555d190b4ba324254b99",
+      "stderrSha256": "927c7f7fe4427bfdeb9069127ca8057adc984f243467f00cecbc84cb4a868856"
+    },
+    {
+      "repo": "plutus-be",
+      "name": "typecheck",
+      "command": [
+        "node",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "typecheck"
+      ],
+      "startedAtUtc": "2026-11-01T09:47:22.729Z",
+      "finishedAtUtc": "2026-11-01T09:47:25.793Z",
+      "exitCode": 2,
+      "signal": null,
+      "stdout": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-be-typecheck.stdout.log",
+      "stderr": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-be-typecheck.stderr.log",
+      "outputRepository": "plutus-fe",
+      "stdoutSha256": "f9812330d9f55f7a28d55c424b6bad0ba28cbcffb81a8f5bb321f8c71e62525e",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "repo": "plutus-be",
+      "name": "qa-typecheck",
+      "command": [
+        "node",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "qa-typecheck"
+      ],
+      "startedAtUtc": "2026-11-01T09:47:25.794Z",
+      "finishedAtUtc": "2026-11-01T09:47:27.460Z",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-be-qa-typecheck.stdout.log",
+      "stderr": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-be-qa-typecheck.stderr.log",
+      "outputRepository": "plutus-fe",
+      "stdoutSha256": "1f721f60051acac8b24406c1739c00aed3010fe706e61ea08c151a82481ca7f0",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "repo": "plutus-be",
+      "name": "lint",
+      "command": [
+        "node",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "lint"
+      ],
+      "startedAtUtc": "2026-11-01T09:47:27.460Z",
+      "finishedAtUtc": "2026-11-01T09:47:30.183Z",
+      "exitCode": 1,
+      "signal": null,
+      "stdout": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-be-lint.stdout.log",
+      "stderr": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-be-lint.stderr.log",
+      "outputRepository": "plutus-fe",
+      "stdoutSha256": "83d2f42eadd79325ca64a701f87be628768fab7e2378a311729f71a876d3f20c",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "repo": "plutus-be",
+      "name": "build",
+      "command": [
+        "node",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "build"
+      ],
+      "startedAtUtc": "2026-11-01T09:47:30.184Z",
+      "finishedAtUtc": "2026-11-01T09:47:36.038Z",
+      "exitCode": 1,
+      "signal": null,
+      "stdout": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-be-build.stdout.log",
+      "stderr": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-be-build.stderr.log",
+      "outputRepository": "plutus-fe",
+      "stdoutSha256": "de3f2e9e90defcba323a75c05e94fad08b3e9f5013499782f5f9faa9650ce32a",
+      "stderrSha256": "3a63b89fcd490f049bbfb17ca7ddd2508201ec5c3d15b3d1351fab4a25ff81af"
+    },
+    {
+      "repo": "plutus-be",
+      "name": "http",
+      "command": [
+        "node",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "http"
+      ],
+      "startedAtUtc": "2026-11-01T09:47:36.039Z",
+      "finishedAtUtc": "2026-11-01T09:47:36.096Z",
+      "exitCode": 2,
+      "signal": null,
+      "stdout": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-be-http.stdout.log",
+      "stderr": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-be-http.stderr.log",
+      "outputRepository": "plutus-fe",
+      "stdoutSha256": "d5c720cc23f20753d96e3fdd96d380fbf5ab96808f8eedddc8992de439e2b86d",
+      "stderrSha256": "ba22b423bb89958035536646ee7de2a0f0dd3f09c5237c0bdbf85e2fa9cf5ab9"
+    },
+    {
+      "repo": "plutus-fe",
+      "name": "mocked-browser",
+      "command": [
+        "node",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "mocked-browser"
+      ],
+      "startedAtUtc": "2026-11-01T09:46:40.888Z",
+      "finishedAtUtc": "2026-11-01T09:48:47.964Z",
+      "exitCode": 1,
+      "signal": null,
+      "stdout": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-fe-mocked-browser.stdout.log",
+      "stderr": ".qa-agent-work/ci-phase-2026-11-01/matrix/plutus-fe-mocked-browser.stderr.log",
+      "outputRepository": "plutus-fe",
+      "stdoutSha256": "f9df24e872c688675ef86da97286705779a0787aea60450cc6f6619fbb0ce67e",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "finalConfigurationChecks": [
+    {
+      "repo": "plutus-fe",
+      "name": "validate",
+      "command": [
+        "node",
+        "scripts/qa/validate-ci.cjs"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "stdout": ".qa-agent-work/ci-phase-2026-11-01/final-checks/plutus-fe-validate.stdout.log",
+      "stderr": ".qa-agent-work/ci-phase-2026-11-01/final-checks/plutus-fe-validate.stderr.log",
+      "outputRepository": "plutus-fe",
+      "stdoutSha256": "e01d92ed4fea37bb5ce4afc69c21bace9dfab5dd38ba127feb8f500a6dd7d827",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "result": {
+        "syntax": "PASS",
+        "reviewedPolicy": "PASS",
+        "role": "frontend",
+        "hostedValidation": "NOT_RUN",
+        "actionlint": "NOT_AVAILABLE",
+        "mirrorUnchanged": true,
+        "workflowSha256": "78f2326db744279f25f74c1de772c51a6eff19f35cc31e39d666c6a11f036186",
+        "parser": "js-yaml 4.1.1"
+      }
+    },
+    {
+      "repo": "plutus-be",
+      "name": "validate",
+      "command": [
+        "node",
+        "scripts/qa/validate-ci.cjs"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "stdout": ".qa-agent-work/ci-phase-2026-11-01/final-checks/plutus-be-validate.stdout.log",
+      "stderr": ".qa-agent-work/ci-phase-2026-11-01/final-checks/plutus-be-validate.stderr.log",
+      "outputRepository": "plutus-fe",
+      "stdoutSha256": "c9c2891d145dda31ba7a068317a1c6809a4d4741c9d742019f5eacecb60edaae",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "result": {
+        "syntax": "PASS",
+        "reviewedPolicy": "PASS",
+        "role": "backend",
+        "hostedValidation": "NOT_RUN",
+        "actionlint": "NOT_AVAILABLE",
+        "workflowSha256": "fd647f48e8fcff0618d71775b1dc377f8da4e3736f40791a17172df634522f0d",
+        "parser": "js-yaml 4.1.1"
+      }
+    },
+    {
+      "repo": "plutus-fe",
+      "name": "policy-export-tests",
+      "command": [
+        "node",
+        "--test",
+        "qa/ci/validation.test.cjs",
+        "qa/ci/export.test.cjs"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "stdout": ".qa-agent-work/ci-phase-2026-11-01/final-checks/plutus-fe-policy-export-tests.stdout.log",
+      "stderr": ".qa-agent-work/ci-phase-2026-11-01/final-checks/plutus-fe-policy-export-tests.stderr.log",
+      "outputRepository": "plutus-fe",
+      "stdoutSha256": "db7c9a1a21608a5dba2df957c3e6a45400fdabdb1773d5ee1fe24d6d87f481ae",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests": 15
+    },
+    {
+      "repo": "plutus-be",
+      "name": "policy-tests",
+      "command": [
+        "node",
+        "--test",
+        "qa/ci/validation.test.cjs"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "stdout": ".qa-agent-work/ci-phase-2026-11-01/final-checks/plutus-be-policy-tests.stdout.log",
+      "stderr": ".qa-agent-work/ci-phase-2026-11-01/final-checks/plutus-be-policy-tests.stderr.log",
+      "outputRepository": "plutus-fe",
+      "stdoutSha256": "7c799f720992a85935ac62f71b242e172d14ab633a75c8fad2ebb76a7fcb24ff",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests": 14
+    },
+    {
+      "repo": "plutus-fe",
+      "name": "lint",
+      "command": [
+        "node",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "lint"
+      ],
+      "exitCode": 1,
+      "signal": null,
+      "stdout": ".qa-agent-work/ci-phase-2026-11-01/final-checks/plutus-fe-lint.stdout.log",
+      "stderr": ".qa-agent-work/ci-phase-2026-11-01/final-checks/plutus-fe-lint.stderr.log",
+      "outputRepository": "plutus-fe",
+      "stdoutSha256": "d09a2d837d6f5f1cf85b40652d31f021c5847969d8445be92338112287cae2ce",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "repo": "plutus-be",
+      "name": "lint",
+      "command": [
+        "node",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "lint"
+      ],
+      "exitCode": 1,
+      "signal": null,
+      "stdout": ".qa-agent-work/ci-phase-2026-11-01/final-checks/plutus-be-lint.stdout.log",
+      "stderr": ".qa-agent-work/ci-phase-2026-11-01/final-checks/plutus-be-lint.stderr.log",
+      "outputRepository": "plutus-fe",
+      "stdoutSha256": "cbf1969691992fff347b3ad0abb9e5b25386a5ff37a4a1d2d858925aeb555a9c",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "repo": "plutus-fe",
+      "name": "blocked-ci-wrapper",
+      "command": [
+        "node",
+        "scripts/qa/ci-job.cjs",
+        "--layer",
+        "stack"
+      ],
+      "exitCode": 2,
+      "signal": null,
+      "stdout": ".qa-agent-work/ci-phase-2026-11-01/final-checks/plutus-fe-blocked-ci-wrapper.stdout.log",
+      "stderr": ".qa-agent-work/ci-phase-2026-11-01/final-checks/plutus-fe-blocked-ci-wrapper.stderr.log",
+      "outputRepository": "plutus-fe",
+      "stdoutSha256": "1cc7e3dc387604f1d53f3adfbdc5a0029f83e2930192496086745911355dc794",
+      "stderrSha256": "f50b91f7f1ebfe6ca72d50fdb395ee4bc1ef37756f2b8066d01705c2e4158d38"
+    },
+    {
+      "repo": "plutus-be",
+      "name": "blocked-ci-wrapper",
+      "command": [
+        "node",
+        "scripts/qa/ci-job.cjs",
+        "--layer",
+        "http"
+      ],
+      "exitCode": 2,
+      "signal": null,
+      "stdout": ".qa-agent-work/ci-phase-2026-11-01/final-checks/plutus-be-blocked-ci-wrapper.stdout.log",
+      "stderr": ".qa-agent-work/ci-phase-2026-11-01/final-checks/plutus-be-blocked-ci-wrapper.stderr.log",
+      "outputRepository": "plutus-fe",
+      "stdoutSha256": "be2086ff5dcde07e36fb6e876e7c41e777e7c18adddb7fbc6be1d6b8bbc470e5",
+      "stderrSha256": "ba22b423bb89958035536646ee7de2a0f0dd3f09c5237c0bdbf85e2fa9cf5ab9"
+    }
+  ],
+  "preparation": {
+    "freshCleanInstall": "NOT_RUN locally in Phase 4",
+    "preparedCI": "npm ci --ignore-scripts --no-audit --no-fund in owned directory",
+    "limitations": [
+      "BE existing extraneous mongodb-memory-server is absent from lock; fresh tree may add missing-module error",
+      "bcrypt native install hook is disabled; production/native readiness unverified"
+    ]
+  },
+  "hostedCI": {
+    "status": "NOT_RUN",
+    "runUrl": null
+  },
+  "deployment": {
+    "status": "NOT_RUN",
+    "releaseUrl": null,
+    "rollback": null
+  },
+  "productFixes": false,
+  "knownNewHarnessRepair": "Initial BE build failed TS2742 on newly added lint-config declaration inference. Explicit JSDoc Linter.Config[] restored build without changing product or broad exclusions.",
+  "redResultsRetained": true
+}

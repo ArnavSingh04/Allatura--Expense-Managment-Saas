@@ -7,7 +7,7 @@ export function routeRedirect(redirectURL: string) {
   )
 };
 
-export function toResponse(data: any) {
+export function toResponse(data: unknown) {
   return new NextResponse(
     JSON.stringify({ data: data }),
     { status: 200, headers: { 'content-type': 'application/json' } },

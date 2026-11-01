@@ -17,7 +17,6 @@ import {
   TableHead,
   TableRow,
   TextField,
-  Typography,
 } from '@mui/material';
 import { useState } from 'react';
 import useSWR from 'swr';

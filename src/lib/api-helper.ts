@@ -1,4 +1,5 @@
 import { resolveApiBaseUrl } from "@/lib/resolve-api-base-url";
+import { organisationRequestHeaders } from '@/lib/organisation-binding';
 
 export enum REQUEST_TYPE {
   GET = "GET",
@@ -124,6 +125,7 @@ export class ApiHelper {
     }
     const URL = this.buildUrl();
     const headers: Record<string, string> = {
+      ...organisationRequestHeaders(this._endpoint),
       ...(this._includeKey === true &&
         this._apiKey && { "x-api-key": this._apiKey }),
     };
@@ -185,6 +187,7 @@ export class ApiHelper {
     }
     const URL = this.buildUrl();
     const headers: Record<string, string> = {
+      ...organisationRequestHeaders(this._endpoint),
       ...(this._includeKey === true &&
         this._apiKey && { "x-api-key": this._apiKey }),
     };

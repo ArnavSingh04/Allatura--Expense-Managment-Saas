@@ -1,0 +1,193 @@
+{
+  "baselineFilesChanged": [
+    {
+      "path": "package-lock.json",
+      "owner": "coordinator",
+      "authorized": true,
+      "sha256": "6c144af88fd9ddedbfe22f6cf91d25ca77b187fc1008938f52087ab3cd464e4f"
+    },
+    {
+      "path": "package.json",
+      "owner": "coordinator",
+      "authorized": true,
+      "sha256": "93a753f651a3372fa1c41718ef4255851eb08317e25c86d0516201d1f09e9566"
+    }
+  ],
+  "newFiles": [
+    {
+      "path": "eslint.config.mjs",
+      "owner": "coordinator",
+      "sha256": "bf039d4801fd40bf0aeddf130064ded9a3ecdafad291759f100f567ee47c7d69"
+    },
+    {
+      "path": "playwright.qa.config.ts",
+      "owner": "coordinator",
+      "sha256": "afdf0792ccffbf81712c306c9c1a0cc15587d1559cf25b236156dc0c6f62015f"
+    },
+    {
+      "path": "qa/browser/fixtures.ts",
+      "owner": "coordinator",
+      "sha256": "07929d0cef6f631c6ebe32651445ea4a9db69cb5c3f423857668cde0d415611b"
+    },
+    {
+      "path": "qa/defects.md",
+      "owner": "coordinator",
+      "sha256": "263b7872e2f35445c4d8f2b2e1e3089a1751cebdcaa1bff9190cd42f09423477"
+    },
+    {
+      "path": "qa/evidence/change-inventory.json",
+      "owner": "coordinator",
+      "sha256": null
+    },
+    {
+      "path": "qa/evidence/component-coverage.json",
+      "owner": "coordinator",
+      "sha256": null
+    },
+    {
+      "path": "qa/evidence/contract-detail-404.chromium.png",
+      "owner": "coordinator",
+      "sha256": null
+    },
+    {
+      "path": "qa/evidence/final-process-check.json",
+      "owner": "coordinator",
+      "sha256": null
+    },
+    {
+      "path": "qa/evidence/frontend-phase-summary.json",
+      "owner": "coordinator",
+      "sha256": null
+    },
+    {
+      "path": "qa/evidence/isolation-status.json",
+      "owner": "coordinator",
+      "sha256": null
+    },
+    {
+      "path": "qa/evidence/preservation.json",
+      "owner": "coordinator",
+      "sha256": null
+    },
+    {
+      "path": "qa/evidence/selected-artifacts.json",
+      "owner": "coordinator",
+      "sha256": null
+    },
+    {
+      "path": "qa/frontend-testing.md",
+      "owner": "coordinator",
+      "sha256": "8ebba6e2d1d86236f12c92516d780e3350872569ba47c1f95c7d009919be7160"
+    },
+    {
+      "path": "qa/harness/component-setup.ts",
+      "owner": "coordinator",
+      "sha256": "23345f2af448342765070c7de22099ae93ba31749d86e4a2bc1b9e3f49e87555"
+    },
+    {
+      "path": "qa/harness/font-responses.cjs",
+      "owner": "coordinator",
+      "sha256": "0257e52d5b61ccc8e61b644ad86b6b2771949f55087caf2fb4cd062159ab457e"
+    },
+    {
+      "path": "qa/harness/next-server.cjs",
+      "owner": "coordinator",
+      "sha256": "afca349de870db5e94b258eed4df667d32d6ce837f340a6b41e216517f186aa9"
+    },
+    {
+      "path": "qa/harness/node-guard.cjs",
+      "owner": "coordinator",
+      "sha256": "62e10b4dec1964deb82c9d379acc01e4c01238102285e0341d381cf9bfb0aaa4"
+    },
+    {
+      "path": "qa/harness/node-guard.test.ts",
+      "owner": "coordinator",
+      "sha256": "5ac1772b5624a85fc64a466a835bf3e5c47c63a7b55c627d80e5ee9f176f3f24"
+    },
+    {
+      "path": "qa/harness/run-browser.cjs",
+      "owner": "coordinator",
+      "sha256": "57270adf6fbc61646a86fa3b1dbacfd2c3afd99ae47b2518f82a62b0c557a996"
+    },
+    {
+      "path": "qa/requirements.md",
+      "owner": "coordinator",
+      "sha256": "63b7eec7577e1d034994cf77f2d4c34fe2e387657c48309f12461ee4e6229818"
+    },
+    {
+      "path": "qa/review-record.md",
+      "owner": "coordinator",
+      "sha256": "2cbeca411dcbfff83d086608b935d92d00e4d53ddbda026a19bba21e461c6b53"
+    },
+    {
+      "path": "scripts/qa/prepare.cjs",
+      "owner": "coordinator",
+      "sha256": "e7fd7ad093805731b07f1e57277568775681de244552a65df1e7f1937ff7a504"
+    },
+    {
+      "path": "scripts/qa/run-isolated.cjs",
+      "owner": "coordinator",
+      "sha256": "1ae3984a27d7c1d11e50813fad14e0ed548b169b33720dec125db95f5f1dacd9"
+    },
+    {
+      "path": "tests/browser/auth-navigation.mocked-browser.spec.ts",
+      "owner": "system tester",
+      "sha256": "0aa52ff21d7fee229e864a46077fd23c101d081246389d9daebc7c992c437fa7"
+    },
+    {
+      "path": "tests/browser/contracts-navigation.mocked-browser.spec.ts",
+      "owner": "system tester",
+      "sha256": "bef15a938ed8328d52346ec786adb28618817e5ce231401965978fe7c39934dc"
+    },
+    {
+      "path": "tests/browser/route-accessibility.mocked-browser.spec.ts",
+      "owner": "system tester",
+      "sha256": "3496d7514436c0b079ec35693894ba7d2685ef432ad0c46172638c39fb13fe06"
+    },
+    {
+      "path": "tests/components/auth-gates.test.tsx",
+      "owner": "frontend tester",
+      "sha256": "9da770255934b8ecb7d2a77bdb76571bf81112801c4d8a1aa629cc461ba9d555"
+    },
+    {
+      "path": "tests/components/billing-page.test.tsx",
+      "owner": "frontend tester",
+      "sha256": "37bd90c863f0bc991505eb806a09d4125e78ab918a5a89b87dac6cf9c2a19b4b"
+    },
+    {
+      "path": "tests/components/contact-page.test.tsx",
+      "owner": "frontend tester",
+      "sha256": "d88d6517ccfcfcc1d91a58e3878df4634302ee242bb9bb5439ba40d120a24b5a"
+    },
+    {
+      "path": "tests/components/expense-dialog.test.tsx",
+      "owner": "frontend tester",
+      "sha256": "c79c871daaae65fbdb20c6cdc31d24c812f540d6a24761d8f05b6a32b7fe8751"
+    },
+    {
+      "path": "tests/components/supplier-dialog.test.tsx",
+      "owner": "frontend tester",
+      "sha256": "78cff806afa2034b287936da473124c71392046e12682b580ba7fb2789639ddb"
+    },
+    {
+      "path": "tests/components/suppliers-page.test.tsx",
+      "owner": "frontend tester",
+      "sha256": "975e0e0f174599734bde9d14bf3e400cd570dbb59b53a3c5533f9fe2bfd233b3"
+    },
+    {
+      "path": "tsconfig.qa.json",
+      "owner": "coordinator",
+      "sha256": "8d32d61e0c48e2080ce74d9f3bd0fa8fcf3887e77408b1e1719875fb8cf3d88c"
+    },
+    {
+      "path": "vitest.config.mts",
+      "owner": "coordinator",
+      "sha256": "5b4527b0d8790add3f33dfc37dde484e55154f662c8c4cbecdda392a30fc7319"
+    }
+  ],
+  "selectedEvidenceHashes": "Raw-source and selected-image hashes are recorded in frontend-phase-summary.json and selected-artifacts.json; evidence JSON is excluded here to avoid circular hashes",
+  "preExistingIgnoreDiffUnchanged": true,
+  "productFilesChanged": false,
+  "backendFilesChanged": false,
+  "workflowFilesChanged": false
+}

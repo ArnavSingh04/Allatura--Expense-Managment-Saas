@@ -1,0 +1,70 @@
+{
+  "status": "PASS",
+  "date": "2026-11-01",
+  "reviewedReportingChanges": [
+    {
+      "path": "qa/phase4/README.md",
+      "before": "52a4eaaa3aa9ea924c4bc34caa4cc38af8430752d6e87c0a7e5645d18aab09cc",
+      "after": "3795f3cc965d91b139e6b9b4e1f7fbd084d5f87f66eca88c85d15f4029a5d5fc"
+    },
+    {
+      "path": "qa/phase4/review-record.md",
+      "before": "0e6ed83024ecaf87d03b8dbe3a515c5e8a69ce83455e990ebefc7e808e753f03",
+      "after": "85b40a5b02fdfe3bc5241c041d93d0f135d79908332908434f25c4dc7c2e1e3a"
+    },
+    {
+      "path": "qa/phase4/evidence/local-matrix.json",
+      "before": "d57e4278c7bc840bf37ecd162973a9ab6ef688956e97c1bf02d1ac47359a3c57",
+      "after": "bad52de52f352823b11ae439758c0027301d71189e5a3714ecdc6085e3752c86"
+    },
+    {
+      "path": "qa/phase4/evidence/change-inventory.json",
+      "before": "53160ad1a370dc040770e773c01c5b5a650b04561466095e4ff4a30a204c8351",
+      "after": "1e8e106388ce069c7837c8eed371d7687c6c921606d15b273c1d8f6e1ba417e8"
+    }
+  ],
+  "allowlistSha256": "aa982b395344b2f5d9704f0fc7e8dff9a055a8219b311148e73ca3531c485c8e",
+  "commands": [
+    {
+      "command": [
+        "node",
+        "scripts/qa/export-evidence.cjs"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "result": {
+        "status": "PASS",
+        "mode": "verify-only",
+        "selectedFiles": 32,
+        "destination": null,
+        "uploaded": false
+      }
+    },
+    {
+      "command": [
+        "node",
+        "scripts/qa/export-evidence.cjs",
+        "--write"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "result": {
+        "status": "PASS",
+        "mode": "local-export",
+        "selectedFiles": 32,
+        "destination": ".qa-agent-work\\ci-phase-2026-11-01\\exports\\reviewed-qaSIxc",
+        "uploaded": false
+      }
+    }
+  ],
+  "packageCheck": {
+    "files": 33,
+    "selectedFiles": 32,
+    "hashMismatches": [],
+    "unexpectedFiles": [],
+    "missingFiles": []
+  },
+  "uploaded": false,
+  "zipCreated": false,
+  "packageScope": "Selected documentation and evidence only; source links require repositories"
+}

@@ -1,0 +1,2046 @@
+{
+  "browserComparison": {
+    "raw": {
+      "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T10-04-19-358Z-browser-comparison-07b7b961.json",
+      "sha256": "993b30b9285fb4916a3dfcddff3879563c91d68dd495185ef51756d6111a24f0"
+    },
+    "checkedAtUtc": "2026-11-01T10:04:19.3418456Z",
+    "phase4Run": "2026-11-01T09-46-40-931Z-c6f24302",
+    "phase5Run": "2026-11-01T09-59-14-742Z-02b536f3",
+    "inputs": [
+      {
+        "path": "qa-raw/playwright-results/2026-11-01T09-46-40-931Z-c6f24302/playwright.json",
+        "sha256": "bff9f7bf687d89c92efe8250462dd3c3be2daa7264d5f09a9e80c47c5e7ae6a3"
+      },
+      {
+        "path": "qa-raw/playwright-results/2026-11-01T09-46-40-931Z-c6f24302/source-manifest.json",
+        "sha256": "ccb618b2199ec560b2a8b4f82fcdb1056927ac45e651869212d633fa80330c96"
+      },
+      {
+        "path": "qa-raw/playwright-results/2026-11-01T09-59-14-742Z-02b536f3/playwright.json",
+        "sha256": "c0623592ff07e729c5a012ba8b4124ccef1ae15bf97d60989895ec4ce32108a3"
+      },
+      {
+        "path": "qa-raw/playwright-results/2026-11-01T09-59-14-742Z-02b536f3/source-manifest.json",
+        "sha256": "2fac892e8c6eb50827659a8179acba3007b4a82fd49c8e4ed196690e13efb405"
+      }
+    ],
+    "sourceScope": "src/**, tests/browser/**, qa/browser/**, qa/harness/**, playwright.qa.config.ts, scripts/qa/run-isolated.cjs",
+    "sourceChecks": [
+      {
+        "path": "playwright.qa.config.ts",
+        "phase4Sha256": "afdf0792ccffbf81712c306c9c1a0cc15587d1559cf25b236156dc0c6f62015f",
+        "phase5Sha256": "afdf0792ccffbf81712c306c9c1a0cc15587d1559cf25b236156dc0c6f62015f",
+        "currentSha256": "afdf0792ccffbf81712c306c9c1a0cc15587d1559cf25b236156dc0c6f62015f",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "qa/browser/fixtures.ts",
+        "phase4Sha256": "07929d0cef6f631c6ebe32651445ea4a9db69cb5c3f423857668cde0d415611b",
+        "phase5Sha256": "07929d0cef6f631c6ebe32651445ea4a9db69cb5c3f423857668cde0d415611b",
+        "currentSha256": "07929d0cef6f631c6ebe32651445ea4a9db69cb5c3f423857668cde0d415611b",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "qa/harness/component-setup.ts",
+        "phase4Sha256": "23345f2af448342765070c7de22099ae93ba31749d86e4a2bc1b9e3f49e87555",
+        "phase5Sha256": "23345f2af448342765070c7de22099ae93ba31749d86e4a2bc1b9e3f49e87555",
+        "currentSha256": "23345f2af448342765070c7de22099ae93ba31749d86e4a2bc1b9e3f49e87555",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "qa/harness/font-responses.cjs",
+        "phase4Sha256": "0257e52d5b61ccc8e61b644ad86b6b2771949f55087caf2fb4cd062159ab457e",
+        "phase5Sha256": "0257e52d5b61ccc8e61b644ad86b6b2771949f55087caf2fb4cd062159ab457e",
+        "currentSha256": "0257e52d5b61ccc8e61b644ad86b6b2771949f55087caf2fb4cd062159ab457e",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "qa/harness/next-server.cjs",
+        "phase4Sha256": "afca349de870db5e94b258eed4df667d32d6ce837f340a6b41e216517f186aa9",
+        "phase5Sha256": "afca349de870db5e94b258eed4df667d32d6ce837f340a6b41e216517f186aa9",
+        "currentSha256": "afca349de870db5e94b258eed4df667d32d6ce837f340a6b41e216517f186aa9",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "qa/harness/node-guard.cjs",
+        "phase4Sha256": "62e10b4dec1964deb82c9d379acc01e4c01238102285e0341d381cf9bfb0aaa4",
+        "phase5Sha256": "62e10b4dec1964deb82c9d379acc01e4c01238102285e0341d381cf9bfb0aaa4",
+        "currentSha256": "62e10b4dec1964deb82c9d379acc01e4c01238102285e0341d381cf9bfb0aaa4",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "qa/harness/node-guard.test.ts",
+        "phase4Sha256": "5ac1772b5624a85fc64a466a835bf3e5c47c63a7b55c627d80e5ee9f176f3f24",
+        "phase5Sha256": "5ac1772b5624a85fc64a466a835bf3e5c47c63a7b55c627d80e5ee9f176f3f24",
+        "currentSha256": "5ac1772b5624a85fc64a466a835bf3e5c47c63a7b55c627d80e5ee9f176f3f24",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "qa/harness/run-browser.cjs",
+        "phase4Sha256": "57270adf6fbc61646a86fa3b1dbacfd2c3afd99ae47b2518f82a62b0c557a996",
+        "phase5Sha256": "57270adf6fbc61646a86fa3b1dbacfd2c3afd99ae47b2518f82a62b0c557a996",
+        "currentSha256": "57270adf6fbc61646a86fa3b1dbacfd2c3afd99ae47b2518f82a62b0c557a996",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "scripts/qa/run-isolated.cjs",
+        "phase4Sha256": "1ae3984a27d7c1d11e50813fad14e0ed548b169b33720dec125db95f5f1dacd9",
+        "phase5Sha256": "1ae3984a27d7c1d11e50813fad14e0ed548b169b33720dec125db95f5f1dacd9",
+        "currentSha256": "1ae3984a27d7c1d11e50813fad14e0ed548b169b33720dec125db95f5f1dacd9",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/api/active-organisation/route.ts",
+        "phase4Sha256": "8745c1ffa6462eec41e415b596bdf9c19fc627dacd9c128d9ec7e9064499aa0e",
+        "phase5Sha256": "8745c1ffa6462eec41e415b596bdf9c19fc627dacd9c128d9ec7e9064499aa0e",
+        "currentSha256": "8745c1ffa6462eec41e415b596bdf9c19fc627dacd9c128d9ec7e9064499aa0e",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/api/v1/[...path]/route.ts",
+        "phase4Sha256": "5a99c301a4fdc8d1aa4290dca4f67dba9a09ba8ff044616dce9a11de14b8630e",
+        "phase5Sha256": "5a99c301a4fdc8d1aa4290dca4f67dba9a09ba8ff044616dce9a11de14b8630e",
+        "currentSha256": "5a99c301a4fdc8d1aa4290dca4f67dba9a09ba8ff044616dce9a11de14b8630e",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/ThemeRegistry/ThemeRegistry.tsx",
+        "phase4Sha256": "deb70c5b6328c768f55945254d8d386ec8f499cc49f362e82118598ffbd9bce1",
+        "phase5Sha256": "deb70c5b6328c768f55945254d8d386ec8f499cc49f362e82118598ffbd9bce1",
+        "currentSha256": "deb70c5b6328c768f55945254d8d386ec8f499cc49f362e82118598ffbd9bce1",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/ThemeRegistry/theme.ts",
+        "phase4Sha256": "be9f75851cccde2fff65512975c021b2552326e7b0bb2c89b26797617f470499",
+        "phase5Sha256": "be9f75851cccde2fff65512975c021b2552326e7b0bb2c89b26797617f470499",
+        "currentSha256": "be9f75851cccde2fff65512975c021b2552326e7b0bb2c89b26797617f470499",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/auth/DashboardAuthGate.tsx",
+        "phase4Sha256": "46f47b281a6b2db29a58d5dd2fbe34a5bc361d341b476b56d7000a92022c399a",
+        "phase5Sha256": "46f47b281a6b2db29a58d5dd2fbe34a5bc361d341b476b56d7000a92022c399a",
+        "currentSha256": "46f47b281a6b2db29a58d5dd2fbe34a5bc361d341b476b56d7000a92022c399a",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/auth/InvitationAccountNotice.tsx",
+        "phase4Sha256": "f7f869903eea5d550d222ea3bffee60775499af0f65815e097205504efa43a1a",
+        "phase5Sha256": "f7f869903eea5d550d222ea3bffee60775499af0f65815e097205504efa43a1a",
+        "currentSha256": "f7f869903eea5d550d222ea3bffee60775499af0f65815e097205504efa43a1a",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/auth/PendingApprovalScreen.tsx",
+        "phase4Sha256": "dc408533563e896ade621483a2a846239b8b541d2cbb7d44c857f3348a0994db",
+        "phase5Sha256": "dc408533563e896ade621483a2a846239b8b541d2cbb7d44c857f3348a0994db",
+        "currentSha256": "dc408533563e896ade621483a2a846239b8b541d2cbb7d44c857f3348a0994db",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/auth/RejectedScreen.tsx",
+        "phase4Sha256": "f2c9ecda96135c19910866fac3ab71457ed1247b7224d172eece7c66ffbe4d70",
+        "phase5Sha256": "f2c9ecda96135c19910866fac3ab71457ed1247b7224d172eece7c66ffbe4d70",
+        "currentSha256": "f2c9ecda96135c19910866fac3ab71457ed1247b7224d172eece7c66ffbe4d70",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/auth/RequireAdmin.tsx",
+        "phase4Sha256": "a75bea6b07876ed9e012cafdd9acec9c00e265d4a07ede0ca673baf49d34d5ba",
+        "phase5Sha256": "a75bea6b07876ed9e012cafdd9acec9c00e265d4a07ede0ca673baf49d34d5ba",
+        "currentSha256": "a75bea6b07876ed9e012cafdd9acec9c00e265d4a07ede0ca673baf49d34d5ba",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/auth/RoleGate.tsx",
+        "phase4Sha256": "b5ad1ee73faf76d99a6f87145eba463f313b3bfd05220cb4e1d44eb1d1589cea",
+        "phase5Sha256": "b5ad1ee73faf76d99a6f87145eba463f313b3bfd05220cb4e1d44eb1d1589cea",
+        "currentSha256": "b5ad1ee73faf76d99a6f87145eba463f313b3bfd05220cb4e1d44eb1d1589cea",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/construction/BudgetBar.tsx",
+        "phase4Sha256": "e66c17069ef92ca0d614d8d919052c3b8a97e765fe2a556e295e1568c7c886e7",
+        "phase5Sha256": "e66c17069ef92ca0d614d8d919052c3b8a97e765fe2a556e295e1568c7c886e7",
+        "currentSha256": "e66c17069ef92ca0d614d8d919052c3b8a97e765fe2a556e295e1568c7c886e7",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/construction/DocumentDropzone.tsx",
+        "phase4Sha256": "0ea3f03884bf8ac563d83df03d7fa5fa3b9244aabc4a7b1c5df1c7384c5ecc87",
+        "phase5Sha256": "0ea3f03884bf8ac563d83df03d7fa5fa3b9244aabc4a7b1c5df1c7384c5ecc87",
+        "currentSha256": "0ea3f03884bf8ac563d83df03d7fa5fa3b9244aabc4a7b1c5df1c7384c5ecc87",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/construction/DocumentGrid.tsx",
+        "phase4Sha256": "6b1794bc0f730ab45904d5797fd0542ca88cb009844b67f51c3815e68a7fe268",
+        "phase5Sha256": "6b1794bc0f730ab45904d5797fd0542ca88cb009844b67f51c3815e68a7fe268",
+        "currentSha256": "6b1794bc0f730ab45904d5797fd0542ca88cb009844b67f51c3815e68a7fe268",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/construction/ExpenseDialog.tsx",
+        "phase4Sha256": "b0b39490335b2fb713756a1018f61c24ca7eb55e302635a1e3763805037a3469",
+        "phase5Sha256": "b0b39490335b2fb713756a1018f61c24ca7eb55e302635a1e3763805037a3469",
+        "currentSha256": "b0b39490335b2fb713756a1018f61c24ca7eb55e302635a1e3763805037a3469",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/construction/Money.tsx",
+        "phase4Sha256": "03b4aa74afebb3d1fdd1ec72692f5403c04405de2c1a55e6e529e63b3a74bdf9",
+        "phase5Sha256": "03b4aa74afebb3d1fdd1ec72692f5403c04405de2c1a55e6e529e63b3a74bdf9",
+        "currentSha256": "03b4aa74afebb3d1fdd1ec72692f5403c04405de2c1a55e6e529e63b3a74bdf9",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/construction/PaymentClaimDialog.tsx",
+        "phase4Sha256": "f09d49ed0555435b0c255b377a35a8e661702087e557b6698dd67f9e2f4799cb",
+        "phase5Sha256": "f09d49ed0555435b0c255b377a35a8e661702087e557b6698dd67f9e2f4799cb",
+        "currentSha256": "f09d49ed0555435b0c255b377a35a8e661702087e557b6698dd67f9e2f4799cb",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/construction/PaymentClaimDrawer.tsx",
+        "phase4Sha256": "0099b9ddcff4c6557c8c17d7a1b588eed88bc3d668facfd388d3fe664370cd4e",
+        "phase5Sha256": "0099b9ddcff4c6557c8c17d7a1b588eed88bc3d668facfd388d3fe664370cd4e",
+        "currentSha256": "0099b9ddcff4c6557c8c17d7a1b588eed88bc3d668facfd388d3fe664370cd4e",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/construction/StatusChip.tsx",
+        "phase4Sha256": "977d42aee79cac9f986131b1be8486d50f498ae18986da47a9f6b6f0542e413f",
+        "phase5Sha256": "977d42aee79cac9f986131b1be8486d50f498ae18986da47a9f6b6f0542e413f",
+        "currentSha256": "977d42aee79cac9f986131b1be8486d50f498ae18986da47a9f6b6f0542e413f",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/construction/SubcontractorDialog.tsx",
+        "phase4Sha256": "088a9e6d8d3fb053ef91e71f1e5c38d4f387da503a7a2f7995f50096afc3a754",
+        "phase5Sha256": "088a9e6d8d3fb053ef91e71f1e5c38d4f387da503a7a2f7995f50096afc3a754",
+        "currentSha256": "088a9e6d8d3fb053ef91e71f1e5c38d4f387da503a7a2f7995f50096afc3a754",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/construction/SupplierDialog.tsx",
+        "phase4Sha256": "464d526ebab796dd57f9b3203b95010e8f06e2db712d5a40fae72e4c933657cf",
+        "phase5Sha256": "464d526ebab796dd57f9b3203b95010e8f06e2db712d5a40fae72e4c933657cf",
+        "currentSha256": "464d526ebab796dd57f9b3203b95010e8f06e2db712d5a40fae72e4c933657cf",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/construction/VariationDecisionDrawer.tsx",
+        "phase4Sha256": "a3762299e53d686783f4470f03eb7668ea3fc869fab6f6abc4f9ace713112f1a",
+        "phase5Sha256": "a3762299e53d686783f4470f03eb7668ea3fc869fab6f6abc4f9ace713112f1a",
+        "currentSha256": "a3762299e53d686783f4470f03eb7668ea3fc869fab6f6abc4f9ace713112f1a",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/construction/VariationDialog.tsx",
+        "phase4Sha256": "88cac9302634cfd93389be30e29870807dac354da7819e54c49efeb3f2eb9fc2",
+        "phase5Sha256": "88cac9302634cfd93389be30e29870807dac354da7819e54c49efeb3f2eb9fc2",
+        "currentSha256": "88cac9302634cfd93389be30e29870807dac354da7819e54c49efeb3f2eb9fc2",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/dashboard/AppSidebar.tsx",
+        "phase4Sha256": "6cd9200f43a8a2de92f04eef28380ace22ac911a4e733f6fd2d27ed0f9288600",
+        "phase5Sha256": "6cd9200f43a8a2de92f04eef28380ace22ac911a4e733f6fd2d27ed0f9288600",
+        "currentSha256": "6cd9200f43a8a2de92f04eef28380ace22ac911a4e733f6fd2d27ed0f9288600",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/dashboard/DashboardShell.tsx",
+        "phase4Sha256": "889b619372b442698dcaa46a847fc5d075cc04f568aa92714260734b90339eaf",
+        "phase5Sha256": "889b619372b442698dcaa46a847fc5d075cc04f568aa92714260734b90339eaf",
+        "currentSha256": "889b619372b442698dcaa46a847fc5d075cc04f568aa92714260734b90339eaf",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/dashboard/DashboardTopbar.tsx",
+        "phase4Sha256": "205311a0226a4d5d4456a9ce14f359b840705c35c6563c9074de891142fb7b6c",
+        "phase5Sha256": "205311a0226a4d5d4456a9ce14f359b840705c35c6563c9074de891142fb7b6c",
+        "currentSha256": "205311a0226a4d5d4456a9ce14f359b840705c35c6563c9074de891142fb7b6c",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/dashboard/OrganisationSwitcher.tsx",
+        "phase4Sha256": "9fb400b9154505b891f0cd7361426cbd2ebb93031ecd668ff49ed4b43b2a48c5",
+        "phase5Sha256": "9fb400b9154505b891f0cd7361426cbd2ebb93031ecd668ff49ed4b43b2a48c5",
+        "currentSha256": "9fb400b9154505b891f0cd7361426cbd2ebb93031ecd668ff49ed4b43b2a48c5",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/import/FieldMappingTable.tsx",
+        "phase4Sha256": "6a871ca960eeb0f783383f9c3560718abe4f21e9808b7aa4d77dc6ef46cb295c",
+        "phase5Sha256": "6a871ca960eeb0f783383f9c3560718abe4f21e9808b7aa4d77dc6ef46cb295c",
+        "currentSha256": "6a871ca960eeb0f783383f9c3560718abe4f21e9808b7aa4d77dc6ef46cb295c",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/import/ImportCommitStep.tsx",
+        "phase4Sha256": "6aae2c727991f69e26c485997e0368068e9c8ca93bd4bbabc9e7474065d40feb",
+        "phase5Sha256": "6aae2c727991f69e26c485997e0368068e9c8ca93bd4bbabc9e7474065d40feb",
+        "currentSha256": "6aae2c727991f69e26c485997e0368068e9c8ca93bd4bbabc9e7474065d40feb",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/import/ImportDropzone.tsx",
+        "phase4Sha256": "66de5f4c8f8134752e02090d89bc906a521acab8536b6446c4385ec009a6379a",
+        "phase5Sha256": "66de5f4c8f8134752e02090d89bc906a521acab8536b6446c4385ec009a6379a",
+        "currentSha256": "66de5f4c8f8134752e02090d89bc906a521acab8536b6446c4385ec009a6379a",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/import/ImportMapStep.tsx",
+        "phase4Sha256": "b1f761bee88e72cc879df4c0966f4440640b7b0bf0e807661cfe00bb403cbfa9",
+        "phase5Sha256": "b1f761bee88e72cc879df4c0966f4440640b7b0bf0e807661cfe00bb403cbfa9",
+        "currentSha256": "b1f761bee88e72cc879df4c0966f4440640b7b0bf0e807661cfe00bb403cbfa9",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/import/ImportReviewStep.tsx",
+        "phase4Sha256": "8a55a8b1133cd1b1aaaecd66800d687852e03243d556c2170473586ca4bdef26",
+        "phase5Sha256": "8a55a8b1133cd1b1aaaecd66800d687852e03243d556c2170473586ca4bdef26",
+        "currentSha256": "8a55a8b1133cd1b1aaaecd66800d687852e03243d556c2170473586ca4bdef26",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/import/ImportRowStatusChip.tsx",
+        "phase4Sha256": "a81f14b1405b67fff15ef6a7b774e0c98ce3a6ab6d96b8973dd674544055d44c",
+        "phase5Sha256": "a81f14b1405b67fff15ef6a7b774e0c98ce3a6ab6d96b8973dd674544055d44c",
+        "currentSha256": "a81f14b1405b67fff15ef6a7b774e0c98ce3a6ab6d96b8973dd674544055d44c",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/import/ImportSummaryTiles.tsx",
+        "phase4Sha256": "d5c2c79ed9c017bbf3e3f68433bd7115c2587d74ad02d66246e02da3c9859995",
+        "phase5Sha256": "d5c2c79ed9c017bbf3e3f68433bd7115c2587d74ad02d66246e02da3c9859995",
+        "currentSha256": "d5c2c79ed9c017bbf3e3f68433bd7115c2587d74ad02d66246e02da3c9859995",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/import/ImportUploadStep.tsx",
+        "phase4Sha256": "a40d51c1bd327ba602fdd62ee2c1ec063040827bb78db78901da65d790fc89ae",
+        "phase5Sha256": "a40d51c1bd327ba602fdd62ee2c1ec063040827bb78db78901da65d790fc89ae",
+        "currentSha256": "a40d51c1bd327ba602fdd62ee2c1ec063040827bb78db78901da65d790fc89ae",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/import/ImportWizard.tsx",
+        "phase4Sha256": "e0f96f1e034929c87d386ad9f338b47f5f228505e94a8076e91528e486a4f63d",
+        "phase5Sha256": "e0f96f1e034929c87d386ad9f338b47f5f228505e94a8076e91528e486a4f63d",
+        "currentSha256": "e0f96f1e034929c87d386ad9f338b47f5f228505e94a8076e91528e486a4f63d",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/import/PackMemberRail.tsx",
+        "phase4Sha256": "91646d671a6195429ecf85659a46f3a7e064bca89fff3798ead74c185e43eb53",
+        "phase5Sha256": "91646d671a6195429ecf85659a46f3a7e064bca89fff3798ead74c185e43eb53",
+        "currentSha256": "91646d671a6195429ecf85659a46f3a7e064bca89fff3798ead74c185e43eb53",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/import/PreviewRowsTable.tsx",
+        "phase4Sha256": "8a3c1cf59ed56d7eafb1de459654d91c4ac1b78d96941de5b9e26317caa24771",
+        "phase5Sha256": "8a3c1cf59ed56d7eafb1de459654d91c4ac1b78d96941de5b9e26317caa24771",
+        "currentSha256": "8a3c1cf59ed56d7eafb1de459654d91c4ac1b78d96941de5b9e26317caa24771",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/import/importFlow.ts",
+        "phase4Sha256": "ac8d72e37e72179ee0a026985b7364db68098f78770909eb6351cd756e8bc6c2",
+        "phase5Sha256": "ac8d72e37e72179ee0a026985b7364db68098f78770909eb6351cd756e8bc6c2",
+        "currentSha256": "ac8d72e37e72179ee0a026985b7364db68098f78770909eb6351cd756e8bc6c2",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/import/useImportSession.ts",
+        "phase4Sha256": "330a32baaa9fd907a735acea8ab2560ad9e004a99e0cbed2a10fdfb6d96479b0",
+        "phase5Sha256": "330a32baaa9fd907a735acea8ab2560ad9e004a99e0cbed2a10fdfb6d96479b0",
+        "currentSha256": "330a32baaa9fd907a735acea8ab2560ad9e004a99e0cbed2a10fdfb6d96479b0",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/marketing/BrowserFrame.tsx",
+        "phase4Sha256": "ea5c9a16d75364a8ccbc2e4bdec436e7eb8d3eae6b1300205dca53096e81f34a",
+        "phase5Sha256": "ea5c9a16d75364a8ccbc2e4bdec436e7eb8d3eae6b1300205dca53096e81f34a",
+        "currentSha256": "ea5c9a16d75364a8ccbc2e4bdec436e7eb8d3eae6b1300205dca53096e81f34a",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/marketing/LandingFeatureGrid.tsx",
+        "phase4Sha256": "11c909b9082a751f28c2c8ca502f776e0956201da4ffcf44ba5b7964f0c4842f",
+        "phase5Sha256": "11c909b9082a751f28c2c8ca502f776e0956201da4ffcf44ba5b7964f0c4842f",
+        "currentSha256": "11c909b9082a751f28c2c8ca502f776e0956201da4ffcf44ba5b7964f0c4842f",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/marketing/LandingFinalCta.tsx",
+        "phase4Sha256": "285440bb47e8f02db207afc2e17696a0040d6b1e2be948420b88385fc067a9fb",
+        "phase5Sha256": "285440bb47e8f02db207afc2e17696a0040d6b1e2be948420b88385fc067a9fb",
+        "currentSha256": "285440bb47e8f02db207afc2e17696a0040d6b1e2be948420b88385fc067a9fb",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/marketing/LandingFooter.tsx",
+        "phase4Sha256": "5bcf8b9f62b59e2d139d40d9fa08b0219504e2272eb38b917eec19b46e5071b5",
+        "phase5Sha256": "5bcf8b9f62b59e2d139d40d9fa08b0219504e2272eb38b917eec19b46e5071b5",
+        "currentSha256": "5bcf8b9f62b59e2d139d40d9fa08b0219504e2272eb38b917eec19b46e5071b5",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/marketing/LandingHero.tsx",
+        "phase4Sha256": "ec7a3b23880e6ffd8587eecadf4eb2491021ff06f35f41814fb0e42befa3460f",
+        "phase5Sha256": "ec7a3b23880e6ffd8587eecadf4eb2491021ff06f35f41814fb0e42befa3460f",
+        "currentSha256": "ec7a3b23880e6ffd8587eecadf4eb2491021ff06f35f41814fb0e42befa3460f",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/marketing/LandingHowItWorks.tsx",
+        "phase4Sha256": "c767bd63e3b0c7f05917f9f0cf0d424fcad9c332ff33b47401e515e5d7d3145e",
+        "phase5Sha256": "c767bd63e3b0c7f05917f9f0cf0d424fcad9c332ff33b47401e515e5d7d3145e",
+        "currentSha256": "c767bd63e3b0c7f05917f9f0cf0d424fcad9c332ff33b47401e515e5d7d3145e",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/marketing/LandingIndustries.tsx",
+        "phase4Sha256": "41d79d41704e7e682fe5b536c75dd8a1b1a05cb7c9959871752cebe7748f1066",
+        "phase5Sha256": "41d79d41704e7e682fe5b536c75dd8a1b1a05cb7c9959871752cebe7748f1066",
+        "currentSha256": "41d79d41704e7e682fe5b536c75dd8a1b1a05cb7c9959871752cebe7748f1066",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/marketing/LandingPageClient.tsx",
+        "phase4Sha256": "69674c0731a62864ce91a5c39ea990d7af0d4220965bdc356398b1ffe7f43732",
+        "phase5Sha256": "69674c0731a62864ce91a5c39ea990d7af0d4220965bdc356398b1ffe7f43732",
+        "currentSha256": "69674c0731a62864ce91a5c39ea990d7af0d4220965bdc356398b1ffe7f43732",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/marketing/LandingPlatformShowcase.tsx",
+        "phase4Sha256": "bff1010681378dfa69327595ba12f9bf8e20a9a9de03a178faefde007f01523d",
+        "phase5Sha256": "bff1010681378dfa69327595ba12f9bf8e20a9a9de03a178faefde007f01523d",
+        "currentSha256": "bff1010681378dfa69327595ba12f9bf8e20a9a9de03a178faefde007f01523d",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/marketing/LandingTrustStrip.tsx",
+        "phase4Sha256": "e923ee6c9e39cb0f9678e42934d4f25669fc068f67f9de142b5e73f51ac0b136",
+        "phase5Sha256": "e923ee6c9e39cb0f9678e42934d4f25669fc068f67f9de142b5e73f51ac0b136",
+        "currentSha256": "e923ee6c9e39cb0f9678e42934d4f25669fc068f67f9de142b5e73f51ac0b136",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/marketing/MarketingHeroImage.tsx",
+        "phase4Sha256": "cd1bcaa556645ce0da2b769304123b6cda8ec142dc5def794e7d603ad0193f01",
+        "phase5Sha256": "cd1bcaa556645ce0da2b769304123b6cda8ec142dc5def794e7d603ad0193f01",
+        "currentSha256": "cd1bcaa556645ce0da2b769304123b6cda8ec142dc5def794e7d603ad0193f01",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/marketing/MarketingImage.tsx",
+        "phase4Sha256": "dd3367df2b7057c64ef63a9deb252688b79a8d7aeed32f39face301f7d7ab16d",
+        "phase5Sha256": "dd3367df2b7057c64ef63a9deb252688b79a8d7aeed32f39face301f7d7ab16d",
+        "currentSha256": "dd3367df2b7057c64ef63a9deb252688b79a8d7aeed32f39face301f7d7ab16d",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/marketing/MarketingNav.tsx",
+        "phase4Sha256": "af534cd2bdc90a75796a3f68469c5eea61f9151e5e972eabe5e44a8ebca576e0",
+        "phase5Sha256": "af534cd2bdc90a75796a3f68469c5eea61f9151e5e972eabe5e44a8ebca576e0",
+        "currentSha256": "af534cd2bdc90a75796a3f68469c5eea61f9151e5e972eabe5e44a8ebca576e0",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/marketing/MotionSection.tsx",
+        "phase4Sha256": "46d182c5f960c8cb7e15f8b7ad443464e597e33ee057ff6db0d0c5e434b700a5",
+        "phase5Sha256": "46d182c5f960c8cb7e15f8b7ad443464e597e33ee057ff6db0d0c5e434b700a5",
+        "currentSha256": "46d182c5f960c8cb7e15f8b7ad443464e597e33ee057ff6db0d0c5e434b700a5",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/marketing/bookDemo.ts",
+        "phase4Sha256": "3b0b5bf0bb76051c83ce4c274f9589340415373b87a145b180d9b27b3f86eb72",
+        "phase5Sha256": "3b0b5bf0bb76051c83ce4c274f9589340415373b87a145b180d9b27b3f86eb72",
+        "currentSha256": "3b0b5bf0bb76051c83ce4c274f9589340415373b87a145b180d9b27b3f86eb72",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/marketing/demo/DemoCommercialTable.tsx",
+        "phase4Sha256": "861909f5117ba9631d36e4c88e6226adc13ae636767439ac019cf22b4f313f72",
+        "phase5Sha256": "861909f5117ba9631d36e4c88e6226adc13ae636767439ac019cf22b4f313f72",
+        "currentSha256": "861909f5117ba9631d36e4c88e6226adc13ae636767439ac019cf22b4f313f72",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/marketing/demo/DemoCompanyOverview.tsx",
+        "phase4Sha256": "4e26724b72998642953883af06d3e310499bec912e0bbcdcae7f710cc7774ede",
+        "phase5Sha256": "4e26724b72998642953883af06d3e310499bec912e0bbcdcae7f710cc7774ede",
+        "currentSha256": "4e26724b72998642953883af06d3e310499bec912e0bbcdcae7f710cc7774ede",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/marketing/demo/DemoRenewalsSnippet.tsx",
+        "phase4Sha256": "5d77ab0243b77e8f28050719a33884dab410aa55be06f6377424a3f57b5dfac2",
+        "phase5Sha256": "5d77ab0243b77e8f28050719a33884dab410aa55be06f6377424a3f57b5dfac2",
+        "currentSha256": "5d77ab0243b77e8f28050719a33884dab410aa55be06f6377424a3f57b5dfac2",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/marketing/demo/DemoSuppliersSnippet.tsx",
+        "phase4Sha256": "bcf0ffad824ff7564082a41c65e80434bf84ff65bf9c56c4df4aa1dca12f8715",
+        "phase5Sha256": "bcf0ffad824ff7564082a41c65e80434bf84ff65bf9c56c4df4aa1dca12f8715",
+        "currentSha256": "bcf0ffad824ff7564082a41c65e80434bf84ff65bf9c56c4df4aa1dca12f8715",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/plans/planCard.tsx",
+        "phase4Sha256": "9591d16e4d69f038ac1d6fc2ebd3b9c45776a2318a8faa34955f82b9500d3f33",
+        "phase5Sha256": "9591d16e4d69f038ac1d6fc2ebd3b9c45776a2318a8faa34955f82b9500d3f33",
+        "currentSha256": "9591d16e4d69f038ac1d6fc2ebd3b9c45776a2318a8faa34955f82b9500d3f33",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/shared/AllaturaWordmark.tsx",
+        "phase4Sha256": "30670b4e7bb99be29d942dfa022d7e48201edcb643dca35d2da7e1984105c23e",
+        "phase5Sha256": "30670b4e7bb99be29d942dfa022d7e48201edcb643dca35d2da7e1984105c23e",
+        "currentSha256": "30670b4e7bb99be29d942dfa022d7e48201edcb643dca35d2da7e1984105c23e",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/shared/loadingSpinner.tsx",
+        "phase4Sha256": "22e2c8bd4e76e3d5c2f502e01de51063fc8d4aa5844c6547f18e26eeef04f3f0",
+        "phase5Sha256": "22e2c8bd4e76e3d5c2f502e01de51063fc8d4aa5844c6547f18e26eeef04f3f0",
+        "currentSha256": "22e2c8bd4e76e3d5c2f502e01de51063fc8d4aa5844c6547f18e26eeef04f3f0",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/shared/stackmarksLogo.tsx",
+        "phase4Sha256": "07861e58c68ce4a91daeff861f6f9b05c8780c8157a15c5c30c0a72e2d52e154",
+        "phase5Sha256": "07861e58c68ce4a91daeff861f6f9b05c8780c8157a15c5c30c0a72e2d52e154",
+        "currentSha256": "07861e58c68ce4a91daeff861f6f9b05c8780c8157a15c5c30c0a72e2d52e154",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/ui/AppCard.tsx",
+        "phase4Sha256": "0ccccfc7a0dc1da95c49d7ae02ba185d5b44bcdc047bbe7f4b81f0fc2ab70a04",
+        "phase5Sha256": "0ccccfc7a0dc1da95c49d7ae02ba185d5b44bcdc047bbe7f4b81f0fc2ab70a04",
+        "currentSha256": "0ccccfc7a0dc1da95c49d7ae02ba185d5b44bcdc047bbe7f4b81f0fc2ab70a04",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/ui/EmptyState.tsx",
+        "phase4Sha256": "51a3ae18c0efe05ee3ce624aa8eb1db8e155a41026d2d97e4f8638deac0eec21",
+        "phase5Sha256": "51a3ae18c0efe05ee3ce624aa8eb1db8e155a41026d2d97e4f8638deac0eec21",
+        "currentSha256": "51a3ae18c0efe05ee3ce624aa8eb1db8e155a41026d2d97e4f8638deac0eec21",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/ui/KpiStatCard.tsx",
+        "phase4Sha256": "331c02bd525667c9e4b91a39660c6374f934def1325346de47e507966d1149f4",
+        "phase5Sha256": "331c02bd525667c9e4b91a39660c6374f934def1325346de47e507966d1149f4",
+        "currentSha256": "331c02bd525667c9e4b91a39660c6374f934def1325346de47e507966d1149f4",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/components/ui/PageHeader.tsx",
+        "phase4Sha256": "53b8f064f4fbdb1eaa5f36fe935c9d7e391e8272dcb00d07b6ba62c1f19674c7",
+        "phase5Sha256": "53b8f064f4fbdb1eaa5f36fe935c9d7e391e8272dcb00d07b6ba62c1f19674c7",
+        "currentSha256": "53b8f064f4fbdb1eaa5f36fe935c9d7e391e8272dcb00d07b6ba62c1f19674c7",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/contact/page.tsx",
+        "phase4Sha256": "cd5d4902850d0fea37b1912f0fb0e9c24f13e14a556e8657fc8e81977e1dc893",
+        "phase5Sha256": "cd5d4902850d0fea37b1912f0fb0e9c24f13e14a556e8657fc8e81977e1dc893",
+        "currentSha256": "cd5d4902850d0fea37b1912f0fb0e9c24f13e14a556e8657fc8e81977e1dc893",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/contexts/AuthSessionContext.tsx",
+        "phase4Sha256": "75ed41c76f9ad5200cc37346a32e250069ae00e08f6b25d554f6416a838f4003",
+        "phase5Sha256": "75ed41c76f9ad5200cc37346a32e250069ae00e08f6b25d554f6416a838f4003",
+        "currentSha256": "75ed41c76f9ad5200cc37346a32e250069ae00e08f6b25d554f6416a838f4003",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/dashboard/audit/page.tsx",
+        "phase4Sha256": "3b5d438de7c92eab6dbaa6ed1bae4e27ae5610d81801fc048ff65fd12a07047b",
+        "phase5Sha256": "3b5d438de7c92eab6dbaa6ed1bae4e27ae5610d81801fc048ff65fd12a07047b",
+        "currentSha256": "3b5d438de7c92eab6dbaa6ed1bae4e27ae5610d81801fc048ff65fd12a07047b",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/dashboard/billing/mock-success/page.tsx",
+        "phase4Sha256": "04633d8b0cd84e1b92b5cc4966880d837c945bd2f40cc6ad2357cafa605ab6d1",
+        "phase5Sha256": "04633d8b0cd84e1b92b5cc4966880d837c945bd2f40cc6ad2357cafa605ab6d1",
+        "currentSha256": "04633d8b0cd84e1b92b5cc4966880d837c945bd2f40cc6ad2357cafa605ab6d1",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/dashboard/calendar/calendar.css",
+        "phase4Sha256": "19fbd9bff07dcc769df18e44f44ef88464b9fb61a2f986c780b785c48205806d",
+        "phase5Sha256": "19fbd9bff07dcc769df18e44f44ef88464b9fb61a2f986c780b785c48205806d",
+        "currentSha256": "19fbd9bff07dcc769df18e44f44ef88464b9fb61a2f986c780b785c48205806d",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/dashboard/calendar/page.tsx",
+        "phase4Sha256": "ba049f168efef3d038a6baf0eaabb4e581db0d5d15e15e4b7152fd71806dc0d2",
+        "phase5Sha256": "ba049f168efef3d038a6baf0eaabb4e581db0d5d15e15e4b7152fd71806dc0d2",
+        "currentSha256": "ba049f168efef3d038a6baf0eaabb4e581db0d5d15e15e4b7152fd71806dc0d2",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/dashboard/documents/page.tsx",
+        "phase4Sha256": "61e013e1f06266939294d956a6dd1efb2665ab6b634fc32ead8fb1b499c04e10",
+        "phase5Sha256": "61e013e1f06266939294d956a6dd1efb2665ab6b634fc32ead8fb1b499c04e10",
+        "currentSha256": "61e013e1f06266939294d956a6dd1efb2665ab6b634fc32ead8fb1b499c04e10",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/dashboard/import/page.tsx",
+        "phase4Sha256": "486cf4e8d2016c186388fc7796e4a2d9f1799b186c86d7affc2dd5f9dbdafe78",
+        "phase5Sha256": "486cf4e8d2016c186388fc7796e4a2d9f1799b186c86d7affc2dd5f9dbdafe78",
+        "currentSha256": "486cf4e8d2016c186388fc7796e4a2d9f1799b186c86d7affc2dd5f9dbdafe78",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/dashboard/layout.tsx",
+        "phase4Sha256": "85c4efab107422cf64f15aaa73cb64b40c8c9b09e0bcb47f907c3c169a4f1fad",
+        "phase5Sha256": "85c4efab107422cf64f15aaa73cb64b40c8c9b09e0bcb47f907c3c169a4f1fad",
+        "currentSha256": "85c4efab107422cf64f15aaa73cb64b40c8c9b09e0bcb47f907c3c169a4f1fad",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/dashboard/page.tsx",
+        "phase4Sha256": "fb64bc57098384bcc65a95e112873738c61653dee93df0c58bd3f13669ba7323",
+        "phase5Sha256": "fb64bc57098384bcc65a95e112873738c61653dee93df0c58bd3f13669ba7323",
+        "currentSha256": "fb64bc57098384bcc65a95e112873738c61653dee93df0c58bd3f13669ba7323",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/dashboard/projects/[id]/claims/page.tsx",
+        "phase4Sha256": "7e1972f5d63d2006cea42449328f60a28d961b150e7c1bc25a3a7c3a03024850",
+        "phase5Sha256": "7e1972f5d63d2006cea42449328f60a28d961b150e7c1bc25a3a7c3a03024850",
+        "currentSha256": "7e1972f5d63d2006cea42449328f60a28d961b150e7c1bc25a3a7c3a03024850",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/dashboard/projects/[id]/contracts/new/page.tsx",
+        "phase4Sha256": "2c0154ebc936fbebf85441be1136bcccca73dbd1192fc58295b29bdc00b111d4",
+        "phase5Sha256": "2c0154ebc936fbebf85441be1136bcccca73dbd1192fc58295b29bdc00b111d4",
+        "currentSha256": "2c0154ebc936fbebf85441be1136bcccca73dbd1192fc58295b29bdc00b111d4",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/dashboard/projects/[id]/contracts/page.tsx",
+        "phase4Sha256": "234f79e281b4af4bb60eb1344db0ec65088b08599e4839d58f213a155f1a65b8",
+        "phase5Sha256": "234f79e281b4af4bb60eb1344db0ec65088b08599e4839d58f213a155f1a65b8",
+        "currentSha256": "234f79e281b4af4bb60eb1344db0ec65088b08599e4839d58f213a155f1a65b8",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/dashboard/projects/[id]/documents/page.tsx",
+        "phase4Sha256": "8c32d72a0d7a2f5d2ec04a1957f020ee366c6673d6a6c95e3b67ff78ffbdcef4",
+        "phase5Sha256": "8c32d72a0d7a2f5d2ec04a1957f020ee366c6673d6a6c95e3b67ff78ffbdcef4",
+        "currentSha256": "8c32d72a0d7a2f5d2ec04a1957f020ee366c6673d6a6c95e3b67ff78ffbdcef4",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/dashboard/projects/[id]/expenses/page.tsx",
+        "phase4Sha256": "b63980a70d73f6a88459d18ede8cae36090509b3ac81aaee90c8b08c2b05e120",
+        "phase5Sha256": "b63980a70d73f6a88459d18ede8cae36090509b3ac81aaee90c8b08c2b05e120",
+        "currentSha256": "b63980a70d73f6a88459d18ede8cae36090509b3ac81aaee90c8b08c2b05e120",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/dashboard/projects/[id]/layout.tsx",
+        "phase4Sha256": "d599abb3acedd7ac1aad115e2f5918943829ba826e36ca3daa9393676215496d",
+        "phase5Sha256": "d599abb3acedd7ac1aad115e2f5918943829ba826e36ca3daa9393676215496d",
+        "currentSha256": "d599abb3acedd7ac1aad115e2f5918943829ba826e36ca3daa9393676215496d",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/dashboard/projects/[id]/page.tsx",
+        "phase4Sha256": "d23631dffe4da7644dc4f08daf66341c83cbf03508e0bb56b128601ec5d3f68c",
+        "phase5Sha256": "d23631dffe4da7644dc4f08daf66341c83cbf03508e0bb56b128601ec5d3f68c",
+        "currentSha256": "d23631dffe4da7644dc4f08daf66341c83cbf03508e0bb56b128601ec5d3f68c",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/dashboard/projects/[id]/progress/page.tsx",
+        "phase4Sha256": "4bb87fd08b66d584fb89d2c25c62314640a83bdd9938fb7c7b1b5f7266a502df",
+        "phase5Sha256": "4bb87fd08b66d584fb89d2c25c62314640a83bdd9938fb7c7b1b5f7266a502df",
+        "currentSha256": "4bb87fd08b66d584fb89d2c25c62314640a83bdd9938fb7c7b1b5f7266a502df",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/dashboard/projects/[id]/sitelogs/page.tsx",
+        "phase4Sha256": "0e6ee9d782ad16ca7a584016b6fb4bdae9e4a6c8d3356aabbfa2f638b363f008",
+        "phase5Sha256": "0e6ee9d782ad16ca7a584016b6fb4bdae9e4a6c8d3356aabbfa2f638b363f008",
+        "currentSha256": "0e6ee9d782ad16ca7a584016b6fb4bdae9e4a6c8d3356aabbfa2f638b363f008",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/dashboard/projects/[id]/team/page.tsx",
+        "phase4Sha256": "75c286169fefdc6ce6ca0fd5823c649373955289a32df447e9453ca10b40a61d",
+        "phase5Sha256": "75c286169fefdc6ce6ca0fd5823c649373955289a32df447e9453ca10b40a61d",
+        "currentSha256": "75c286169fefdc6ce6ca0fd5823c649373955289a32df447e9453ca10b40a61d",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/dashboard/projects/[id]/variations/page.tsx",
+        "phase4Sha256": "fe7d5c9a8d8606bf1c31bff6692791d43857ac49c7c347195a514402aaae944e",
+        "phase5Sha256": "fe7d5c9a8d8606bf1c31bff6692791d43857ac49c7c347195a514402aaae944e",
+        "currentSha256": "fe7d5c9a8d8606bf1c31bff6692791d43857ac49c7c347195a514402aaae944e",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/dashboard/projects/new/page.tsx",
+        "phase4Sha256": "f9ad728458d41178f8d5986973cfb37915c5d4d4cf47f3ae40afc6011a19daf6",
+        "phase5Sha256": "f9ad728458d41178f8d5986973cfb37915c5d4d4cf47f3ae40afc6011a19daf6",
+        "currentSha256": "f9ad728458d41178f8d5986973cfb37915c5d4d4cf47f3ae40afc6011a19daf6",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/dashboard/projects/page.tsx",
+        "phase4Sha256": "5fb7b46722fbed1adbcd1cde81eb8e79e82f387e13ac3717a622e1c6f2cf22a1",
+        "phase5Sha256": "5fb7b46722fbed1adbcd1cde81eb8e79e82f387e13ac3717a622e1c6f2cf22a1",
+        "currentSha256": "5fb7b46722fbed1adbcd1cde81eb8e79e82f387e13ac3717a622e1c6f2cf22a1",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/dashboard/settings/billing/page.tsx",
+        "phase4Sha256": "688a35f5660f771ab276258d031f2a2851bd88e6f35126c10c5398f8363b5c0a",
+        "phase5Sha256": "688a35f5660f771ab276258d031f2a2851bd88e6f35126c10c5398f8363b5c0a",
+        "currentSha256": "688a35f5660f771ab276258d031f2a2851bd88e6f35126c10c5398f8363b5c0a",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/dashboard/settings/page.tsx",
+        "phase4Sha256": "06beba1231231f3005db54eb304df42b6cec654d4483ff704b2a3ed4106f5ad1",
+        "phase5Sha256": "06beba1231231f3005db54eb304df42b6cec654d4483ff704b2a3ed4106f5ad1",
+        "currentSha256": "06beba1231231f3005db54eb304df42b6cec654d4483ff704b2a3ed4106f5ad1",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/dashboard/subcontractors/page.tsx",
+        "phase4Sha256": "be70ed1554c9f786bc676a05bc063cb447b68c589849f4701d1e5ca4d80442ee",
+        "phase5Sha256": "be70ed1554c9f786bc676a05bc063cb447b68c589849f4701d1e5ca4d80442ee",
+        "currentSha256": "be70ed1554c9f786bc676a05bc063cb447b68c589849f4701d1e5ca4d80442ee",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/dashboard/suppliers/page.tsx",
+        "phase4Sha256": "e256fecd194321e53cd878ab972654f33128c9edc6770fecf9a0365b2ed1fae5",
+        "phase5Sha256": "e256fecd194321e53cd878ab972654f33128c9edc6770fecf9a0365b2ed1fae5",
+        "currentSha256": "e256fecd194321e53cd878ab972654f33128c9edc6770fecf9a0365b2ed1fae5",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/dashboard/users/page.tsx",
+        "phase4Sha256": "456837f6a2a13c3a4a644faef7ca9adfc2df489878998746b783e0b37699efee",
+        "phase5Sha256": "456837f6a2a13c3a4a644faef7ca9adfc2df489878998746b783e0b37699efee",
+        "currentSha256": "456837f6a2a13c3a4a644faef7ca9adfc2df489878998746b783e0b37699efee",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/dashboard/users/pending/page.tsx",
+        "phase4Sha256": "7e38b6e82969d21215427ed2bb8e089e9be02da8992db49443800623f85791bc",
+        "phase5Sha256": "7e38b6e82969d21215427ed2bb8e089e9be02da8992db49443800623f85791bc",
+        "currentSha256": "7e38b6e82969d21215427ed2bb8e089e9be02da8992db49443800623f85791bc",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/dashboard/variations/page.tsx",
+        "phase4Sha256": "9b84416412f28da46b7d9b85fe4cb6f09550fab84426eac8ddc990d196998943",
+        "phase5Sha256": "9b84416412f28da46b7d9b85fe4cb6f09550fab84426eac8ddc990d196998943",
+        "currentSha256": "9b84416412f28da46b7d9b85fe4cb6f09550fab84426eac8ddc990d196998943",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/favicon.ico",
+        "phase4Sha256": "c28fdd2a4f31e2dc64f653962286da5c82a4cdfc518b242d32812c624e9a19a4",
+        "phase5Sha256": "c28fdd2a4f31e2dc64f653962286da5c82a4cdfc518b242d32812c624e9a19a4",
+        "currentSha256": "c28fdd2a4f31e2dc64f653962286da5c82a4cdfc518b242d32812c624e9a19a4",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/fonts.ts",
+        "phase4Sha256": "c2c2919ad14192f35ecb4a5d7d3c8ce4912fb33cd3e6b9829bc6ae63cf0a3dc5",
+        "phase5Sha256": "c2c2919ad14192f35ecb4a5d7d3c8ce4912fb33cd3e6b9829bc6ae63cf0a3dc5",
+        "currentSha256": "c2c2919ad14192f35ecb4a5d7d3c8ce4912fb33cd3e6b9829bc6ae63cf0a3dc5",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/global-error.tsx",
+        "phase4Sha256": "b29cb3a2a60b82e082aaafbbd91f3dd4cbf56c54d79666e6596bd12aa7f66332",
+        "phase5Sha256": "b29cb3a2a60b82e082aaafbbd91f3dd4cbf56c54d79666e6596bd12aa7f66332",
+        "currentSha256": "b29cb3a2a60b82e082aaafbbd91f3dd4cbf56c54d79666e6596bd12aa7f66332",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/globals.css",
+        "phase4Sha256": "b2fc2a9cbe203399fde45b38b63c4ddfb2c96f3b876634d5edb8e3451bb0601d",
+        "phase5Sha256": "b2fc2a9cbe203399fde45b38b63c4ddfb2c96f3b876634d5edb8e3451bb0601d",
+        "currentSha256": "b2fc2a9cbe203399fde45b38b63c4ddfb2c96f3b876634d5edb8e3451bb0601d",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/invite/[token]/page.tsx",
+        "phase4Sha256": "0a1c94bcd8ffb2384e7ac8f657de054c47aff75d62709dd0c2192a184e05942d",
+        "phase5Sha256": "0a1c94bcd8ffb2384e7ac8f657de054c47aff75d62709dd0c2192a184e05942d",
+        "currentSha256": "0a1c94bcd8ffb2384e7ac8f657de054c47aff75d62709dd0c2192a184e05942d",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/layout.tsx",
+        "phase4Sha256": "7889e84e0d7c6b4206549419810ebe60c14d0574b1d7dd230a15626fceccd299",
+        "phase5Sha256": "7889e84e0d7c6b4206549419810ebe60c14d0574b1d7dd230a15626fceccd299",
+        "currentSha256": "7889e84e0d7c6b4206549419810ebe60c14d0574b1d7dd230a15626fceccd299",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/login/page.tsx",
+        "phase4Sha256": "09660d35db65dbf1d86890a9aa160a695eada6e71204a87b65db3f1def039565",
+        "phase5Sha256": "09660d35db65dbf1d86890a9aa160a695eada6e71204a87b65db3f1def039565",
+        "currentSha256": "09660d35db65dbf1d86890a9aa160a695eada6e71204a87b65db3f1def039565",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/onboarding/page.tsx",
+        "phase4Sha256": "3287e85a3881f30db3528d715341428df6e0b2dbff8f81a71bbbcb59ce33c510",
+        "phase5Sha256": "3287e85a3881f30db3528d715341428df6e0b2dbff8f81a71bbbcb59ce33c510",
+        "currentSha256": "3287e85a3881f30db3528d715341428df6e0b2dbff8f81a71bbbcb59ce33c510",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/page.tsx",
+        "phase4Sha256": "245684f2ce7d4a6e2e5142cb1c5933fcf85f3327cf0f826438cfe62e9df4ff2d",
+        "phase5Sha256": "245684f2ce7d4a6e2e5142cb1c5933fcf85f3327cf0f826438cfe62e9df4ff2d",
+        "currentSha256": "245684f2ce7d4a6e2e5142cb1c5933fcf85f3327cf0f826438cfe62e9df4ff2d",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/plans/page.tsx",
+        "phase4Sha256": "c09a2b76f170ec04bda50823f30406f78a434d762a3c26925defecf61f0e583a",
+        "phase5Sha256": "c09a2b76f170ec04bda50823f30406f78a434d762a3c26925defecf61f0e583a",
+        "currentSha256": "c09a2b76f170ec04bda50823f30406f78a434d762a3c26925defecf61f0e583a",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/register/page.tsx",
+        "phase4Sha256": "70de187ac08401de70b6d03b4a6e643db8dfffebaa5bb2c8e03e18564a914993",
+        "phase5Sha256": "70de187ac08401de70b6d03b4a6e643db8dfffebaa5bb2c8e03e18564a914993",
+        "currentSha256": "70de187ac08401de70b6d03b4a6e643db8dfffebaa5bb2c8e03e18564a914993",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/app/services/frontendService.ts",
+        "phase4Sha256": "90bbae3b11923cad97ca4d96497e7a67251fb7a36537dbe1edbb1a213d2c7220",
+        "phase5Sha256": "90bbae3b11923cad97ca4d96497e7a67251fb7a36537dbe1edbb1a213d2c7220",
+        "currentSha256": "90bbae3b11923cad97ca4d96497e7a67251fb7a36537dbe1edbb1a213d2c7220",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/data/plans.ts",
+        "phase4Sha256": "843814d48a85f4d2de3acebbbb2d6c09f1a2dab122a9c667b10962acfe9756d2",
+        "phase5Sha256": "843814d48a85f4d2de3acebbbb2d6c09f1a2dab122a9c667b10962acfe9756d2",
+        "currentSha256": "843814d48a85f4d2de3acebbbb2d6c09f1a2dab122a9c667b10962acfe9756d2",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/lib/active-organisation-cookie.ts",
+        "phase4Sha256": "09d8924273ecfc18501b7b67dca3ef0e039d45233090c25ae59d503d70eea4ed",
+        "phase5Sha256": "09d8924273ecfc18501b7b67dca3ef0e039d45233090c25ae59d503d70eea4ed",
+        "currentSha256": "09d8924273ecfc18501b7b67dca3ef0e039d45233090c25ae59d503d70eea4ed",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/lib/api-client.ts",
+        "phase4Sha256": "8cef2549af344aecb0e9673b988d5f591d1348e118bf9e11719b9cc2a6d6cfdd",
+        "phase5Sha256": "8cef2549af344aecb0e9673b988d5f591d1348e118bf9e11719b9cc2a6d6cfdd",
+        "currentSha256": "8cef2549af344aecb0e9673b988d5f591d1348e118bf9e11719b9cc2a6d6cfdd",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/lib/api-helper.ts",
+        "phase4Sha256": "14ee9f46629ac897f0e2f55d694a114ed0e1a2d85cb8dd7f4de43c0baed18d08",
+        "phase5Sha256": "14ee9f46629ac897f0e2f55d694a114ed0e1a2d85cb8dd7f4de43c0baed18d08",
+        "currentSha256": "14ee9f46629ac897f0e2f55d694a114ed0e1a2d85cb8dd7f4de43c0baed18d08",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/lib/auth-events.ts",
+        "phase4Sha256": "16081794ab9ef76583cd004908a51c53b991f56d44d52a564adbeffbe743df60",
+        "phase5Sha256": "16081794ab9ef76583cd004908a51c53b991f56d44d52a564adbeffbe743df60",
+        "currentSha256": "16081794ab9ef76583cd004908a51c53b991f56d44d52a564adbeffbe743df60",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/lib/auth-jwt-contract.ts",
+        "phase4Sha256": "3acbeea36380f0c9cc6f6317a6ce7c8fbaf33c7dd5765f5f076431ca484517b9",
+        "phase5Sha256": "3acbeea36380f0c9cc6f6317a6ce7c8fbaf33c7dd5765f5f076431ca484517b9",
+        "currentSha256": "3acbeea36380f0c9cc6f6317a6ce7c8fbaf33c7dd5765f5f076431ca484517b9",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/lib/auth0.ts",
+        "phase4Sha256": "4c5fb6834224387bc652d43aceefb9c7c07d3992783f21eff2cc334120deae0f",
+        "phase5Sha256": "4c5fb6834224387bc652d43aceefb9c7c07d3992783f21eff2cc334120deae0f",
+        "currentSha256": "4c5fb6834224387bc652d43aceefb9c7c07d3992783f21eff2cc334120deae0f",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/lib/colorModeContext.tsx",
+        "phase4Sha256": "1068768b7a38711eabaf22abc91b229d2285f2f194e8ef4e017070b83257100b",
+        "phase5Sha256": "1068768b7a38711eabaf22abc91b229d2285f2f194e8ef4e017070b83257100b",
+        "currentSha256": "1068768b7a38711eabaf22abc91b229d2285f2f194e8ef4e017070b83257100b",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/lib/download.ts",
+        "phase4Sha256": "dbc49280e5dc7ca0c2441a0ec372b022f337e3934da811dc00745344a195b30e",
+        "phase5Sha256": "dbc49280e5dc7ca0c2441a0ec372b022f337e3934da811dc00745344a195b30e",
+        "currentSha256": "dbc49280e5dc7ca0c2441a0ec372b022f337e3934da811dc00745344a195b30e",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/lib/import-errors.ts",
+        "phase4Sha256": "066a972aae57bb012df917bb6390c2254c31ffea174cea39d3069b55ebe92923",
+        "phase5Sha256": "066a972aae57bb012df917bb6390c2254c31ffea174cea39d3069b55ebe92923",
+        "currentSha256": "066a972aae57bb012df917bb6390c2254c31ffea174cea39d3069b55ebe92923",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/lib/import-limits.ts",
+        "phase4Sha256": "eef260974a5e844d62bbe72c356b0079ea8c0f819fb4c03129a797899949aeab",
+        "phase5Sha256": "eef260974a5e844d62bbe72c356b0079ea8c0f819fb4c03129a797899949aeab",
+        "currentSha256": "eef260974a5e844d62bbe72c356b0079ea8c0f819fb4c03129a797899949aeab",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/lib/invitation-account-switch.ts",
+        "phase4Sha256": "472ec453492bd7ae1fac43055b50ddbe38730c6298fdc5701c60253bd75fc69a",
+        "phase5Sha256": "472ec453492bd7ae1fac43055b50ddbe38730c6298fdc5701c60253bd75fc69a",
+        "currentSha256": "472ec453492bd7ae1fac43055b50ddbe38730c6298fdc5701c60253bd75fc69a",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/lib/jwt-decode.ts",
+        "phase4Sha256": "6190afcf259e7e01391157853ee291a2cee1152c5b201ceb4c5982c4e6eae6c8",
+        "phase5Sha256": "6190afcf259e7e01391157853ee291a2cee1152c5b201ceb4c5982c4e6eae6c8",
+        "currentSha256": "6190afcf259e7e01391157853ee291a2cee1152c5b201ceb4c5982c4e6eae6c8",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/lib/jwt-payload.ts",
+        "phase4Sha256": "02016351b11400bfe11c7c90321f73df4a4d48994962f9a6cc8ebb88e3ba2479",
+        "phase5Sha256": "02016351b11400bfe11c7c90321f73df4a4d48994962f9a6cc8ebb88e3ba2479",
+        "currentSha256": "02016351b11400bfe11c7c90321f73df4a4d48994962f9a6cc8ebb88e3ba2479",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/lib/jwt.ts",
+        "phase4Sha256": "fd4eb4ea765a3b008fe45de6516a6e3b8c628a83764aebcd456bf1a15036318b",
+        "phase5Sha256": "fd4eb4ea765a3b008fe45de6516a6e3b8c628a83764aebcd456bf1a15036318b",
+        "currentSha256": "fd4eb4ea765a3b008fe45de6516a6e3b8c628a83764aebcd456bf1a15036318b",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/lib/money.ts",
+        "phase4Sha256": "88c0aaf138ed21092e502bf737c10e3007dc34ecb838607022501d33b281627d",
+        "phase5Sha256": "88c0aaf138ed21092e502bf737c10e3007dc34ecb838607022501d33b281627d",
+        "currentSha256": "88c0aaf138ed21092e502bf737c10e3007dc34ecb838607022501d33b281627d",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/lib/normalize-cost-ledger.ts",
+        "phase4Sha256": "3167d0584f0fd9a12fafbfee4affe60f4ad8e474ac5704dbb6af9649b3d01d3c",
+        "phase5Sha256": "3167d0584f0fd9a12fafbfee4affe60f4ad8e474ac5704dbb6af9649b3d01d3c",
+        "currentSha256": "3167d0584f0fd9a12fafbfee4affe60f4ad8e474ac5704dbb6af9649b3d01d3c",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/lib/organisation-binding.ts",
+        "phase4Sha256": "e43948647e884f7f91a850bdc8bcff61ba752243cf45f57918c79a04007f6361",
+        "phase5Sha256": "e43948647e884f7f91a850bdc8bcff61ba752243cf45f57918c79a04007f6361",
+        "currentSha256": "e43948647e884f7f91a850bdc8bcff61ba752243cf45f57918c79a04007f6361",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/lib/organisation-routing.ts",
+        "phase4Sha256": "fa3dbcb411a31188d02c66274da957fc6ad6e188f6e7b96d1452158a6b762427",
+        "phase5Sha256": "fa3dbcb411a31188d02c66274da957fc6ad6e188f6e7b96d1452158a6b762427",
+        "currentSha256": "fa3dbcb411a31188d02c66274da957fc6ad6e188f6e7b96d1452158a6b762427",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/lib/rbac.ts",
+        "phase4Sha256": "834c623eb0be86812eae07b010a58daf9cd671a533b9657e72caf88bec2bd8e2",
+        "phase5Sha256": "834c623eb0be86812eae07b010a58daf9cd671a533b9657e72caf88bec2bd8e2",
+        "currentSha256": "834c623eb0be86812eae07b010a58daf9cd671a533b9657e72caf88bec2bd8e2",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/lib/resolve-api-base-url.ts",
+        "phase4Sha256": "9e5ff40ddb319481fd4ec93cc63029fd2f03126e13bd4b9a7ace10a444ec398f",
+        "phase5Sha256": "9e5ff40ddb319481fd4ec93cc63029fd2f03126e13bd4b9a7ace10a444ec398f",
+        "currentSha256": "9e5ff40ddb319481fd4ec93cc63029fd2f03126e13bd4b9a7ace10a444ec398f",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/lib/swr-fetcher.ts",
+        "phase4Sha256": "9d6d058e9abf13f0afc64e81a317ab64f968c1c3f3387f4c63b117c361cdb89a",
+        "phase5Sha256": "9d6d058e9abf13f0afc64e81a317ab64f968c1c3f3387f4c63b117c361cdb89a",
+        "currentSha256": "9d6d058e9abf13f0afc64e81a317ab64f968c1c3f3387f4c63b117c361cdb89a",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/lib/swr-keys.ts",
+        "phase4Sha256": "191e172557553265eb38d77672c47dde14cd824b65529a86e2a83f476e9a11d2",
+        "phase5Sha256": "191e172557553265eb38d77672c47dde14cd824b65529a86e2a83f476e9a11d2",
+        "currentSha256": "191e172557553265eb38d77672c47dde14cd824b65529a86e2a83f476e9a11d2",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/lib/team-management-errors.ts",
+        "phase4Sha256": "af0417067ec2bc618a147f32035cec12167b980ddf94823848397239a772801c",
+        "phase5Sha256": "af0417067ec2bc618a147f32035cec12167b980ddf94823848397239a772801c",
+        "currentSha256": "af0417067ec2bc618a147f32035cec12167b980ddf94823848397239a772801c",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/lib/user-initials.ts",
+        "phase4Sha256": "1eb611e573c71b4489d605293cf258cf3cfe5074ee2413c9c62b49e896e05b1d",
+        "phase5Sha256": "1eb611e573c71b4489d605293cf258cf3cfe5074ee2413c9c62b49e896e05b1d",
+        "currentSha256": "1eb611e573c71b4489d605293cf258cf3cfe5074ee2413c9c62b49e896e05b1d",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/mui-icons.d.ts",
+        "phase4Sha256": "4bfcc25a5a8e74d898de7fcb1bd64f0e94ea43dd469e57839d09872484e4cfcf",
+        "phase5Sha256": "4bfcc25a5a8e74d898de7fcb1bd64f0e94ea43dd469e57839d09872484e4cfcf",
+        "currentSha256": "4bfcc25a5a8e74d898de7fcb1bd64f0e94ea43dd469e57839d09872484e4cfcf",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/proxy.ts",
+        "phase4Sha256": "0e7ecd93c1a82780f4881dce25d257e90e3d254118a306a0fcbdf7e255e91633",
+        "phase5Sha256": "0e7ecd93c1a82780f4881dce25d257e90e3d254118a306a0fcbdf7e255e91633",
+        "currentSha256": "0e7ecd93c1a82780f4881dce25d257e90e3d254118a306a0fcbdf7e255e91633",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/services/billingService.ts",
+        "phase4Sha256": "a84e3e912b94775ccc97fd4396c6de94423969b415ac901b4a327c709017c17f",
+        "phase5Sha256": "a84e3e912b94775ccc97fd4396c6de94423969b415ac901b4a327c709017c17f",
+        "currentSha256": "a84e3e912b94775ccc97fd4396c6de94423969b415ac901b4a327c709017c17f",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/services/contactService.ts",
+        "phase4Sha256": "8c1b89c5c65c705070498942e7ccf0bbe3dacbfdc9b1e7d743e71fdad7c0c95d",
+        "phase5Sha256": "8c1b89c5c65c705070498942e7ccf0bbe3dacbfdc9b1e7d743e71fdad7c0c95d",
+        "currentSha256": "8c1b89c5c65c705070498942e7ccf0bbe3dacbfdc9b1e7d743e71fdad7c0c95d",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/services/contractService.ts",
+        "phase4Sha256": "d0e34abeaa22316d09f8ff49ae7a7d5b80585e75c7ff4df5df4772eb6c19304c",
+        "phase5Sha256": "d0e34abeaa22316d09f8ff49ae7a7d5b80585e75c7ff4df5df4772eb6c19304c",
+        "currentSha256": "d0e34abeaa22316d09f8ff49ae7a7d5b80585e75c7ff4df5df4772eb6c19304c",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/services/dashboardService.ts",
+        "phase4Sha256": "2417bd2af19eb171d0b5a5917a568b9f4facc1f7a9e2e77038932ee822339023",
+        "phase5Sha256": "2417bd2af19eb171d0b5a5917a568b9f4facc1f7a9e2e77038932ee822339023",
+        "currentSha256": "2417bd2af19eb171d0b5a5917a568b9f4facc1f7a9e2e77038932ee822339023",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/services/documentService.ts",
+        "phase4Sha256": "83bbc2642f2ccba423f0f42df09f2fbac037c27f39611f637ffc2dbf2ade795c",
+        "phase5Sha256": "83bbc2642f2ccba423f0f42df09f2fbac037c27f39611f637ffc2dbf2ade795c",
+        "currentSha256": "83bbc2642f2ccba423f0f42df09f2fbac037c27f39611f637ffc2dbf2ade795c",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/services/expenseService.ts",
+        "phase4Sha256": "4c07f707b58e6bebe9a6840961122122c8f85631cb06075ba9001181dfb219a5",
+        "phase5Sha256": "4c07f707b58e6bebe9a6840961122122c8f85631cb06075ba9001181dfb219a5",
+        "currentSha256": "4c07f707b58e6bebe9a6840961122122c8f85631cb06075ba9001181dfb219a5",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/services/importService.ts",
+        "phase4Sha256": "adae8d878f3542efd05d160d6ec719a49610981e8bd6bab7eca6a373a335a453",
+        "phase5Sha256": "adae8d878f3542efd05d160d6ec719a49610981e8bd6bab7eca6a373a335a453",
+        "currentSha256": "adae8d878f3542efd05d160d6ec719a49610981e8bd6bab7eca6a373a335a453",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/services/invitationService.ts",
+        "phase4Sha256": "b080d0d6f0477d84b7f55a99d0b40b0597a09870e521b44c3ea67d81f49388fb",
+        "phase5Sha256": "b080d0d6f0477d84b7f55a99d0b40b0597a09870e521b44c3ea67d81f49388fb",
+        "currentSha256": "b080d0d6f0477d84b7f55a99d0b40b0597a09870e521b44c3ea67d81f49388fb",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/services/organisationService.ts",
+        "phase4Sha256": "65f79e0ffc73d485940502cf80f52cbe99f5af59fd664771c8cd5957b02d65e2",
+        "phase5Sha256": "65f79e0ffc73d485940502cf80f52cbe99f5af59fd664771c8cd5957b02d65e2",
+        "currentSha256": "65f79e0ffc73d485940502cf80f52cbe99f5af59fd664771c8cd5957b02d65e2",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/services/paymentClaimService.ts",
+        "phase4Sha256": "8f3a82eaba0dc203cd63f715457a02ab7b66fa3f673ed5846b7167f8d0f0e145",
+        "phase5Sha256": "8f3a82eaba0dc203cd63f715457a02ab7b66fa3f673ed5846b7167f8d0f0e145",
+        "currentSha256": "8f3a82eaba0dc203cd63f715457a02ab7b66fa3f673ed5846b7167f8d0f0e145",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/services/progressService.ts",
+        "phase4Sha256": "e610333565c4f55b5b167cb0d2b77d060bb4b7af48869431d5f124083a0a350e",
+        "phase5Sha256": "e610333565c4f55b5b167cb0d2b77d060bb4b7af48869431d5f124083a0a350e",
+        "currentSha256": "e610333565c4f55b5b167cb0d2b77d060bb4b7af48869431d5f124083a0a350e",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/services/projectService.ts",
+        "phase4Sha256": "d275d99c10300084a2aa72e79715a6f835684302cdd1f8e13f7f5ea7dfd0911c",
+        "phase5Sha256": "d275d99c10300084a2aa72e79715a6f835684302cdd1f8e13f7f5ea7dfd0911c",
+        "currentSha256": "d275d99c10300084a2aa72e79715a6f835684302cdd1f8e13f7f5ea7dfd0911c",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/services/siteLogService.ts",
+        "phase4Sha256": "81cea056b8d0d6bef0dab7e852c1958bcc242976741d3db34624682ede3da86e",
+        "phase5Sha256": "81cea056b8d0d6bef0dab7e852c1958bcc242976741d3db34624682ede3da86e",
+        "currentSha256": "81cea056b8d0d6bef0dab7e852c1958bcc242976741d3db34624682ede3da86e",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/services/subcontractorService.ts",
+        "phase4Sha256": "71d2ae14d6b607a46919b3e056eb8483d0502b801322a3e83affcb8b1fe1d62d",
+        "phase5Sha256": "71d2ae14d6b607a46919b3e056eb8483d0502b801322a3e83affcb8b1fe1d62d",
+        "currentSha256": "71d2ae14d6b607a46919b3e056eb8483d0502b801322a3e83affcb8b1fe1d62d",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/services/supplierService.ts",
+        "phase4Sha256": "50af68d98b5b1f959ad47db2faa5d096ecc3b8fb30079f4e707c892b0b0f2a3e",
+        "phase5Sha256": "50af68d98b5b1f959ad47db2faa5d096ecc3b8fb30079f4e707c892b0b0f2a3e",
+        "currentSha256": "50af68d98b5b1f959ad47db2faa5d096ecc3b8fb30079f4e707c892b0b0f2a3e",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/services/variationService.ts",
+        "phase4Sha256": "6f7ee47b8ecfcf19c289c388b5e26a8f51504901245f93a95688431bc0628055",
+        "phase5Sha256": "6f7ee47b8ecfcf19c289c388b5e26a8f51504901245f93a95688431bc0628055",
+        "currentSha256": "6f7ee47b8ecfcf19c289c388b5e26a8f51504901245f93a95688431bc0628055",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/styles/MaterialStyles/dashboard/layout/layoutStyles.tsx",
+        "phase4Sha256": "e78880bff0ecb0c36232f5c5df22c7b1dd332bb01e68a5b7740fe30570874dc2",
+        "phase5Sha256": "e78880bff0ecb0c36232f5c5df22c7b1dd332bb01e68a5b7740fe30570874dc2",
+        "currentSha256": "e78880bff0ecb0c36232f5c5df22c7b1dd332bb01e68a5b7740fe30570874dc2",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/styles/MaterialStyles/dashboard/sideMenuStyles.tsx",
+        "phase4Sha256": "c98813cb2cb9b219a6a68c2d8a33deb7ca4358167ddc34e4e34ff286def5a3c5",
+        "phase5Sha256": "c98813cb2cb9b219a6a68c2d8a33deb7ca4358167ddc34e4e34ff286def5a3c5",
+        "currentSha256": "c98813cb2cb9b219a6a68c2d8a33deb7ca4358167ddc34e4e34ff286def5a3c5",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/styles/MaterialStyles/plan/planCard/planCardButtonStyle.tsx",
+        "phase4Sha256": "5e8deffb73e4b668d15920f98c98e8cf522c929a9c2dbf51e178fb918e246e54",
+        "phase5Sha256": "5e8deffb73e4b668d15920f98c98e8cf522c929a9c2dbf51e178fb918e246e54",
+        "currentSha256": "5e8deffb73e4b668d15920f98c98e8cf522c929a9c2dbf51e178fb918e246e54",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/styles/MaterialStyles/plan/planCardStyles.tsx",
+        "phase4Sha256": "edb1230c872669c6b0563ed37e571f5dbc349a2bde6fc79b95c1bd2260c81240",
+        "phase5Sha256": "edb1230c872669c6b0563ed37e571f5dbc349a2bde6fc79b95c1bd2260c81240",
+        "currentSha256": "edb1230c872669c6b0563ed37e571f5dbc349a2bde6fc79b95c1bd2260c81240",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/styles/MaterialStyles/profile/profileStyles.tsx",
+        "phase4Sha256": "e134e2546fe99325e34cda8240f0b1bfbf28b67a48478118feeaeb2226aa6436",
+        "phase5Sha256": "e134e2546fe99325e34cda8240f0b1bfbf28b67a48478118feeaeb2226aa6436",
+        "currentSha256": "e134e2546fe99325e34cda8240f0b1bfbf28b67a48478118feeaeb2226aa6436",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/styles/MaterialStyles/shared/sharedStyles.tsx",
+        "phase4Sha256": "d3bc4aa0856a9bba5fd027daecac0ed189fb1e9b5a935615ddd437c70e4df8d5",
+        "phase5Sha256": "d3bc4aa0856a9bba5fd027daecac0ed189fb1e9b5a935615ddd437c70e4df8d5",
+        "currentSha256": "d3bc4aa0856a9bba5fd027daecac0ed189fb1e9b5a935615ddd437c70e4df8d5",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/theme/tokens.ts",
+        "phase4Sha256": "b07d45e25f54de384aa2ec2b8be48318241cddacb156af0f5e77f8465edacef0",
+        "phase5Sha256": "b07d45e25f54de384aa2ec2b8be48318241cddacb156af0f5e77f8465edacef0",
+        "currentSha256": "b07d45e25f54de384aa2ec2b8be48318241cddacb156af0f5e77f8465edacef0",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/types/construction.ts",
+        "phase4Sha256": "cfd03bd8eb757d23009a4dd1581bb23958b955ec7691bff2c0439650eba24544",
+        "phase5Sha256": "cfd03bd8eb757d23009a4dd1581bb23958b955ec7691bff2c0439650eba24544",
+        "currentSha256": "cfd03bd8eb757d23009a4dd1581bb23958b955ec7691bff2c0439650eba24544",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/types/imports.ts",
+        "phase4Sha256": "d6499217e219b039e8c0fc4410b4e8ec4c4af862ad1e7aca1c4acbb4a0ce2cfa",
+        "phase5Sha256": "d6499217e219b039e8c0fc4410b4e8ec4c4af862ad1e7aca1c4acbb4a0ce2cfa",
+        "currentSha256": "d6499217e219b039e8c0fc4410b4e8ec4c4af862ad1e7aca1c4acbb4a0ce2cfa",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/utils/api-utils.ts",
+        "phase4Sha256": "344fc91405c65c0aa1ddce05a9c909b7ba9b4bb82fbf34c4377569f396a271a6",
+        "phase5Sha256": "344fc91405c65c0aa1ddce05a9c909b7ba9b4bb82fbf34c4377569f396a271a6",
+        "currentSha256": "344fc91405c65c0aa1ddce05a9c909b7ba9b4bb82fbf34c4377569f396a271a6",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "src/utils/routing-utils.ts",
+        "phase4Sha256": "319e54ec7d47980c9e38304d7f75d5ed7844433008e3fc08c20d443aa1c5d648",
+        "phase5Sha256": "319e54ec7d47980c9e38304d7f75d5ed7844433008e3fc08c20d443aa1c5d648",
+        "currentSha256": "319e54ec7d47980c9e38304d7f75d5ed7844433008e3fc08c20d443aa1c5d648",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "tests/browser/auth-navigation.mocked-browser.spec.ts",
+        "phase4Sha256": "0aa52ff21d7fee229e864a46077fd23c101d081246389d9daebc7c992c437fa7",
+        "phase5Sha256": "0aa52ff21d7fee229e864a46077fd23c101d081246389d9daebc7c992c437fa7",
+        "currentSha256": "0aa52ff21d7fee229e864a46077fd23c101d081246389d9daebc7c992c437fa7",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "tests/browser/contracts-navigation.mocked-browser.spec.ts",
+        "phase4Sha256": "bef15a938ed8328d52346ec786adb28618817e5ce231401965978fe7c39934dc",
+        "phase5Sha256": "bef15a938ed8328d52346ec786adb28618817e5ce231401965978fe7c39934dc",
+        "currentSha256": "bef15a938ed8328d52346ec786adb28618817e5ce231401965978fe7c39934dc",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      },
+      {
+        "path": "tests/browser/route-accessibility.mocked-browser.spec.ts",
+        "phase4Sha256": "3496d7514436c0b079ec35693894ba7d2685ef432ad0c46172638c39fb13fe06",
+        "phase5Sha256": "3496d7514436c0b079ec35693894ba7d2685ef432ad0c46172638c39fb13fe06",
+        "currentSha256": "3496d7514436c0b079ec35693894ba7d2685ef432ad0c46172638c39fb13fe06",
+        "phase4Phase5Match": true,
+        "currentMatchesPhase5": true
+      }
+    ],
+    "sourceIssues": [],
+    "changedSlots": [
+      {
+        "key": "chromium|a protected deep link preserves its path and query through synthetic sign-in",
+        "old": {
+          "key": "chromium|a protected deep link preserves its path and query through synthetic sign-in",
+          "engine": "chromium",
+          "title": "a protected deep link preserves its path and query through synthetic sign-in",
+          "status": "passed",
+          "primaryFailure": "PASS",
+          "hydrationPresent": false,
+          "boundaryPageErrors": 0,
+          "trafficViolations": 0,
+          "durationMs": 18293,
+          "retry": 0
+        },
+        "current": {
+          "key": "chromium|a protected deep link preserves its path and query through synthetic sign-in",
+          "engine": "chromium",
+          "title": "a protected deep link preserves its path and query through synthetic sign-in",
+          "status": "failed",
+          "primaryFailure": "hydration-only",
+          "hydrationPresent": true,
+          "boundaryPageErrors": 1,
+          "trafficViolations": 0,
+          "durationMs": 22424,
+          "retry": 0
+        },
+        "statusChanged": true
+      },
+      {
+        "key": "firefox|a protected deep link preserves its path and query through synthetic sign-in",
+        "old": {
+          "key": "firefox|a protected deep link preserves its path and query through synthetic sign-in",
+          "engine": "firefox",
+          "title": "a protected deep link preserves its path and query through synthetic sign-in",
+          "status": "failed",
+          "primaryFailure": "hydration-only",
+          "hydrationPresent": true,
+          "boundaryPageErrors": 1,
+          "trafficViolations": 0,
+          "durationMs": 5177,
+          "retry": 0
+        },
+        "current": {
+          "key": "firefox|a protected deep link preserves its path and query through synthetic sign-in",
+          "engine": "firefox",
+          "title": "a protected deep link preserves its path and query through synthetic sign-in",
+          "status": "passed",
+          "primaryFailure": "PASS",
+          "hydrationPresent": false,
+          "boundaryPageErrors": 0,
+          "trafficViolations": 0,
+          "durationMs": 6596,
+          "retry": 0
+        },
+        "statusChanged": true
+      },
+      {
+        "key": "chromium|mobile navigation can be opened and dismissed using the keyboard",
+        "old": {
+          "key": "chromium|mobile navigation can be opened and dismissed using the keyboard",
+          "engine": "chromium",
+          "title": "mobile navigation can be opened and dismissed using the keyboard",
+          "status": "failed",
+          "primaryFailure": "hydration-only",
+          "hydrationPresent": true,
+          "boundaryPageErrors": 1,
+          "trafficViolations": 0,
+          "durationMs": 1567,
+          "retry": 0
+        },
+        "current": {
+          "key": "chromium|mobile navigation can be opened and dismissed using the keyboard",
+          "engine": "chromium",
+          "title": "mobile navigation can be opened and dismissed using the keyboard",
+          "status": "passed",
+          "primaryFailure": "PASS",
+          "hydrationPresent": false,
+          "boundaryPageErrors": 0,
+          "trafficViolations": 0,
+          "durationMs": 1711,
+          "retry": 0
+        },
+        "statusChanged": true
+      },
+      {
+        "key": "chromium|pending users receive a clear status screen instead of project content",
+        "old": {
+          "key": "chromium|pending users receive a clear status screen instead of project content",
+          "engine": "chromium",
+          "title": "pending users receive a clear status screen instead of project content",
+          "status": "failed",
+          "primaryFailure": "hydration-only",
+          "hydrationPresent": true,
+          "boundaryPageErrors": 1,
+          "trafficViolations": 0,
+          "durationMs": 1217,
+          "retry": 0
+        },
+        "current": {
+          "key": "chromium|pending users receive a clear status screen instead of project content",
+          "engine": "chromium",
+          "title": "pending users receive a clear status screen instead of project content",
+          "status": "passed",
+          "primaryFailure": "PASS",
+          "hydrationPresent": false,
+          "boundaryPageErrors": 0,
+          "trafficViolations": 0,
+          "durationMs": 1136,
+          "retry": 0
+        },
+        "statusChanged": true
+      },
+      {
+        "key": "chromium|rejected users receive a clear status screen instead of project content",
+        "old": {
+          "key": "chromium|rejected users receive a clear status screen instead of project content",
+          "engine": "chromium",
+          "title": "rejected users receive a clear status screen instead of project content",
+          "status": "failed",
+          "primaryFailure": "hydration-only",
+          "hydrationPresent": true,
+          "boundaryPageErrors": 1,
+          "trafficViolations": 0,
+          "durationMs": 1444,
+          "retry": 0
+        },
+        "current": {
+          "key": "chromium|rejected users receive a clear status screen instead of project content",
+          "engine": "chromium",
+          "title": "rejected users receive a clear status screen instead of project content",
+          "status": "passed",
+          "primaryFailure": "PASS",
+          "hydrationPresent": false,
+          "boundaryPageErrors": 0,
+          "trafficViolations": 0,
+          "durationMs": 1536,
+          "retry": 0
+        },
+        "statusChanged": true
+      },
+      {
+        "key": "firefox|mobile navigation can be opened and dismissed using the keyboard",
+        "old": {
+          "key": "firefox|mobile navigation can be opened and dismissed using the keyboard",
+          "engine": "firefox",
+          "title": "mobile navigation can be opened and dismissed using the keyboard",
+          "status": "failed",
+          "primaryFailure": "hydration-only",
+          "hydrationPresent": true,
+          "boundaryPageErrors": 1,
+          "trafficViolations": 0,
+          "durationMs": 2415,
+          "retry": 0
+        },
+        "current": {
+          "key": "firefox|mobile navigation can be opened and dismissed using the keyboard",
+          "engine": "firefox",
+          "title": "mobile navigation can be opened and dismissed using the keyboard",
+          "status": "passed",
+          "primaryFailure": "PASS",
+          "hydrationPresent": false,
+          "boundaryPageErrors": 0,
+          "trafficViolations": 0,
+          "durationMs": 4886,
+          "retry": 0
+        },
+        "statusChanged": true
+      }
+    ],
+    "interpretation": "Five hydration failures became passes and one pass became a hydration failure. Net four more passes, with unchanged relevant source and no retries; intermittent hydration remains unresolved."
+  },
+  "processCheck": {
+    "raw": {
+      "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T10-03-08-755Z-process-check-2ec3f6aa.json",
+      "sha256": "4a60323f2446661c3ed390129b3f77dd2f30883efa2c3ab042e6a0abddd40d1c"
+    },
+    "runId": "2026-11-01T09-59-14-742Z-02b536f3",
+    "checkedAtUtc": "2026-11-01T10:03:08.7499641Z",
+    "recordedNodePidsChecked": 46,
+    "ownedBrowserDirectoryChecked": true,
+    "matchingLiveProcesses": [],
+    "stageStillExists": false,
+    "noCommandLinesInspected": true,
+    "processesStopped": 0
+  },
+  "captureAudit": {
+    "raw": {
+      "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T10-04-31-746Z-capture-stage-audit-0f18915f.json",
+      "sha256": "01ff1a8a005a97d18923b1d070c80030505a7495fa7f5738c6aef86913a3f01a"
+    },
+    "reviewer": "quality_operations",
+    "checkedAtUtc": "2026-11-01T10:04:31.7391173Z",
+    "commandRecords": [
+      {
+        "repo": "plutus-fe",
+        "name": "build",
+        "captureRecord": ".qa-agent-work\\independent-validation-2026-11-01\\2026-11-01T09-57-44-973Z-9243a82e-build.execution.json",
+        "nativeExitCode": 1,
+        "complete": true,
+        "stdoutMatches": true,
+        "stderrMatches": true
+      },
+      {
+        "repo": "plutus-fe",
+        "name": "ci-stack",
+        "captureRecord": ".qa-agent-work\\independent-validation-2026-11-01\\2026-11-01T09-57-44-973Z-9243a82e-ci-stack.execution.json",
+        "nativeExitCode": 2,
+        "complete": true,
+        "stdoutMatches": true,
+        "stderrMatches": true
+      },
+      {
+        "repo": "plutus-fe",
+        "name": "export-verify",
+        "captureRecord": ".qa-agent-work\\independent-validation-2026-11-01\\2026-11-01T09-57-44-973Z-9243a82e-export-verify.execution.json",
+        "nativeExitCode": 0,
+        "complete": true,
+        "stdoutMatches": true,
+        "stderrMatches": true
+      },
+      {
+        "repo": "plutus-fe",
+        "name": "legacy-unit",
+        "captureRecord": ".qa-agent-work\\independent-validation-2026-11-01\\2026-11-01T09-57-44-973Z-9243a82e-legacy-unit.execution.json",
+        "nativeExitCode": 1,
+        "complete": true,
+        "stdoutMatches": true,
+        "stderrMatches": true
+      },
+      {
+        "repo": "plutus-fe",
+        "name": "lint",
+        "captureRecord": ".qa-agent-work\\independent-validation-2026-11-01\\2026-11-01T09-57-44-973Z-9243a82e-lint.execution.json",
+        "nativeExitCode": 1,
+        "complete": true,
+        "stdoutMatches": true,
+        "stderrMatches": true
+      },
+      {
+        "repo": "plutus-fe",
+        "name": "mocked-browser",
+        "captureRecord": ".qa-agent-work\\independent-validation-2026-11-01\\2026-11-01T09-57-44-973Z-9243a82e-mocked-browser.execution.json",
+        "nativeExitCode": 1,
+        "complete": true,
+        "stdoutMatches": true,
+        "stderrMatches": true
+      },
+      {
+        "repo": "plutus-fe",
+        "name": "policy-export-tests",
+        "captureRecord": ".qa-agent-work\\independent-validation-2026-11-01\\2026-11-01T09-57-44-973Z-9243a82e-policy-export-tests.execution.json",
+        "nativeExitCode": 0,
+        "complete": true,
+        "stdoutMatches": true,
+        "stderrMatches": true
+      },
+      {
+        "repo": "plutus-fe",
+        "name": "qa-typecheck",
+        "captureRecord": ".qa-agent-work\\independent-validation-2026-11-01\\2026-11-01T09-57-44-973Z-9243a82e-qa-typecheck.execution.json",
+        "nativeExitCode": 0,
+        "complete": true,
+        "stdoutMatches": true,
+        "stderrMatches": true
+      },
+      {
+        "repo": "plutus-fe",
+        "name": "stack",
+        "captureRecord": ".qa-agent-work\\independent-validation-2026-11-01\\2026-11-01T09-57-44-973Z-9243a82e-stack.execution.json",
+        "nativeExitCode": 2,
+        "complete": true,
+        "stdoutMatches": true,
+        "stderrMatches": true
+      },
+      {
+        "repo": "plutus-fe",
+        "name": "typecheck",
+        "captureRecord": ".qa-agent-work\\independent-validation-2026-11-01\\2026-11-01T09-57-44-973Z-9243a82e-typecheck.execution.json",
+        "nativeExitCode": 2,
+        "complete": true,
+        "stdoutMatches": true,
+        "stderrMatches": true
+      },
+      {
+        "repo": "plutus-fe",
+        "name": "unit",
+        "captureRecord": ".qa-agent-work\\independent-validation-2026-11-01\\2026-11-01T09-57-44-973Z-9243a82e-unit.execution.json",
+        "nativeExitCode": 0,
+        "complete": true,
+        "stdoutMatches": true,
+        "stderrMatches": true
+      },
+      {
+        "repo": "plutus-fe",
+        "name": "validate",
+        "captureRecord": ".qa-agent-work\\independent-validation-2026-11-01\\2026-11-01T09-57-44-973Z-9243a82e-validate.execution.json",
+        "nativeExitCode": 0,
+        "complete": true,
+        "stdoutMatches": true,
+        "stderrMatches": true
+      },
+      {
+        "repo": "plutus-be",
+        "name": "build",
+        "captureRecord": ".qa-agent-work\\independent-validation-2026-11-01\\2026-11-01T09-57-44-973Z-81c06e7e-build.execution.json",
+        "nativeExitCode": 0,
+        "complete": true,
+        "stdoutMatches": true,
+        "stderrMatches": true
+      },
+      {
+        "repo": "plutus-be",
+        "name": "ci-http",
+        "captureRecord": ".qa-agent-work\\independent-validation-2026-11-01\\2026-11-01T09-57-44-973Z-81c06e7e-ci-http.execution.json",
+        "nativeExitCode": 2,
+        "complete": true,
+        "stdoutMatches": true,
+        "stderrMatches": true
+      },
+      {
+        "repo": "plutus-be",
+        "name": "contract",
+        "captureRecord": ".qa-agent-work\\independent-validation-2026-11-01\\2026-11-01T09-57-44-973Z-81c06e7e-contract.execution.json",
+        "nativeExitCode": 0,
+        "complete": true,
+        "stdoutMatches": true,
+        "stderrMatches": true
+      },
+      {
+        "repo": "plutus-be",
+        "name": "harness",
+        "captureRecord": ".qa-agent-work\\independent-validation-2026-11-01\\2026-11-01T09-57-44-973Z-81c06e7e-harness.execution.json",
+        "nativeExitCode": 0,
+        "complete": true,
+        "stdoutMatches": true,
+        "stderrMatches": true
+      },
+      {
+        "repo": "plutus-be",
+        "name": "http",
+        "captureRecord": ".qa-agent-work\\independent-validation-2026-11-01\\2026-11-01T09-57-44-973Z-81c06e7e-http.execution.json",
+        "nativeExitCode": 2,
+        "complete": true,
+        "stdoutMatches": true,
+        "stderrMatches": true
+      },
+      {
+        "repo": "plutus-be",
+        "name": "lint",
+        "captureRecord": ".qa-agent-work\\independent-validation-2026-11-01\\2026-11-01T09-57-44-973Z-81c06e7e-lint.execution.json",
+        "nativeExitCode": 1,
+        "complete": true,
+        "stdoutMatches": true,
+        "stderrMatches": true
+      },
+      {
+        "repo": "plutus-be",
+        "name": "policy-tests",
+        "captureRecord": ".qa-agent-work\\independent-validation-2026-11-01\\2026-11-01T09-57-44-973Z-81c06e7e-policy-tests.execution.json",
+        "nativeExitCode": 0,
+        "complete": true,
+        "stdoutMatches": true,
+        "stderrMatches": true
+      },
+      {
+        "repo": "plutus-be",
+        "name": "qa-typecheck",
+        "captureRecord": ".qa-agent-work\\independent-validation-2026-11-01\\2026-11-01T09-57-44-973Z-81c06e7e-qa-typecheck.execution.json",
+        "nativeExitCode": 0,
+        "complete": true,
+        "stdoutMatches": true,
+        "stderrMatches": true
+      },
+      {
+        "repo": "plutus-be",
+        "name": "qa-unit",
+        "captureRecord": ".qa-agent-work\\independent-validation-2026-11-01\\2026-11-01T09-57-44-973Z-81c06e7e-qa-unit.execution.json",
+        "nativeExitCode": 0,
+        "complete": true,
+        "stdoutMatches": true,
+        "stderrMatches": true
+      },
+      {
+        "repo": "plutus-be",
+        "name": "starter",
+        "captureRecord": ".qa-agent-work\\independent-validation-2026-11-01\\2026-11-01T09-57-44-973Z-81c06e7e-starter.execution.json",
+        "nativeExitCode": 0,
+        "complete": true,
+        "stdoutMatches": true,
+        "stderrMatches": true
+      },
+      {
+        "repo": "plutus-be",
+        "name": "typecheck",
+        "captureRecord": ".qa-agent-work\\independent-validation-2026-11-01\\2026-11-01T09-57-44-973Z-81c06e7e-typecheck.execution.json",
+        "nativeExitCode": 2,
+        "complete": true,
+        "stdoutMatches": true,
+        "stderrMatches": true
+      },
+      {
+        "repo": "plutus-be",
+        "name": "unit",
+        "captureRecord": ".qa-agent-work\\independent-validation-2026-11-01\\2026-11-01T09-57-44-973Z-81c06e7e-unit.execution.json",
+        "nativeExitCode": 1,
+        "complete": true,
+        "stdoutMatches": true,
+        "stderrMatches": true
+      },
+      {
+        "repo": "plutus-be",
+        "name": "validate",
+        "captureRecord": ".qa-agent-work\\independent-validation-2026-11-01\\2026-11-01T09-57-44-973Z-81c06e7e-validate.execution.json",
+        "nativeExitCode": 0,
+        "complete": true,
+        "stdoutMatches": true,
+        "stderrMatches": true
+      }
+    ],
+    "stages": [
+      {
+        "repo": "plutus-fe",
+        "layer": "build",
+        "runId": "2026-11-01T09-58-38-823Z-c5049ee3",
+        "rawDirectory": "qa-raw\\vitest-results\\2026-11-01T09-58-38-823Z-c5049ee3",
+        "nodeVersion": "v24.15.0",
+        "removed": true,
+        "exists": false
+      },
+      {
+        "repo": "plutus-fe",
+        "layer": "legacy-unit",
+        "runId": "2026-11-01T09-58-17-428Z-48537983",
+        "rawDirectory": "qa-raw\\vitest-results\\2026-11-01T09-58-17-428Z-48537983",
+        "nodeVersion": "v24.15.0",
+        "removed": true,
+        "exists": false
+      },
+      {
+        "repo": "plutus-fe",
+        "layer": "lint",
+        "runId": "2026-11-01T09-58-25-366Z-f50a90ec",
+        "rawDirectory": "qa-raw\\vitest-results\\2026-11-01T09-58-25-366Z-f50a90ec",
+        "nodeVersion": "v24.15.0",
+        "removed": true,
+        "exists": false
+      },
+      {
+        "repo": "plutus-fe",
+        "layer": "mocked-browser",
+        "runId": "2026-11-01T09-59-14-742Z-02b536f3",
+        "rawDirectory": "qa-raw\\playwright-results\\2026-11-01T09-59-14-742Z-02b536f3",
+        "nodeVersion": "v24.15.0",
+        "removed": true,
+        "exists": false
+      },
+      {
+        "repo": "plutus-fe",
+        "layer": "qa-typecheck",
+        "runId": "2026-11-01T09-58-22-834Z-4bc242f0",
+        "rawDirectory": "qa-raw\\vitest-results\\2026-11-01T09-58-22-834Z-4bc242f0",
+        "nodeVersion": "v24.15.0",
+        "removed": true,
+        "exists": false
+      },
+      {
+        "repo": "plutus-fe",
+        "layer": "typecheck",
+        "runId": "2026-11-01T09-58-18-058Z-ebc4594a",
+        "rawDirectory": "qa-raw\\vitest-results\\2026-11-01T09-58-18-058Z-ebc4594a",
+        "nodeVersion": "v24.15.0",
+        "removed": true,
+        "exists": false
+      },
+      {
+        "repo": "plutus-fe",
+        "layer": "unit",
+        "runId": "2026-11-01T09-57-45-362Z-c6940824",
+        "rawDirectory": "qa-raw\\vitest-results\\2026-11-01T09-57-45-362Z-c6940824",
+        "nodeVersion": "v24.15.0",
+        "removed": true,
+        "exists": false
+      },
+      {
+        "repo": "plutus-be",
+        "layer": "build",
+        "runId": "2026-11-01T09-58-25-747Z-9c55e537",
+        "rawDirectory": "qa-raw\\jest-results\\2026-11-01T09-58-25-747Z-9c55e537",
+        "nodeVersion": "v24.15.0",
+        "removed": true,
+        "exists": false
+      },
+      {
+        "repo": "plutus-be",
+        "layer": "contract",
+        "runId": "2026-11-01T09-58-14-880Z-07c15c8b",
+        "rawDirectory": "qa-raw\\jest-results\\2026-11-01T09-58-14-880Z-07c15c8b",
+        "nodeVersion": "v24.15.0",
+        "removed": true,
+        "exists": false
+      },
+      {
+        "repo": "plutus-be",
+        "layer": "harness",
+        "runId": "2026-11-01T09-58-12-165Z-950278cc",
+        "rawDirectory": "qa-raw\\jest-results\\2026-11-01T09-58-12-165Z-950278cc",
+        "nodeVersion": "v24.15.0",
+        "removed": true,
+        "exists": false
+      },
+      {
+        "repo": "plutus-be",
+        "layer": "lint",
+        "runId": "2026-11-01T09-58-22-909Z-83cc5374",
+        "rawDirectory": "qa-raw\\jest-results\\2026-11-01T09-58-22-909Z-83cc5374",
+        "nodeVersion": "v24.15.0",
+        "removed": true,
+        "exists": false
+      },
+      {
+        "repo": "plutus-be",
+        "layer": "qa-typecheck",
+        "runId": "2026-11-01T09-58-21-215Z-a82981ba",
+        "rawDirectory": "qa-raw\\jest-results\\2026-11-01T09-58-21-215Z-a82981ba",
+        "nodeVersion": "v24.15.0",
+        "removed": true,
+        "exists": false
+      },
+      {
+        "repo": "plutus-be",
+        "layer": "qa-unit",
+        "runId": "2026-11-01T09-57-59-693Z-e7f7744e",
+        "rawDirectory": "qa-raw\\jest-results\\2026-11-01T09-57-59-693Z-e7f7744e",
+        "nodeVersion": "v24.15.0",
+        "removed": true,
+        "exists": false
+      },
+      {
+        "repo": "plutus-be",
+        "layer": "starter",
+        "runId": "2026-11-01T09-57-45-354Z-0d9f110b",
+        "rawDirectory": "qa-raw\\jest-results\\2026-11-01T09-57-45-354Z-0d9f110b",
+        "nodeVersion": "v24.15.0",
+        "removed": true,
+        "exists": false
+      },
+      {
+        "repo": "plutus-be",
+        "layer": "typecheck",
+        "runId": "2026-11-01T09-58-18-061Z-c348da75",
+        "rawDirectory": "qa-raw\\jest-results\\2026-11-01T09-58-18-061Z-c348da75",
+        "nodeVersion": "v24.15.0",
+        "removed": true,
+        "exists": false
+      },
+      {
+        "repo": "plutus-be",
+        "layer": "unit",
+        "runId": "2026-11-01T09-57-50-125Z-22971319",
+        "rawDirectory": "qa-raw\\jest-results\\2026-11-01T09-57-50-125Z-22971319",
+        "nodeVersion": "v24.15.0",
+        "removed": true,
+        "exists": false
+      }
+    ],
+    "workerProofs": [
+      {
+        "repo": "plutus-fe",
+        "layer": "build",
+        "runId": "2026-11-01T09-58-38-823Z-c5049ee3",
+        "count": 2,
+        "bad": 0
+      },
+      {
+        "repo": "plutus-fe",
+        "layer": "legacy-unit",
+        "runId": "2026-11-01T09-58-17-428Z-48537983",
+        "count": 1,
+        "bad": 0
+      },
+      {
+        "repo": "plutus-fe",
+        "layer": "lint",
+        "runId": "2026-11-01T09-58-25-366Z-f50a90ec",
+        "count": 1,
+        "bad": 0
+      },
+      {
+        "repo": "plutus-fe",
+        "layer": "mocked-browser",
+        "runId": "2026-11-01T09-59-14-742Z-02b536f3",
+        "count": 65,
+        "bad": 0
+      },
+      {
+        "repo": "plutus-fe",
+        "layer": "qa-typecheck",
+        "runId": "2026-11-01T09-58-22-834Z-4bc242f0",
+        "count": 1,
+        "bad": 0
+      },
+      {
+        "repo": "plutus-fe",
+        "layer": "typecheck",
+        "runId": "2026-11-01T09-58-18-058Z-ebc4594a",
+        "count": 1,
+        "bad": 0
+      },
+      {
+        "repo": "plutus-fe",
+        "layer": "unit",
+        "runId": "2026-11-01T09-57-45-362Z-c6940824",
+        "count": 9,
+        "bad": 0
+      }
+    ],
+    "commands": 25,
+    "incompleteOrHashMismatch": [],
+    "stageProblems": [],
+    "noImplementationEdits": true
+  }
+}

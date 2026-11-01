@@ -7,6 +7,7 @@ import {
   useLayoutEffect,
   useMemo,
   useState,
+  useSyncExternalStore,
 } from 'react';
 
 export type ColorModePreference = 'light' | 'dark';
@@ -32,24 +33,25 @@ function setColorModeCookie(mode: ColorModePreference) {
   }
 }
 
-function readStoredPreference(): ColorModePreference {
+function readStoredPreference(): ColorModePreference | null {
   if (typeof window === 'undefined') {
-    return 'light';
+    return null;
   }
   try {
     const v = localStorage.getItem(STORAGE_KEY);
     if (v === 'light' || v === 'dark') {
       return v;
     }
-    // Legacy "system" or unknown: default to light and normalize storage
-    if (v === 'system' || v != null) {
-      localStorage.setItem(STORAGE_KEY, 'light');
-    }
   } catch {
     /* ignore */
   }
-  return 'light';
+  return null;
 }
+
+const subscribeStorage = (listener: () => void) => {
+  window.addEventListener('storage', listener);
+  return () => window.removeEventListener('storage', listener);
+};
 
 export function ColorModeProvider({
   children,
@@ -58,15 +60,9 @@ export function ColorModeProvider({
   children: React.ReactNode;
   initialColorMode?: ColorModePreference;
 }) {
-  const [preference, setPreferenceState] = useState<ColorModePreference>(initialColorMode);
-
-  // useLayoutEffect (not useEffect) so localStorage is applied before the first paint.
-  // useEffect caused a visible flash: light theme background + dark-styled chrome until storage ran.
-  useLayoutEffect(() => {
-    const next = readStoredPreference();
-    setPreferenceState(next);
-    setColorModeCookie(next);
-  }, []);
+  const storedPreference = useSyncExternalStore(subscribeStorage, readStoredPreference, () => initialColorMode);
+  const [chosenPreference, setPreferenceState] = useState<ColorModePreference | null>(null);
+  const preference = chosenPreference ?? storedPreference ?? initialColorMode;
 
   const setPreference = useCallback((mode: ColorModePreference) => {
     setPreferenceState(mode);
@@ -81,6 +77,7 @@ export function ColorModeProvider({
   const resolvedMode = preference;
 
   useLayoutEffect(() => {
+    setColorModeCookie(resolvedMode);
     document.documentElement.dataset.theme = resolvedMode;
     document.documentElement.style.colorScheme = resolvedMode;
   }, [resolvedMode]);

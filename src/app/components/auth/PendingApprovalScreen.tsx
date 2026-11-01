@@ -46,7 +46,7 @@ export default function PendingApprovalScreen() {
           </Typography>
           <Typography variant="body1" color="text.secondary">
             Your access request to <strong>{orgLabel}</strong> is awaiting an
-            administrator. You'll get full access here as soon as they approve.
+            administrator. You&apos;ll get full access here as soon as they approve.
           </Typography>
           <Stack direction="row" spacing={1} alignItems="center" color="text.secondary">
             <CircularProgress size={14} />

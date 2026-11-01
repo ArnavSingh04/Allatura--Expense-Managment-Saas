@@ -1,0 +1,2109 @@
+{
+  "generatedAtUtc": "2026-11-01T10:06:03.912Z",
+  "reviewer": "quality_operations; native independent AI reviewer, not author of reviewed changes",
+  "coordinator": "Derived from actual execution/report files; hashes and source manifests verified",
+  "workingStateSha256": "71ea6375d25f34ca8cb6ddd758ebca98aeb59e6773c6b1e7217e44ac0515e0ab",
+  "versions": {
+    "node": "v24.15.0",
+    "platform": "win32",
+    "arch": "x64",
+    "npm": "11.12.1",
+    "frontendApplication": {
+      "next": {
+        "version": "16.2.1",
+        "engines": {
+          "node": ">=20.9.0"
+        },
+        "peerDependencies": {
+          "@opentelemetry/api": "^1.1.0",
+          "@playwright/test": "^1.51.1",
+          "babel-plugin-react-compiler": "*",
+          "react": "^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0",
+          "react-dom": "^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0",
+          "sass": "^1.3.0"
+        }
+      },
+      "react": {
+        "version": "19.2.4",
+        "engines": {
+          "node": ">=0.10.0"
+        }
+      },
+      "react-dom": {
+        "version": "19.2.4",
+        "peerDependencies": {
+          "react": "^19.2.4"
+        }
+      },
+      "typescript": {
+        "version": "5.9.3",
+        "engines": {
+          "node": ">=14.17"
+        }
+      },
+      "eslint": {
+        "version": "9.39.4",
+        "engines": {
+          "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
+        },
+        "peerDependencies": {
+          "jiti": "*"
+        }
+      },
+      "eslint-config-next": {
+        "version": "16.2.1",
+        "peerDependencies": {
+          "eslint": ">=9.0.0",
+          "typescript": ">=3.3.1"
+        }
+      }
+    },
+    "frontendTesting": {
+      "vitest": {
+        "version": "3.2.6",
+        "engines": {
+          "node": "^18.0.0 || ^20.0.0 || >=22.0.0"
+        },
+        "peerDependencies": {
+          "@edge-runtime/vm": "*",
+          "@types/debug": "^4.1.12",
+          "@types/node": "^18.0.0 || ^20.0.0 || >=22.0.0",
+          "happy-dom": "*",
+          "jsdom": "*",
+          "@vitest/browser": "3.2.6",
+          "@vitest/ui": "3.2.6"
+        }
+      },
+      "@vitest/coverage-v8": {
+        "version": "3.2.6",
+        "peerDependencies": {
+          "@vitest/browser": "3.2.6",
+          "vitest": "3.2.6"
+        }
+      },
+      "vite": {
+        "version": "6.4.1",
+        "engines": {
+          "node": "^18.0.0 || ^20.0.0 || >=22.0.0"
+        },
+        "peerDependencies": {
+          "@types/node": "^18.0.0 || ^20.0.0 || >=22.0.0",
+          "jiti": ">=1.21.0",
+          "less": "*",
+          "lightningcss": "^1.21.0",
+          "sass": "*",
+          "sass-embedded": "*",
+          "stylus": "*",
+          "sugarss": "*",
+          "terser": "^5.16.0",
+          "tsx": "^4.8.1",
+          "yaml": "^2.4.2"
+        }
+      },
+      "@testing-library/react": {
+        "version": "16.3.0",
+        "engines": {
+          "node": ">=18"
+        },
+        "peerDependencies": {
+          "@testing-library/dom": "^10.0.0",
+          "@types/react": "^18.0.0 || ^19.0.0",
+          "@types/react-dom": "^18.0.0 || ^19.0.0",
+          "react": "^18.0.0 || ^19.0.0",
+          "react-dom": "^18.0.0 || ^19.0.0"
+        }
+      },
+      "@testing-library/dom": {
+        "version": "10.4.1",
+        "engines": {
+          "node": ">=18"
+        }
+      },
+      "@testing-library/user-event": {
+        "version": "14.6.1",
+        "engines": {
+          "node": ">=12",
+          "npm": ">=6"
+        },
+        "peerDependencies": {
+          "@testing-library/dom": ">=7.21.4"
+        }
+      },
+      "@testing-library/jest-dom": {
+        "version": "6.9.1",
+        "engines": {
+          "node": ">=14",
+          "npm": ">=6",
+          "yarn": ">=1"
+        }
+      },
+      "jsdom": {
+        "version": "26.1.0",
+        "engines": {
+          "node": ">=18"
+        },
+        "peerDependencies": {
+          "canvas": "^3.0.0"
+        }
+      },
+      "@playwright/test": {
+        "version": "1.58.2",
+        "engines": {
+          "node": ">=18"
+        }
+      }
+    },
+    "backend": {
+      "@nestjs/core": {
+        "version": "11.1.18",
+        "engines": {
+          "node": ">= 20"
+        },
+        "peerDependencies": {
+          "@nestjs/common": "^11.0.0",
+          "@nestjs/microservices": "^11.0.0",
+          "@nestjs/platform-express": "^11.0.0",
+          "@nestjs/websockets": "^11.0.0",
+          "reflect-metadata": "^0.1.12 || ^0.2.0",
+          "rxjs": "^7.1.0"
+        }
+      },
+      "typescript": {
+        "version": "5.9.3",
+        "engines": {
+          "node": ">=14.17"
+        }
+      },
+      "jest": {
+        "version": "29.7.0",
+        "engines": {
+          "node": "^14.15.0 || ^16.10.0 || >=18.0.0"
+        },
+        "peerDependencies": {
+          "node-notifier": "^8.0.1 || ^9.0.0 || ^10.0.0"
+        }
+      },
+      "ts-jest": {
+        "version": "29.4.9",
+        "engines": {
+          "node": "^14.15.0 || ^16.10.0 || ^18.0.0 || >=20.0.0"
+        },
+        "peerDependencies": {
+          "@babel/core": ">=7.0.0-beta.0 <8",
+          "@jest/transform": "^29.0.0 || ^30.0.0",
+          "@jest/types": "^29.0.0 || ^30.0.0",
+          "babel-jest": "^29.0.0 || ^30.0.0",
+          "jest": "^29.0.0 || ^30.0.0",
+          "jest-util": "^29.0.0 || ^30.0.0",
+          "typescript": ">=4.3 <7"
+        }
+      },
+      "mongoose": {
+        "version": "8.23.0",
+        "engines": {
+          "node": ">=16.20.1"
+        }
+      },
+      "eslint": {
+        "version": "9.39.4",
+        "engines": {
+          "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
+        },
+        "peerDependencies": {
+          "jiti": "*"
+        }
+      }
+    },
+    "dependencySources": {
+      "frontend": "Previously prepared pinned dependency directory under ignored Phase3 scratch; application lock preserved",
+      "backend": "Existing local node_modules; clean install not repeated; extraneous DB test dependency remains a documented risk"
+    },
+    "freshInstall": false
+  },
+  "compatibilityChecks": [
+    {
+      "check": "frontendApplication/next Node engine",
+      "actual": "v24.15.0",
+      "required": ">=20.9.0",
+      "pass": true
+    },
+    {
+      "check": "frontendApplication/react Node engine",
+      "actual": "v24.15.0",
+      "required": ">=0.10.0",
+      "pass": true
+    },
+    {
+      "check": "frontendApplication/typescript Node engine",
+      "actual": "v24.15.0",
+      "required": ">=14.17",
+      "pass": true
+    },
+    {
+      "check": "frontendApplication/eslint Node engine",
+      "actual": "v24.15.0",
+      "required": "^18.18.0 || ^20.9.0 || >=21.1.0",
+      "pass": true
+    },
+    {
+      "check": "frontendTesting/vitest Node engine",
+      "actual": "v24.15.0",
+      "required": "^18.0.0 || ^20.0.0 || >=22.0.0",
+      "pass": true
+    },
+    {
+      "check": "frontendTesting/vite Node engine",
+      "actual": "v24.15.0",
+      "required": "^18.0.0 || ^20.0.0 || >=22.0.0",
+      "pass": true
+    },
+    {
+      "check": "frontendTesting/@testing-library/react Node engine",
+      "actual": "v24.15.0",
+      "required": ">=18",
+      "pass": true
+    },
+    {
+      "check": "frontendTesting/@testing-library/dom Node engine",
+      "actual": "v24.15.0",
+      "required": ">=18",
+      "pass": true
+    },
+    {
+      "check": "frontendTesting/@testing-library/user-event Node engine",
+      "actual": "v24.15.0",
+      "required": ">=12",
+      "pass": true
+    },
+    {
+      "check": "frontendTesting/@testing-library/jest-dom Node engine",
+      "actual": "v24.15.0",
+      "required": ">=14",
+      "pass": true
+    },
+    {
+      "check": "frontendTesting/jsdom Node engine",
+      "actual": "v24.15.0",
+      "required": ">=18",
+      "pass": true
+    },
+    {
+      "check": "frontendTesting/@playwright/test Node engine",
+      "actual": "v24.15.0",
+      "required": ">=18",
+      "pass": true
+    },
+    {
+      "check": "backend/@nestjs/core Node engine",
+      "actual": "v24.15.0",
+      "required": ">= 20",
+      "pass": true
+    },
+    {
+      "check": "backend/typescript Node engine",
+      "actual": "v24.15.0",
+      "required": ">=14.17",
+      "pass": true
+    },
+    {
+      "check": "backend/jest Node engine",
+      "actual": "v24.15.0",
+      "required": "^14.15.0 || ^16.10.0 || >=18.0.0",
+      "pass": true
+    },
+    {
+      "check": "backend/ts-jest Node engine",
+      "actual": "v24.15.0",
+      "required": "^14.15.0 || ^16.10.0 || ^18.0.0 || >=20.0.0",
+      "pass": true
+    },
+    {
+      "check": "backend/mongoose Node engine",
+      "actual": "v24.15.0",
+      "required": ">=16.20.1",
+      "pass": true
+    },
+    {
+      "check": "backend/eslint Node engine",
+      "actual": "v24.15.0",
+      "required": "^18.18.0 || ^20.9.0 || >=21.1.0",
+      "pass": true
+    },
+    {
+      "check": "React DOM/React",
+      "actual": "19.2.4",
+      "required": "^19.2.4",
+      "pass": true
+    },
+    {
+      "check": "RTL/React",
+      "actual": "19.2.4",
+      "required": "^18.0.0 || ^19.0.0",
+      "pass": true
+    },
+    {
+      "check": "RTL/React DOM",
+      "actual": "19.2.4",
+      "required": "^18.0.0 || ^19.0.0",
+      "pass": true
+    },
+    {
+      "check": "RTL/DOM",
+      "actual": "10.4.1",
+      "required": "^10.0.0",
+      "pass": true
+    },
+    {
+      "check": "Vitest/V8 coverage",
+      "actual": "3.2.6",
+      "required": "3.2.6",
+      "pass": true
+    },
+    {
+      "check": "ts-jest/TypeScript",
+      "actual": "5.9.3",
+      "required": ">=4.3 <7",
+      "pass": true
+    }
+  ],
+  "commands": [
+    {
+      "repository": "plutus-fe",
+      "name": "build",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "build"
+      ],
+      "startedAtUtc": "2026-11-01T09:58:38.7812045Z",
+      "finishedAtUtc": "2026-11-01T09:59:14.6919796Z",
+      "exitCode": 1,
+      "status": "FAIL",
+      "capture": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-build.execution.json",
+        "sha256": "cba96ffc20757c3799465996a8f23aaed68a6958464430eae5ae5cea1ddd08f8"
+      },
+      "stdout": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-build.stdout.log",
+        "sha256": "4a63ede88ab4abc84fb81ac0c83db80003108e37aa42b9bc7199ac1ec78d6903"
+      },
+      "stderr": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-build.stderr.log",
+        "sha256": "f739abe6deb7fe143bea834366f3e884e49a8e47dc924126f842b7ab4be17eb2"
+      },
+      "environment": "Reviewed ci-common cleanEnvironment equivalent; no ambient application values",
+      "execution": {
+        "path": "plutus-fe/qa-raw/vitest-results/2026-11-01T09-58-38-823Z-c5049ee3/execution.json",
+        "sha256": "c71b6f67ecadbd2ac07b2aab1e609fba356b6835c73caa29c6e0a7c96d91def3"
+      },
+      "innerCommand": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "<WORKSPACE>\\plutus-fe\\.qa-agent-work\\frontend-phase-2026-11-01\\dependencies\\node_modules\\next\\dist\\bin\\next",
+        "build",
+        "--webpack"
+      ],
+      "stageRemoved": true,
+      "runId": "2026-11-01T09-58-38-823Z-c5049ee3",
+      "sourceBinding": {
+        "manifest": {
+          "path": "plutus-fe/qa-raw/vitest-results/2026-11-01T09-58-38-823Z-c5049ee3/source-manifest.json",
+          "sha256": "2fac892e8c6eb50827659a8179acba3007b4a82fd49c8e4ed196690e13efb405"
+        },
+        "files": 217,
+        "allMatchFinalState": true
+      },
+      "diagnostics": [
+        "Type error: Property 'organisations' does not exist on type 'AuthSessionContextValue'."
+      ],
+      "guardProofs": {
+        "count": 2,
+        "uniquePids": 2,
+        "allLoaded": true,
+        "allSyntheticReadsDenied": true
+      }
+    },
+    {
+      "repository": "plutus-fe",
+      "name": "ci-stack",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/qa/ci-job.cjs",
+        "--layer",
+        "stack"
+      ],
+      "startedAtUtc": "2026-11-01T10:02:02.7356199Z",
+      "finishedAtUtc": "2026-11-01T10:02:02.8285524Z",
+      "exitCode": 2,
+      "status": "BLOCKED",
+      "capture": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-ci-stack.execution.json",
+        "sha256": "e967b7232b9d4b39d7a6ad689cf3c37917b76a0a8b393ea238b37f30b6eae21b"
+      },
+      "stdout": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-ci-stack.stdout.log",
+        "sha256": "db3fb84c28b503fe2189e6710c414e9e2fa2e2eb3ec10b938b89bd1c207c5136"
+      },
+      "stderr": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-ci-stack.stderr.log",
+        "sha256": "f50b91f7f1ebfe6ca72d50fdb395ee4bc1ef37756f2b8066d01705c2e4158d38"
+      },
+      "environment": "Reviewed ci-common cleanEnvironment equivalent; no ambient application values",
+      "execution": {
+        "path": "plutus-fe/qa-raw/vitest-results/2026-11-01T10-02-02-815Z-f3c0259b/execution.json",
+        "sha256": "ca8c5d2b50e24a8c6c64e16b2b196f000b1f2f549b45f8263cee8971e501786b"
+      },
+      "stageRemoved": false,
+      "runId": "2026-11-01T10-02-02-815Z-f3c0259b",
+      "reason": "No independently verified disposable backend/database runner is provisioned. Real-system browser setup, seeding and cleanup were not attempted."
+    },
+    {
+      "repository": "plutus-fe",
+      "name": "export-verify",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/qa/export-evidence.cjs"
+      ],
+      "startedAtUtc": "2026-11-01T10:02:02.6583759Z",
+      "finishedAtUtc": "2026-11-01T10:02:02.7282798Z",
+      "exitCode": 0,
+      "status": "PASS",
+      "capture": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-export-verify.execution.json",
+        "sha256": "35d9ca8d115a0809fcf659ecab10ebb9d1cbe98b62bcbcdfa9644ef8dfbac945"
+      },
+      "stdout": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-export-verify.stdout.log",
+        "sha256": "5b202557f0be3da59f8753ead5615986795be6f39b9c2a25c8d98d645b321e65"
+      },
+      "stderr": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-export-verify.stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "environment": "Reviewed ci-common cleanEnvironment equivalent; no ambient application values"
+    },
+    {
+      "repository": "plutus-fe",
+      "name": "legacy-unit",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "legacy-unit"
+      ],
+      "startedAtUtc": "2026-11-01T09:58:17.3890118Z",
+      "finishedAtUtc": "2026-11-01T09:58:18.0052848Z",
+      "exitCode": 1,
+      "status": "FAIL",
+      "capture": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-legacy-unit.execution.json",
+        "sha256": "6f3ede70ae1a570ed9b01e7c6bcddeee92811ab1ea5b9a964858f1c662cb1d0b"
+      },
+      "stdout": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-legacy-unit.stdout.log",
+        "sha256": "f9abc0e4ac9ac1051e055d2848124914718f057426ec1c30d35a1480f0bbc00d"
+      },
+      "stderr": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-legacy-unit.stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "environment": "Reviewed ci-common cleanEnvironment equivalent; no ambient application values",
+      "execution": {
+        "path": "plutus-fe/qa-raw/vitest-results/2026-11-01T09-58-17-428Z-48537983/execution.json",
+        "sha256": "64137ac8bad655d37b4d4bf248e1d18d02fd6ebde54f9ee9e79d937187e144c4"
+      },
+      "innerCommand": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "<OWNED_STAGE>\\scripts\\workspaces.test.cjs"
+      ],
+      "stageRemoved": true,
+      "runId": "2026-11-01T09-58-17-428Z-48537983",
+      "sourceBinding": {
+        "manifest": {
+          "path": "plutus-fe/qa-raw/vitest-results/2026-11-01T09-58-17-428Z-48537983/source-manifest.json",
+          "sha256": "2fac892e8c6eb50827659a8179acba3007b4a82fd49c8e4ed196690e13efb405"
+        },
+        "files": 217,
+        "allMatchFinalState": true
+      },
+      "summaryLines": [
+        "ℹ tests 14",
+        "ℹ pass 6",
+        "ℹ fail 8",
+        "ℹ cancelled 0",
+        "ℹ skipped 0",
+        "ℹ todo 0"
+      ],
+      "tests": {
+        "total": 14,
+        "passed": 6,
+        "failed": 8,
+        "pending": 0,
+        "cancelled": 0
+      },
+      "guardProofs": {
+        "count": 1,
+        "uniquePids": 1,
+        "allLoaded": true,
+        "allSyntheticReadsDenied": true
+      }
+    },
+    {
+      "repository": "plutus-fe",
+      "name": "lint",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "lint"
+      ],
+      "startedAtUtc": "2026-11-01T09:58:25.3265640Z",
+      "finishedAtUtc": "2026-11-01T09:58:38.7725254Z",
+      "exitCode": 1,
+      "status": "FAIL",
+      "capture": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-lint.execution.json",
+        "sha256": "b376a3507e129cef789d79ea81747f436ee5a9470cf6d300b7228e28f3522d9b"
+      },
+      "stdout": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-lint.stdout.log",
+        "sha256": "64a34989baa2d3f46e10aadaae655391c0aeeabfa411522e1aeccdd486330713"
+      },
+      "stderr": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-lint.stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "environment": "Reviewed ci-common cleanEnvironment equivalent; no ambient application values",
+      "execution": {
+        "path": "plutus-fe/qa-raw/vitest-results/2026-11-01T09-58-25-366Z-f50a90ec/execution.json",
+        "sha256": "c8b1b1aca4ae4793c6d81a100864228f77a1660583a9abf7e9301981ab6c825a"
+      },
+      "innerCommand": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "<WORKSPACE>\\plutus-fe\\.qa-agent-work\\frontend-phase-2026-11-01\\dependencies\\node_modules\\eslint\\bin\\eslint.js",
+        ".",
+        "--format",
+        "json",
+        "--output-file",
+        "<WORKSPACE>\\plutus-fe\\qa-raw\\vitest-results\\2026-11-01T09-58-25-366Z-f50a90ec\\eslint.json"
+      ],
+      "stageRemoved": true,
+      "runId": "2026-11-01T09-58-25-366Z-f50a90ec",
+      "sourceBinding": {
+        "manifest": {
+          "path": "plutus-fe/qa-raw/vitest-results/2026-11-01T09-58-25-366Z-f50a90ec/source-manifest.json",
+          "sha256": "2fac892e8c6eb50827659a8179acba3007b4a82fd49c8e4ed196690e13efb405"
+        },
+        "files": 217,
+        "allMatchFinalState": true
+      },
+      "lint": {
+        "artifact": {
+          "path": "plutus-fe/qa-raw/vitest-results/2026-11-01T09-58-25-366Z-f50a90ec/eslint.json",
+          "sha256": "3716166dcc261fd0ac447ce0209fb565dc6462ae9ee7d4049ec676ee18362397"
+        },
+        "errors": 13,
+        "warnings": 4,
+        "rules": {
+          "@next/next/no-assign-module-variable": 1,
+          "react-hooks/set-state-in-effect": 4,
+          "react/no-unescaped-entities": 2,
+          "@typescript-eslint/no-unused-vars": 3,
+          "@typescript-eslint/no-explicit-any": 4,
+          "react-hooks/purity": 2,
+          "null": 1
+        }
+      },
+      "guardProofs": {
+        "count": 1,
+        "uniquePids": 1,
+        "allLoaded": true,
+        "allSyntheticReadsDenied": true
+      }
+    },
+    {
+      "repository": "plutus-fe",
+      "name": "mocked-browser",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "mocked-browser"
+      ],
+      "startedAtUtc": "2026-11-01T09:59:14.6998828Z",
+      "finishedAtUtc": "2026-11-01T10:02:02.5879794Z",
+      "exitCode": 1,
+      "status": "FAIL",
+      "capture": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-mocked-browser.execution.json",
+        "sha256": "aee79c0edca792a2680662fa8e252c6f7272fe1dae70a1341177fba6ac1e519d"
+      },
+      "stdout": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-mocked-browser.stdout.log",
+        "sha256": "09acb84a107597e2c08db759851b42f8fda140a0ec7f3414d28b0d598d606bb4"
+      },
+      "stderr": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-mocked-browser.stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "environment": "Reviewed ci-common cleanEnvironment equivalent; no ambient application values",
+      "execution": {
+        "path": "plutus-fe/qa-raw/playwright-results/2026-11-01T09-59-14-742Z-02b536f3/execution.json",
+        "sha256": "002df017acfc31d0f0a94005534e211939e694b980aa6ea09c2bf826a01e44e2"
+      },
+      "innerCommand": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "<OWNED_STAGE>\\qa\\harness\\run-browser.cjs"
+      ],
+      "stageRemoved": true,
+      "runId": "2026-11-01T09-59-14-742Z-02b536f3",
+      "sourceBinding": {
+        "manifest": {
+          "path": "plutus-fe/qa-raw/playwright-results/2026-11-01T09-59-14-742Z-02b536f3/source-manifest.json",
+          "sha256": "2fac892e8c6eb50827659a8179acba3007b4a82fd49c8e4ed196690e13efb405"
+        },
+        "files": 217,
+        "allMatchFinalState": true
+      },
+      "guardProofs": {
+        "count": 65,
+        "uniquePids": 46,
+        "allLoaded": true,
+        "allSyntheticReadsDenied": true
+      }
+    },
+    {
+      "repository": "plutus-fe",
+      "name": "policy-export-tests",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "--test",
+        "qa/ci/validation.test.cjs",
+        "qa/ci/export.test.cjs"
+      ],
+      "startedAtUtc": "2026-11-01T09:57:45.1700168Z",
+      "finishedAtUtc": "2026-11-01T09:57:45.3088284Z",
+      "exitCode": 0,
+      "status": "PASS",
+      "capture": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-policy-export-tests.execution.json",
+        "sha256": "c40d98e7d0ad5ccaef6fb15669579e721a3aad5441d01bb5d746ecb7ed9e00b4"
+      },
+      "stdout": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-policy-export-tests.stdout.log",
+        "sha256": "d1f1b077408ee2ffacb49e08e4a68797a061fcd8703106793efec3662f9366b2"
+      },
+      "stderr": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-policy-export-tests.stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "environment": "Reviewed ci-common cleanEnvironment equivalent; no ambient application values",
+      "summaryLines": [
+        "ℹ tests 15",
+        "ℹ pass 15",
+        "ℹ fail 0",
+        "ℹ cancelled 0",
+        "ℹ skipped 0",
+        "ℹ todo 0"
+      ]
+    },
+    {
+      "repository": "plutus-fe",
+      "name": "qa-typecheck",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "qa-typecheck"
+      ],
+      "startedAtUtc": "2026-11-01T09:58:22.7961513Z",
+      "finishedAtUtc": "2026-11-01T09:58:25.3223966Z",
+      "exitCode": 0,
+      "status": "PASS",
+      "capture": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-qa-typecheck.execution.json",
+        "sha256": "ac7734e60175d20ac466104cd42b8a6e5090962fbf83c22daec4cee8e6bf1e61"
+      },
+      "stdout": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-qa-typecheck.stdout.log",
+        "sha256": "8246d448d20b8a73bb4e73eb10bac26326246186427a79dca492d1d74e614ade"
+      },
+      "stderr": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-qa-typecheck.stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "environment": "Reviewed ci-common cleanEnvironment equivalent; no ambient application values",
+      "execution": {
+        "path": "plutus-fe/qa-raw/vitest-results/2026-11-01T09-58-22-834Z-4bc242f0/execution.json",
+        "sha256": "b88eac3aa4ab3781222dee4bbdc5f6d12b42ce3f88c7cb50edfe6d1ae1f45376"
+      },
+      "innerCommand": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "<WORKSPACE>\\plutus-fe\\.qa-agent-work\\frontend-phase-2026-11-01\\dependencies\\node_modules\\typescript\\bin\\tsc",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "-p",
+        "tsconfig.qa.json"
+      ],
+      "stageRemoved": true,
+      "runId": "2026-11-01T09-58-22-834Z-4bc242f0",
+      "sourceBinding": {
+        "manifest": {
+          "path": "plutus-fe/qa-raw/vitest-results/2026-11-01T09-58-22-834Z-4bc242f0/source-manifest.json",
+          "sha256": "2fac892e8c6eb50827659a8179acba3007b4a82fd49c8e4ed196690e13efb405"
+        },
+        "files": 217,
+        "allMatchFinalState": true
+      },
+      "guardProofs": {
+        "count": 1,
+        "uniquePids": 1,
+        "allLoaded": true,
+        "allSyntheticReadsDenied": true
+      }
+    },
+    {
+      "repository": "plutus-fe",
+      "name": "stack",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "stack"
+      ],
+      "startedAtUtc": "2026-11-01T10:02:02.5951382Z",
+      "finishedAtUtc": "2026-11-01T10:02:02.6509516Z",
+      "exitCode": 2,
+      "status": "BLOCKED",
+      "capture": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-stack.execution.json",
+        "sha256": "cb1fdd6620ddcc59bc93f52fffbf867b99a93400250e9274b9a0ff7c0c9d451c"
+      },
+      "stdout": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-stack.stdout.log",
+        "sha256": "9639cbdc587c1ba8cdb12cf44ef5b29a9d03c98db02e3d13d3a69dacaa878de3"
+      },
+      "stderr": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-stack.stderr.log",
+        "sha256": "f50b91f7f1ebfe6ca72d50fdb395ee4bc1ef37756f2b8066d01705c2e4158d38"
+      },
+      "environment": "Reviewed ci-common cleanEnvironment equivalent; no ambient application values",
+      "execution": {
+        "path": "plutus-fe/qa-raw/vitest-results/2026-11-01T10-02-02-642Z-9470290a/execution.json",
+        "sha256": "3b53412d60e9650e21be868422c10cd5f4a159fce3052c3f2e8faec4aa344eae"
+      },
+      "stageRemoved": false,
+      "runId": "2026-11-01T10-02-02-642Z-9470290a",
+      "reason": "No independently verified disposable backend/database runner is provisioned. Real-system browser setup, seeding and cleanup were not attempted."
+    },
+    {
+      "repository": "plutus-fe",
+      "name": "typecheck",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "typecheck"
+      ],
+      "startedAtUtc": "2026-11-01T09:58:18.0052848Z",
+      "finishedAtUtc": "2026-11-01T09:58:22.7915280Z",
+      "exitCode": 2,
+      "status": "FAIL",
+      "capture": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-typecheck.execution.json",
+        "sha256": "d65b49f7b56549ea4754c09ba6702a8c2e826e1d18a7dbcd33f569c372de8e21"
+      },
+      "stdout": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-typecheck.stdout.log",
+        "sha256": "e2311b266d13407f0ba6c9eebd521e7c3b65f89c1e222d7a48d63af3b01d4e5c"
+      },
+      "stderr": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-typecheck.stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "environment": "Reviewed ci-common cleanEnvironment equivalent; no ambient application values",
+      "execution": {
+        "path": "plutus-fe/qa-raw/vitest-results/2026-11-01T09-58-18-058Z-ebc4594a/execution.json",
+        "sha256": "30536d4ff7cddef8f9294b834316db73995c0d9b2fee8656c345a7eb1c142d05"
+      },
+      "innerCommand": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "<WORKSPACE>\\plutus-fe\\.qa-agent-work\\frontend-phase-2026-11-01\\dependencies\\node_modules\\typescript\\bin\\tsc",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "-p",
+        "tsconfig.json"
+      ],
+      "stageRemoved": true,
+      "runId": "2026-11-01T09-58-18-058Z-ebc4594a",
+      "sourceBinding": {
+        "manifest": {
+          "path": "plutus-fe/qa-raw/vitest-results/2026-11-01T09-58-18-058Z-ebc4594a/source-manifest.json",
+          "sha256": "2fac892e8c6eb50827659a8179acba3007b4a82fd49c8e4ed196690e13efb405"
+        },
+        "files": 217,
+        "allMatchFinalState": true
+      },
+      "diagnostics": [
+        "src/app/components/dashboard/OrganisationSwitcher.tsx(11,27): error TS2339: Property 'organisations' does not exist on type 'AuthSessionContextValue'.",
+        "src/app/components/dashboard/OrganisationSwitcher.tsx(17,37): error TS2339: Property 'organisationId' does not exist on type 'AuthSession'.",
+        "src/app/components/dashboard/OrganisationSwitcher.tsx(37,27): error TS2339: Property 'organisationId' does not exist on type 'AuthSession'.",
+        "src/app/components/dashboard/OrganisationSwitcher.tsx(42,31): error TS7006: Parameter 'organisation' implicitly has an 'any' type.",
+        "src/app/components/dashboard/OrganisationSwitcher.tsx(44,38): error TS7053: Element implicitly has an 'any' type because expression of type 'any' can't be used to index type 'Record<\"owner\" | \"viewer\" | \"editor\" | \"admin\" | \"pm\" | \"supervisor\" | \"finance\" | \"general\" | \"subcontractor\", string>'."
+      ],
+      "guardProofs": {
+        "count": 1,
+        "uniquePids": 1,
+        "allLoaded": true,
+        "allSyntheticReadsDenied": true
+      }
+    },
+    {
+      "repository": "plutus-fe",
+      "name": "unit",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "unit"
+      ],
+      "startedAtUtc": "2026-11-01T09:57:45.3181699Z",
+      "finishedAtUtc": "2026-11-01T09:58:17.3854446Z",
+      "exitCode": 0,
+      "status": "PASS",
+      "capture": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-unit.execution.json",
+        "sha256": "23877e3661c9957da78a0de34f9cd8bd1bb0a85c68059e122f5e7afc1af6229c"
+      },
+      "stdout": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-unit.stdout.log",
+        "sha256": "e5e00b43c7c8ae0b38da53bf2db8179a95491008b3d8f4bb9ce465c9b6825aa3"
+      },
+      "stderr": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-unit.stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "environment": "Reviewed ci-common cleanEnvironment equivalent; no ambient application values",
+      "execution": {
+        "path": "plutus-fe/qa-raw/vitest-results/2026-11-01T09-57-45-362Z-c6940824/execution.json",
+        "sha256": "99afe22b7665cf20311c59d9d604bfd014b6b54986a006822d1e7453949516be"
+      },
+      "innerCommand": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "<WORKSPACE>\\plutus-fe\\.qa-agent-work\\frontend-phase-2026-11-01\\dependencies\\node_modules\\vitest\\vitest.mjs",
+        "run",
+        "--config",
+        "vitest.config.mts",
+        "--configLoader",
+        "native",
+        "--coverage",
+        "--reporter=default",
+        "--reporter=json",
+        "--outputFile.json=<WORKSPACE>\\plutus-fe\\qa-raw\\vitest-results\\2026-11-01T09-57-45-362Z-c6940824\\vitest.json"
+      ],
+      "stageRemoved": true,
+      "runId": "2026-11-01T09-57-45-362Z-c6940824",
+      "sourceBinding": {
+        "manifest": {
+          "path": "plutus-fe/qa-raw/vitest-results/2026-11-01T09-57-45-362Z-c6940824/source-manifest.json",
+          "sha256": "2fac892e8c6eb50827659a8179acba3007b4a82fd49c8e4ed196690e13efb405"
+        },
+        "files": 217,
+        "allMatchFinalState": true
+      },
+      "tests": {
+        "total": 45,
+        "passed": 45,
+        "failed": 0,
+        "pending": 0,
+        "todo": 0,
+        "failedSuites": 0,
+        "runtimeErrorSuites": 0,
+        "files": [
+          {
+            "file": "<OWNED_STAGE>/qa/harness/node-guard.test.ts",
+            "status": "passed",
+            "passed": 8,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "tests/components/auth-gates.test.tsx",
+            "status": "passed",
+            "passed": 10,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "tests/components/billing-page.test.tsx",
+            "status": "passed",
+            "passed": 6,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "tests/components/contact-page.test.tsx",
+            "status": "passed",
+            "passed": 6,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "tests/components/expense-dialog.test.tsx",
+            "status": "passed",
+            "passed": 4,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "tests/components/supplier-dialog.test.tsx",
+            "status": "passed",
+            "passed": 6,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "tests/components/suppliers-page.test.tsx",
+            "status": "passed",
+            "passed": 5,
+            "failed": 0,
+            "pending": 0
+          }
+        ],
+        "artifact": {
+          "path": "plutus-fe/qa-raw/vitest-results/2026-11-01T09-57-45-362Z-c6940824/vitest.json",
+          "sha256": "192b047da4368f602560d13ea48a8369e2fe2828fa80097f3b20f195d6af10c5"
+        }
+      },
+      "guardProofs": {
+        "count": 9,
+        "uniquePids": 1,
+        "allLoaded": true,
+        "allSyntheticReadsDenied": true
+      }
+    },
+    {
+      "repository": "plutus-fe",
+      "name": "validate",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/qa/validate-ci.cjs"
+      ],
+      "startedAtUtc": "2026-11-01T09:57:45.0050369Z",
+      "finishedAtUtc": "2026-11-01T09:57:45.1148929Z",
+      "exitCode": 0,
+      "status": "PASS",
+      "capture": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-validate.execution.json",
+        "sha256": "2b81057735fd995bd99827b2b75fd02fc2b64b1c60a0d7bb29ca4199063c1e2c"
+      },
+      "stdout": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-validate.stdout.log",
+        "sha256": "e01d92ed4fea37bb5ce4afc69c21bace9dfab5dd38ba127feb8f500a6dd7d827"
+      },
+      "stderr": {
+        "path": "plutus-fe/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-9243a82e-validate.stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "environment": "Reviewed ci-common cleanEnvironment equivalent; no ambient application values"
+    },
+    {
+      "repository": "plutus-be",
+      "name": "build",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "build"
+      ],
+      "startedAtUtc": "2026-11-01T09:58:25.7068190Z",
+      "finishedAtUtc": "2026-11-01T09:58:35.9360860Z",
+      "exitCode": 0,
+      "status": "PASS",
+      "capture": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-build.execution.json",
+        "sha256": "4d9b21c2b8893765d913aa105a3ee75ad5334560ba26bf0513c26f4b472034f6"
+      },
+      "stdout": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-build.stdout.log",
+        "sha256": "94111b6f8f30c6fc378eca23d86001ed49503ef7c5bba52e2ab0ab95b19fcf11"
+      },
+      "stderr": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-build.stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "environment": "Reviewed ci-common cleanEnvironment equivalent; no ambient application values",
+      "execution": {
+        "path": "plutus-be/qa-raw/jest-results/2026-11-01T09-58-25-747Z-9c55e537/execution.json",
+        "sha256": "b649922d1fa3bb6ec2a795cb57c878d0a890a5c298e6bd73c31dc42d1b93e3d0"
+      },
+      "innerCommand": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "--require",
+        "<OWNED_STAGE>\\test\\qa\\support\\runtime-guard.cjs",
+        "<WORKSPACE>\\plutus-be\\node_modules\\@nestjs\\cli\\bin\\nest.js",
+        "build"
+      ],
+      "stageRemoved": true,
+      "runId": "2026-11-01T09-58-25-747Z-9c55e537",
+      "sourceBinding": {
+        "manifest": {
+          "path": "plutus-be/qa-raw/jest-results/2026-11-01T09-58-25-747Z-9c55e537/source-manifest.json",
+          "sha256": "e4556c44a97ce8cced96dd931613a4ff0d3f17cce2c9cf099194755751a3661b"
+        },
+        "files": 218,
+        "allMatchFinalState": true
+      },
+      "diagnostics": []
+    },
+    {
+      "repository": "plutus-be",
+      "name": "ci-http",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/qa/ci-job.cjs",
+        "--layer",
+        "http"
+      ],
+      "startedAtUtc": "2026-11-01T09:58:36.0466761Z",
+      "finishedAtUtc": "2026-11-01T09:58:36.1420589Z",
+      "exitCode": 2,
+      "status": "BLOCKED",
+      "capture": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-ci-http.execution.json",
+        "sha256": "1220180ed4b7785e79f2bc755b23a641a1dab996a7747becfdeb2c70987049a5"
+      },
+      "stdout": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-ci-http.stdout.log",
+        "sha256": "597784aea2bb42d763ac0d15df5dd501fa503dc910d9f39424efd230d875f7ea"
+      },
+      "stderr": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-ci-http.stderr.log",
+        "sha256": "ba22b423bb89958035536646ee7de2a0f0dd3f09c5237c0bdbf85e2fa9cf5ab9"
+      },
+      "environment": "Reviewed ci-common cleanEnvironment equivalent; no ambient application values",
+      "execution": {
+        "path": "plutus-be/qa-raw/jest-results/2026-11-01T09-58-36-127Z-961c6f7a/execution.json",
+        "sha256": "63e8c342d60ec2228be57dc2b73199e36e7916c336b5e5100f62b6dd4676beb1"
+      },
+      "innerCommand": [],
+      "stageRemoved": false,
+      "runId": "2026-11-01T09-58-36-127Z-961c6f7a",
+      "reason": "No independently verified disposable runner with native-process network containment is provisioned. Database connection and seeding were not attempted."
+    },
+    {
+      "repository": "plutus-be",
+      "name": "contract",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "contract"
+      ],
+      "startedAtUtc": "2026-11-01T09:58:14.8387225Z",
+      "finishedAtUtc": "2026-11-01T09:58:18.0052848Z",
+      "exitCode": 0,
+      "status": "PASS",
+      "capture": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-contract.execution.json",
+        "sha256": "b7647b8063d5f5b2326d9467eb35c2335fb42b1800bdb8e9b388e0e1c5fcbb67"
+      },
+      "stdout": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-contract.stdout.log",
+        "sha256": "f13e655f00ee9c53d049d6200d0a44303813e109983f7d476907710459ca555c"
+      },
+      "stderr": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-contract.stderr.log",
+        "sha256": "f801b6f8a33bf4513d3e7b8b83929c36a9798df661b376b95ff8c5f125a84828"
+      },
+      "environment": "Reviewed ci-common cleanEnvironment equivalent; no ambient application values",
+      "execution": {
+        "path": "plutus-be/qa-raw/jest-results/2026-11-01T09-58-14-880Z-07c15c8b/execution.json",
+        "sha256": "266223f50b773572fad536c16324cc3a806f7d3123297012b977ac0877badb1f"
+      },
+      "innerCommand": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "--require",
+        "<OWNED_STAGE>\\test\\qa\\support\\runtime-guard.cjs",
+        "<WORKSPACE>\\plutus-be\\node_modules\\jest\\bin\\jest.js",
+        "--runInBand",
+        "--no-cache",
+        "--json",
+        "--outputFile",
+        "<WORKSPACE>\\plutus-be\\qa-raw\\jest-results\\2026-11-01T09-58-14-880Z-07c15c8b\\jest.json",
+        "--config",
+        "test/jest-qa-contract.cjs"
+      ],
+      "stageRemoved": true,
+      "runId": "2026-11-01T09-58-14-880Z-07c15c8b",
+      "sourceBinding": {
+        "manifest": {
+          "path": "plutus-be/qa-raw/jest-results/2026-11-01T09-58-14-880Z-07c15c8b/source-manifest.json",
+          "sha256": "e4556c44a97ce8cced96dd931613a4ff0d3f17cce2c9cf099194755751a3661b"
+        },
+        "files": 218,
+        "allMatchFinalState": true
+      },
+      "tests": {
+        "total": 4,
+        "passed": 4,
+        "failed": 0,
+        "pending": 0,
+        "todo": 0,
+        "failedSuites": 0,
+        "runtimeErrorSuites": 0,
+        "files": [
+          {
+            "file": "<OWNED_STAGE>\\test\\app.e2e-spec.ts",
+            "status": "passed",
+            "passed": 4,
+            "failed": 0,
+            "pending": 0
+          }
+        ],
+        "artifact": {
+          "path": "plutus-be/qa-raw/jest-results/2026-11-01T09-58-14-880Z-07c15c8b/jest.json",
+          "sha256": "237875541c4e96b12397b10226b4508a3d200a753fa4e17ad825c9e8b13500fb"
+        }
+      }
+    },
+    {
+      "repository": "plutus-be",
+      "name": "harness",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "harness"
+      ],
+      "startedAtUtc": "2026-11-01T09:58:12.1151975Z",
+      "finishedAtUtc": "2026-11-01T09:58:14.8353952Z",
+      "exitCode": 0,
+      "status": "PASS",
+      "capture": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-harness.execution.json",
+        "sha256": "8e2bc43ad515fbee72281fd312f48f68702873f0513d1d0f03838d194198f96d"
+      },
+      "stdout": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-harness.stdout.log",
+        "sha256": "cf31ddc7065339a2b7aa9958a3c9176748b518ef14be3e2f0f569a1994136cc6"
+      },
+      "stderr": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-harness.stderr.log",
+        "sha256": "63906777798e5102b8d480bebf6555f3a8ff1fda0ed9fe6b17dcc5502e673f4c"
+      },
+      "environment": "Reviewed ci-common cleanEnvironment equivalent; no ambient application values",
+      "execution": {
+        "path": "plutus-be/qa-raw/jest-results/2026-11-01T09-58-12-165Z-950278cc/execution.json",
+        "sha256": "ccff34fff87b172adc242dafd2357fa3346600f04d122a7378986b201bc53966"
+      },
+      "innerCommand": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "--require",
+        "<OWNED_STAGE>\\test\\qa\\support\\runtime-guard.cjs",
+        "<WORKSPACE>\\plutus-be\\node_modules\\jest\\bin\\jest.js",
+        "--runInBand",
+        "--no-cache",
+        "--json",
+        "--outputFile",
+        "<WORKSPACE>\\plutus-be\\qa-raw\\jest-results\\2026-11-01T09-58-12-165Z-950278cc\\jest.json",
+        "--config",
+        "test/jest-qa-harness.cjs"
+      ],
+      "stageRemoved": true,
+      "runId": "2026-11-01T09-58-12-165Z-950278cc",
+      "sourceBinding": {
+        "manifest": {
+          "path": "plutus-be/qa-raw/jest-results/2026-11-01T09-58-12-165Z-950278cc/source-manifest.json",
+          "sha256": "e4556c44a97ce8cced96dd931613a4ff0d3f17cce2c9cf099194755751a3661b"
+        },
+        "files": 218,
+        "allMatchFinalState": true
+      },
+      "tests": {
+        "total": 15,
+        "passed": 15,
+        "failed": 0,
+        "pending": 0,
+        "todo": 0,
+        "failedSuites": 0,
+        "runtimeErrorSuites": 0,
+        "files": [
+          {
+            "file": "<OWNED_STAGE>\\test\\qa\\runtime-guard.spec.ts",
+            "status": "passed",
+            "passed": 15,
+            "failed": 0,
+            "pending": 0
+          }
+        ],
+        "artifact": {
+          "path": "plutus-be/qa-raw/jest-results/2026-11-01T09-58-12-165Z-950278cc/jest.json",
+          "sha256": "bb05a468ee07df3f7092722ca48ef75972410793b7416c8bbc40a0297b42a8e2"
+        }
+      }
+    },
+    {
+      "repository": "plutus-be",
+      "name": "http",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "http"
+      ],
+      "startedAtUtc": "2026-11-01T09:58:35.9449347Z",
+      "finishedAtUtc": "2026-11-01T09:58:36.0040929Z",
+      "exitCode": 2,
+      "status": "BLOCKED",
+      "capture": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-http.execution.json",
+        "sha256": "27f9125e4c738c78c4ace0e75a81866df530cee3a7ac493580ac532f003a74c6"
+      },
+      "stdout": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-http.stdout.log",
+        "sha256": "5390f907b54a3c2cc6b1e2d1607d007e470bce47388d0f86290c8777995e04bf"
+      },
+      "stderr": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-http.stderr.log",
+        "sha256": "ba22b423bb89958035536646ee7de2a0f0dd3f09c5237c0bdbf85e2fa9cf5ab9"
+      },
+      "environment": "Reviewed ci-common cleanEnvironment equivalent; no ambient application values",
+      "execution": {
+        "path": "plutus-be/qa-raw/jest-results/2026-11-01T09-58-35-991Z-9ea2c9a9/execution.json",
+        "sha256": "ab2976a625c4d0a979bb96b193bc005aaeff0d860abcb5ffc9969422f970e385"
+      },
+      "innerCommand": [],
+      "stageRemoved": false,
+      "runId": "2026-11-01T09-58-35-991Z-9ea2c9a9",
+      "reason": "No independently verified disposable runner with native-process network containment is provisioned. Database connection and seeding were not attempted."
+    },
+    {
+      "repository": "plutus-be",
+      "name": "lint",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "lint"
+      ],
+      "startedAtUtc": "2026-11-01T09:58:22.8724610Z",
+      "finishedAtUtc": "2026-11-01T09:58:25.7019614Z",
+      "exitCode": 1,
+      "status": "FAIL",
+      "capture": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-lint.execution.json",
+        "sha256": "b490c326bafaf2fa669821b162f123000c24b6001fb20127e6e9436ced808ac1"
+      },
+      "stdout": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-lint.stdout.log",
+        "sha256": "202417b891620b0b087fadce4aedf1e28e1034a2bd35e88d6c3267ef463ee8b5"
+      },
+      "stderr": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-lint.stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "environment": "Reviewed ci-common cleanEnvironment equivalent; no ambient application values",
+      "execution": {
+        "path": "plutus-be/qa-raw/jest-results/2026-11-01T09-58-22-909Z-83cc5374/execution.json",
+        "sha256": "20e98b9c565f59941f0ade931eecfc46399e495989c44171c6035a3655ef6a74"
+      },
+      "innerCommand": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "--require",
+        "<OWNED_STAGE>\\test\\qa\\support\\runtime-guard.cjs",
+        "<WORKSPACE>\\plutus-be\\node_modules\\eslint\\bin\\eslint.js",
+        ".",
+        "--format",
+        "json",
+        "--output-file",
+        "<WORKSPACE>\\plutus-be\\qa-raw\\jest-results\\2026-11-01T09-58-22-909Z-83cc5374\\eslint.json"
+      ],
+      "stageRemoved": true,
+      "runId": "2026-11-01T09-58-22-909Z-83cc5374",
+      "sourceBinding": {
+        "manifest": {
+          "path": "plutus-be/qa-raw/jest-results/2026-11-01T09-58-22-909Z-83cc5374/source-manifest.json",
+          "sha256": "e4556c44a97ce8cced96dd931613a4ff0d3f17cce2c9cf099194755751a3661b"
+        },
+        "files": 218,
+        "allMatchFinalState": true
+      },
+      "lint": {
+        "artifact": {
+          "path": "plutus-be/qa-raw/jest-results/2026-11-01T09-58-22-909Z-83cc5374/eslint.json",
+          "sha256": "4e22e4ad084284cea7e2c859b85c74b5b6f8c5779493f971f20b0b35f6cc8c97"
+        },
+        "errors": 58,
+        "warnings": 0,
+        "rules": {
+          "no-unsafe-finally": 2,
+          "@typescript-eslint/no-unused-vars": 2,
+          "@typescript-eslint/no-explicit-any": 54
+        }
+      }
+    },
+    {
+      "repository": "plutus-be",
+      "name": "policy-tests",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "--test",
+        "qa/ci/validation.test.cjs"
+      ],
+      "startedAtUtc": "2026-11-01T09:57:45.1700168Z",
+      "finishedAtUtc": "2026-11-01T09:57:45.3019542Z",
+      "exitCode": 0,
+      "status": "PASS",
+      "capture": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-policy-tests.execution.json",
+        "sha256": "6dbe26c12531741b643ffd99ac3bf0e3654bc2f45dd56f76733d96ad162f8836"
+      },
+      "stdout": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-policy-tests.stdout.log",
+        "sha256": "e1d9fb0f4d0db99ea9dd4e97f243f3dbdf8afcd1545d94bd98ea41ce86ac3898"
+      },
+      "stderr": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-policy-tests.stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "environment": "Reviewed ci-common cleanEnvironment equivalent; no ambient application values",
+      "summaryLines": [
+        "ℹ tests 14",
+        "ℹ pass 14",
+        "ℹ fail 0",
+        "ℹ cancelled 0",
+        "ℹ skipped 0",
+        "ℹ todo 0"
+      ]
+    },
+    {
+      "repository": "plutus-be",
+      "name": "qa-typecheck",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "qa-typecheck"
+      ],
+      "startedAtUtc": "2026-11-01T09:58:21.1747737Z",
+      "finishedAtUtc": "2026-11-01T09:58:22.8685884Z",
+      "exitCode": 0,
+      "status": "PASS",
+      "capture": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-qa-typecheck.execution.json",
+        "sha256": "635b33745a708d43b074a30257570b150578884add8ac65230aed56e81430869"
+      },
+      "stdout": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-qa-typecheck.stdout.log",
+        "sha256": "bf2af5c06f4e5d9a672964a1ae235b14f4503ade883aad037adc733292c07c75"
+      },
+      "stderr": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-qa-typecheck.stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "environment": "Reviewed ci-common cleanEnvironment equivalent; no ambient application values",
+      "execution": {
+        "path": "plutus-be/qa-raw/jest-results/2026-11-01T09-58-21-215Z-a82981ba/execution.json",
+        "sha256": "29d55b6ef45c98dc69a6013eb19283e81cfea59c75bae7136875afd8b0d84408"
+      },
+      "innerCommand": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "--require",
+        "<OWNED_STAGE>\\test\\qa\\support\\runtime-guard.cjs",
+        "<WORKSPACE>\\plutus-be\\node_modules\\typescript\\bin\\tsc",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "-p",
+        "test/tsconfig.qa.json"
+      ],
+      "stageRemoved": true,
+      "runId": "2026-11-01T09-58-21-215Z-a82981ba",
+      "sourceBinding": {
+        "manifest": {
+          "path": "plutus-be/qa-raw/jest-results/2026-11-01T09-58-21-215Z-a82981ba/source-manifest.json",
+          "sha256": "e4556c44a97ce8cced96dd931613a4ff0d3f17cce2c9cf099194755751a3661b"
+        },
+        "files": 218,
+        "allMatchFinalState": true
+      }
+    },
+    {
+      "repository": "plutus-be",
+      "name": "qa-unit",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "qa-unit"
+      ],
+      "startedAtUtc": "2026-11-01T09:57:59.6510866Z",
+      "finishedAtUtc": "2026-11-01T09:58:12.1061514Z",
+      "exitCode": 0,
+      "status": "PASS",
+      "capture": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-qa-unit.execution.json",
+        "sha256": "45dfd2fa7491fbe1ff4c684e7224303107feb8ff3c084c73a6ed9cf48b7e7d57"
+      },
+      "stdout": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-qa-unit.stdout.log",
+        "sha256": "652f47b672e4fb57b90d5491aec9eb6a54c56120e8d408cf64f6c0a0ad256a68"
+      },
+      "stderr": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-qa-unit.stderr.log",
+        "sha256": "c16a7cc21471ac274316ae54d14aba471eec51fef76b0c89afe46cca2d9d06b0"
+      },
+      "environment": "Reviewed ci-common cleanEnvironment equivalent; no ambient application values",
+      "execution": {
+        "path": "plutus-be/qa-raw/jest-results/2026-11-01T09-57-59-693Z-e7f7744e/execution.json",
+        "sha256": "d3bf66401bc76f76f2f42dddd452ac12c3f4ebb7374a503a114ef0bc58a273df"
+      },
+      "innerCommand": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "--require",
+        "<OWNED_STAGE>\\test\\qa\\support\\runtime-guard.cjs",
+        "<WORKSPACE>\\plutus-be\\node_modules\\jest\\bin\\jest.js",
+        "--runInBand",
+        "--no-cache",
+        "--json",
+        "--outputFile",
+        "<WORKSPACE>\\plutus-be\\qa-raw\\jest-results\\2026-11-01T09-57-59-693Z-e7f7744e\\jest.json",
+        "--config",
+        "test/jest-qa-unit.cjs",
+        "--coverage",
+        "--coverageDirectory",
+        "<WORKSPACE>\\plutus-be\\qa-raw\\jest-coverage\\2026-11-01T09-57-59-693Z-e7f7744e"
+      ],
+      "stageRemoved": true,
+      "runId": "2026-11-01T09-57-59-693Z-e7f7744e",
+      "sourceBinding": {
+        "manifest": {
+          "path": "plutus-be/qa-raw/jest-results/2026-11-01T09-57-59-693Z-e7f7744e/source-manifest.json",
+          "sha256": "e4556c44a97ce8cced96dd931613a4ff0d3f17cce2c9cf099194755751a3661b"
+        },
+        "files": 218,
+        "allMatchFinalState": true
+      },
+      "tests": {
+        "total": 106,
+        "passed": 106,
+        "failed": 0,
+        "pending": 0,
+        "todo": 0,
+        "failedSuites": 0,
+        "runtimeErrorSuites": 0,
+        "files": [
+          {
+            "file": "src/project/project-financials.qa.spec.ts",
+            "status": "passed",
+            "passed": 12,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "src/document/document.service.qa.spec.ts",
+            "status": "passed",
+            "passed": 22,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "src/auth/status.guard.qa.spec.ts",
+            "status": "passed",
+            "passed": 23,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "src/auth/jwt.strategy.qa.spec.ts",
+            "status": "passed",
+            "passed": 10,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "src/billing/guards/plan.guard.qa.spec.ts",
+            "status": "passed",
+            "passed": 23,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "src/schema/common.qa.spec.ts",
+            "status": "passed",
+            "passed": 16,
+            "failed": 0,
+            "pending": 0
+          }
+        ],
+        "artifact": {
+          "path": "plutus-be/qa-raw/jest-results/2026-11-01T09-57-59-693Z-e7f7744e/jest.json",
+          "sha256": "ae087664962ac280bbe54a222f863864bbcde57c1827d423efd402ed48cd1aaa"
+        }
+      }
+    },
+    {
+      "repository": "plutus-be",
+      "name": "starter",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "starter"
+      ],
+      "startedAtUtc": "2026-11-01T09:57:45.3088284Z",
+      "finishedAtUtc": "2026-11-01T09:57:50.0764337Z",
+      "exitCode": 0,
+      "status": "PASS",
+      "capture": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-starter.execution.json",
+        "sha256": "ee7b29c47ac716379764db9e4f0a0806d1c1ee02e4c3ff257643a98af468b0cf"
+      },
+      "stdout": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-starter.stdout.log",
+        "sha256": "a3235431b4bb08f90fd6f38af28f331ea10624d1dbb6d7b225ffdcb297d54e61"
+      },
+      "stderr": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-starter.stderr.log",
+        "sha256": "4c5450252b94f852415bd97993df1824a379f3d8813e4397d551393bc79aff1c"
+      },
+      "environment": "Reviewed ci-common cleanEnvironment equivalent; no ambient application values",
+      "execution": {
+        "path": "plutus-be/qa-raw/jest-results/2026-11-01T09-57-45-354Z-0d9f110b/execution.json",
+        "sha256": "307ea042b903e16733a8f005af3040d3fd265b90b85b812aeb649b4a64b0ed22"
+      },
+      "innerCommand": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "--require",
+        "<OWNED_STAGE>\\test\\qa\\support\\runtime-guard.cjs",
+        "<WORKSPACE>\\plutus-be\\node_modules\\jest\\bin\\jest.js",
+        "--runInBand",
+        "--no-cache",
+        "--json",
+        "--outputFile",
+        "<WORKSPACE>\\plutus-be\\qa-raw\\jest-results\\2026-11-01T09-57-45-354Z-0d9f110b\\jest.json",
+        "--runTestsByPath",
+        "src/app.controller.spec.ts",
+        "src/user/user.controller.spec.ts",
+        "src/user/user.service.spec.ts"
+      ],
+      "stageRemoved": true,
+      "runId": "2026-11-01T09-57-45-354Z-0d9f110b",
+      "sourceBinding": {
+        "manifest": {
+          "path": "plutus-be/qa-raw/jest-results/2026-11-01T09-57-45-354Z-0d9f110b/source-manifest.json",
+          "sha256": "e4556c44a97ce8cced96dd931613a4ff0d3f17cce2c9cf099194755751a3661b"
+        },
+        "files": 218,
+        "allMatchFinalState": true
+      },
+      "tests": {
+        "total": 5,
+        "passed": 5,
+        "failed": 0,
+        "pending": 0,
+        "todo": 0,
+        "failedSuites": 0,
+        "runtimeErrorSuites": 0,
+        "files": [
+          {
+            "file": "src/user/user.service.spec.ts",
+            "status": "passed",
+            "passed": 2,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "src/user/user.controller.spec.ts",
+            "status": "passed",
+            "passed": 1,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "src/app.controller.spec.ts",
+            "status": "passed",
+            "passed": 2,
+            "failed": 0,
+            "pending": 0
+          }
+        ],
+        "artifact": {
+          "path": "plutus-be/qa-raw/jest-results/2026-11-01T09-57-45-354Z-0d9f110b/jest.json",
+          "sha256": "820ca7a4543bf91b118efb91cf9c819d7a3ede5df37bf1d768a71f11eae46844"
+        }
+      }
+    },
+    {
+      "repository": "plutus-be",
+      "name": "typecheck",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "typecheck"
+      ],
+      "startedAtUtc": "2026-11-01T09:58:18.0150709Z",
+      "finishedAtUtc": "2026-11-01T09:58:21.1701292Z",
+      "exitCode": 2,
+      "status": "FAIL",
+      "capture": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-typecheck.execution.json",
+        "sha256": "d49b1e657908d7a09b7c2131caf1bbf64c9f73987cfbd3a1b40e77ce49cfa8c0"
+      },
+      "stdout": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-typecheck.stdout.log",
+        "sha256": "5f92db459b7a8b924ae831179be7618a9fed473845eab1fc228b2fe904a51e03"
+      },
+      "stderr": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-typecheck.stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "environment": "Reviewed ci-common cleanEnvironment equivalent; no ambient application values",
+      "execution": {
+        "path": "plutus-be/qa-raw/jest-results/2026-11-01T09-58-18-061Z-c348da75/execution.json",
+        "sha256": "616b15383b68708cb21a687b021aaad8b1265789585cdde8ca4c358ad2a25477"
+      },
+      "innerCommand": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "--require",
+        "<OWNED_STAGE>\\test\\qa\\support\\runtime-guard.cjs",
+        "<WORKSPACE>\\plutus-be\\node_modules\\typescript\\bin\\tsc",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "-p",
+        "tsconfig.json"
+      ],
+      "stageRemoved": true,
+      "runId": "2026-11-01T09-58-18-061Z-c348da75",
+      "sourceBinding": {
+        "manifest": {
+          "path": "plutus-be/qa-raw/jest-results/2026-11-01T09-58-18-061Z-c348da75/source-manifest.json",
+          "sha256": "e4556c44a97ce8cced96dd931613a4ff0d3f17cce2c9cf099194755751a3661b"
+        },
+        "files": 218,
+        "allMatchFinalState": true
+      },
+      "diagnostics": [
+        "src/auth/status.guard.spec.ts(23,7): error TS2554: Expected 2 arguments, but got 3.",
+        "test/support/isolated-app.ts(130,37): error TS2550: Property 'findLast' does not exist on type 'InvitationEmail[]'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2023' or later.",
+        "test/support/isolated-app.ts(131,8): error TS7006: Parameter 'entry' implicitly has an 'any' type."
+      ]
+    },
+    {
+      "repository": "plutus-be",
+      "name": "unit",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/qa/run-isolated.cjs",
+        "--layer",
+        "unit"
+      ],
+      "startedAtUtc": "2026-11-01T09:57:50.0799690Z",
+      "finishedAtUtc": "2026-11-01T09:57:59.6487214Z",
+      "exitCode": 1,
+      "status": "FAIL",
+      "capture": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-unit.execution.json",
+        "sha256": "4808a5ee4568572f5cadfe704bb44d8b08a9ab0c2d3925529be6a6bef9071217"
+      },
+      "stdout": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-unit.stdout.log",
+        "sha256": "32ff987f1a2f640a6213d796a0724ff7cf4774ca3ea452a70992dff58f0d47b5"
+      },
+      "stderr": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-unit.stderr.log",
+        "sha256": "120a28a7791c27ed5f913fa2389812b77020bac0f60e8119891b9ea6e8e2dc6e"
+      },
+      "environment": "Reviewed ci-common cleanEnvironment equivalent; no ambient application values",
+      "execution": {
+        "path": "plutus-be/qa-raw/jest-results/2026-11-01T09-57-50-125Z-22971319/execution.json",
+        "sha256": "18a81947c6f1ea81a258f2ddcea304fabe309ce279b7536de581b9fef9b2344b"
+      },
+      "innerCommand": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "--require",
+        "<OWNED_STAGE>\\test\\qa\\support\\runtime-guard.cjs",
+        "<WORKSPACE>\\plutus-be\\node_modules\\jest\\bin\\jest.js",
+        "--runInBand",
+        "--no-cache",
+        "--json",
+        "--outputFile",
+        "<WORKSPACE>\\plutus-be\\qa-raw\\jest-results\\2026-11-01T09-57-50-125Z-22971319\\jest.json"
+      ],
+      "stageRemoved": true,
+      "runId": "2026-11-01T09-57-50-125Z-22971319",
+      "sourceBinding": {
+        "manifest": {
+          "path": "plutus-be/qa-raw/jest-results/2026-11-01T09-57-50-125Z-22971319/source-manifest.json",
+          "sha256": "e4556c44a97ce8cced96dd931613a4ff0d3f17cce2c9cf099194755751a3661b"
+        },
+        "files": 218,
+        "allMatchFinalState": true
+      },
+      "tests": {
+        "total": 214,
+        "passed": 214,
+        "failed": 0,
+        "pending": 0,
+        "todo": 0,
+        "failedSuites": 1,
+        "runtimeErrorSuites": 1,
+        "files": [
+          {
+            "file": "src/project/project-financials.qa.spec.ts",
+            "status": "passed",
+            "passed": 12,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "src/document/document.service.qa.spec.ts",
+            "status": "passed",
+            "passed": 22,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "src/imports/services/import.service.spec.ts",
+            "status": "passed",
+            "passed": 9,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "src/invitation/invitation.service.spec.ts",
+            "status": "passed",
+            "passed": 9,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "src/imports/parsers/zip.parser.spec.ts",
+            "status": "passed",
+            "passed": 13,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "src/auth/status.guard.qa.spec.ts",
+            "status": "passed",
+            "passed": 23,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "src/auth/jwt.strategy.qa.spec.ts",
+            "status": "passed",
+            "passed": 10,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "src/construction-dashboard/construction-dashboard.service.spec.ts",
+            "status": "passed",
+            "passed": 6,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "src/billing/guards/plan.guard.qa.spec.ts",
+            "status": "passed",
+            "passed": 23,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "src/imports/services/detect-entity-type.spec.ts",
+            "status": "passed",
+            "passed": 9,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "src/imports/parsers/excel.parser.spec.ts",
+            "status": "passed",
+            "passed": 4,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "src/contact/contact.service.spec.ts",
+            "status": "passed",
+            "passed": 6,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "src/schema/common.qa.spec.ts",
+            "status": "passed",
+            "passed": 16,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "src/auth/status.guard.spec.ts",
+            "status": "failed",
+            "passed": 0,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "src/storage/storage.service.spec.ts",
+            "status": "passed",
+            "passed": 6,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "src/imports/strategies/project-import.strategy.spec.ts",
+            "status": "passed",
+            "passed": 3,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "src/imports/samples/samples.spec.ts",
+            "status": "passed",
+            "passed": 7,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "src/imports/strategies/contract-import.strategy.spec.ts",
+            "status": "passed",
+            "passed": 2,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "src/imports/services/validation.service.spec.ts",
+            "status": "passed",
+            "passed": 3,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "src/imports/parsers/csv.parser.spec.ts",
+            "status": "passed",
+            "passed": 6,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "src/imports/services/mapping.service.spec.ts",
+            "status": "passed",
+            "passed": 4,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "src/auth/auth0.config.spec.ts",
+            "status": "passed",
+            "passed": 4,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "src/user/user.service.spec.ts",
+            "status": "passed",
+            "passed": 2,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "src/email/email.service.spec.ts",
+            "status": "passed",
+            "passed": 2,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "src/auth/role-normalize.spec.ts",
+            "status": "passed",
+            "passed": 7,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "src/user/user.controller.spec.ts",
+            "status": "passed",
+            "passed": 1,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "src/imports/imports.types.spec.ts",
+            "status": "passed",
+            "passed": 3,
+            "failed": 0,
+            "pending": 0
+          },
+          {
+            "file": "src/app.controller.spec.ts",
+            "status": "passed",
+            "passed": 2,
+            "failed": 0,
+            "pending": 0
+          }
+        ],
+        "artifact": {
+          "path": "plutus-be/qa-raw/jest-results/2026-11-01T09-57-50-125Z-22971319/jest.json",
+          "sha256": "3f4f09cc6446e61dd6b649982c3c36ce2e3de6a94030f78ccd7a2c4ae4ee4a5c"
+        }
+      }
+    },
+    {
+      "repository": "plutus-be",
+      "name": "validate",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "scripts/qa/validate-ci.cjs"
+      ],
+      "startedAtUtc": "2026-11-01T09:57:45.0050369Z",
+      "finishedAtUtc": "2026-11-01T09:57:45.1148929Z",
+      "exitCode": 0,
+      "status": "PASS",
+      "capture": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-validate.execution.json",
+        "sha256": "9a6f495f6ed8b73a2ddeecdae575ae533eacfc1ab9565231844e91da067c418e"
+      },
+      "stdout": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-validate.stdout.log",
+        "sha256": "c9c2891d145dda31ba7a068317a1c6809a4d4741c9d742019f5eacecb60edaae"
+      },
+      "stderr": {
+        "path": "plutus-be/.qa-agent-work/independent-validation-2026-11-01/2026-11-01T09-57-44-973Z-81c06e7e-validate.stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "environment": "Reviewed ci-common cleanEnvironment equivalent; no ambient application values"
+    }
+  ],
+  "coverage": [
+    {
+      "repository": "plutus-fe",
+      "layer": "unit",
+      "total": {
+        "lines": {
+          "total": 14255,
+          "covered": 1797,
+          "skipped": 0,
+          "pct": 12.6
+        },
+        "statements": {
+          "total": 14255,
+          "covered": 1797,
+          "skipped": 0,
+          "pct": 12.6
+        },
+        "functions": {
+          "total": 276,
+          "covered": 147,
+          "skipped": 0,
+          "pct": 53.26
+        },
+        "branches": {
+          "total": 468,
+          "covered": 331,
+          "skipped": 0,
+          "pct": 70.72
+        },
+        "branchesTrue": {
+          "total": 0,
+          "covered": 0,
+          "skipped": 0,
+          "pct": 100
+        }
+      },
+      "artifact": {
+        "path": "plutus-fe/qa-raw/vitest-coverage/2026-11-01T09-57-45-362Z-c6940824/coverage-summary.json",
+        "sha256": "2e826f443451106e35f087627373a646daadbc1bd0e3d0ca08abeaade516752b"
+      },
+      "scope": "src/**/*.{ts,tsx}; excludes declarations, app/api, proxy and lib/auth0"
+    },
+    {
+      "repository": "plutus-be",
+      "layer": "qa-unit",
+      "total": {
+        "lines": {
+          "total": 4576,
+          "covered": 583,
+          "skipped": 0,
+          "pct": 12.74
+        },
+        "statements": {
+          "total": 5075,
+          "covered": 649,
+          "skipped": 0,
+          "pct": 12.78
+        },
+        "functions": {
+          "total": 688,
+          "covered": 46,
+          "skipped": 0,
+          "pct": 6.68
+        },
+        "branches": {
+          "total": 2138,
+          "covered": 130,
+          "skipped": 0,
+          "pct": 6.08
+        },
+        "branchesTrue": {
+          "total": 0,
+          "covered": 0,
+          "skipped": 0,
+          "pct": 100
+        }
+      },
+      "artifact": {
+        "path": "plutus-be/qa-raw/jest-coverage/2026-11-01T09-57-59-693Z-e7f7744e/coverage-summary.json",
+        "sha256": "07ce09209a9d510a8d948a29e1722a4061a7b1337e895b445f923f25a3c8ec78"
+      },
+      "scope": "Focused QA execution instrumenting configured backend source;106 tests are a subset of214"
+    }
+  ],
+  "browserSummary": {
+    "stats": {
+      "startTime": "2026-11-01T09:59:16.963Z",
+      "duration": 165163.38,
+      "expected": 24,
+      "skipped": 0,
+      "unexpected": 15,
+      "flaky": 0
+    },
+    "projects": [
+      {
+        "name": "chromium",
+        "retries": 0,
+        "passed": 8,
+        "failed": 5
+      },
+      {
+        "name": "firefox",
+        "retries": 0,
+        "passed": 11,
+        "failed": 2
+      },
+      {
+        "name": "webkit",
+        "retries": 0,
+        "passed": 5,
+        "failed": 8
+      }
+    ]
+  },
+  "noAggregateUniqueTestTotal": true,
+  "unrun": [
+    "Real BE database/security integration",
+    "Real FE-to-BE journeys",
+    "Clean npm ci / hosted CI / actionlint",
+    "Docker image build, deployment and rollback",
+    "Default Next Turbopack production build path",
+    "Human peer review and UAT"
+  ]
+}

@@ -1,0 +1,1015 @@
+{
+  "artifact": {
+    "path": "plutus-fe/qa-raw/playwright-results/2026-11-01T09-59-14-742Z-02b536f3/playwright.json",
+    "sha256": "c0623592ff07e729c5a012ba8b4124ccef1ae15bf97d60989895ec4ce32108a3"
+  },
+  "stats": {
+    "startTime": "2026-11-01T09:59:16.963Z",
+    "duration": 165163.38,
+    "expected": 24,
+    "skipped": 0,
+    "unexpected": 15,
+    "flaky": 0
+  },
+  "projects": [
+    {
+      "name": "chromium",
+      "retries": 0,
+      "passed": 8,
+      "failed": 5
+    },
+    {
+      "name": "firefox",
+      "retries": 0,
+      "passed": 11,
+      "failed": 2
+    },
+    {
+      "name": "webkit",
+      "retries": 0,
+      "passed": 5,
+      "failed": 8
+    }
+  ],
+  "workers": 1,
+  "forbidOnly": false,
+  "unhandledRunnerErrors": [],
+  "execution": {
+    "layer": "mocked-browser",
+    "realBackend": false,
+    "nodeGuard": true,
+    "children": [
+      {
+        "kind": "Next development server",
+        "pid": 50060,
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "<OWNED_STAGE>\\qa\\harness\\next-server.cjs"
+        ]
+      },
+      {
+        "kind": "Playwright test runner",
+        "pid": 50740,
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "<WORKSPACE>\\plutus-fe\\.qa-agent-work\\frontend-phase-2026-11-01\\dependencies\\node_modules\\@playwright\\test\\cli.js",
+          "test",
+          "--config",
+          "playwright.qa.config.ts"
+        ]
+      }
+    ],
+    "cleanup": true,
+    "readiness": {
+      "ready": true,
+      "guard": true
+    },
+    "command": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "<WORKSPACE>\\plutus-fe\\.qa-agent-work\\frontend-phase-2026-11-01\\dependencies\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--config",
+      "playwright.qa.config.ts"
+    ],
+    "browserExitCode": 1,
+    "browserSignal": null,
+    "serverExitCode": 0,
+    "serverSignal": null,
+    "cleanupErrors": [],
+    "violations": []
+  },
+  "slots": [
+    {
+      "file": "auth-navigation.mocked-browser.spec.ts",
+      "line": 4,
+      "title": "a protected deep link preserves its path and query through synthetic sign-in",
+      "project": "chromium",
+      "status": "unexpected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "failed",
+          "retry": 0,
+          "durationMs": 22424,
+          "errors": [
+            "Error: Unhandled browser errors must remain visible\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 41\n\n- Array []\n+ Array [\n+   \"Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:\n+\n+ - A server/client branch `if (typeof window !== 'undefined')`.\n+ - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n+ - Date formatting in a user's locale which doesn't match the server.\n+ - External changing data without sending a snapshot of it along with the HTML.\n+ - Invalid HTML tag nesting.\n+\n+ It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n+\n+ https://react.dev/link/hydration-mismatch\n+\n+   ...\n+     <header className=\\\"MuiBox-roo...\\\">\n+       <Box>\n+       <Box sx={{display:\\\"flex\\\", ...}}>\n+         <Styled(div) as=\\\"div\\\" ref={null} className=\\\"MuiBox-root\\\" theme={{...}} sx={{display:\\\"flex\\\", ...}}>\n+           <Insertion>\n+           <div className=\\\"MuiBox-roo...\\\">\n+             <Tooltip>\n+             <Tooltip title=\\\"Account\\\">\n+               <IconButton component={function LinkComponent} href=\\\"/dashboard...\\\" size=\\\"small\\\" sx={{color:\\\"tex...\\\"}} ...>\n+                 <MuiIconButton-root id={undefin"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "auth-navigation.mocked-browser.spec.ts",
+      "line": 20,
+      "title": "the login entry route preserves a safe internal returnTo including its query",
+      "project": "chromium",
+      "status": "expected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 2631,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "auth-navigation.mocked-browser.spec.ts",
+      "line": 35,
+      "title": "the login entry route rejects a absolute external URL",
+      "project": "chromium",
+      "status": "expected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 1512,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "auth-navigation.mocked-browser.spec.ts",
+      "line": 35,
+      "title": "the login entry route rejects a protocol-relative external URL",
+      "project": "chromium",
+      "status": "expected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 1330,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "auth-navigation.mocked-browser.spec.ts",
+      "line": 35,
+      "title": "the login entry route rejects a backslash-normalized external URL",
+      "project": "chromium",
+      "status": "unexpected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "failed",
+          "retry": 0,
+          "durationMs": 1459,
+          "errors": [
+            "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: \"/dashboard\"\nReceived: \"/\\\\qa.invalid/escape\"\n\n  40 |\n  41 |       // Inspect what the product forwarded, before the fixture's own safe-redirect guard.\n> 42 |       expect(new URL(page.url()).searchParams.get('returnTo')).toBe('/dashboard');\n     |                                                                ^\n  43 |     });\n  44 |   }\n  45 |\n    at <OWNED_STAGE>\\tests\\browser\\auth-navigation.mocked-browser.spec.ts:42:64"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "auth-navigation.mocked-browser.spec.ts",
+      "line": 46,
+      "title": "the login entry route defaults to the dashboard without a returnTo",
+      "project": "chromium",
+      "status": "expected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 1041,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "auth-navigation.mocked-browser.spec.ts",
+      "line": 4,
+      "title": "a protected deep link preserves its path and query through synthetic sign-in",
+      "project": "firefox",
+      "status": "expected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 6596,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "auth-navigation.mocked-browser.spec.ts",
+      "line": 20,
+      "title": "the login entry route preserves a safe internal returnTo including its query",
+      "project": "firefox",
+      "status": "expected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 2443,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "auth-navigation.mocked-browser.spec.ts",
+      "line": 35,
+      "title": "the login entry route rejects a absolute external URL",
+      "project": "firefox",
+      "status": "expected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 2773,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "auth-navigation.mocked-browser.spec.ts",
+      "line": 35,
+      "title": "the login entry route rejects a protocol-relative external URL",
+      "project": "firefox",
+      "status": "expected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 3153,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "auth-navigation.mocked-browser.spec.ts",
+      "line": 35,
+      "title": "the login entry route rejects a backslash-normalized external URL",
+      "project": "firefox",
+      "status": "unexpected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "failed",
+          "retry": 0,
+          "durationMs": 2995,
+          "errors": [
+            "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: \"/dashboard\"\nReceived: \"/\\\\qa.invalid/escape\"\n\n  40 |\n  41 |       // Inspect what the product forwarded, before the fixture's own safe-redirect guard.\n> 42 |       expect(new URL(page.url()).searchParams.get('returnTo')).toBe('/dashboard');\n     |                                                                ^\n  43 |     });\n  44 |   }\n  45 |\n    at <OWNED_STAGE>\\tests\\browser\\auth-navigation.mocked-browser.spec.ts:42:64"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "auth-navigation.mocked-browser.spec.ts",
+      "line": 46,
+      "title": "the login entry route defaults to the dashboard without a returnTo",
+      "project": "firefox",
+      "status": "expected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 2494,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "auth-navigation.mocked-browser.spec.ts",
+      "line": 4,
+      "title": "a protected deep link preserves its path and query through synthetic sign-in",
+      "project": "webkit",
+      "status": "unexpected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "failed",
+          "retry": 0,
+          "durationMs": 4058,
+          "errors": [
+            "Error: Unhandled browser errors must remain visible\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 41\n\n- Array []\n+ Array [\n+   \"Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:\n+\n+ - A server/client branch `if (typeof window !== 'undefined')`.\n+ - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n+ - Date formatting in a user's locale which doesn't match the server.\n+ - External changing data without sending a snapshot of it along with the HTML.\n+ - Invalid HTML tag nesting.\n+\n+ It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n+\n+ https://react.dev/link/hydration-mismatch\n+\n+   ...\n+     <header className=\\\"MuiBox-roo...\\\">\n+       <Box>\n+       <Box sx={{display:\\\"flex\\\", ...}}>\n+         <Styled(div) as=\\\"div\\\" ref={null} className=\\\"MuiBox-root\\\" theme={{...}} sx={{display:\\\"flex\\\", ...}}>\n+           <Insertion>\n+           <div className=\\\"MuiBox-roo...\\\">\n+             <Tooltip>\n+             <Tooltip title=\\\"Account\\\">\n+               <IconButton component={function LinkComponent} href=\\\"/dashboard...\\\" size=\\\"small\\\" sx={{color:\\\"tex...\\\"}} ...>\n+                 <MuiIconButton-root id={undefin"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "auth-navigation.mocked-browser.spec.ts",
+      "line": 20,
+      "title": "the login entry route preserves a safe internal returnTo including its query",
+      "project": "webkit",
+      "status": "expected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 1196,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "auth-navigation.mocked-browser.spec.ts",
+      "line": 35,
+      "title": "the login entry route rejects a absolute external URL",
+      "project": "webkit",
+      "status": "expected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 1236,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "auth-navigation.mocked-browser.spec.ts",
+      "line": 35,
+      "title": "the login entry route rejects a protocol-relative external URL",
+      "project": "webkit",
+      "status": "expected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 1496,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "auth-navigation.mocked-browser.spec.ts",
+      "line": 35,
+      "title": "the login entry route rejects a backslash-normalized external URL",
+      "project": "webkit",
+      "status": "unexpected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "failed",
+          "retry": 0,
+          "durationMs": 1516,
+          "errors": [
+            "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: \"/dashboard\"\nReceived: \"/\\\\qa.invalid/escape\"\n\n  40 |\n  41 |       // Inspect what the product forwarded, before the fixture's own safe-redirect guard.\n> 42 |       expect(new URL(page.url()).searchParams.get('returnTo')).toBe('/dashboard');\n     |                                                                ^\n  43 |     });\n  44 |   }\n  45 |\n    at <OWNED_STAGE>\\tests\\browser\\auth-navigation.mocked-browser.spec.ts:42:64"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "auth-navigation.mocked-browser.spec.ts",
+      "line": 46,
+      "title": "the login entry route defaults to the dashboard without a returnTo",
+      "project": "webkit",
+      "status": "expected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 1352,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "contracts-navigation.mocked-browser.spec.ts",
+      "line": 4,
+      "title": "a contract reference opens an actual detail route with its contract",
+      "project": "chromium",
+      "status": "unexpected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "failed",
+          "retry": 0,
+          "durationMs": 5263,
+          "errors": [
+            "Error: A linked contract detail route must resolve successfully\n\nexpect(received).toBe(expected) // Object.is equality\n\nExpected: 200\nReceived: 404\n\n  17 |     // Reload tests the real route response even when Next initially navigates with RSC.\n  18 |     const detailResponse = await page.reload();\n> 19 |     expect(detailResponse?.status(), 'A linked contract detail route must resolve successfully').toBe(200);\n     |                                                                                                  ^\n  20 |     await expect(page.getByRole('main')).toContainText(app.records.contract.reference);\n  21 |   });\n  22 |\n    at <OWNED_STAGE>\\tests\\browser\\contracts-navigation.mocked-browser.spec.ts:19:98",
+            "Error: Unhandled browser errors must remain visible\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 41\n\n- Array []\n+ Array [\n+   \"Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:\n+\n+ - A server/client branch `if (typeof window !== 'undefined')`.\n+ - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n+ - Date formatting in a user's locale which doesn't match the server.\n+ - External changing data without sending a snapshot of it along with the HTML.\n+ - Invalid HTML tag nesting.\n+\n+ It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n+\n+ https://react.dev/link/hydration-mismatch\n+\n+   ...\n+     <header className=\\\"MuiBox-roo...\\\">\n+       <Box>\n+       <Box sx={{display:\\\"flex\\\", ...}}>\n+         <Styled(div) as=\\\"div\\\" ref={null} className=\\\"MuiBox-root\\\" theme={{...}} sx={{display:\\\"flex\\\", ...}}>\n+           <Insertion>\n+           <div className=\\\"MuiBox-roo...\\\">\n+             <Tooltip>\n+             <Tooltip title=\\\"Account\\\">\n+               <IconButton component={function LinkComponent} href=\\\"/dashboard...\\\" size=\\\"small\\\" sx={{color:\\\"tex...\\\"}} ...>\n+                 <MuiIconButton-root id={undefin"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "contracts-navigation.mocked-browser.spec.ts",
+      "line": 23,
+      "title": "a viewer can read the contract list without a creation control",
+      "project": "chromium",
+      "status": "unexpected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "failed",
+          "retry": 0,
+          "durationMs": 1660,
+          "errors": [
+            "Error: Unhandled browser errors must remain visible\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 41\n\n- Array []\n+ Array [\n+   \"Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:\n+\n+ - A server/client branch `if (typeof window !== 'undefined')`.\n+ - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n+ - Date formatting in a user's locale which doesn't match the server.\n+ - External changing data without sending a snapshot of it along with the HTML.\n+ - Invalid HTML tag nesting.\n+\n+ It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n+\n+ https://react.dev/link/hydration-mismatch\n+\n+   ...\n+     <header className=\\\"MuiBox-roo...\\\">\n+       <Box>\n+       <Box sx={{display:\\\"flex\\\", ...}}>\n+         <Styled(div) as=\\\"div\\\" ref={null} className=\\\"MuiBox-root\\\" theme={{...}} sx={{display:\\\"flex\\\", ...}}>\n+           <Insertion>\n+           <div className=\\\"MuiBox-roo...\\\">\n+             <Tooltip>\n+             <Tooltip title=\\\"Account\\\">\n+               <IconButton component={function LinkComponent} href=\\\"/dashboard...\\\" size=\\\"small\\\" sx={{color:\\\"tex...\\\"}} ...>\n+                 <MuiIconButton-root id={undefin"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "contracts-navigation.mocked-browser.spec.ts",
+      "line": 4,
+      "title": "a contract reference opens an actual detail route with its contract",
+      "project": "firefox",
+      "status": "unexpected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "failed",
+          "retry": 0,
+          "durationMs": 9223,
+          "errors": [
+            "Error: A linked contract detail route must resolve successfully\n\nexpect(received).toBe(expected) // Object.is equality\n\nExpected: 200\nReceived: 404\n\n  17 |     // Reload tests the real route response even when Next initially navigates with RSC.\n  18 |     const detailResponse = await page.reload();\n> 19 |     expect(detailResponse?.status(), 'A linked contract detail route must resolve successfully').toBe(200);\n     |                                                                                                  ^\n  20 |     await expect(page.getByRole('main')).toContainText(app.records.contract.reference);\n  21 |   });\n  22 |\n    at <OWNED_STAGE>\\tests\\browser\\contracts-navigation.mocked-browser.spec.ts:19:98"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "contracts-navigation.mocked-browser.spec.ts",
+      "line": 23,
+      "title": "a viewer can read the contract list without a creation control",
+      "project": "firefox",
+      "status": "expected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 3349,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "contracts-navigation.mocked-browser.spec.ts",
+      "line": 4,
+      "title": "a contract reference opens an actual detail route with its contract",
+      "project": "webkit",
+      "status": "unexpected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "failed",
+          "retry": 0,
+          "durationMs": 5288,
+          "errors": [
+            "Error: A linked contract detail route must resolve successfully\n\nexpect(received).toBe(expected) // Object.is equality\n\nExpected: 200\nReceived: 404\n\n  17 |     // Reload tests the real route response even when Next initially navigates with RSC.\n  18 |     const detailResponse = await page.reload();\n> 19 |     expect(detailResponse?.status(), 'A linked contract detail route must resolve successfully').toBe(200);\n     |                                                                                                  ^\n  20 |     await expect(page.getByRole('main')).toContainText(app.records.contract.reference);\n  21 |   });\n  22 |\n    at <OWNED_STAGE>\\tests\\browser\\contracts-navigation.mocked-browser.spec.ts:19:98",
+            "Error: Unhandled browser errors must remain visible\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 42\n\n- Array []\n+ Array [\n+   \"Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:\n+\n+ - A server/client branch `if (typeof window !== 'undefined')`.\n+ - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n+ - Date formatting in a user's locale which doesn't match the server.\n+ - External changing data without sending a snapshot of it along with the HTML.\n+ - Invalid HTML tag nesting.\n+\n+ It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n+\n+ https://react.dev/link/hydration-mismatch\n+\n+   ...\n+     <header className=\\\"MuiBox-roo...\\\">\n+       <Box>\n+       <Box sx={{display:\\\"flex\\\", ...}}>\n+         <Styled(div) as=\\\"div\\\" ref={null} className=\\\"MuiBox-root\\\" theme={{...}} sx={{display:\\\"flex\\\", ...}}>\n+           <Insertion>\n+           <div className=\\\"MuiBox-roo...\\\">\n+             <Tooltip>\n+             <Tooltip title=\\\"Account\\\">\n+               <IconButton component={function LinkComponent} href=\\\"/dashboard...\\\" size=\\\"small\\\" sx={{color:\\\"tex...\\\"}} ...>\n+                 <MuiIconButton-root id={undefin"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "contracts-navigation.mocked-browser.spec.ts",
+      "line": 23,
+      "title": "a viewer can read the contract list without a creation control",
+      "project": "webkit",
+      "status": "unexpected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "failed",
+          "retry": 0,
+          "durationMs": 2366,
+          "errors": [
+            "Error: Unhandled browser errors must remain visible\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 41\n\n- Array []\n+ Array [\n+   \"Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:\n+\n+ - A server/client branch `if (typeof window !== 'undefined')`.\n+ - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n+ - Date formatting in a user's locale which doesn't match the server.\n+ - External changing data without sending a snapshot of it along with the HTML.\n+ - Invalid HTML tag nesting.\n+\n+ It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n+\n+ https://react.dev/link/hydration-mismatch\n+\n+   ...\n+     <header className=\\\"MuiBox-roo...\\\">\n+       <Box>\n+       <Box sx={{display:\\\"flex\\\", ...}}>\n+         <Styled(div) as=\\\"div\\\" ref={null} className=\\\"MuiBox-root\\\" theme={{...}} sx={{display:\\\"flex\\\", ...}}>\n+           <Insertion>\n+           <div className=\\\"MuiBox-roo...\\\">\n+             <Tooltip>\n+             <Tooltip title=\\\"Account\\\">\n+               <IconButton component={function LinkComponent} href=\\\"/dashboard...\\\" size=\\\"small\\\" sx={{color:\\\"tex...\\\"}} ...>\n+                 <MuiIconButton-root id={undefin"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "route-accessibility.mocked-browser.spec.ts",
+      "line": 4,
+      "title": "contract entry supports labelled fields, keyboard controls and a readable validation error",
+      "project": "chromium",
+      "status": "unexpected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "failed",
+          "retry": 0,
+          "durationMs": 6839,
+          "errors": [
+            "Error: Unhandled browser errors must remain visible\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 41\n\n- Array []\n+ Array [\n+   \"Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:\n+\n+ - A server/client branch `if (typeof window !== 'undefined')`.\n+ - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n+ - Date formatting in a user's locale which doesn't match the server.\n+ - External changing data without sending a snapshot of it along with the HTML.\n+ - Invalid HTML tag nesting.\n+\n+ It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n+\n+ https://react.dev/link/hydration-mismatch\n+\n+   ...\n+     <header className=\\\"MuiBox-roo...\\\">\n+       <Box>\n+       <Box sx={{display:\\\"flex\\\", ...}}>\n+         <Styled(div) as=\\\"div\\\" ref={null} className=\\\"MuiBox-root\\\" theme={{...}} sx={{display:\\\"flex\\\", ...}}>\n+           <Insertion>\n+           <div className=\\\"MuiBox-roo...\\\">\n+             <Tooltip>\n+             <Tooltip title=\\\"Account\\\">\n+               <IconButton component={function LinkComponent} href=\\\"/dashboard...\\\" size=\\\"small\\\" sx={{color:\\\"tex...\\\"}} ...>\n+                 <MuiIconButton-root id={undefin"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "route-accessibility.mocked-browser.spec.ts",
+      "line": 39,
+      "title": "mobile navigation can be opened and dismissed using the keyboard",
+      "project": "chromium",
+      "status": "expected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 1711,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "route-accessibility.mocked-browser.spec.ts",
+      "line": 59,
+      "title": "pending users receive a clear status screen instead of project content",
+      "project": "chromium",
+      "status": "expected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 1136,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "route-accessibility.mocked-browser.spec.ts",
+      "line": 59,
+      "title": "rejected users receive a clear status screen instead of project content",
+      "project": "chromium",
+      "status": "expected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 1536,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "route-accessibility.mocked-browser.spec.ts",
+      "line": 69,
+      "title": "an unavailable account API presents retry and recovers without losing the route",
+      "project": "chromium",
+      "status": "expected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 3699,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "route-accessibility.mocked-browser.spec.ts",
+      "line": 4,
+      "title": "contract entry supports labelled fields, keyboard controls and a readable validation error",
+      "project": "firefox",
+      "status": "expected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 4639,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "route-accessibility.mocked-browser.spec.ts",
+      "line": 39,
+      "title": "mobile navigation can be opened and dismissed using the keyboard",
+      "project": "firefox",
+      "status": "expected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 4886,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "route-accessibility.mocked-browser.spec.ts",
+      "line": 59,
+      "title": "pending users receive a clear status screen instead of project content",
+      "project": "firefox",
+      "status": "expected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 4216,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "route-accessibility.mocked-browser.spec.ts",
+      "line": 59,
+      "title": "rejected users receive a clear status screen instead of project content",
+      "project": "firefox",
+      "status": "expected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 3764,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "route-accessibility.mocked-browser.spec.ts",
+      "line": 69,
+      "title": "an unavailable account API presents retry and recovers without losing the route",
+      "project": "firefox",
+      "status": "expected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 5921,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "route-accessibility.mocked-browser.spec.ts",
+      "line": 4,
+      "title": "contract entry supports labelled fields, keyboard controls and a readable validation error",
+      "project": "webkit",
+      "status": "unexpected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "failed",
+          "retry": 0,
+          "durationMs": 4083,
+          "errors": [
+            "Error: Unhandled browser errors must remain visible\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 41\n\n- Array []\n+ Array [\n+   \"Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:\n+\n+ - A server/client branch `if (typeof window !== 'undefined')`.\n+ - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n+ - Date formatting in a user's locale which doesn't match the server.\n+ - External changing data without sending a snapshot of it along with the HTML.\n+ - Invalid HTML tag nesting.\n+\n+ It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n+\n+ https://react.dev/link/hydration-mismatch\n+\n+   ...\n+     <header className=\\\"MuiBox-roo...\\\">\n+       <Box>\n+       <Box sx={{display:\\\"flex\\\", ...}}>\n+         <Styled(div) as=\\\"div\\\" ref={null} className=\\\"MuiBox-root\\\" theme={{...}} sx={{display:\\\"flex\\\", ...}}>\n+           <Insertion>\n+           <div className=\\\"MuiBox-roo...\\\">\n+             <Tooltip>\n+             <Tooltip title=\\\"Account\\\">\n+               <IconButton component={function LinkComponent} href=\\\"/dashboard...\\\" size=\\\"small\\\" sx={{color:\\\"tex...\\\"}} ...>\n+                 <MuiIconButton-root id={undefin"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "route-accessibility.mocked-browser.spec.ts",
+      "line": 39,
+      "title": "mobile navigation can be opened and dismissed using the keyboard",
+      "project": "webkit",
+      "status": "unexpected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "failed",
+          "retry": 0,
+          "durationMs": 2492,
+          "errors": [
+            "Error: Unhandled browser errors must remain visible\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 41\n\n- Array []\n+ Array [\n+   \"Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:\n+\n+ - A server/client branch `if (typeof window !== 'undefined')`.\n+ - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n+ - Date formatting in a user's locale which doesn't match the server.\n+ - External changing data without sending a snapshot of it along with the HTML.\n+ - Invalid HTML tag nesting.\n+\n+ It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n+\n+ https://react.dev/link/hydration-mismatch\n+\n+   ...\n+     <header className=\\\"MuiBox-roo...\\\">\n+       <Box>\n+       <Box sx={{display:\\\"flex\\\", ...}}>\n+         <Styled(div) as=\\\"div\\\" ref={null} className=\\\"MuiBox-root\\\" theme={{...}} sx={{display:\\\"flex\\\", ...}}>\n+           <Insertion>\n+           <div className=\\\"MuiBox-roo...\\\">\n+             <Tooltip>\n+             <Tooltip title=\\\"Account\\\">\n+               <IconButton component={function LinkComponent} href=\\\"/dashboard...\\\" size=\\\"small\\\" sx={{color:\\\"tex...\\\"}} ...>\n+                 <MuiIconButton-root id={undefin"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "route-accessibility.mocked-browser.spec.ts",
+      "line": 59,
+      "title": "pending users receive a clear status screen instead of project content",
+      "project": "webkit",
+      "status": "unexpected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "failed",
+          "retry": 0,
+          "durationMs": 2292,
+          "errors": [
+            "Error: Unhandled browser errors must remain visible\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 41\n\n- Array []\n+ Array [\n+   \"Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:\n+\n+ - A server/client branch `if (typeof window !== 'undefined')`.\n+ - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n+ - Date formatting in a user's locale which doesn't match the server.\n+ - External changing data without sending a snapshot of it along with the HTML.\n+ - Invalid HTML tag nesting.\n+\n+ It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n+\n+ https://react.dev/link/hydration-mismatch\n+\n+   ...\n+     <header className=\\\"MuiBox-roo...\\\">\n+       <Box>\n+       <Box sx={{display:\\\"flex\\\", ...}}>\n+         <Styled(div) as=\\\"div\\\" ref={null} className=\\\"MuiBox-root\\\" theme={{...}} sx={{display:\\\"flex\\\", ...}}>\n+           <Insertion>\n+           <div className=\\\"MuiBox-roo...\\\">\n+             <Tooltip>\n+             <Tooltip title=\\\"Account\\\">\n+               <IconButton component={function LinkComponent} href=\\\"/dashboard...\\\" size=\\\"small\\\" sx={{color:\\\"tex...\\\"}} ...>\n+                 <MuiIconButton-root id={undefin"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "route-accessibility.mocked-browser.spec.ts",
+      "line": 59,
+      "title": "rejected users receive a clear status screen instead of project content",
+      "project": "webkit",
+      "status": "unexpected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "failed",
+          "retry": 0,
+          "durationMs": 1874,
+          "errors": [
+            "Error: Unhandled browser errors must remain visible\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 41\n\n- Array []\n+ Array [\n+   \"Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:\n+\n+ - A server/client branch `if (typeof window !== 'undefined')`.\n+ - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n+ - Date formatting in a user's locale which doesn't match the server.\n+ - External changing data without sending a snapshot of it along with the HTML.\n+ - Invalid HTML tag nesting.\n+\n+ It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n+\n+ https://react.dev/link/hydration-mismatch\n+\n+   ...\n+     <header className=\\\"MuiBox-roo...\\\">\n+       <Box>\n+       <Box sx={{display:\\\"flex\\\", ...}}>\n+         <Styled(div) as=\\\"div\\\" ref={null} className=\\\"MuiBox-root\\\" theme={{...}} sx={{display:\\\"flex\\\", ...}}>\n+           <Insertion>\n+           <div className=\\\"MuiBox-roo...\\\">\n+             <Tooltip>\n+             <Tooltip title=\\\"Account\\\">\n+               <IconButton component={function LinkComponent} href=\\\"/dashboard...\\\" size=\\\"small\\\" sx={{color:\\\"tex...\\\"}} ...>\n+                 <MuiIconButton-root id={undefin"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "route-accessibility.mocked-browser.spec.ts",
+      "line": 69,
+      "title": "an unavailable account API presents retry and recovers without losing the route",
+      "project": "webkit",
+      "status": "expected",
+      "expected": "passed",
+      "attempts": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 3868,
+          "errors": []
+        }
+      ]
+    }
+  ],
+  "boundary": "Actual Next development routes with synthetic auth and domain API interception; no real backend/database, no persisted mutation or server-authorization proof.",
+  "boundaries": [
+    {
+      "project": "chromium",
+      "title": "a protected deep link preserves its path and query through synthetic sign-in",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 1
+    },
+    {
+      "project": "chromium",
+      "title": "the login entry route preserves a safe internal returnTo including its query",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 0
+    },
+    {
+      "project": "chromium",
+      "title": "the login entry route rejects a absolute external URL",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 0
+    },
+    {
+      "project": "chromium",
+      "title": "the login entry route rejects a protocol-relative external URL",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 0
+    },
+    {
+      "project": "chromium",
+      "title": "the login entry route rejects a backslash-normalized external URL",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 0
+    },
+    {
+      "project": "chromium",
+      "title": "the login entry route defaults to the dashboard without a returnTo",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 0
+    },
+    {
+      "project": "firefox",
+      "title": "a protected deep link preserves its path and query through synthetic sign-in",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 0
+    },
+    {
+      "project": "firefox",
+      "title": "the login entry route preserves a safe internal returnTo including its query",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 0
+    },
+    {
+      "project": "firefox",
+      "title": "the login entry route rejects a absolute external URL",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 0
+    },
+    {
+      "project": "firefox",
+      "title": "the login entry route rejects a protocol-relative external URL",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 0
+    },
+    {
+      "project": "firefox",
+      "title": "the login entry route rejects a backslash-normalized external URL",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 0
+    },
+    {
+      "project": "firefox",
+      "title": "the login entry route defaults to the dashboard without a returnTo",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 0
+    },
+    {
+      "project": "webkit",
+      "title": "a protected deep link preserves its path and query through synthetic sign-in",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 1
+    },
+    {
+      "project": "webkit",
+      "title": "the login entry route preserves a safe internal returnTo including its query",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 0
+    },
+    {
+      "project": "webkit",
+      "title": "the login entry route rejects a absolute external URL",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 0
+    },
+    {
+      "project": "webkit",
+      "title": "the login entry route rejects a protocol-relative external URL",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 0
+    },
+    {
+      "project": "webkit",
+      "title": "the login entry route rejects a backslash-normalized external URL",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 0
+    },
+    {
+      "project": "webkit",
+      "title": "the login entry route defaults to the dashboard without a returnTo",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 0
+    },
+    {
+      "project": "chromium",
+      "title": "a contract reference opens an actual detail route with its contract",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 1
+    },
+    {
+      "project": "chromium",
+      "title": "a viewer can read the contract list without a creation control",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 1
+    },
+    {
+      "project": "firefox",
+      "title": "a contract reference opens an actual detail route with its contract",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 0
+    },
+    {
+      "project": "firefox",
+      "title": "a viewer can read the contract list without a creation control",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 0
+    },
+    {
+      "project": "webkit",
+      "title": "a contract reference opens an actual detail route with its contract",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 2
+    },
+    {
+      "project": "webkit",
+      "title": "a viewer can read the contract list without a creation control",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 1
+    },
+    {
+      "project": "chromium",
+      "title": "contract entry supports labelled fields, keyboard controls and a readable validation error",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 1
+    },
+    {
+      "project": "chromium",
+      "title": "mobile navigation can be opened and dismissed using the keyboard",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 0
+    },
+    {
+      "project": "chromium",
+      "title": "pending users receive a clear status screen instead of project content",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 0
+    },
+    {
+      "project": "chromium",
+      "title": "rejected users receive a clear status screen instead of project content",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 0
+    },
+    {
+      "project": "chromium",
+      "title": "an unavailable account API presents retry and recovers without losing the route",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 0
+    },
+    {
+      "project": "firefox",
+      "title": "contract entry supports labelled fields, keyboard controls and a readable validation error",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 0
+    },
+    {
+      "project": "firefox",
+      "title": "mobile navigation can be opened and dismissed using the keyboard",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 0
+    },
+    {
+      "project": "firefox",
+      "title": "pending users receive a clear status screen instead of project content",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 0
+    },
+    {
+      "project": "firefox",
+      "title": "rejected users receive a clear status screen instead of project content",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 0
+    },
+    {
+      "project": "firefox",
+      "title": "an unavailable account API presents retry and recovers without losing the route",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 0
+    },
+    {
+      "project": "webkit",
+      "title": "contract entry supports labelled fields, keyboard controls and a readable validation error",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 1
+    },
+    {
+      "project": "webkit",
+      "title": "mobile navigation can be opened and dismissed using the keyboard",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 1
+    },
+    {
+      "project": "webkit",
+      "title": "pending users receive a clear status screen instead of project content",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 1
+    },
+    {
+      "project": "webkit",
+      "title": "rejected users receive a clear status screen instead of project content",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 1
+    },
+    {
+      "project": "webkit",
+      "title": "an unavailable account API presents retry and recovers without losing the route",
+      "realBackendUsed": false,
+      "violations": 0,
+      "pageErrorCount": 0
+    }
+  ]
+}

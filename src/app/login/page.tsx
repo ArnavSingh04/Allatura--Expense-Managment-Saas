@@ -3,6 +3,7 @@
 import { Box, CircularProgress, Typography } from '@mui/material';
 import { Suspense, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { safeReturnTo } from '@/lib/safe-return-to';
 
 /**
  * Login is delegated entirely to Auth0 Universal Login. This route just kicks
@@ -21,10 +22,7 @@ function LoginInner() {
 
   useEffect(() => {
     const requested = search.get('returnTo');
-    // Accept only same-origin absolute paths ("/foo"), never "//host" or
-    // "https://…"; fall back to the dashboard otherwise.
-    const returnTo =
-      requested && /^\/(?!\/)/.test(requested) ? requested : '/dashboard';
+    const returnTo = safeReturnTo(requested);
     window.location.assign(
       `/auth/login?returnTo=${encodeURIComponent(returnTo)}`,
     );

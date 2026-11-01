@@ -82,7 +82,6 @@ const PlanPage = () => {
         clickHandler: (e: FormEvent) => startCheckout(e, plan),
       };
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthed]);
 
   return (
