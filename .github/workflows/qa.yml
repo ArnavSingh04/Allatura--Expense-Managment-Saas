@@ -1,4 +1,4 @@
-# PR and integration-branch validation; no production credentials or deployment.
+# Run QA on every branch push and on pull requests to integration branches.
 name: frontend QA
 'on':
   pull_request:
@@ -7,9 +7,7 @@ name: frontend QA
       - develop
   push:
     branches:
-      - main
-      - develop
-  workflow_dispatch: {}
+      - '**'
 permissions:
   contents: read
 defaults:
@@ -74,6 +72,7 @@ jobs:
           repository: evoxedev/plutus-be
           ref: development
           path: .qa-system-backend
+          token: ${{ secrets.QA_BACKEND_READ_TOKEN }}
           persist-credentials: false
       - name: Prepare paired backend lockfile
         run: node .qa-system-backend/scripts/qa/prepare.cjs

@@ -7,6 +7,10 @@ for (const role of ['frontend', 'backend']) test(`${role}: approved policy keeps
   assert.equal(validateWorkflow(expectedWorkflow(role), role).reviewedPolicy, 'PASS');
 });
 const corruptions = {
+  'missing push trigger': (w) => { delete w.on.push; },
+  'exclude feature branch pushes': (w) => { w.on.push.branches = ['main']; },
+  'manual dispatch trigger': (w) => { w.on.workflow_dispatch = {}; },
+  'missing paired backend read token': (w) => { delete w.jobs['real-system'].steps[2].with.token; },
   'missing pull-request trigger': (w) => { delete w.on.pull_request; },
   'unsafe privileged trigger': (w) => { w.on.pull_request_target = {}; },
   'write permissions': (w) => { w.permissions.contents = 'write'; },

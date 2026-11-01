@@ -21,10 +21,10 @@ function expectedWorkflow(role) {
   jobs['real-system'] = job(role === 'frontend' ? 'stack' : 'http');
   if (role === 'frontend') {
     jobs['real-system'].steps.splice(2, 0,
-      { name: 'Checkout paired backend', uses: CHECKOUT, with: { repository: 'evoxedev/plutus-be', ref: 'development', path: '.qa-system-backend', 'persist-credentials': false } },
+      { name: 'Checkout paired backend', uses: CHECKOUT, with: { repository: 'evoxedev/plutus-be', ref: 'development', path: '.qa-system-backend', token: '${{ secrets.QA_BACKEND_READ_TOKEN }}', 'persist-credentials': false } },
       { name: 'Prepare paired backend lockfile', run: 'node .qa-system-backend/scripts/qa/prepare.cjs' });
   }
-  return { name: `${role} QA`, on: { pull_request: { branches: role === 'backend' ? ['main', 'development'] : ['main', 'develop'] }, push: { branches: role === 'backend' ? ['main', 'development'] : ['main', 'develop'] }, workflow_dispatch: {} }, permissions: { contents: 'read' }, defaults: { run: { shell: 'pwsh' } }, jobs };
+  return { name: `${role} QA`, on: { pull_request: { branches: role === 'backend' ? ['main', 'development'] : ['main', 'develop'] }, push: { branches: ['**'] } }, permissions: { contents: 'read' }, defaults: { run: { shell: 'pwsh' } }, jobs };
 }
 function validateWorkflow(document, role) {
   // Exact approved structure rejects additions as well as omissions; this is not GitHub's hosted validator.
