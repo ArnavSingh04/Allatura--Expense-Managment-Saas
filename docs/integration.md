@@ -1,63 +1,48 @@
-# How the parts integrate
+# Frontend and backend integration
 
-This document traces a request from the UI to persistence and back.
+The frontend and backend are separate repositories. Browser domain requests pass through Next.js before reaching the Nest API.
 
-## 1. Configuration chain
+## Routing and authentication
 
-1. **Frontend** reads `NEXT_PUBLIC_BACKEND_API_URL` (and optional `BACKEND_API_URL` on the server).
-2. **`ApiHelper`** (`src/lib/api-helper.ts`) builds URLs as  
-   `{base}/{endpoint}/{urlParams}`  
-   where `base` is the env URL (must include `/v1`). You can set **`NEXT_PUBLIC_BACKEND_API_URL=/api/v1`** so the browser uses same-origin requests; **`SWR`** helpers use **`resolveApiBaseUrl()`** which may map a full `localhost` backend URL to that proxy path.
-3. **Browser vs server**: `resolveApiBaseUrl()` (`src/lib/resolve-api-base-url.ts`) may rewrite a **localhost** backend URL to **`{origin}/api/v1`** so fetches go to Next.js first.
-4. **Next.js rewrites** (`next.config.js`):  
-   `source: '/api/v1/:path*'` → `destination: '{BACKEND_API_URL}/:path*'`  
-   So `/api/v1/auth/login` becomes `http://localhost:3001/v1/auth/login` when `BACKEND_API_URL` is `http://localhost:3001/v1`.
+```text
+Browser -> /api/v1/* (Next route handler)
+        -> BACKEND_API_URL/* (Nest, normally /v1/*)
+        -> guards -> tenant scope -> controller -> service -> MongoDB
+```
 
-## 2. Authentication flow
+[resolve-api-base-url.ts](../src/lib/resolve-api-base-url.ts) keeps browser API calls on the same origin. The [API route handler](../src/app/api/v1/%5B...path%5D/route.ts) implements the proxy; `next.config.js` is not the authentication forwarding layer.
 
-1. User submits email/password on **`/login`**.
-2. Frontend calls **`POST .../auth/login`** with `ApiHelper`, **`includeKey = false`**, and **`skipSessionHeaders = true`** so an old JWT in `localStorage` is not sent on this `@Public()` route (otherwise some deployments return **401** before password validation).
-3. Backend **`AuthService`** validates password with **bcrypt**, loads organisation, signs a **JWT** with `JwtService` (`AuthModule`).
-4. Response includes **`accessToken`** and user profile; frontend **`setAuthToken`** stores JWT in **localStorage** and sets a **cookie**.
-5. Subsequent **`ApiHelper.fetchRequest`** calls add **`Authorization: Bearer <token>`**.
-6. **`JwtAuthGuard`** (registered globally in `AppModule`) runs on every route unless **`@Public()`** is set.
-7. **`JwtStrategy`** (`passport-jwt`) extracts the bearer token, verifies with **`JWT_SECRET`**, and attaches **`req.user`** (`userId`, `tenantId`, `role`).
+The proxy obtains an Auth0 access token on the server and supplies `Authorization: Bearer ...`. It forwards selected `x-organisation-id` for scoped requests. The backend checks membership and derives its internal `tenantId`; client selection is not authorisation. See [login and sessions](LOGIN_AND_AUTH.md).
 
-## 3. Authorization flow
+The server target is `BACKEND_API_URL`, then `INTERNAL_BACKEND_URL`, then `http://127.0.0.1:3001/v1`. It must include `/v1`. The proxy preserves response status, content type and content disposition; transport failures become `backend_unreachable` with status 502. It buffers request/response bodies rather than streaming them.
 
-1. **`RolesGuard`** (also global) reads **`@Roles(...)`** metadata on handlers.
-2. If roles are required, it compares **`req.user.role`** to the allowed list; otherwise **`ForbiddenException`**.
-3. Handlers that do not set `@Roles` allow any authenticated role (subject to business logic in services).
+## Client contracts
 
-## 4. Tenant isolation
+| Client | Behaviour | Main callers |
+| --- | --- | --- |
+| [api-client.ts](../src/lib/api-client.ts) | HTTP failures throw `ApiError`; network/parsing errors can propagate unchanged. Provides JSON, multipart and blob helpers | Domain services and SWR fetchers |
+| [api-helper.ts](../src/lib/api-helper.ts) | Returns `{ failed: true, error }` for request failures | Older `src/app/services` wrappers |
 
-- Controllers pass **`req.user.tenantId`** into services.
-- Mongoose models for domain entities include **`tenantId`** and queries filter on it.
-- Registration creates a new **`Organisation`** with a unique **`tenantId`** slug and links the first **`User`** as **admin**.
+Both use the shared base-URL resolver and organisation headers. Replacing one requires updating and testing caller error handling. The `@/services/*` alias searches `src/services` before `src/app/services`; check resolution before introducing a same-named service.
 
-## 5. Data layer
+[swr-keys.ts](../src/lib/swr-keys.ts) defines shared read paths. Writes use domain services and then invalidate affected keys. A mutation can affect detail, list, dashboard and financial views. Organisation switching performs a full navigation because cache keys do not include the organisation ID.
 
-- **`@nestjs/mongoose`** connects via **`MongooseModule.forRootAsync`** using **`DB_CONNECTION`** and **`DB_NAME`** from `ConfigModule`.
-- Schemas live under `plutus-be/src/schema/` (e.g. `Contract`, `ITSystem`, `RenewalAlert`, `AuditLog`).
-- **Audit** and **import** services write or read tenant-scoped documents as implemented in their modules.
+## Backend boundaries
 
-## 6. Scheduled jobs
+The global pipeline is `JwtAuthGuard`, `StatusGuard`, `RolesGuard`, `PlanGuard`, then `TenantScopeInterceptor`. Public, pending-user and onboarding exceptions use route decorators. Services must still scope database queries to the resolved tenant and enforce domain rules.
 
-- **`ScheduleModule`** is imported in `AppModule`.
-- **`RenewalCron`** triggers **`RenewalService.runDailyCron`** once per day to align renewal alerts with contract dates (implementation in `renewal` module).
+Most construction schemas live in backend `src/schema`; organisation memberships also have a schema in `src/membership`. Align request/response types with controllers and DTOs rather than older design diagrams.
 
-## 7. Stripe (optional)
+Money uses `{ amount, currency }` with integer minor units. Use money helpers at input/display boundaries and preserve currency expectations. The frontend role/action matrix controls UI visibility; API guards enforce authorisation.
 
-- **`StripeModule.forRootAsync`** builds the Stripe client from **`STRIPE_SK`** (placeholder allowed for boot).
-- **`StripeController`** exposes public GET/DELETE routes for sessions/subscriptions used by billing UIs.
-- Frontend uses **`@stripe/stripe-js`** and env keys from `.env.example` for client-side checkout where applicable.
+## Documents, imports and billing
 
-## 8. Key files reference
+Browser document uploads request a signed URL, send bytes directly to storage, then ask the API to finalise metadata. This storage request is an exception to same-origin domain API traffic. Send the returned method/headers without API session headers. Finalisation checks object metadata; a signed URL alone does not establish completion.
 
-| Concern | Location |
-|---------|----------|
-| Global guards | `plutus-be/src/app.module.ts` |
-| Public routes | `@Public()` on controllers/handlers |
-| HTTP client / token | `plutus-fe/src/lib/api-helper.ts` |
-| Proxy base URL | `plutus-fe/src/lib/resolve-api-base-url.ts` |
-| SWR fetcher | `plutus-fe/src/lib/swr-fetcher.ts` |
+Import uploads send files to the API for parsing and processing. Sessions and progress are stored in MongoDB, while background execution runs in the API process without a durable worker queue. Imports record row-level outcomes. See the [backend handover guide](../../plutus-be/docs/HANDOVER.md) before changing retries or completion behaviour.
+
+Billing credentials and webhook handling belong to the backend. The frontend requests billing actions and follows returned URLs. Mock billing supports local development without establishing live payment acceptance.
+
+## Checking integration changes
+
+Run typecheck, lint and focused tests in both repositories when changing shared contracts. The frontend mocked-browser layer uses fixtures; the paired `stack` layer runs Next, Nest and disposable MongoDB. Backend `http` exercises the API and local identity fixture. See the [QA guide](../qa/ci/README.md) for commands and limitations.

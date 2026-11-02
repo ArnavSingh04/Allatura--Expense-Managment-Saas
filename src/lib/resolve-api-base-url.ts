@@ -1,10 +1,10 @@
 /**
  * Resolves the API base URL for fetch() from the browser and from Node.
  *
- * When NEXT_PUBLIC_BACKEND_API_URL points at http://localhost:*…/v1, browsers
- * would call the API origin directly and often hit CORS or "Failed to fetch".
- * In the browser we instead use the Next.js same-origin proxy (/api/v1 → Nest),
- * configured in next.config.js rewrites.
+ * Absolute backend URLs become /api/v1 in the browser, where the Next route
+ * handler attaches the Auth0 token. Relative bases stay on the frontend origin;
+ * server callers keep an absolute backend URL or resolve a relative base
+ * against NEXT_PUBLIC_APP_URL.
  */
 export function resolveApiBaseUrl(): string {
   const raw =
@@ -27,13 +27,8 @@ export function resolveApiBaseUrl(): string {
     return `${origin}${base}`;
   }
 
-  // Always route browser calls through the same-origin Next proxy (/api/v1),
-  // whatever NEXT_PUBLIC_BACKEND_API_URL points at. The proxy injects the Auth0
-  // RS256 access token server-side from the session cookie; calling the API
-  // origin directly from the browser would both miss that token and hit CORS.
-  // This is unconditional on purpose — it previously applied only when the
-  // configured path happened to end in `/v1`, so a base URL without that suffix
-  // silently sent browser traffic straight to the API origin.
+  // An absolute API origin must still use the browser's authenticated proxy.
+  // Do not condition this on the configured path ending in /v1.
   if (typeof window !== 'undefined') {
     return `${window.location.origin}/api/v1`;
   }

@@ -1,26 +1,8 @@
 /**
- * Role matrix for Allatura (construction).
- * UI gates only — the API enforces the same rules.
- *
- * | Capability                  | viewer | subbie | sup | finance | pm | owner |
- * |-----------------------------|--------|--------|-----|---------|----|-------|
- * | View dashboards/projects    | yes    | yes    | yes | yes     | yes| yes   |
- * | Create/edit projects        | no     | no     | no  | no      | yes| yes   |
- * | Manage departments          | no     | no     | edit| no      | yes| yes   |
- * | Create/edit contracts       | no     | no     | no  | no      | yes| yes   |
- * | Approve variations          | no     | no     | no  | no      | yes| yes   |
- * | Submit variations           | no     | no     | yes | no      | yes| yes   |
- * | Create expenses             | no     | no     | yes | yes     | yes| yes   |
- * | Mark expenses paid          | no     | no     | no  | yes     | no | yes   |
- * | Submit payment claims       | no     | yes    | no  | no      | yes| yes   |
- * | Certify payment claims      | no     | no     | no  | yes     | yes| yes   |
- * | Mark claims paid            | no     | no     | no  | yes     | no | yes   |
- * | Upload documents            | no     | yes    | yes | yes     | yes| yes   |
- * | Delete documents            | no     | no     | no  | no      | yes| yes   |
- * | Site logs                   | no     | no     | yes | no      | yes| yes   |
- * | Subcontractor / supplier    | no     | no     | no  | edit    | edit| edit |
- * | Run data imports            | no     | no     | no  | no      | yes| yes   |
- * | Tenant admin (users)        | no     | no     | no  | no      | no | yes   |
+ * UI permission matrix for Allatura. Keep role/action changes aligned with the
+ * backend, which independently authorises requests and scopes organisation data.
+ * AuthSessionContext also requires Active status before exposing a capability;
+ * the role-only can() helper below does not check membership or account status.
  */
 
 export const ROLES = [
@@ -233,9 +215,8 @@ export function assertRbacMatrixInvariants(): string[] {
   if (!matrix.pm.has('contracts.create')) {
     errors.push('pm must create contracts');
   }
-  // The backend gates /v1/imports on owner|pm only, and the pipeline creates
-  // projects and contracts. Granting finance here would hand it a path past
-  // its own missing projects.create / contracts.create.
+  // Imports can create projects and contracts. Keep the finance UI restriction
+  // aligned with those write capabilities and the backend's import permission.
   if (matrix.finance.has('imports.run')) {
     errors.push('finance must not run imports');
   }

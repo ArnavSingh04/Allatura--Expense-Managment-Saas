@@ -1,11 +1,10 @@
 /**
- * Edge proxy (Next.js 16+ "proxy" convention, formerly middleware).
+ * Auth0 integration using the Next.js proxy convention.
  *
  * Delegates to the Auth0 SDK, which mounts the auth routes
- * (/auth/login, /auth/logout, /auth/callback, /auth/access-token,
- * /auth/profile, /auth/backchannel-logout) and refreshes the rolling session
- * cookie on every request. Non-auth routes (including the /api/v1 proxy route
- * handler) pass through with a refreshed session.
+ * under /auth and manages rolling session cookies for matching requests.
+ * Non-auth routes, including the /api/v1 route handler, pass through the SDK
+ * so session handling also applies to API requests.
  *
  * Real authorization is enforced by the Nest backend on every API call; the
  * client-side <DashboardAuthGate/> handles UX-level redirects.

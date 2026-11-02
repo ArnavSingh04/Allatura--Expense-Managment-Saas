@@ -52,6 +52,8 @@ export default function PaymentClaimDrawer({
   useEffect(() => {
     if (!open || !claim) return;
     setCertifiedMajor(String(toMajor(claim.claimedAmount.amount)));
+    // Calculate retention in minor units before converting to the editable
+    // major-unit value, so the default is rounded to a whole cent.
     const ret = contract
       ? Math.round(claim.claimedAmount.amount * (contract.retentionPercent / 100)) / 100
       : 0;

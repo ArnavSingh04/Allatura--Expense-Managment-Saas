@@ -1,7 +1,7 @@
 # Allatura — Technical Product Design (slide deck)
 
 A self-contained 3-slide deck for the "Section 3 — Technical Product Design" presentation.
-Covers the **current, implemented** Allatura architecture — not a generic HLD.
+Covers the architecture represented when the deck was prepared. Treat the HTML and PDF as presentation snapshots; confirm current behaviour and deployment claims against the [developer handover](../HANDOVER.md), source and dated QA evidence before presenting them.
 
 | Slide | Question it answers |
 |---|---|
@@ -64,9 +64,9 @@ The deck has a print stylesheet that lays out all 3 slides as landscape pages.
 > PowerPoint: the HTML is the editable source of truth. A `.pptx` would be a separate re-layout
 > (it can't preserve the live SVG/CSS theme faithfully) — ask if you want one generated.
 
-## Verified facts baked into the deck
+## Environment references recorded in the deck
 
-Real values pulled from the repos (no invented details):
+The deck records the following environment references. They have not been revalidated by this documentation cleanup and are not evidence of current provider or deployment acceptance:
 Frontend `allatura.com` on Vercel · Backend `plutus-api-462298977190.us-central1.run.app/v1` on GCP Cloud Run (`us-central1`) · Swagger `/api` · Auth0 `allatura-dev.au.auth0.com`, audience `https://api.allatura.app`, RS256 via JWKS · MongoDB Atlas (20 tenant-scoped collections) · Cloud Storage bucket `allaturabucket` (V4 signed URLs) · live Stripe · Mailgun.
 
 > Note: the Auth0 tenant shown is the verified dev value (`allatura-dev.au.auth0.com`). If production

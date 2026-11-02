@@ -8,11 +8,10 @@ export const dynamic = 'force-dynamic';
 /**
  * Same-origin proxy for the Nest backend.
  *
- * The browser calls `/api/v1/*` with no credentials in JS. This handler reads
- * the Auth0 access token from the encrypted session cookie (server-side only)
- * and forwards it to the backend as a Bearer token, so the access token is
- * never exposed to client JavaScript. Unauthenticated calls (e.g. the public
- * invitation lookup) are forwarded without a token.
+ * Browser requests use the session cookie without supplying a Bearer token.
+ * This handler obtains the token through the server-side Auth0 SDK and attaches
+ * it to the backend request. Calls without a token are still forwarded so
+ * public endpoints remain available; the backend rejects protected requests.
  */
 function backendBase(): string {
   const base =
@@ -32,6 +31,8 @@ async function proxy(
   const method = req.method.toUpperCase();
   const target = `${backendBase()}/${(path || []).join('/')}${req.nextUrl.search}`;
 
+  // Forward only supported request metadata. Browser-supplied authorisation
+  // and tenant headers must not replace the session token or organisation binding.
   const headers = new Headers();
   const contentType = req.headers.get('content-type');
   if (contentType) headers.set('content-type', contentType);
@@ -47,6 +48,7 @@ async function proxy(
       if ((explicit !== null && !isOrganisationId(explicit)) || (explicit === null && preference.invalid)) {
         return Response.json({ message: 'invalid_organisation' }, { status: 403 });
       }
+      // The tab's explicit binding wins over a cookie changed by another tab.
       const organisationId = explicit ?? preference.organisationId;
       // Selection is not authority: the backend verifies membership for every request.
       if (organisationId) headers.set('x-organisation-id', organisationId);
@@ -57,18 +59,10 @@ async function proxy(
     const { token } = await auth0.getAccessToken();
     if (token) headers.set('authorization', `Bearer ${token}`);
   } catch (err) {
-    // Two very different cases end up here, and conflating them silently is what
-    // made "session expired" impossible to diagnose:
-    //   1. No session at all — an anonymous call to a public route (fine).
-    //   2. There IS a session, but the access token can't be produced — almost
-    //      always because it expired and NO refresh token was issued. That
-    //      happens when the Auth0 API ("https://api.allatura.app") has
-    //      "Allow Offline Access" turned OFF, so `offline_access` is stripped
-    //      from the grant. The request is then forwarded without a Bearer and
-    //      the backend answers 401, which the UI renders as
-    //      "your session has expired". Enable Allow Offline Access to fix it.
-    // We forward unauthenticated either way (public routes must keep working),
-    // but we log case 2 loudly so it is not a silent failure.
+    // Missing sessions are expected on public routes. Log other SDK error codes
+    // to distinguish token refresh failures from ordinary anonymous requests.
+    // A missing refresh token can require Auth0 Offline Access configuration
+    // and a new sign-in; the error code is needed to diagnose the actual cause.
     const code = (err as { code?: string })?.code;
     if (code && code !== 'missing_session') {
       console.warn(
@@ -107,6 +101,7 @@ async function proxy(
   const disposition = upstream.headers.get('content-disposition');
   if (disposition) resHeaders.set('content-disposition', disposition);
   const buf = await upstream.arrayBuffer();
+  // Response forbids a body for these statuses, including an empty ArrayBuffer.
   return new Response([204, 205, 304].includes(upstream.status) ? null : buf, { status: upstream.status, headers: resHeaders });
 }
 

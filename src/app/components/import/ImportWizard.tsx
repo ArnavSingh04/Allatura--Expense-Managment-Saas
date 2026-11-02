@@ -106,7 +106,7 @@ export default function ImportWizard() {
     setStep(stepForStatus(session));
   }, [querySession, session]);
 
-  // A background import finishing should move the user to the result.
+  // Keep an in-progress background import on the commit/results step.
   useEffect(() => {
     if (!session) return;
     if (session.status === 'importing' && step !== 3) setStep(3);
@@ -184,9 +184,8 @@ export default function ImportWizard() {
 
   const types = typesData?.types ?? [];
 
-  // Without the type list there is nothing to import into, so fail loudly
-  // rather than rendering an empty picker. A 404 here means the backend has
-  // no /v1/imports routes — usually the imports module is not deployed.
+  // The source picker needs the server's supported types. Surface an unavailable
+  // endpoint or an empty catalogue instead of offering unusable import choices.
   if (typesError || types.length === 0) {
     const unavailable =
       typesError instanceof ApiError && typesError.status === 404;

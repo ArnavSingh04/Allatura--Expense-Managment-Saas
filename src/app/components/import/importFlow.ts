@@ -11,9 +11,8 @@ import {
  * One mappable file, whether it came from a single-entity upload or from one
  * member of a zip pack.
  *
- * This normalisation is the spine of the wizard: a single-entity session
- * becomes a one-element array, a pack becomes its members. Every component
- * below step level consumes `MemberView[]` and never asks which mode it is in.
+ * Normalising single files and packs into member views lets the mapping,
+ * preview and result components share the same rendering model.
  */
 export type MemberView = {
   /**
@@ -53,8 +52,7 @@ export function stripMemberPrefix(entry: string, member: string): string {
  * Normalise a session into the member list the UI renders.
  *
  * Pack members are returned in the backend's import order, not archive order,
- * because later files may reference codes defined in earlier ones and showing
- * them in that order is what teaches the user the rule.
+ * because later files may reference codes defined in earlier ones.
  */
 export function memberViews(session: ImportSession): MemberView[] {
   if (session.entityType !== 'pack') {

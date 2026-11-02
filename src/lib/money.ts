@@ -1,4 +1,5 @@
 export type Money = {
+  /** Integer minor units (cents for the application's two-decimal currencies). */
   amount: number;
   currency: string;
 };
@@ -65,6 +66,7 @@ export function formatMoneyCompact(m: Money | undefined | null): string {
   return `${sign}${symbol}${abs.toFixed(0)}`;
 }
 
+/** Callers must supply matching currencies; this performs no currency conversion. */
 export function addMoney(a: Money, b: Money): Money {
   if (a.amount === 0) return { ...b };
   if (b.amount === 0) return { ...a };

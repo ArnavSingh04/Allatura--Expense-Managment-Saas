@@ -85,6 +85,8 @@ export default function VariationDialog({
         costImpact: { amount: toMinor(costMajor), currency },
         timeImpactDays: Number(timeImpact) || 0,
       };
+      // Creation and submission are separate API writes. If submission fails,
+      // the created draft can still exist on the backend.
       const v = await variationService.create(contractId, input);
       if (submit) {
         await variationService.submit(v._id);

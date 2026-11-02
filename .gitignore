@@ -37,6 +37,10 @@ next-env.d.ts
 
 # Local QA coordination and raw tool output
 /.qa-agent-work/
+
+# Regenerable source-analysis caches; keep the recorded graph reports.
+/graphify-out/cache/
+
 /qa-raw/vitest-coverage/
 /qa-raw/vitest-results/
 /qa-raw/playwright-report/

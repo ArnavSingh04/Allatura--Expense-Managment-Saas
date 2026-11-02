@@ -47,6 +47,8 @@ export default function ProjectProgressPage() {
     authFetcher,
   );
 
+  // A progress or milestone change affects both the detail lists and aggregate
+  // project/dashboard values; refresh them together after a successful write.
   const refresh = () =>
     void Promise.all([
       mutate(keys.project(id)),

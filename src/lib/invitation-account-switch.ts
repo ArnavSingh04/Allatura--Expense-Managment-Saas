@@ -6,7 +6,7 @@ export function invitationEmailMismatch(invited: string, current: string): boole
   return !!current.trim() && invited.trim().toLowerCase() !== current.trim().toLowerCase();
 }
 
-/** Called only by the explicit account-switch button. Logout uses an allowlisted origin. */
+/** Start an explicit account switch; origin must be allowed by Auth0's logout settings. */
 export function prepareInvitationAccountSwitch(
   token: string,
   origin: string,
@@ -20,6 +20,7 @@ export function prepareInvitationAccountSwitch(
 export function takeInvitationContinuation(storage: ContinuationStorage, origin: string): string | null {
   const stored = storage.getItem(PENDING_INVITATION_KEY);
   if (!stored) return null;
+  // Consume once, before validation or navigation, to avoid a repeated login loop.
   storage.removeItem(PENDING_INVITATION_KEY);
   if (!stored.startsWith('/onboarding?')) return null;
   try {

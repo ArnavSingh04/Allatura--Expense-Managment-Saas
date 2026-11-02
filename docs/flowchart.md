@@ -1,3 +1,8 @@
+# Historical login flowchart
+
+> This diagram preserves the former password-login and browser-token design. See [login and sessions](LOGIN_AND_AUTH.md) for the current Auth0 implementation.
+
+```mermaid
 %%{init: {'theme':'base','themeVariables': {'fontSize':'16px','lineColor':'#0f172a','primaryColor':'#e2e8f0','primaryTextColor':'#0f172a','primaryBorderColor':'#334155','clusterBkg':'#f8fafc','clusterBorder':'#334155','tertiaryColor':'#ffffff'}}}%%
 flowchart TD
   linkStyle default stroke:#0f172a,stroke-width:4px
@@ -87,3 +92,4 @@ flowchart TD
   LW --> LX[clearAuthToken()]
   LX --> LY[Remove localStorage token + expire cookie]
   LY --> LZ[Navigate to /login]
+```

@@ -1,6 +1,6 @@
 # Allatura Investor Technical Artifacts
 
-These files are generated from the current implemented code in `plutus-fe` and `plutus-be`.
+These files preserve a technical presentation snapshot of `plutus-fe` and `plutus-be`. They are not maintained as the current implementation guide. Check authentication, infrastructure and delivery claims against the [developer handover](../HANDOVER.md), current source and dated QA evidence before reuse.
 
 ## Files
 

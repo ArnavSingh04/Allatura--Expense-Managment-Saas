@@ -34,8 +34,9 @@ function toMoney(value: unknown, currency: string): Money {
 }
 
 /**
- * BE returns `{ departments: [...], currency }` with numeric amounts;
- * older FE types expected `perDepartment` with `Money` fields.
+ * Accept the backend's `departments` rows with numeric amounts and the older
+ * `perDepartment` shape with Money objects. Both use minor units; wrapping a
+ * numeric amount must not convert it to cents a second time.
  */
 export function normalizeCostLedger(data: unknown): NormalizedCostLedger | null {
   if (!data || typeof data !== 'object') return null;

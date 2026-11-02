@@ -30,6 +30,8 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     return json({ message: 'invalid_organisation' }, 400);
   }
 
+  // Verify membership before saving a preference. Clearing it needs no lookup;
+  // subsequent domain requests still undergo the backend's membership checks.
   if (organisationId !== null) {
     let token: string;
     try {

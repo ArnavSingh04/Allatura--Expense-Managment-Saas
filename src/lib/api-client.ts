@@ -59,6 +59,7 @@ async function request<T>(
   const headers: Record<string, string> = organisationRequestHeaders(path);
   let payload: BodyInit | undefined;
   if (body instanceof FormData) {
+    // fetch supplies the multipart boundary; setting Content-Type here would lose it.
     payload = body;
   } else if (body !== undefined) {
     headers['content-type'] = 'application/json';
@@ -138,11 +139,9 @@ export async function apiPostRaw<T>(
 /**
  * GET a file as a Blob.
  *
- * Used instead of a plain <a href> for the two download endpoints, because the
- * Next proxy rebuilds response headers and keeps only `content-type` — so an
- * anchor navigation yields an extensionless file. Fetching here also means a
- * JSON error response surfaces as an ApiError rather than being silently saved
- * to the user's disk as a "download".
+ * Preserve the filename supplied by Content-Disposition, which the proxy
+ * forwards. Fetching also lets the UI display API errors before saving a file,
+ * instead of downloading an error response as though it were the document.
  */
 export async function apiGetBlob(
   path: string,

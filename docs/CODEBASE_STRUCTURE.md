@@ -1,5 +1,7 @@
 # Codebase structure and how it works
 
+> Historical reference: this document describes an earlier implementation. Use the [developer handover](HANDOVER.md), [setup guide](setup.md) and [current authentication flow](LOGIN_AND_AUTH.md) for maintenance. In particular, the former password-login and browser-token design is no longer the application's login flow.
+
 This document maps **folders, subfolders, and important files** for the Plutus / Allatura stack and explains behavior at a **high level** (what each repo does) and a **lower level** (how requests, modules, and builds fit together).
 
 The product is a **multi-tenant** app for **IT systems**, **contracts**, **renewals**, **analytics**, and **audit/import** flows. The UI is **Next.js**; the API is **NestJS**; data lives in **MongoDB** (Mongoose). JWT identifies users and carries **`tenantId`** for isolation.

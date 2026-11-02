@@ -20,6 +20,8 @@ export function readActiveOrganisation(
       organisationId?: unknown;
       subject?: unknown;
     };
+    // A previous account's preference is ignored. A malformed selection for
+    // this account stays invalid so the proxy cannot silently choose another org.
     if (preference?.subject !== subject) return empty;
     return isOrganisationId(preference.organisationId)
       ? { organisationId: preference.organisationId, invalid: false }

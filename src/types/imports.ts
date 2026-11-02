@@ -2,8 +2,8 @@
  * Types for the generic import pipeline (`/v1/imports/*`).
  *
  * These mirror the backend's `publicSession()` response shape. The backend is
- * the authority: every mutating endpoint returns a whole session, so the client
- * never assembles one itself.
+ * the authority for persisted session state. Mapping and preview responses
+ * replace the cached session; background confirmation requires polling.
  */
 
 /** Entity types the backend has an import strategy for. */

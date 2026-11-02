@@ -121,6 +121,8 @@ function OnboardingContent({ inviteToken }: { inviteToken?: string }) {
     }
     setSubmitting(true);
     try {
+      // Joining and selecting the workspace are separate requests. Retain a
+      // successful join so retrying selection does not reuse an accepted invite.
       let organisationId = joinedOrganisationId;
       if (!organisationId) {
         const result = await submitOnboarding({

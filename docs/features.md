@@ -1,5 +1,7 @@
 # Feature breakdown
 
+> Historical reference: this document describes an earlier implementation. Use the [developer handover](HANDOVER.md), [setup guide](setup.md) and [current authentication flow](LOGIN_AND_AUTH.md) for maintenance. In particular, the former password-login and browser-token design is no longer the application's login flow.
+
 Features are grouped by **frontend routes** (Next.js App Router under `src/app`) and **backend controllers** (Nest, version `v1`).
 
 ## Authentication and onboarding

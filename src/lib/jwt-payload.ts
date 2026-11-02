@@ -1,6 +1,7 @@
 /**
- * Claims read from the access token for RBAC UI and the optional `x-tenant-id` header.
- * Must match PLUTUS-BE JWT payload (see `auth-jwt-contract.ts`).
+ * Decoder for the legacy local-JWT claim shape in auth-jwt-contract.ts.
+ * Current UI permissions come from AuthSessionContext and /auth/me; decoding
+ * these fields neither verifies a token nor grants organisation access.
  */
 
 import { decodeJwtPayloadJson } from '@/lib/jwt-decode';

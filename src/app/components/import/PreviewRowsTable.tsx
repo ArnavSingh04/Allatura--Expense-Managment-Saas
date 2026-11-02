@@ -42,8 +42,8 @@ type PreviewRowsTableProps = {
 /**
  * Preview rows with a per-row action for duplicates.
  *
- * Paginated client-side — the row count is already bounded by the backend's
- * per-file cap, so there is nothing to virtualise.
+ * Pagination is client-side; the complete preview is already in memory and
+ * depends on the backend's per-file row cap to remain bounded.
  */
 export default function PreviewRowsTable({
   rows,

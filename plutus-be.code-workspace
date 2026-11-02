@@ -1,10 +1,10 @@
 {
 	"folders": [
 		{
-			"path": "../../allatura-be/plutus-be"
+			"path": "../plutus-be"
 		},
 		{
-			"path": ".."
+			"path": "."
 		}
 	],
 	"settings": {}

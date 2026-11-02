@@ -9,10 +9,9 @@ import type {
 } from '@/types/imports';
 
 /**
- * The only module that knows the `/v1/imports/*` paths.
- *
- * Every mutating call returns the whole session, so callers write the response
- * straight into their cache rather than refetching.
+ * Import API operations. Mapping, row-action and preview responses contain the
+ * whole session and can replace the cached value. Confirmation may instead
+ * return 202, in which case callers must poll for the completed session.
  */
 export const importService = {
   types: () => apiGet<{ types: ImportTypeDef[] }>('imports/types'),

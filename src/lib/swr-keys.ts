@@ -1,3 +1,9 @@
+/**
+ * SWR keys are literal paths relative to the API base, so authFetcher can use
+ * them directly. Reuse these builders when mutating caches as well as reading.
+ * Keys omit the organisation; switching workspaces requires a full navigation
+ * to discard the previous workspace's cache (see OrganisationSwitcher).
+ */
 export const keys = {
   // dashboards
   companyDashboard: () => 'dashboards/company',

@@ -6,9 +6,8 @@
  * stay at or below them — the server remains the enforcement point. Checking
  * here is purely so the user gets a clear message instead of a round trip.
  *
- * The real ceiling is usually the Next proxy rather than the backend: it
- * buffers the whole request body in memory, and a serverless deploy typically
- * caps request bodies around 4.5 MB.
+ * The Next proxy buffers the request body. Any increase must also account for
+ * the deployment's request-size and memory limits, including multipart overhead.
  */
 export const MAX_SHEET_BYTES = 4 * 1024 * 1024;
 export const MAX_ZIP_BYTES = 4 * 1024 * 1024;

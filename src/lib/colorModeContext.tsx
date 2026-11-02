@@ -60,6 +60,8 @@ export function ColorModeProvider({
   children: React.ReactNode;
   initialColorMode?: ColorModePreference;
 }) {
+  // Use the server's cookie preference during hydration, then read localStorage.
+  // Persisting both keeps later server renders aligned with the browser choice.
   const storedPreference = useSyncExternalStore(subscribeStorage, readStoredPreference, () => initialColorMode);
   const [chosenPreference, setPreferenceState] = useState<ColorModePreference | null>(null);
   const preference = chosenPreference ?? storedPreference ?? initialColorMode;

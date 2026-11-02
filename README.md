@@ -1,63 +1,73 @@
-# Allatura project
-This is the main repository 
+# Allatura frontend
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Allatura is a construction management application for organisations, projects, contracts, variations, expenses, payment claims and supporting documents. This repository contains the Next.js 16 / React 19 frontend. The paired NestJS API and MongoDB models live in `plutus-be`.
 
-## Getting Started
+Keep the two Git repositories beside each other for local development and the paired system tests:
 
-Install Dependencies:
-
-```bash
-npm install
-# or
-yarn install
-# or
-pnpm install
+```text
+Allatura/
+  plutus-fe/    # This repository
+  plutus-be/    # Backend API
 ```
 
-## Environment variables
+## Local development
 
-Copy `.env.example` to `.env.local` for local development.
+Use Node.js **24.15.0** and its bundled npm **11.12.1** to match the current Windows QA toolchain. Install the locked dependencies from this repository's root:
 
-**Local `.env.local` (typical)**
+```powershell
+npm ci
+```
 
-- `NEXT_PUBLIC_APP_URL`, frontend origin, e.g. `http://localhost:3000`
-- `NEXT_PUBLIC_BACKEND_API_URL`, API base **including `/v1`**, e.g. `http://localhost:3001/v1`
-- `BACKEND_API_URL`, same as above for server-side calls (optional if `NEXT_PUBLIC_BACKEND_API_URL` is set)
+Create `.env.local` from [`.env.example`](.env.example) if it does not already exist, then fill in the development Auth0 application settings. Keep local credentials out of Git.
 
-**Deploying the frontend**
+| Setting | Local value or purpose |
+| --- | --- |
+| `NEXT_PUBLIC_APP_URL` and `APP_BASE_URL` | `http://localhost:3000` |
+| `NEXT_PUBLIC_BACKEND_API_URL` | `/api/v1`, the browser's same-origin API path |
+| `BACKEND_API_URL` | `http://127.0.0.1:3001/v1`, the server-side upstream, including `/v1` |
+| `AUTH0_DOMAIN` | Development Auth0 tenant domain, without `https://` |
+| `AUTH0_CLIENT_ID`, `AUTH0_CLIENT_SECRET`, `AUTH0_SECRET` | Auth0 web application credentials and session encryption secret |
+| `AUTH0_AUDIENCE` | The API identifier also configured in the backend |
+| `AUTH0_SCOPE` | Normally `openid profile email offline_access` |
 
-Set these in your hosting provider (Vercel, Cloud Run, etc.) **before the production build**. `NEXT_PUBLIC_*` values are baked in at build time.
+Start the backend using its [README](../plutus-be/README.md), then run:
 
-| Variable | Production value |
-|----------|------------------|
-| `NEXT_PUBLIC_APP_URL` | Your live frontend URL (e.g. `https://your-app.vercel.app`) |
-| `NEXT_PUBLIC_BACKEND_API_URL` | `https://plutus-api-462298977190.us-central1.run.app/v1` |
-| `BACKEND_API_URL` | Same as `NEXT_PUBLIC_BACKEND_API_URL` |
-
-Stripe and other secrets from `.env.example` still apply where you use checkout/webhooks.
-
-Run the development server:
-
-```bash
+```powershell
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [localhost:3000](http://localhost:3000). The browser sends API requests to `/api/v1`; a Next route handler attaches the Auth0 access token server-side and forwards to Nest. Billing credentials belong in the backend. See [local setup](docs/setup.md) and [authentication](docs/LOGIN_AND_AUTH.md) for the complete configuration and troubleshooting steps.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+`npm run build` creates a production build; `npm start` serves that build. Set deployment values before building because `NEXT_PUBLIC_*` settings are compiled into browser assets.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Validation
 
-## Learn More
+The isolated QA runners create temporary source stages with synthetic configuration and write local reports under ignored `qa-raw/` directories. Dependency and browser preparation uses a separate `.qa-agent-work/` directory.
 
-To learn more about Next.js, take a look at the following resources:
+```powershell
+node scripts/qa/prepare.cjs --browsers
+npm test
+npm run typecheck
+npm run lint
+node scripts/qa/run-isolated.cjs --layer build
+npm run test:browser
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+For the real frontend/API/database supplier scenarios, first prepare backend QA dependencies with `node scripts/qa/prepare.cjs` in `plutus-be`, then run `npm run test:stack` here. These tests use a disposable local MongoDB replica set and synthetic identity. They do not exercise hosted Auth0, live payments, email delivery or cloud storage.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+See [QA commands and evidence](qa/frontend-testing.md), [CI and paired-repository setup](qa/ci/README.md), and the [defect register](qa/defects.md). Dated results describe their recorded source state; rerun the applicable checks for a new change.
+
+## Repository map
+
+| Location | Responsibility |
+| --- | --- |
+| `src/app/` | App Router pages, layouts, API route handlers and shared UI |
+| `src/app/contexts/AuthSessionContext.tsx` | Internal profile, membership selection and session state |
+| `src/services/` | Domain API calls |
+| `src/lib/` | API transport, organisation binding, permissions, money and shared helpers |
+| `src/types/` | Construction and import contracts used by the UI |
+| `src/theme/`, `src/styles/`, `public/` | Theme, styles and static assets |
+| `tests/` | Unit, component and browser scenarios |
+| `scripts/qa/`, `qa/` | Isolated runners, test guidance and dated evidence |
+
+Start the handover with [the maintenance guide](docs/HANDOVER.md). The [documentation index](docs/README.md) separates current guides from earlier design material.

@@ -9,21 +9,16 @@ export enum REQUEST_TYPE {
 }
 
 function apiBaseUrl(): string {
-  // Delegate to the shared resolver so browser calls go through the same-origin
-  // /api/v1 proxy (which injects the Auth0 RS256 token) instead of hitting the
-  // API origin directly with the stale HS256 localStorage token → 401.
+  // Share the modern client's routing so browser requests use the Auth0 proxy.
   return resolveApiBaseUrl().replace(/\/$/, "");
 }
 
-// Authentication is handled entirely server-side: the browser calls the
-// same-origin /api/v1 proxy, which reads the Auth0 access token from the
-// encrypted session cookie and forwards it as a Bearer token. The access token
-// is never exposed to client JavaScript, so there is nothing for this module to
-// store or attach. The previous setAuthToken/clearAuthToken/getStoredToken
-// helpers (a leftover of the pre-Auth0 local-JWT design) wrote a bearer token to
-// localStorage and to a non-HttpOnly cookie; they had no callers and have been
-// removed rather than left waiting to be wired up again.
-
+/**
+ * Legacy request wrapper. HTTP and fetch failures return { failed: true, error };
+ * callers must inspect that result. The modern client rejects its promise;
+ * HTTP failures use ApiError, while network/parsing errors propagate unchanged.
+ * Authentication is supplied by the server proxy, not by browser token storage.
+ */
 export class ApiHelper {
   private _baseURL: string;
   private readonly _apiKey: string;

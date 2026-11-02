@@ -19,13 +19,13 @@ export type UserStatus = 'PendingApproval' | 'Active' | 'Rejected';
 
 /**
  * A failure resolving the internal profile (`GET /auth/me`) while Auth0 still
- * considers the user logged in. `status` is the backend HTTP status when known
- * (401/403 → the access token/session was rejected; treat as re-auth needed).
+ * exposes a signed-in user. Organisation selection errors need workspace
+ * recovery; other 401/403 responses offer sign-in recovery.
  */
 export type AuthLoadError = {
   status?: number;
   message: string;
-  /** True for 401/403 — the session/token is invalid; signing in again fixes it. */
+  /** A 401/403 other than a recognised organisation selection error. */
   isAuthFailure: boolean;
   isOrganisationFailure?: boolean;
 };
@@ -51,7 +51,7 @@ export type AuthSession = {
 };
 
 type AuthSessionContextValue = {
-  /** False until Auth0 has resolved and (if logged in) /auth/me has returned. */
+  /** False until Auth0 resolves and the initial /auth/me attempt settles. */
   ready: boolean;
   /** True when there is a valid Auth0 session, regardless of onboarding. */
   isAuthenticated: boolean;
@@ -92,6 +92,8 @@ function isTransientAuthMeFailure(err: unknown): boolean {
 }
 
 async function loadAuthMe(): Promise<MeResponse> {
+  // Retry transient network/server failures briefly; permission and selection
+  // failures need user action and must reach the recovery UI immediately.
   const pausesMs = [0, 400, 1000];
   let lastErr: unknown;
   for (const pause of pausesMs) {
@@ -141,6 +143,8 @@ export function AuthSessionProvider({
   const [needsOnboarding, setNeedsOnboarding] = useState(false);
   const [error, setError] = useState<AuthLoadError | null>(null);
   const [organisations, setOrganisations] = useState<OrganisationMembership[]>([]);
+  // Deduplicate only within the same identity and effect lifetime. A response
+  // started before logout or an account change must not restore the old session.
   const inFlightRef = useRef<{ subject: string; generation: number; promise: Promise<void> } | null>(null);
   const generationRef = useRef(0);
   const subjectRef = useRef<string | null>(null);
@@ -263,8 +267,8 @@ export function AuthSessionProvider({
     };
   }, [isLoading, user, refreshFromMe]);
 
-  // Poll /auth/me while a logged-in user is non-Active so an admin's role/status
-  // change (or an approval) reflects without a manual reload.
+  // Poll only non-Active sessions so an approval or restored access can update
+  // the screen. Active sessions are not refreshed by this interval.
   useEffect(() => {
     if (!ready || !user || session?.status === 'Active') return;
     let cancelled = false;

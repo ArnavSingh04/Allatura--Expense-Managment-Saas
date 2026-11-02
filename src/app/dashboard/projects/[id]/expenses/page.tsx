@@ -94,6 +94,8 @@ export default function ProjectExpensesPage() {
     [ledgerRaw],
   );
 
+  // Expense mutations also change ledger and financial rollups. Refresh each
+  // cached view so the list and project totals do not show different snapshots.
   const refresh = () =>
     void Promise.all([
       mutate(expensesKey),

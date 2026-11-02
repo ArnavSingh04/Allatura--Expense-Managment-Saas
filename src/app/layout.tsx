@@ -14,6 +14,8 @@ export const metadata = {
     'Portfolio visibility, project financials, contracts, variations, claims, documents, and audit—built for teams delivering capital work.',
 };
 
+// Apply the stored browser theme before interactive code runs. Keep its storage
+// key and accepted values aligned with ColorModeProvider and the cookie below.
 const THEME_STORAGE_SYNC_SCRIPT = `(function(){try{var k='plutus-color-mode';var v=localStorage.getItem(k);var m='light';if(v==='dark'||v==='light')m=v;document.documentElement.dataset.theme=m;document.documentElement.style.colorScheme=m;document.cookie=k+'='+m+';path=/;max-age=31536000;SameSite=Lax';}catch(e){}})();`;
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {

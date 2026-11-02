@@ -14,7 +14,7 @@ import type {
 
 /** Stop polling a background import after this long and offer a manual refresh. */
 const POLL_GIVE_UP_MS = 10 * 60_000;
-/** Debounce on mapping writes — selects fire fast, the server need not. */
+/** Combine rapid mapping changes into one write per pack member. */
 const MAPPING_DEBOUNCE_MS = 400;
 
 type PendingMapping = {
@@ -62,7 +62,7 @@ export function useImportSession(sessionId: string | null): UseImportSession {
     Record<string, Record<string, string>>
   >({});
 
-  // When the async confirm started, so polling can give up eventually.
+  // Polling starts on async confirmation or when a resumed session is importing.
   const pollStartedAt = useRef(0);
   // Serialises writes: overlapping PATCHes can otherwise land out of order and
   // clobber each other, since each response is a whole session.
@@ -94,9 +94,10 @@ export function useImportSession(sessionId: string | null): UseImportSession {
     },
   );
 
+  // This reflects the server state, including after automatic polling times out.
   const isPolling = session?.status === 'importing';
 
-  /** Write a server response straight into the cache — never refetch. */
+  /** A complete mutation response can replace this cache entry without a GET. */
   const apply = useCallback(
     (next: ImportSession) => {
       if (!swrKey) return;
@@ -110,6 +111,8 @@ export function useImportSession(sessionId: string | null): UseImportSession {
       const run = queue.current.then(fn).then(
         (result) => result,
         (e: unknown) => {
+          // Resolve failures so later queued edits can still run; callers use
+          // undefined to distinguish a failed operation from its response.
           setError(importErrorMessage(e));
           return undefined;
         },
@@ -255,8 +258,8 @@ export function useImportSession(sessionId: string | null): UseImportSession {
     await globalMutate(swrKey);
   }, [swrKey]);
 
-  // Once the data has actually landed, drop the caches of every screen that
-  // now shows it. This is what makes the existing pages light up.
+  // Revalidate affected domain caches once per completed session so existing
+  // screens can display imported records without a full page reload.
   const invalidatedFor = useRef<string | null>(null);
   const sessionStatus = session?.status;
   const currentSessionId = session?.id;

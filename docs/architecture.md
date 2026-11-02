@@ -1,5 +1,7 @@
 # System architecture
 
+> Historical reference: this document describes an earlier implementation. Use the [developer handover](HANDOVER.md), [setup guide](setup.md) and [current authentication flow](LOGIN_AND_AUTH.md) for maintenance. In particular, the former password-login and browser-token design is no longer the application's login flow.
+
 ## Overview
 
 Allatura is a **multi-tenant** SaaS-style app for tracking **IT systems**, **vendor contracts**, **renewal workflows**, and **spend analytics**. Users belong to an **organisation** identified by a stable string **`tenantId`**; all business data is scoped by that tenant.

@@ -3,10 +3,9 @@ import { ApiError } from '@/lib/api-client';
 /**
  * Human text for the import pipeline's error codes.
  *
- * The backend throws `BadRequestException('snake_case_code')`, which arrives as
- * the raw code in the response `message`. Rendering that verbatim is the
- * difference between a user who knows how to fix their file and one who does
- * not, so every code the pipeline can raise is mapped here.
+ * Backend error codes arrive in the response's message field. Keep recognised
+ * codes mapped to actionable text; the formatter below handles unknown codes
+ * and offending filenames without assuming this list is exhaustive.
  */
 export const IMPORT_ERROR_MESSAGES: Record<string, string> = {
   // upload
@@ -59,15 +58,8 @@ export const IMPORT_ERROR_MESSAGES: Record<string, string> = {
 };
 
 /**
- * Turn anything thrown by the import service into something worth showing.
- *
- * Falls back to the raw message rather than a blank alert: an unmapped code is
- * still more useful on screen than nothing.
- */
-/**
- * Filenames the server named in a structured error, e.g. the entries in a
- * pack it could not classify. Naming them turns "something is wrong" into
- * "rename these two files".
+ * Extract only string filenames from structured errors so the UI can identify
+ * pack entries that need correction without rendering arbitrary response data.
  */
 function offendingFiles(error: ApiError): string[] {
   const body = error.body as { files?: unknown } | undefined;
@@ -75,6 +67,7 @@ function offendingFiles(error: ApiError): string[] {
   return body.files.filter((f): f is string => typeof f === 'string');
 }
 
+/** Map known codes/statuses, retaining an unknown message as the final fallback. */
 export function importErrorMessage(error: unknown): string {
   if (error instanceof ApiError) {
     const mapped = IMPORT_ERROR_MESSAGES[error.message.trim()];

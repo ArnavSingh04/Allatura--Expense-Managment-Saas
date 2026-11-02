@@ -1,6 +1,6 @@
 /**
- * Decode JWT payload segment (no signature verification). Used client-side
- * only for UI convenience; the API enforces authz on every request.
+ * Decode a JWT payload without verifying its signature or expiry.
+ * The result is untrusted data and must not be used to authorise a request.
  */
 
 function base64UrlDecode(segment: string): string {

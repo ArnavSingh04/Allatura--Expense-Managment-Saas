@@ -13,8 +13,8 @@ import RejectedScreen from './RejectedScreen';
  * topbar + main) is always rendered by `dashboard/layout.tsx`; this gate only
  * decides what goes inside the main area: a spinner while we resolve the
  * session, a redirect-to-login no-op, the pending/rejected screen, or the
- * actual page. Keeping the shell stable across hydration prevents the
- * spinner-vs-shell DOM swap that produced a Next.js 16 hydration mismatch.
+ * actual page. Keeping the shell stable avoids changing the outer DOM structure
+ * while streamed content hydrates. API authorisation remains server-side.
  */
 function CenteredLoader() {
   return (
@@ -33,10 +33,8 @@ function CenteredLoader() {
 }
 
 /**
- * Shown when the Auth0 session is valid but `/auth/me` could not be resolved
- * (rejected token, server/network error). Replaces what used to be an endless
- * spinner so the user can always recover — retry, or sign in again to mint a
- * fresh token.
+ * Auth0 still exposes a user, but the domain profile could not be loaded.
+ * Offer recovery according to the failure: retry, choose a workspace, or sign in.
  */
 function SessionErrorScreen({
   isAuthFailure,
@@ -105,17 +103,14 @@ export default function DashboardAuthGate({
     signOut,
   } = useAuthSession();
 
-  // `mounted` is false on the server and on the very first client render, so
-  // the gate's first paint is always the loader and always matches the SSR
-  // output. Without this, React 19's concurrent hydration could commit the
-  // post-effect re-render (ready=true) against the SSR HTML (ready=false) and
-  // surface that as a hydration mismatch instead of a normal state update.
+  // Keep this boundary's first client render aligned with the server loader,
+  // even if the surrounding Auth0 context resolves before it hydrates.
   const mounted = useHydrated();
 
   useEffect(() => {
     if (!mounted || !ready) return;
     if (!isAuthenticated) {
-      // Full navigation into the Auth0 SDK login route (handled by middleware).
+      // Full navigation enters the Auth0 SDK route handled by src/proxy.ts.
       const returnTo = window.location.pathname + window.location.search;
       window.location.assign(`/auth/login?returnTo=${encodeURIComponent(returnTo)}`);
       return;
@@ -133,9 +128,7 @@ export default function DashboardAuthGate({
     return null;
   }
   if (!session) {
-    // `ready` only flips true after /auth/me settles, so reaching here with no
-    // session means the fetch failed. Offer recovery instead of an endless
-    // spinner (the previous behaviour, which stranded users on a blank load).
+    // A failed profile load is recoverable even while Auth0 remains signed in.
     if (error) {
       return (
         <SessionErrorScreen

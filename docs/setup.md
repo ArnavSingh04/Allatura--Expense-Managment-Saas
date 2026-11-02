@@ -1,85 +1,88 @@
-# Setup instructions
+# Local development setup
+
+Keep `plutus-fe` and `plutus-be` next to each other. Each has its own Git history, lockfile and commands. The frontend's workspace file opens both folders.
 
 ## Prerequisites
 
-- **Node.js** (compatible with Next 16 / Nest 11; LTS recommended)
-- **MongoDB** reachable URI (e.g. MongoDB Atlas)
-- Two terminals (or processes): one for **plutus-be**, one for **plutus-fe**
+- Node.js **24.15.0** with bundled npm **11.12.1**, matching the checked-in QA configuration.
+- Git and network access for dependency installation.
+- For interactive development: an authorised MongoDB replica set and an Auth0 application/API. Invitation acceptance and user-status changes use transactions.
 
-## 1. Backend (`plutus-be`)
+Automated checks use synthetic configuration and temporary source copies. They do not need the interactive application's credentials; see [isolated checks](#isolated-checks).
 
-```bash
-cd plutus-be
-npm install
+## Backend
+
+From `plutus-be`, install the locked dependencies. In PowerShell:
+
+```powershell
+$env:MONGOMS_DISABLE_POSTINSTALL = '1'
+npm ci
+Remove-Item Env:MONGOMS_DISABLE_POSTINSTALL
 ```
 
-Copy environment variables:
-
-```bash
-# Create .env from the example in the repo
-cp .env.example .env
-```
-
-Edit **`.env`**:
+If `.env` does not already exist, copy `.env.example` to `.env`. Configure:
 
 | Variable | Purpose |
-|----------|---------|
-| `DB_CONNECTION` | MongoDB connection string (**required**; app throws if missing) |
-| `DB_NAME` | Database name |
-| `APP_PORT` or `PORT` | Listen port (default **3001** in code if unset) |
-| `JWT_SECRET` | Signing key for access tokens |
-| `JWT_EXPIRES_IN` | e.g. `7d` |
-| `STRIPE_SK` | Optional; Stripe secret for billing routes |
+| --- | --- |
+| `DB_CONNECTION`, `DB_NAME` | Replica-set connection and dedicated development database |
+| `PORT` or `APP_PORT` | API port; defaults to `3001`, with `PORT` taking precedence |
+| `APP_URL` | Frontend origin, normally `http://localhost:3000` |
+| `AUTH0_ISSUER_BASE_URL` or `AUTH0_DOMAIN` | Auth0 issuer/domain |
+| `AUTH0_AUDIENCE` | API identifier; must match the frontend |
+| `AUTH0_NAMESPACE` | Prefix for email and verification claims added by the Auth0 Login Action |
+| `BILLING_MODE`, `STRIPE_MODE` | Use `mock` and `test` for development without payment processing |
+| `EMAIL_TRANSPORT` | Use `log` to inspect invitation links locally |
 
-Start in development (webpack HMR):
+The [backend platform guide](../../plutus-be/docs/PLATFORM-SETUP.md) describes Auth0 claims and optional email/storage configuration. The API validates Auth0 tokens; `JWT_SECRET` and `JWT_EXPIRES_IN` are not the current login configuration. Real document uploads need a configured GCS bucket. The import buffer's local storage fallback does not provide browser document uploads.
 
-```bash
-npm run start:dev
-```
+Start the backend with `npm run start:dev`. The API uses `/v1`; Swagger is available at `http://localhost:3001/api` outside production mode. `start:dev:hmr` is the separate webpack/HMR command.
 
-Confirm: logs show `backend listening on` your port; open **`http://localhost:3001/api`** for Swagger.
+## Frontend
 
-## 2. Frontend (`plutus-fe`)
-
-```bash
-cd plutus-fe
-npm install
-```
-
-Copy **`.env.example`** to **`.env.local`** and adjust:
+From `plutus-fe`, run `npm ci`. If `.env.local` does not exist, copy `.env.example` to `.env.local` and configure:
 
 | Variable | Purpose |
-|----------|---------|
-| `NEXT_PUBLIC_APP_URL` | Public site URL (e.g. `http://localhost:3000`) |
-| `NEXT_PUBLIC_BACKEND_API_URL` | Must end with **`/v1`** (e.g. `http://localhost:3001/v1`) |
-| `BACKEND_API_URL` | Target for **Next.js rewrites** (`/api/v1` → backend); same `/v1` path |
-| `BACKEND_API_KEY` | Optional `x-api-key` header for legacy/server use |
-| Stripe keys | If you use checkout flows |
+| --- | --- |
+| `AUTH0_DOMAIN` | Auth0 domain, without `https://` |
+| `AUTH0_CLIENT_ID`, `AUTH0_CLIENT_SECRET` | Regular Web Application credentials |
+| `AUTH0_SECRET` | Locally generated 32-byte hexadecimal secret for session encryption |
+| `APP_BASE_URL`, `NEXT_PUBLIC_APP_URL` | Frontend origin, normally `http://localhost:3000` |
+| `AUTH0_AUDIENCE` | Same API identifier as the backend |
+| `AUTH0_SCOPE` | `openid profile email offline_access` |
+| `NEXT_PUBLIC_BACKEND_API_URL` | `/api/v1`, the browser's same-origin API path |
+| `BACKEND_API_URL` | `http://127.0.0.1:3001/v1`, the server proxy's upstream target |
 
-Start Next.js:
+Start the frontend with `npm run dev`, then open `http://localhost:3000`. Development and build commands select webpack as configured in `package.json`.
 
-```bash
-npm run dev
+The Auth0 application needs the local callback `http://localhost:3000/auth/callback`, logout URL and web origin. The API audience and Login Action namespace must agree with the backend configuration. Offline access must be enabled for refresh tokens. See [login and session behaviour](LOGIN_AND_AUTH.md).
+
+Both `/login` and `/register` redirect to Auth0. After authentication, `auth/me` determines whether onboarding, approval or dashboard access is required. The application API clients do not store their own bearer token.
+
+## Isolated checks
+
+Run these commands separately from each repository:
+
+```text
+node scripts/qa/prepare.cjs
+node scripts/qa/run-isolated.cjs --layer typecheck
+node scripts/qa/run-isolated.cjs --layer lint
+node scripts/qa/run-isolated.cjs --layer unit
+node scripts/qa/run-isolated.cjs --layer build
 ```
 
-Open **`http://localhost:3000`**.
+Preparation installs locked dependencies into an ignored QA directory with lifecycle scripts disabled. The launcher copies reviewed source into a temporary directory, supplies synthetic configuration and records results under `qa-raw/`. It does not install the root dependencies used for interactive development.
 
-## 3. First-time user
+The [frontend QA guide](../qa/ci/README.md) and [backend QA guide](../../plutus-be/qa/ci/README.md) describe browser, HTTP and paired-stack layers, runtime preparation and validation limits. Historical reports describe their recorded revisions; rerun checks for changed source.
 
-1. Use **`/register`** to create an organisation and admin user.
-2. Log in via **`/login`**; the app stores the JWT and calls **`/v1/*`** with `Authorization: Bearer ...`.
-
-## 4. Production notes
-
-- **Frontend**: `next build` / `next start`; set `NEXT_PUBLIC_*` and `BACKEND_API_URL` in the hosting provider.
-- **Backend**: `npm run build` then `npm run start:prod`; set `PORT`, `DB_*`, `JWT_*`, Stripe as needed.
-- **CORS**: backend enables CORS globally; for browsers hitting a **different origin**, ensure origins are acceptable or prefer the **same-origin** `/api/v1` proxy pattern from the Next deployment.
-
-## 5. Troubleshooting
+## Troubleshooting
 
 | Symptom | Check |
-|---------|--------|
-| `DB_CONNECTION is missing` | `.env` in `plutus-be` with valid `DB_CONNECTION` |
-| Frontend “API URL is not configured” | `NEXT_PUBLIC_BACKEND_API_URL` in `.env.local`, restart `next dev` |
-| CORS / failed fetch on localhost | Use `/api/v1` proxy: set env so browser uses same origin (see `resolve-api-base-url.ts`) |
-| 401 on API calls | Token missing or expired; log in again from `/login` |
+| --- | --- |
+| API startup reports missing `DB_CONNECTION` | Development `.env` and its database settings |
+| Proxy returns `backend_unreachable` / 502 | Backend process, port and `BACKEND_API_URL`; use `127.0.0.1` to avoid a local IPv6 mismatch |
+| Login succeeds but API calls return 401 | Matching audience/issuer, Login Action claims and server token retrieval |
+| Session later expires without refresh | Auth0 offline-access setting; sign in again after correcting it |
+| Workspace access is denied | Current organisation membership and status |
+| Document upload reports unconfigured storage | GCS bucket, signing credentials and bucket CORS |
+
+For a local production build, run `npm run build` in each repository, then backend `npm run start:prod` and frontend `npm start`. Public frontend environment values are embedded at build time. These local commands do not establish that hosted deployment has been validated.

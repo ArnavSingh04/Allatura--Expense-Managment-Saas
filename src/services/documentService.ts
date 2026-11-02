@@ -62,7 +62,7 @@ export const documentService = {
 };
 
 /**
- * Drive a full upload: ask BE for a signed URL, PUT the bytes, then finalise.
+ * Request a signed URL, upload using its method and headers, then finalise.
  * Completion requires an actual byte upload and successful backend validation.
  */
 export async function uploadFile(
@@ -85,6 +85,8 @@ export async function uploadFile(
     throw new Error('Document storage is not configured. Your file has not been uploaded. Please try again after storage is available.');
   }
   {
+    // Storage receives the signed request directly; API session headers belong
+    // only on calls to the backend and must not be added to this upload.
     const headers: Record<string, string> = {
       'content-type': file.type || 'application/octet-stream',
       ...created.headers,
@@ -99,6 +101,8 @@ export async function uploadFile(
     }
   }
 
+  // Register completion only after storage accepts the bytes. Refetch the
+  // canonical document so callers receive the backend's final metadata.
   await documentService.finalise({ documentId });
   return documentService.get(documentId);
 }
