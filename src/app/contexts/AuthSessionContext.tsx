@@ -242,6 +242,8 @@ export function AuthSessionProvider({
         }
       }
     })().finally(() => {
+      // An older request may finish after a new account starts loading. It must
+      // not clear the newer request's deduplication entry.
       if (inFlightRef.current?.promise === promise) inFlightRef.current = null;
     });
     inFlightRef.current = { subject, generation, promise };

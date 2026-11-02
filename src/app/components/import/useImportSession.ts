@@ -12,7 +12,7 @@ import type {
   ImportSession,
 } from '@/types/imports';
 
-/** Stop polling a background import after this long and offer a manual refresh. */
+/** Stop automatic polling after this interval; the server job may still be running. */
 const POLL_GIVE_UP_MS = 10 * 60_000;
 /** Combine rapid mapping changes into one write per pack member. */
 const MAPPING_DEBOUNCE_MS = 400;
@@ -140,7 +140,8 @@ export function useImportSession(sessionId: string | null): UseImportSession {
   );
 
   const flush = useCallback(async () => {
-    // Fire any debounced mapping writes immediately, then drain the queue.
+    // Send debounced mappings before preview or confirmation can enter the queue.
+    // Draining waits for completion; enqueue reports failures through error state.
     for (const [key, timer] of Object.entries(debounceTimers.current)) {
       clearTimeout(timer);
       delete debounceTimers.current[key];
@@ -272,8 +273,7 @@ export function useImportSession(sessionId: string | null): UseImportSession {
         typeof key === 'string' &&
         IMPORT_TOUCHED_PREFIXES.some((prefix) => key.startsWith(prefix)),
     );
-    // An already-open overview or calendar keeps its empty snapshot unless
-    // these keys are revalidated by name, including the calendar's query string.
+    // Include cached calendar ranges, whose keys contain query parameters.
     void globalMutate(keys.companyDashboard());
     void globalMutate(
       (key) =>

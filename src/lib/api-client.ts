@@ -92,12 +92,7 @@ export const apiPatch = <T>(path: string, body?: unknown) =>
 export const apiDelete = <T>(path: string) => request<T>('DELETE', path);
 
 /**
- * POST that surfaces the HTTP status alongside the body.
- *
- * The import confirm endpoint answers 200 with a finished session when the job
- * ran inline, and 202 when it was handed off to run in the background. Those
- * two cases drive different UI, and branching on the status is sturdier than
- * sniffing the payload shape.
+ * Preserve the HTTP status for import confirmation: callers use 202 to switch to polling.
  */
 export async function apiPostRaw<T>(
   path: string,

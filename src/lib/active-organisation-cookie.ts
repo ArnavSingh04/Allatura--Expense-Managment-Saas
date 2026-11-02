@@ -4,6 +4,8 @@ export function isOrganisationId(value: unknown): value is string {
   return typeof value === 'string' && /^[a-f\d]{24}$/i.test(value);
 }
 
+// This cookie records a preference, not permission. The backend must still check
+// membership when the proxy forwards the selected organisation.
 export function encodeActiveOrganisation(organisationId: string, subject: string): string {
   return encodeURIComponent(JSON.stringify({ organisationId, subject }));
 }

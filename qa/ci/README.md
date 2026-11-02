@@ -1,15 +1,53 @@
-# Frontend CI and real-system verification
+# Frontend CI and system tests
 
-Updated 1 November 2026. The current workflow runs automatically on every branch push, including feature branches, and on pull requests targeting main/develop. No manual dispatch is required or configured. Pinned actions, read-only permissions, independent gates and failure propagation remain enforced by local policy tests. The existing mirror workflow remains unchanged. No production deployment, remote run or upload was executed.
+Workflow and results recorded on 1 November 2026. The workflow runs on every branch push, including feature branches, and on pull requests targeting `main` or `develop`. It has no manual-dispatch trigger. Local policy tests check pinned actions, read-only permissions, independent checks and failure propagation. The existing mirror workflow remains unchanged. No production deployment, remote run or upload was executed for that record.
 
-CI installs the locked dependencies into an owned directory; separate jobs run components, legacy regressions, full/focused types, lint, production build, browser checks, and real-system checks. The production build uses a physical copy of dependencies in its disposable stage so standalone tracing never depends on an absolute junction back into the development installation. The production build completed successfully; Auth0 dynamic-import and stale Browserslist warnings are retained.
+## Checks and local commands
 
-Run locally using node scripts/qa/run-isolated.cjs --layer <unit|legacy-unit|typecheck|qa-typecheck|lint|build|mocked-browser|stack>. Browser preparation is node scripts/qa/prepare.cjs --browsers. The stack coordinator resolves .qa-system-backend in CI, or sibling ../plutus-be locally; it requires the backend's declared test dependencies to be prepared.
+CI installs locked dependencies into a test-owned directory. Separate jobs run component tests, legacy regressions, full and focused typechecks, lint, the production build, mocked browser tests and paired system tests.
 
-The real-system job checks out evoxedev/plutus-be development into .qa-system-backend and prepares its lockfile. The backend is not publicly readable. In the frontend repository's Settings > Secrets and variables > Actions, add QA_BACKEND_READ_TOKEN with a fine-grained token limited to evoxedev/plutus-be and Contents: read-only (plus required metadata read access). Approve it through the organisation if required. The workflow passes this token only to the paired checkout, does not persist Git credentials, and does not pass it to the test processes. The frontend's default GITHUB_TOKEN cannot supply this private cross-repository access. Hosted execution remains unverified until this secret is configured and the changes are pushed.
+Use the same runners locally:
 
-The tests then run automatically on each branch push. The paired backend is the development branch at checkout time; verify the intended paired revision when interpreting results. Fork pull requests do not receive repository secrets, so their real-system job cannot complete this private checkout. It is not silently skipped or reported as a pass.
+```powershell
+node scripts/qa/prepare.cjs --browsers
+node scripts/qa/run-isolated.cjs --layer unit
+node scripts/qa/run-isolated.cjs --layer legacy-unit
+node scripts/qa/run-isolated.cjs --layer typecheck
+node scripts/qa/run-isolated.cjs --layer qa-typecheck
+node scripts/qa/run-isolated.cjs --layer lint
+node scripts/qa/run-isolated.cjs --layer build
+node scripts/qa/run-isolated.cjs --layer mocked-browser
+```
 
-The stack fixture hosts an actual Next application, its encrypted SDK session and proxy, real Nest API and disposable MongoDB. Session/JWT issuance uses test-owned signing material; external Auth0 login/refresh, email, storage and payments remain substituted or disabled. Expected real-system assertions cover supplier create/reload/persistence and denied role/foreign-organisation access with unchanged persisted state. Actual current outcomes are in [frontend-testing.md](../frontend-testing.md); failed intermediate runs are retained and are not converted to passes.
+The production build copies dependencies into its temporary stage. This keeps standalone tracing from pointing back to the development installation through an absolute junction. The recorded build passed with Auth0 dynamic-import and stale Browserslist warnings; see the dated results in [frontend-testing.md](../frontend-testing.md).
 
-Use node scripts/qa/validate-ci.cjs and node --test qa/ci/validation.test.cjs qa/ci/export.test.cjs for workflow/export policy tests. These check local configuration and failure propagation, not GitHub-hosted execution. No automated deployment or rollback evidence exists for this implementation. Raw logs/traces/screenshots can contain synthetic sessions and are excluded from the reviewed submission package.
+For paired system tests, prepare the backend's declared QA dependencies first, then run:
+
+```powershell
+node scripts/qa/run-isolated.cjs --layer stack
+```
+
+The stack runner uses `.qa-system-backend` in CI and the sibling `../plutus-be` locally.
+
+## Private backend checkout
+
+The system-test job checks out the `development` branch of `evoxedev/plutus-be` into `.qa-system-backend` and installs from its lockfile. The backend repository is private. In the frontend repository's **Settings > Secrets and variables > Actions**, configure `QA_BACKEND_READ_TOKEN` with a fine-grained token limited to that repository and **Contents: read-only**, plus the required metadata access. Obtain organisation approval if required.
+
+The workflow passes the token only to the paired checkout. It neither persists Git credentials nor passes the token to test processes. The frontend's default `GITHUB_TOKEN` cannot provide this private cross-repository access. Hosted execution remains unverified until the secret is configured and the changes are pushed.
+
+Tests run automatically on each branch push. Record the backend revision resolved at checkout time when interpreting a paired result. Fork pull requests do not receive repository secrets, so their system-test job cannot complete the private checkout; the job remains failed rather than being skipped.
+
+## What the system tests cover
+
+The stack fixture runs Next, its encrypted SDK session and proxy, the Nest API and a disposable MongoDB database. It issues sessions and JWTs with test-owned signing material. Hosted Auth0 login and refresh, email, storage and payments remain substituted or disabled.
+
+The scenarios cover supplier creation, reload and persistence, plus denied role and foreign-organisation access with unchanged persisted state. [frontend-testing.md](../frontend-testing.md) records the outcomes, including failed intermediate runs.
+
+## Workflow checks and evidence
+
+```powershell
+node scripts/qa/validate-ci.cjs
+node --test qa/ci/validation.test.cjs qa/ci/export.test.cjs
+```
+
+These commands validate local workflow/export rules and failure propagation. They do not execute GitHub Actions. Automated deployment and rollback have not been verified. Raw logs, traces and screenshots can contain synthetic sessions and remain excluded from the reviewed submission package.

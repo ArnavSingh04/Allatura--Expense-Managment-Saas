@@ -101,6 +101,8 @@ export default function ImportWizard() {
 
   useEffect(() => {
     if (!session || hydrated.current) return;
+    // The cache may still contain the previous session while navigation settles.
+    // Restore a step only from the session named by the current URL.
     if (querySession !== session.id) return;
     hydrated.current = true;
     setStep(stepForStatus(session));

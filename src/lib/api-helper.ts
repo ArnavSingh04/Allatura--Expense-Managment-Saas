@@ -64,11 +64,8 @@ export class ApiHelper {
   }
 
   /**
-   * Pull the backend's error code/message out of a non-OK response so the UI
-   * can show something more useful than a bare HTTP status. Nest's exceptions
-   * serialize as `{ statusCode, message, error }` where `message` is either a
-   * string (our case — we throw `new ConflictException('email_already_registered')`)
-   * or an array of validation errors.
+   * Nest may return one error message or an array of validation messages. Keep
+   * that detail for the UI, with a short text response or HTTP message as fallback.
    */
   private async extractErrorMessage(
     response: Response,

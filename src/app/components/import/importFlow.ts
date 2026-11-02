@@ -160,10 +160,8 @@ export type ResultTotals = {
 };
 
 /**
- * Totals for the result screen.
- *
- * A pack reports a rolled-up `session.result`; a single import reports its own.
- * Falling back to summing members keeps this correct if either side is absent.
+ * Prefer the session's aggregate result. Sum member results only when it is
+ * absent, so pack rows are not counted twice.
  */
 export function resultTotals(session: ImportSession): ResultTotals {
   if (session.result) {

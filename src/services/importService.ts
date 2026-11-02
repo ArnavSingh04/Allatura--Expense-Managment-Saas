@@ -49,8 +49,8 @@ export const importService = {
   ) => apiPatch<ImportSession>(`imports/sessions/${id}/rows/${row}`, body),
 
   /**
-   * 200 means the import ran inline and `session` is final.
-   * 202 means it was handed off; poll `getSession` until it leaves `importing`.
+   * A 202 response switches the caller to polling. Other successful responses
+   * return the session supplied by the API; inspect its status before treating it as complete.
    */
   confirm: async (
     id: string,

@@ -44,6 +44,8 @@ Check existing comments when changing behaviour. Keep examples consistent with e
 The comment review identified these paths for a separate behaviour review. They were inspected in source; the failure scenarios were not reproduced during this cleanup:
 
 - [Import mapping queue](../src/app/components/import/useImportSession.ts): failed queued writes resolve as `undefined`, so flushing the queue does not itself establish that every mapping was saved. Check whether preview/confirmation can use an earlier mapping after a save failure.
+- [Import session state](../src/app/components/import/useImportSession.ts): changing `sessionId` changes the cache key but does not reset mapping drafts, pending writes or the polling clock. Test switching sessions while an edit is queued. The `busy` flag also tracks individual operations rather than queue depth.
+- [Import confirmation](../src/services/importService.ts): the client uses HTTP 202 to start polling and treats other successful responses as synchronous. A repeated confirmation can return a session that is still importing. Review the response status and session status together before treating confirmation as completion.
 - [Variation submission](../src/app/components/construction/VariationDialog.tsx): creation and submission are separate calls. If submission fails after creation, retrying Save can create another draft; consider retaining the successful draft ID.
 - [Progress drafts](../src/app/dashboard/projects/%5Bid%5D/progress/page.tsx): project revalidation replaces local department drafts. Check preservation of unsaved edits when focus or background refresh updates the project.
 

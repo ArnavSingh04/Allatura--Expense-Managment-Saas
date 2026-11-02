@@ -6,16 +6,8 @@ import { useSearchParams } from 'next/navigation';
 import { safeReturnTo } from '@/lib/safe-return-to';
 
 /**
- * Login is delegated entirely to Auth0 Universal Login. This route just kicks
- * off the SDK login flow (mounted by middleware at /auth/login). After Auth0,
- * the callback returns the user to `returnTo` (defaulting to the dashboard),
- * and the AuthSessionProvider routes to onboarding if they have no
- * organisation yet.
- *
- * The incoming `?returnTo=` is honoured so deep links (e.g. the "Upgrade" CTA
- * on the pricing page → /dashboard/settings/billing) land where intended after
- * sign-in. Only same-origin relative paths are accepted, to avoid an open
- * redirect.
+ * Pass a validated local destination to Auth0 so sign-in preserves deep links,
+ * including the billing page. Missing or unsafe destinations use the dashboard.
  */
 function LoginInner() {
   const search = useSearchParams();

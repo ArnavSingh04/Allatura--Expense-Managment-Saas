@@ -11,7 +11,8 @@ Start with the [repository README](../README.md), then use the guides below for 
 | [Login and sessions](LOGIN_AND_AUTH.md) | Auth0, onboarding, membership and organisation selection |
 | [Integration](integration.md) | API proxy, clients, cache invalidation and shared contracts |
 | [Platform setup](PLATFORM-SETUP.md) | Link to the shared provider configuration guide |
-| [Frontend QA](../qa/ci/README.md) | Test layers, preparation and result locations |
+| [Frontend tests](../qa/frontend-testing.md) | Test scope, recorded results and limitations |
+| [CI and system tests](../qa/ci/README.md) | Local commands, private backend checkout and workflow checks |
 | [Backend handover](../../plutus-be/docs/HANDOVER.md) | API responsibilities and cross-repository changes |
 
 Cross-repository links assume `plutus-fe` and `plutus-be` are siblings. The backend package retains the legacy name `selle-backend`; it is the Allatura API.

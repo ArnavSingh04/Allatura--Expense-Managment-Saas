@@ -6,7 +6,10 @@ export type Money = {
 
 export const ZERO: Money = { amount: 0, currency: 'AUD' };
 
-/** API stores monetary amount in minor units (cents). */
+/**
+ * Convert a form value to integer cents at the API boundary. This is not input
+ * validation: non-finite values become zero, so forms must reject them separately.
+ */
 export function toMinor(major: number | string): number {
   const n = typeof major === 'number' ? major : Number(major);
   if (!Number.isFinite(n)) return 0;
